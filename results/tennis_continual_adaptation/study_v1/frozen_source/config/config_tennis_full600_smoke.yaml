@@ -1,0 +1,48 @@
+# Tennis adapter smoke config: validates data -> trainer -> adapter plumbing.
+# Not intended for accuracy claims.
+run_name: tiser_tennis_full600_smoke
+
+seed: 42
+
+paths:
+  data_dir: data/tennis
+  train_file: data/tennis/tennis_train_traced_full.json
+  test_file: data/tennis/tennis_test.json
+  model_dir: model
+  output_dir: outputs
+
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  load_in_4bit: false
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  bias: none
+
+train:
+  subset_size: 600
+  max_seq_len: 2048
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 1
+  num_epochs: 1
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  gradient_checkpointing: false
+  logging_steps: 5
+  save_strategy: epoch
+
+eval:
+  max_samples_per_split: 20
+  batch_size: 1
+  max_new_tokens: 128
+  do_sample: false
+
+splits: [tennis_temporal]

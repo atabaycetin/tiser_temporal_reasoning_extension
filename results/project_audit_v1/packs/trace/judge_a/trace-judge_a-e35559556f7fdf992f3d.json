@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-ce2a582cf41ed9e73ccf9599",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev called the trainer at 1:12 p.m. The medical timeout began three minutes later. Tsitsipas broke serve at 1:25 p.m., after Rublev returned to court.",
+        "question": "How many minutes after Rublev called the trainer did Tsitsipas break serve?",
+        "gold": "13 minutes",
+        "trace": "<reasoning>\nContext: Rublev called trainer at 1:12 p.m. Tsitsipas broke serve at 1:25 p.m. Difference is 13 minutes.\n<timeline>\n- Rublev called trainer: 1:12 p.m.\n- Tsitsipas broke serve: 1:25 p.m.\n</timeline>\n<reflection>\n1:25 - 1:12 = 13 minutes. No need to use the intermediate medical timeout start time.\n</reflection>\n</reasoning>\n<answer>13 minutes</answer>"
+      },
+      "source_sha256": "ce2a582cf41ed9e73ccf95998959d1ec1afe45a5fa3be25599dcc0b5a909ca61"
+    },
+    {
+      "audit_id": "trace-ce6d5b9124fd5120d948fa8c",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer saved a break point at 2-2 in the first set. He broke serve two games later. Nadal then broke back immediately in the following game.",
+        "question": "Which event happened last: Federer saved a break point, Federer broke serve, or Nadal broke back?",
+        "gold": "Nadal broke back",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Federer saved a break point at 2-2 in the first set.\n2. Federer broke serve two games later.\n3. Nadal broke back immediately in the following game.\n</timeline>\n<reflection>\nNadal breaking back is the chronologically last event listed.\n</reflection>\n</reasoning>\n<answer>Nadal broke back</answer>"
+      },
+      "source_sha256": "ce6d5b9124fd5120d948fa8c7f4ce44065b348fb7e27b8ac1e5f2a9080a7923e"
+    },
+    {
+      "audit_id": "trace-ce6fb5c3c5a35e3b1ce52936",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved a break point in the second game. Zverev broke serve in the sixth game. The set finished later with Djokovic winning a tie-break.",
+        "question": "Which happened first: Zverev broke serve or Djokovic saved a break point?",
+        "gold": "Djokovic saved a break point",
+        "trace": "<reasoning>\nDjokovic saved a break point in the second game, and Zverev broke serve in the sixth game.\n<timeline>\n1. Game 2: Djokovic saved a break point\n2. Game 6: Zverev broke serve\n3. Later: Djokovic won a tie-break\n</timeline>\n<reflection>\nThe event in the second game (saving a break point) happens before the event in the sixth game.\n</reflection>\n</reasoning>\n<answer>Djokovic saved a break point</answer>"
+      },
+      "source_sha256": "ce6fb5c3c5a35e3b1ce5293633a8fb5a08f4f606fc688a7feb90be6e5baa1c1a"
+    },
+    {
+      "audit_id": "trace-cea22979ac204d2fd4e52208",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won his quarterfinal after a three-set match. Before the semifinal, his scheduled opponent withdrew with a wrist injury. Alcaraz then advanced to the final without playing that semifinal.",
+        "question": "Which round did Alcaraz reach after the withdrawal?",
+        "gold": "The final",
+        "trace": "<reasoning>\nAlcaraz won the quarterfinal, then his semifinal opponent withdrew, and after that Alcaraz advanced to the final without playing the semifinal.\n<timeline>\n1. Alcaraz won his quarterfinal after a three-set match.\n2. Before the semifinal, his scheduled opponent withdrew with a wrist injury.\n3. Alcaraz advanced to the final without playing that semifinal.\n</timeline>\n<reflection>\nAfter the withdrawal, the round Alcaraz reached was the final.\n</reflection>\n</reasoning>\n<answer>The final</answer>"
+      },
+      "source_sha256": "cea22979ac204d2fd4e522087953b94857f2893c6eaed87847f085df9bd14fc1"
+    },
+    {
+      "audit_id": "trace-cec0e60b9c6adcec39194c39",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner won the first set 6-4. A rain delay began thirty minutes after the start of the match. The delay lasted forty-five minutes. After the delay, Medvedev won the second set 7-5.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "30 minutes",
+        "trace": "<reasoning>\nThe text explicitly states the time elapsed from the start of the match to the rain delay.\n<timeline>\n1. Match started\n2. 30 minutes later: A rain delay began\n3. 45 minutes of delay elapsed\n</timeline>\n<reflection>\nThe context directly provides the 30-minute duration between the match start and the rain delay.\n</reflection>\n</reasoning>\n<answer>30 minutes</answer>"
+      },
+      "source_sha256": "cec0e60b9c6adcec39194c39528199eca6943afb93ee8c10316895ca86af474b"
+    },
+    {
+      "audit_id": "trace-cef006197677130fcae503dd",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz received a walkover in the quarterfinal after Ruud withdrew. Before playing the final, Alcaraz beat Zverev in the semifinal. He faced Medvedev in the final the next day.",
+        "question": "Which round did Alcaraz play before the final?",
+        "gold": "The semifinal",
+        "trace": "<reasoning>\nContext: \"Before playing the final, Alcaraz beat Zverev in the semifinal.\" The round immediately before the final is the semifinal.\n<timeline>\n- Alcaraz beat Zverev in semifinal.\n- Then Alcaraz played final.\n</timeline>\n<reflection>\nThe phrase \"before playing the final\" directly identifies the semifinal as the preceding round.\n</reflection>\n</reasoning>\n<answer>The semifinal</answer>"
+      },
+      "source_sha256": "cef006197677130fcae503dd91242354d221a57372fcbb002f0961db6767224e"
+    },
+    {
+      "audit_id": "trace-cf42ba2bfd40c42f4b56bccc",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served a 140mph ace down the T. Ruud immediately challenged the call. Hawk-eye confirmed the ball was in, ending the game. The players then walked to their benches for the changeover.",
+        "question": "Which happened first: Ruud challenged the call or Shelton served an ace?",
+        "gold": "Shelton served an ace",
+        "trace": "<reasoning>\nThe question asks which happened first: Ruud challenged the call or Shelton served an ace. Context: Shelton served an ace, then Ruud immediately challenged. So ace first.\n<timeline>\n- Shelton served an ace\n- Ruud immediately challenged the call\n</timeline>\n<reflection>\nThe serve occurred before the challenge, so ace is first.\n</reflection>\n</reasoning>\n<answer>Shelton served an ace</answer>"
+      },
+      "source_sha256": "cf42ba2bfd40c42f4b56bcccd2e350b6bc85155bb53cc7a537cfb23ff7ee9e73"
+    },
+    {
+      "audit_id": "trace-cf4bea87ee59be41cafa076c",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal won the first set with a late break. Federer left the court during a rain delay after the set ended. When play resumed, Federer broke Nadal in the opening game of the second set.",
+        "question": "Did Federer leave the court before breaking Nadal in the second set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: Federer left court during rain delay after first set. When play resumed, Federer broke Nadal in second set opening game. Question asks if leaving court occurred before the break.\n<timeline>\n1. Nadal won first set.\n2. Federer left court during rain delay after set ended.\n3. When play resumed, Federer broke Nadal in opening game of second set.\n</timeline>\n<reflection>\nLeaving court happens before play resumes and the break, so yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "cf4bea87ee59be41cafa076ce119286f2220ca0deb7373d70b775f022d408889"
+    },
+    {
+      "audit_id": "trace-cf66b92f4fef1d0e394323a4",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton hit two aces to hold for 2-1. Rune complained to the umpire after the hold. Later, Rune broke Shelton at 3-3.",
+        "question": "Did Rune complain to the umpire after Shelton held serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nShelton held serve for 2-1, and Rune complained to the umpire after that hold.\n<timeline>\n1. Shelton hit two aces to hold for 2-1.\n2. Rune complained to the umpire after the hold.\n3. Later, Rune broke Shelton at 3-3.\n</timeline>\n<reflection>\nRune's complaint is explicitly after Shelton's hold, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "cf66b92f4fef1d0e394323a4ccfe5b33cd009bf5944d43d3289f249eb7266391"
+    },
+    {
+      "audit_id": "trace-d043ddcb95166d1ed70e920b",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz broke serve at 5-4 in the second set to win the set. He then smashed a racquet in frustration. The umpire gave him a warning before the third set.",
+        "question": "What happened after Fritz broke serve to win the set?",
+        "gold": "Fritz smashed a racquet in frustration",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Fritz broke serve at 5-4 in the second set to win the set.\n2. Fritz smashed a racquet in frustration.\n3. The umpire gave him a warning before the third set.\n</timeline>\n<reflection>\nSmashing the racquet immediately followed breaking serve.\n</reflection>\n</reasoning>\n<answer>Fritz smashed a racquet in frustration</answer>"
+      },
+      "source_sha256": "d043ddcb95166d1ed70e920b23d3b96bbcc0037a0cbd9c9bd2dd6f8f2ead465a"
+    }
+  ],
+  "batch_id": "trace-judge_a-e35559556f7fdf992f3d",
+  "batch_sha256": "300a5016344f62e64a2e61525c7b0fb31ebb6b87b757079d3abe7b63a464403f"
+}

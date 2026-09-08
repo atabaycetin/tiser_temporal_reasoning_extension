@@ -1,0 +1,54 @@
+# Inference-only configuration for original-TISER retention evaluation.
+# The test file can be overridden with scripts/evaluate.py --test-file.
+run_name: retention_original_tiser
+
+seed: 42
+
+paths:
+  data_dir: data
+  train_file: data/TISER_train.json
+  test_file: data/tennis/original_tiser_eval_sample.json
+  model_dir: model
+  output_dir: results/tennis_continual_adaptation/retention
+
+model:
+  name: Qwen/Qwen2.5-7B-Instruct
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  bias: none
+
+# Required by the common configuration schema but unused during evaluation.
+train:
+  subset_size: null
+  max_seq_len: 2048
+  per_device_batch_size: 4
+  gradient_accumulation_steps: 4
+  num_epochs: 2
+  max_steps: -1
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_strategy: epoch
+
+eval:
+  engine: hf
+  gpu_memory_utilization: 0.90
+  max_model_len: null
+  max_samples_per_split: null
+  batch_size: 8
+  checkpoint_rows: 64
+  max_new_tokens: 768
+  do_sample: false
+
+splits: [tgqa_test, tempreason_l2_test, tempreason_l3_test, timeqa_easy_test, timeqa_hard_test]

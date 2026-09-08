@@ -1,0 +1,23 @@
+{
+  "reason": "Remove item-level acceptances from one incomplete response and its previously partial retry before atomic full-response reimport.",
+  "partial_response_sha256": "37406cd7f707f1e6e70d4320d384c16ec00c458588728e9d705695ac0149c81e",
+  "fully_valid_retry_sha256": "15496e9368ec76821492ad9ef11406b7b0ef3709b2199e4b6af2207f3a5d4561",
+  "removed_rows": 10,
+  "rows_before": 731,
+  "rows_after_removal": 721,
+  "accepted_before_sha256": "80c3479f0d1f158b34962a82341141b58cd10ecb7c6a602039d1775698b759b3",
+  "raw_attempts_preserved": true,
+  "rows_after_reimport": 725,
+  "accepted_after_sha256": "f751777e3f7b660659ed2fd0bab8d265aeab390c5a9ab6295a9076bf2dbc91eb",
+  "replacement_rows": 4,
+  "partial_response_rows_remaining": 0,
+  "rows_after_repair": 731,
+  "accepted_after_repair_sha256": "7c9d06527ad7e9b316b351914dccf0b97b587e89ed4aceee21c7e55e44a6cce4",
+  "complete_original_batch_response_sha256": "ce92d53467e5f35f302f4bc64123c9ed75aa96dd2110180ba29c41b35edcf3ad",
+  "complete_original_batch_rows": 6,
+  "original_batch_ids_covered_after_repair": 10,
+  "covering_complete_response_sha256s": {
+    "278557715d88d4a3e9589dbaf8d35dc14e56ae24193bdba5642f0c545a8266dc": 4,
+    "ce92d53467e5f35f302f4bc64123c9ed75aa96dd2110180ba29c41b35edcf3ad": 6
+  }
+}

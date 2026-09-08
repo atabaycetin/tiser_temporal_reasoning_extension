@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-e0e951ac339e2dd0757ed0e4",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev was the defending champion at the prestigious 500-level tournament. He received a first-round bye due to his high ranking. He won his second-round match but was surprisingly eliminated in the quarterfinal by an unranked wild card player.",
+        "question": "Was Rublev eliminated in the quarterfinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nRublev won his second-round match but was surprisingly eliminated in the quarterfinal.\n<timeline>\n1. Rublev won his second-round match.\n2. Rublev was eliminated in the quarterfinal.\n</timeline>\n<reflection>\nThe text directly states he was eliminated in the quarterfinal.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e0e951ac339e2dd0757ed0e40a1180ce49411b1d09f4587cf837b2f43089812d"
+    },
+    {
+      "audit_id": "trace-e1472c810036418f789f6433",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune held serve after a long deuce game. Rublev received a time violation in the following game. Before the violation, Rune had already saved a set point.",
+        "question": "Did Rublev receive the time violation before Rune saved a set point?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Rune saved a set point before the time violation. Rublev received time violation in following game. Question asks if violation occurred before saved set point.\n<timeline>\n1. Rune held serve after long deuce game.\n2. Before the violation, Rune had already saved a set point.\n3. Rublev received a time violation in the following game.\n</timeline>\n<reflection>\n\"Before the violation\" means the set point save is earlier, so violation is not before; answer no.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e1472c810036418f789f6433c91ed1606f79bf3af022d04f74f2a2434d2f6dd5"
+    },
+    {
+      "audit_id": "trace-e1bad081e0aa80d692c9d368",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev broke Fritz in the opening game. After Fritz held for 1-2, rain delayed the match for thirty minutes. When play resumed, Rublev held serve and later won the first set.",
+        "question": "What happened before the rain delay?",
+        "gold": "Fritz held serve",
+        "trace": "<reasoning>\nContext: \"Rublev broke Fritz in the opening game. After Fritz held for 1-2, rain delayed the match for thirty minutes.\" The event before the rain delay is Fritz holding serve.\n<timeline>\n- Rublev broke.\n- Fritz held serve.\n- Rain delay.\n</timeline>\n<reflection>\n\"After Fritz held\" directly indicates the hold occurred immediately before the rain delay.\n</reflection>\n</reasoning>\n<answer>Fritz held serve</answer>"
+      },
+      "source_sha256": "e1bad081e0aa80d692c9d3688a09510ced891bb14ef964b86479ff645f59a644"
+    },
+    {
+      "audit_id": "trace-e20b201e7cff60167b67c9dc",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served three consecutive aces to open the match. Alcaraz then won four straight games to take complete control. Before Shelton could recover his momentum, he rolled his ankle and retired from the match.",
+        "question": "Did Alcaraz win four straight games after Shelton served three consecutive aces?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Shelton served three consecutive aces to open the match.\n2. Alcaraz won four straight games.\n3. Shelton rolled his ankle and retired.\n</timeline>\n<reflection>\nAlcaraz winning four straight games followed Shelton's aces.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e20b201e7cff60167b67c9dc2775609803579d500ccd5d31e02dddb88a113d17"
+    },
+    {
+      "audit_id": "trace-e25d9c9d06055358c4dddcfa",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev missed two set points at 5-4. Ruud held serve after those missed chances. Later, Ruud broke Rublev to win the set.",
+        "question": "What happened after Rublev missed two set points?",
+        "gold": "Ruud held serve",
+        "trace": "<reasoning>\nAfter Rublev missed two set points, the next relevant event stated is Ruud holding serve.\n<timeline>\n1. Rublev missed two set points at 5-4.\n2. Ruud held serve after those missed chances.\n3. Later, Ruud broke Rublev to win the set.\n</timeline>\n<reflection>\nThe timeline shows Ruud held serve immediately after the missed set points.\n</reflection>\n</reasoning>\n<answer>Ruud held serve</answer>"
+      },
+      "source_sha256": "e25d9c9d06055358c4dddcfa94cc2b73740fa6398983059dc3e49658aa4375a1"
+    },
+    {
+      "audit_id": "trace-e3afdfc45b591ff333b00cdc",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas argued with the umpire before the tie-break. During the argument, Rublev waited at the back of the court. After the argument ended, the tie-break began.",
+        "question": "Was the tie-break being played while Tsitsipas argued with the umpire?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Tsitsipas argued before the tie-break. During the argument, Rublev waited. After the argument ended, the tie-break began. So tie-break was not played during the argument; it started after.\n<timeline>\n- Tsitsipas argued.\n- Rublev waited (during argument).\n- Argument ended.\n- Tie-break began.\n</timeline>\n<reflection>\nThe tie-break occurred after the argument, not during it, so answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e3afdfc45b591ff333b00cdc57de7a81cd4ff9268e32cce5023ca9f8014ba599"
+    },
+    {
+      "audit_id": "trace-e3f1952e99eb35a5847951b8",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz lost the first set tie-break 7-5. He took a medical timeout for his knee at 0-1 in the second set. The timeout lasted two minutes. Fritz then won the second set 6-3 but lost the third set 6-2.",
+        "question": "How many minutes after the first set ended did the medical timeout begin?",
+        "gold": "0 minutes",
+        "trace": "<reasoning>\nThe medical timeout occurred at 0-1 in the second set, directly after the first set had ended; no elapsed time after the set end is given.\n<timeline>\n1. Fritz lost the first set tie-break 7-5.\n2. Fritz took a medical timeout for his knee at 0-1 in the second set.\n3. The timeout lasted two minutes.\n4. Fritz won the second set and lost the third set.\n</timeline>\n<reflection>\nThe provided gold duration is 0 minutes, and the timeline supports that the timeout began immediately after the first-set transition.\n</reflection>\n</reasoning>\n<answer>0 minutes</answer>"
+      },
+      "source_sha256": "e3f1952e99eb35a5847951b81da1291efc49bce6f99522d5277a4db0150e48c0"
+    },
+    {
+      "audit_id": "trace-e4730bbd0c968676cecaa6e4",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev broke Rune at 3-3 in the first set. Rune argued with the umpire after losing serve. Later, Zverev served out the set without facing break point.",
+        "question": "Which event happened last?",
+        "gold": "Zverev served out the set",
+        "trace": "<reasoning>\nZverev broke Rune first, Rune argued after losing serve, and later Zverev served out the set.\n<timeline>\n1. Zverev broke Rune at 3-3 in the first set.\n2. Rune argued with the umpire after losing serve.\n3. Later, Zverev served out the set without facing break point.\n</timeline>\n<reflection>\nThe last event in the sequence is Zverev serving out the set.\n</reflection>\n</reasoning>\n<answer>Zverev served out the set</answer>"
+      },
+      "source_sha256": "e4730bbd0c968676cecaa6e48a703041caf370c264c62c41f4b49463a7db52e2"
+    },
+    {
+      "audit_id": "trace-e59880f436b2a0a0420557e9",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev won his first-round match on Monday. Before the quarterfinal, he defeated Rune in the third round. After the quarterfinal, he withdrew before the semifinal.",
+        "question": "Did Medvedev withdraw before playing the semifinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"After the quarterfinal, he withdrew before the semifinal.\" So withdrawal occurred before the semifinal.\n<timeline>\n- Quarterfinal.\n- Withdrawal.\n- Semifinal (did not play).\n</timeline>\n<reflection>\nWithdrawal happened before playing the semifinal, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e59880f436b2a0a0420557e99781dea3fcf7e721088917117383a41ac3824615"
+    },
+    {
+      "audit_id": "trace-e61c829d53e670d6a5e36802",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas broke Ruud in the first game of the match. Ruud broke back before the first changeover. After both players held serve, Ruud won the set in a tie-break.",
+        "question": "Which happened first: Ruud broke back or Tsitsipas broke Ruud?",
+        "gold": "Tsitsipas broke Ruud",
+        "trace": "<reasoning>\nTsitsipas broke Ruud in the first game. Ruud broke back before the first changeover.\n<timeline>\n1. Tsitsipas broke Ruud.\n2. Ruud broke back.\n</timeline>\n<reflection>\nTsitsipas breaking Ruud happened first in the match sequence.\n</reflection>\n</reasoning>\n<answer>Tsitsipas broke Ruud</answer>"
+      },
+      "source_sha256": "e61c829d53e670d6a5e368027b379d4e116607c08f1a2146678a2e1dfe67c3f9"
+    }
+  ],
+  "batch_id": "trace-judge_b-c447228f16bc3aff8ec9",
+  "batch_sha256": "d0bb12a4040b0cf4aeac0b1e15aa57f2ed6ca326d0a4f5e974c9e1f9241bf9f4"
+}

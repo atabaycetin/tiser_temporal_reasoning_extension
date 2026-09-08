@@ -1,0 +1,150 @@
+{
+  "batch_id": "trace-judge_b-2a4812e4c4a733f22e72",
+  "batch_sha256": "0b60c555364b9fff4829ff4e98ee569e6b848974d7e0795666157d055404a3bd",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T11:03:24Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-7874aebbfcd672f47ce05a63",
+      "source_sha256": "7874aebbfcd672f47ce05a6359ad56ccf4bae3f1ad9495601d2943cca9806282",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before the second set, Ruud changed rackets. Ruud then broke Zverev in the second game."
+        }
+      ],
+      "rationale": "The context explicitly orders the racket change before Ruud broke Zverev, matching the trace and answer."
+    },
+    {
+      "audit_id": "trace-797d9efeb99ff01164a016ab",
+      "source_sha256": "797d9efeb99ff01164a016ab9e9c2fdf55f71c2809dee08a7afbd1ea94d831a5",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev rolled his ankle during the semifinal tie-break. He remained on the ground in pain for five minutes. The medical staff arrived after he signaled for help."
+        }
+      ],
+      "rationale": "The ankle roll is described before the later medical-staff arrival, so the answer to whether staff arrived before the roll is No."
+    },
+    {
+      "audit_id": "trace-7a21e280d04ecd90c71ea810",
+      "source_sha256": "7a21e280d04ecd90c71ea810999303737b8c270c029568467b33f222cb062e99",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic successfully saved two championship points in the final set. Federer then hit a forehand into the net on the following point. Djokovic eventually won the match in a thrilling tie-break."
+        }
+      ],
+      "rationale": "The championship-point saves occur before Djokovic eventually wins the match, so the trace conclusion is supported."
+    },
+    {
+      "audit_id": "trace-7a346d24fe751ceade992d13",
+      "source_sha256": "7a346d24fe751ceade992d135f4c4c825f434fdde1b063ac746248d23af64c6e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton served a costly double fault on break point. He immediately shouted at himself in frustration."
+        }
+      ],
+      "rationale": "The double fault is stated immediately before Shelton shouted at himself, matching the answer."
+    },
+    {
+      "audit_id": "trace-7ae1b1551515dd4dcad2ab9a",
+      "source_sha256": "7ae1b1551515dd4dcad2ab9a55b060e2a3d592a73ae68a0cf6cc0844b5b83e60",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur immediately took a medical timeout for his shoulder. Alcaraz then broke serve in the opening game of the second set."
+        }
+      ],
+      "rationale": "The context states that Alcaraz broke serve after De Minaur took the medical timeout."
+    },
+    {
+      "audit_id": "trace-7afc043d34fa57c384b5962a",
+      "source_sha256": "7afc043d34fa57c384b5962ab2634f97727dafb574784e70f4b405ead6df29e6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before the rain delay, Sinner saved two break points. After the delay, Djokovic broke Sinner immediately."
+        }
+      ],
+      "rationale": "Sinner saving two break points is explicitly placed before the rain delay, so the trace answer is supported."
+    },
+    {
+      "audit_id": "trace-7b157e38e5f6f40ab3040910",
+      "source_sha256": "7b157e38e5f6f40ab30409104c2d7d0b3dcb99b54ba53cb00281fd00fe32ea5e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev immediately broke back to 4-4. Rune then saved two break points at 4-4 before holding serve."
+        }
+      ],
+      "rationale": "Rune saving two break points is the next stated event after Rublev broke back, matching the trace and answer."
+    },
+    {
+      "audit_id": "trace-7ba8b69490325b89d59afca2",
+      "source_sha256": "7ba8b69490325b89d59afca2a7c996b00183e6429e6993bc67659cdfd73249a6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas started the second set at 4:00 p.m. Ruud broke serve at 4:17 p.m. The roof was fully closed at 4:29 p.m."
+        }
+      ],
+      "rationale": "The elapsed time from 4:00 p.m. to 4:29 p.m. is 29 minutes, matching the trace calculation."
+    },
+    {
+      "audit_id": "trace-7be69f768ff69680acc4366a",
+      "source_sha256": "7be69f768ff69680acc4366ace0053b42aed0b73fb1c9284bcffbc9a60e5e220",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz saved two break points in the third game. After that hold, Medvedev requested new balls from the umpire."
+        }
+      ],
+      "rationale": "Alcaraz saving two break points is described before Medvedev requested new balls; the trace conclusion is supported."
+    },
+    {
+      "audit_id": "trace-7c361c39183bc35f7ed126d4",
+      "source_sha256": "7c361c39183bc35f7ed126d4821b3d76b2fd0d5b14f15cea59e7d0c50a9565d4",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal played a flawless first set, winning 6-0. At the start of the second set, the roof was closed due to impending rain."
+        }
+      ],
+      "rationale": "The roof closure at the start of the second set followed Nadal winning the first set, so Yes is supported."
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-f0e20bdb9256bbd71325643f",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz lost his opening service game to Shelton. Shelton then held his serve to go up 2-0. Minutes later, rain suspended play for an hour. Once play resumed, Fritz broke back.",
+        "question": "Was play suspended by rain after Fritz broke back?",
+        "gold": "No",
+        "trace": "<reasoning>\nRain suspended play before Fritz broke back, because Fritz broke back only once play resumed.\n<timeline>\n1. Fritz lost his opening service game to Shelton.\n2. Shelton held serve to go up 2-0.\n3. Minutes later, rain suspended play for an hour.\n4. Once play resumed, Fritz broke back.\n</timeline>\n<reflection>\nThe rain suspension happened before Fritz broke back, so it was not after the break back.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f0e20bdb9256bbd71325643fbcd7b2f38a0dbbb11bdb10530ee803839a735eaa"
+    },
+    {
+      "audit_id": "trace-f23877e1e8c5174151896b9b",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic served for the second set while the crowd was still settling after a long interruption. During the same game, Zverev challenged a line call. After the challenge failed, Djokovic closed the set.",
+        "question": "Did Zverev challenge a line call during Djokovic's service game?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context says \"During the same game, Zverev challenged a line call\" while Djokovic served for the second set.\n<timeline>\n1. Crowd settling after long interruption / Djokovic served for the second set\n2. During same game: Zverev challenged a line call\n3. Challenge failed / Djokovic closed the set\n</timeline>\n<reflection>\nThe timeline confirms the challenge occurred concurrently with Djokovic's service game.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "f23877e1e8c5174151896b9bc9ee0c6fddb7b71217ff76db6cea89260d16e395"
+    },
+    {
+      "audit_id": "trace-f2550e377da7b8914b124324",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev double-faulted on set point in the first set. Fritz won the tie-break after that mistake. Minutes later, Fritz called the trainer during the changeover.",
+        "question": "Did Fritz call the trainer before winning the tie-break?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Fritz won tie-break, then minutes later called trainer. Question asks if trainer call occurred before winning tie-break.\n<timeline>\n1. Rublev double-faulted on set point.\n2. Fritz won the tie-break after that mistake.\n3. Minutes later, Fritz called the trainer.\n</timeline>\n<reflection>\nThe trainer call happens after the tie-break, so before is false.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f2550e377da7b8914b124324aa0cbe2f92254df5b44c542af2441bf6221953d9"
+    },
+    {
+      "audit_id": "trace-f2d25a28cf32bd593561b498",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner held serve in the opening game of the first set. Before Sinner broke serve at 3-2, Djokovic called a medical timeout during the changeover. After the break, Sinner served out the set.",
+        "question": "Did Djokovic call the medical timeout before Sinner broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context says Djokovic called a medical timeout before Sinner broke serve at 3-2.\n<timeline>\n1. Sinner held serve in the opening game of the first set.\n2. Djokovic called a medical timeout during the changeover.\n3. Sinner broke serve at 3-2.\n4. After the break, Sinner served out the set.\n</timeline>\n<reflection>\nThe timeout is placed before Sinner's break, so the answer follows.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "f2d25a28cf32bd593561b4989d35f7a0c524d20a709d1655f406e15d3ccd7769"
+    },
+    {
+      "audit_id": "trace-f31efac85d419a9ac9749072",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal won the pre-match coin toss and elected to receive. Federer began the match with an uncharacteristic double fault. Nadal hit a forehand winner on the next point. Federer quickly adjusted his serve strategy.",
+        "question": "Which happened last: Federer served a double fault or Nadal hit a forehand winner?",
+        "gold": "Nadal hit a forehand winner",
+        "trace": "<reasoning>\nThe question asks which happened last: Federer double fault or Nadal forehand winner. Context: Federer began match with double fault, then Nadal hit forehand winner on next point. So winner after double fault.\n<timeline>\n- Federer double fault\n- Nadal forehand winner on next point\n</timeline>\n<reflection>\nThe forehand winner happened after the double fault, so it is last.\n</reflection>\n</reasoning>\n<answer>Nadal hit a forehand winner</answer>"
+      },
+      "source_sha256": "f31efac85d419a9ac97490727f0e6c985318a7db99c9a9d0626de1897933b5c1"
+    },
+    {
+      "audit_id": "trace-f39c802c4b33a6dba91564c6",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz received a bye in the first round. He won his second-round match easily. In the third round, he struggled but managed to win in five sets. He then withdrew from the tournament before his fourth-round match due to injury.",
+        "question": "Did Fritz withdraw from the tournament before playing his third-round match?",
+        "gold": "No",
+        "trace": "<reasoning>\nFritz won his third-round match before he withdrew before the fourth-round match.\n<timeline>\n1. Fritz received a bye in the first round.\n2. Fritz won his second-round match.\n3. In the third round, Fritz won in five sets.\n4. Fritz then withdrew before his fourth-round match due to injury.\n</timeline>\n<reflection>\nThe withdrawal occurred after the third-round match, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f39c802c4b33a6dba91564c69a7b4073e8d9710eeeaed99f30cf6d6220e36471"
+    },
+    {
+      "audit_id": "trace-f4e7b969e8452200be95bdc7",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur broke Shelton in the second game. Shelton changed his shoes during the next changeover. Later, De Minaur lost serve while trying to close the set.",
+        "question": "Did Shelton change his shoes after De Minaur broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDe Minaur broke Shelton in the second game, and Shelton changed his shoes during the next changeover.\n<timeline>\n1. De Minaur broke Shelton in the second game.\n2. Shelton changed his shoes during the next changeover.\n3. Later, De Minaur lost serve while trying to close the set.\n</timeline>\n<reflection>\nShelton's shoe change happened after De Minaur broke serve.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "f4e7b969e8452200be95bdc7c9da63a2dc123feab7e9c3cbe4f61c23e07abbde"
+    },
+    {
+      "audit_id": "trace-f4ef0bfacc7e8314e757fc91",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev broke Fritz in the first game of the second set. Before the break, Fritz had taken an off-court bathroom break. After the break, Rublev held serve to lead 2-0.",
+        "question": "What happened before Rublev broke Fritz?",
+        "gold": "Fritz took a bathroom break",
+        "trace": "<reasoning>\nFritz had taken an off-court bathroom break before Rublev broke him in the first game of the second set.\n<timeline>\n1. Fritz took an off-court bathroom break.\n2. Rublev broke Fritz in the first game of the second set.\n3. After the break, Rublev held serve to lead 2-0.\n</timeline>\n<reflection>\nThe timeline shows the bathroom break before Rublev's break of serve.\n</reflection>\n</reasoning>\n<answer>Fritz took a bathroom break</answer>"
+      },
+      "source_sha256": "f4ef0bfacc7e8314e757fc91469664952ca99f64e72855b7297cbfeed768f9cc"
+    },
+    {
+      "audit_id": "trace-f540b471d00a7fd7a4b7ebc9",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz faced a break point at 4-4 in the second set. He saved it with an ace. During the same game, he saved two more break points before holding serve. The set went to a tie-break.",
+        "question": "Did Alcaraz save a break point during the tie-break?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe break points saved by Alcaraz occurred during the 4-4 game, prior to the tie-break.\n<timeline>\n1. Game at 4-4: Alcaraz saved a break point with an ace\n2. Same game: Alcaraz saved two more break points\n3. Same game: Alcaraz held serve\n4. Later: The set went to a tie-break\n</timeline>\n<reflection>\nAll mentioned break points were saved during the 4-4 game, not during the subsequent tie-break.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f540b471d00a7fd7a4b7ebc975922d02dc421d16e38f41afeba94b480ef10ecc"
+    },
+    {
+      "audit_id": "trace-f54791ad7f39c1a97ac27db3",
+      "kind": "trace",
+      "payload": {
+        "context": "The championship match officially started at 2:00 PM. Rain delayed play suddenly at 2:45 PM. The players returned to the court an hour later. The sun was shining brightly when play resumed.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe question asks minutes after match start when rain delay began. Match started at 2:00 PM, rain delay at 2:45 PM. Difference = 45 minutes.\n<timeline>\n- Match started: 2:00 PM\n- Rain delay began: 2:45 PM\n</timeline>\n<reflection>\n2:45 minus 2:00 equals 45 minutes.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "f54791ad7f39c1a97ac27db38803f74ff39bdcd9564c84fdd8b70428904355df"
+    }
+  ],
+  "batch_id": "trace-judge_b-909903f417384886378a",
+  "batch_sha256": "c1102c0abddbff1eaef831ffa94c338644ab7536c11778a4d871aa41c4a314f7"
+}

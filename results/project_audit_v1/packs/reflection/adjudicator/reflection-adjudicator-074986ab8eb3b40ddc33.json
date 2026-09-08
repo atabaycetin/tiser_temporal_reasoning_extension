@@ -1,0 +1,209 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "reflection",
+  "pass": "adjudicator",
+  "rubric": "Adjudicate two labels for the same reflection using the\nsame conservative rule: explicit_conflict requires an explicit textual\nacknowledgement of tension between supplied context and prior knowledge, memory,\nexpectation, or an alternative factual answer. Judge only the reflection. Routine\nself-checking is negative. Copy an exact evidence substring only for a positive\nlabel; otherwise use an empty quote. Return the best final label and one concise\nsentence of rationale.",
+  "rubric_sha256": "a88d48dd8ed7635fa06170b1669e582407a7121d2ddf8ca0bc65864169c3178c",
+  "items": [
+    {
+      "audit_id": "reflection-0020728789499bb31e109624",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, it is clear that Ion Ghica was the head of the government of Romania in December 1870, but not in December 1933. The timeline does not provide any information about who was in charge in December 1933. We need to re-evaluate the provided information to ensure we have not missed any details."
+      },
+      "source_sha256": "0020728789499bb31e109624948d8fe64e525dfba272a5c8047d74cff5963231",
+      "decisions": [
+        {
+          "audit_id": "reflection-0020728789499bb31e109624",
+          "source_sha256": "0020728789499bb31e109624948d8fe64e525dfba272a5c8047d74cff5963231",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection notes missing timeline information for December 1933 but does not contrast the supplied context with prior knowledge or an alternative answer."
+        },
+        {
+          "audit_id": "reflection-0020728789499bb31e109624",
+          "source_sha256": "0020728789499bb31e109624948d8fe64e525dfba272a5c8047d74cff5963231",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "uncertainty_or_doubt",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "but not in December 1933. The timeline does not provide any information about who was in charge in December 1933."
+            }
+          ],
+          "rationale": "The reflection explicitly says the timeline evidence does not cover the target date and that the needed information is absent."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-0198fd48933910054ec74645",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, I notice that there is a significant gap between Rahm Emanuel's term and Lori Lightfoot's term. This suggests that there might be missing information or an error in the provided context. However, based on the given context, Lori Lightfoot is the next person listed after Rahm Emanuel."
+      },
+      "source_sha256": "0198fd48933910054ec74645fead40ef2b3cc7ae7670d15b2dc16ccd21a650c4",
+      "decisions": [
+        {
+          "audit_id": "reflection-0198fd48933910054ec74645",
+          "source_sha256": "0198fd48933910054ec74645fead40ef2b3cc7ae7670d15b2dc16ccd21a650c4",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection notes a timeline gap and possible missing information, but it does not frame this as a conflict with prior knowledge or an alternative answer."
+        },
+        {
+          "audit_id": "reflection-0198fd48933910054ec74645",
+          "source_sha256": "0198fd48933910054ec74645fead40ef2b3cc7ae7670d15b2dc16ccd21a650c4",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "uncertainty_or_doubt",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "there is a significant gap between Rahm Emanuel's term and Lori Lightfoot's term"
+            }
+          ],
+          "rationale": "The reflection explicitly notices a gap and says it may indicate missing information or an error."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-01d192927397b002fc6f2f82",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the sequence of O'Brien's parliamentary positions. The position after the 25th Parliament is the 26th Parliament. However, the 26th Parliament's term overlaps with the end of the 25th Parliament's term, so the next distinct position after the 25th Parliament is the 27th Parliament."
+      },
+      "source_sha256": "01d192927397b002fc6f2f82c154200944b1ec8ef7b6a984c13d64b02c512ca5",
+      "decisions": [
+        {
+          "audit_id": "reflection-01d192927397b002fc6f2f82",
+          "source_sha256": "01d192927397b002fc6f2f82c154200944b1ec8ef7b6a984c13d64b02c512ca5",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection discusses overlap within the timeline but does not mention a mismatch with memory, familiarity, or another factual answer."
+        },
+        {
+          "audit_id": "reflection-01d192927397b002fc6f2f82",
+          "source_sha256": "01d192927397b002fc6f2f82c154200944b1ec8ef7b6a984c13d64b02c512ca5",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "other",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "However, the 26th Parliament's term overlaps with the end of the 25th Parliament's term"
+            }
+          ],
+          "rationale": "The reflection identifies an overlap that changes the expected interpretation of the next position."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-025ae945f13153d5dbf9076f",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the sequence of Franz Karasek's positions. The error in the initial reasoning was in the misinterpretation of the timeline, where the Secretary General position was incorrectly placed before the Representative position. The reflection confirms that the correct sequence is from Secretary General to Representative."
+      },
+      "source_sha256": "025ae945f13153d5dbf9076f44dc4cee5a9c592b622461909c05f797a6f142ca",
+      "decisions": [
+        {
+          "audit_id": "reflection-025ae945f13153d5dbf9076f",
+          "source_sha256": "025ae945f13153d5dbf9076f44dc4cee5a9c592b622461909c05f797a6f142ca",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection mentions an initial reasoning error, but it does not contrast the supplied context with prior knowledge or an alternative factual answer."
+        },
+        {
+          "audit_id": "reflection-025ae945f13153d5dbf9076f",
+          "source_sha256": "025ae945f13153d5dbf9076f44dc4cee5a9c592b622461909c05f797a6f142ca",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "contradiction_or_inconsistency",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "The error in the initial reasoning was in the misinterpretation of the timeline"
+            }
+          ],
+          "rationale": "The reflection explicitly names an error caused by a misread sequence."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-033e1ad55705f0fd8ebb8ebf",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline shows that Stanley McMaster's position after the 44th Parliament of the United Kingdom is not directly listed. However, the last listed position is the 45th Parliament, which occurred before the 44th Parliament. This suggests a need to re-evaluate the sequence or consider if there's a missing position."
+      },
+      "source_sha256": "033e1ad55705f0fd8ebb8ebf6e5c9a1d559828e542a5f88e6aeda2a4f087539e",
+      "decisions": [
+        {
+          "audit_id": "reflection-033e1ad55705f0fd8ebb8ebf",
+          "source_sha256": "033e1ad55705f0fd8ebb8ebf6e5c9a1d559828e542a5f88e6aeda2a4f087539e",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection notes an internal sequencing concern or missing position, but it does not contrast the context with prior knowledge or another factual answer."
+        },
+        {
+          "audit_id": "reflection-033e1ad55705f0fd8ebb8ebf",
+          "source_sha256": "033e1ad55705f0fd8ebb8ebf6e5c9a1d559828e542a5f88e6aeda2a4f087539e",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "uncertainty_or_doubt",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "is not directly listed. However, the last listed position is the 45th Parliament, which occurred before the 44th Parliament."
+            }
+          ],
+          "rationale": "The reflection explicitly notices that the requested after-position is missing and the listed sequence appears reversed."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-05987e04fb95a107697a76a6",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reflection shows that in 1954, the information about Derek Barton's organization is unknown, but in 1956, he is a member of the Royal Society of Edinburgh. This suggests that the Royal Society of Edinburgh is the organization he joined in 1954, as it is the only organization mentioned for that year."
+      },
+      "source_sha256": "05987e04fb95a107697a76a6acf50bef95ece8f2fafdeb02c7e3e82bdad05586",
+      "decisions": [
+        {
+          "audit_id": "reflection-05987e04fb95a107697a76a6",
+          "source_sha256": "05987e04fb95a107697a76a6acf50bef95ece8f2fafdeb02c7e3e82bdad05586",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection notes unknown information and makes an inference from the mentioned organization, but it does not contrast context with prior knowledge."
+        },
+        {
+          "audit_id": "reflection-05987e04fb95a107697a76a6",
+          "source_sha256": "05987e04fb95a107697a76a6acf50bef95ece8f2fafdeb02c7e3e82bdad05586",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "uncertainty_or_doubt",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "the information about Derek Barton's organization is unknown"
+            }
+          ],
+          "rationale": "The reflection explicitly says the relevant information is unknown before making a tentative inference."
+        }
+      ]
+    }
+  ],
+  "batch_id": "reflection-adjudicator-074986ab8eb3b40ddc33",
+  "batch_sha256": "f98aeee6953d07517d9611dd84bb590463427181eac59b392b5911cb03815996"
+}

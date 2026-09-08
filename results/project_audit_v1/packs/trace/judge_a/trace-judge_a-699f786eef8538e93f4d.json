@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-63ab51f75a2d14f725aeb133",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won the first set 7-5. During the changeover after the first set, Djokovic called a medical timeout for his hamstring. After the timeout, Djokovic won the second set 6-3.",
+        "question": "Which happened first: Alcaraz won the first set or Djokovic called a medical timeout?",
+        "gold": "Alcaraz won the first set",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Alcaraz won the first set 7-5.\n2. Djokovic called a medical timeout during the changeover after the first set.\n3. Djokovic won the second set 6-3.\n</timeline>\n<reflection>\nAlcaraz winning the first set happened before the changeover timeout.\n</reflection>\n</reasoning>\n<answer>Alcaraz won the first set</answer>"
+      },
+      "source_sha256": "63ab51f75a2d14f725aeb133d47f007f756b3cc43763c33a36604ddeb3b7f93b"
+    },
+    {
+      "audit_id": "trace-63e7e56ce1a0c4a83689403b",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton led 5-2 in the final set. De Minaur won three straight games to tie at 5-5. Shelton then called a coaching violation. After the violation, Shelton lost the next two games and the match.",
+        "question": "Which happened last: De Minaur tied the set or Shelton received a coaching violation?",
+        "gold": "Shelton received a coaching violation",
+        "trace": "<reasoning>\nThe score progression in the final set dictates the sequence of events.\n<timeline>\n1. 5-2: Shelton led\n2. 5-5: De Minaur tied the set\n3. Shelton called/received a coaching violation\n4. Shelton lost the match\n</timeline>\n<reflection>\nDe Minaur tying the set at 5-5 occurred prior to the coaching violation.\n</reflection>\n</reasoning>\n<answer>Shelton received a coaching violation</answer>"
+      },
+      "source_sha256": "63e7e56ce1a0c4a83689403b042d503f301e23e888def431990f234f44e7238d"
+    },
+    {
+      "audit_id": "trace-6402837cf997de536d80be72",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal withdrew before his scheduled quarterfinal against Federer. Because of the withdrawal, Federer advanced to the semifinal without playing that match. Later, Federer lost the semifinal to Tsitsipas.",
+        "question": "What happened after Nadal withdrew before the quarterfinal?",
+        "gold": "Federer advanced to the semifinal",
+        "trace": "<reasoning>\nContext: Nadal withdrew before his scheduled quarterfinal. Because of the withdrawal, Federer advanced to the semifinal without playing that match. So after Nadal withdrew, Federer advanced to semifinal.\n<timeline>\n- Nadal withdrew (before quarterfinal).\n- Federer advanced to semifinal (as a result).\n</timeline>\n<reflection>\nThe immediate consequence of the withdrawal is Federer advancing to the semifinal.\n</reflection>\n</reasoning>\n<answer>Federer advanced to the semifinal</answer>"
+      },
+      "source_sha256": "6402837cf997de536d80be72118b953de582c33fe9deb2bbe8f2fae8c06e0b75"
+    },
+    {
+      "audit_id": "trace-64432f941ef8c25b0c86eddd",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served for the set at 7:30 p.m. De Minaur broke back at 7:38 p.m. The tie-break started at 7:47 p.m. after both players held serve.",
+        "question": "How many minutes after De Minaur broke back did the tie-break start?",
+        "gold": "9 minutes",
+        "trace": "<reasoning>\nDe Minaur broke back at 7:38 p.m. and the tie-break started at 7:47 p.m., so the tie-break began 9 minutes later.\n<timeline>\n1. Shelton served for the set at 7:30 p.m.\n2. De Minaur broke back at 7:38 p.m.\n3. The tie-break started at 7:47 p.m. after both players held serve.\n</timeline>\n<reflection>\nThe time from 7:38 p.m. to 7:47 p.m. is 9 minutes, which verifies the answer.\n</reflection>\n</reasoning>\n<answer>9 minutes</answer>"
+      },
+      "source_sha256": "64432f941ef8c25b0c86edddbb0a5ce997ce7c2e656bd40f357de3def4435a49"
+    },
+    {
+      "audit_id": "trace-6575882dbad2be7ffd666613",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved two break points at 3-3 in the first set. After that hold, Sinner requested new balls from the umpire. Later in the set, Sinner broke serve at 5-5.",
+        "question": "Did Djokovic save two break points before Sinner broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDjokovic saved two break points at 3-3, and Sinner broke serve later at 5-5.\n<timeline>\n1. Djokovic saved two break points at 3-3 in the first set.\n2. After that hold, Sinner requested new balls from the umpire.\n3. Later in the set, Sinner broke serve at 5-5.\n</timeline>\n<reflection>\nThe break-point saves happened before Sinner's break of serve, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "6575882dbad2be7ffd666613453f8df6ea17f097010b479378ca7aaee20f5863"
+    },
+    {
+      "audit_id": "trace-667e9312b38b4c8ec333088d",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal withdrew from the tournament before his quarterfinal match. He had previously won his third-round match in straight sets. The tournament director announced the withdrawal two hours before the quarterfinal was scheduled.",
+        "question": "What happened before Nadal withdrew?",
+        "gold": "Nadal won his third-round match in straight sets",
+        "trace": "<reasoning>\nThe context says Nadal had previously won his third-round match before he withdrew from the tournament.\n<timeline>\n1. Nadal won his third-round match in straight sets.\n2. Nadal withdrew from the tournament before his quarterfinal match.\n3. The tournament director announced the withdrawal two hours before the scheduled quarterfinal.\n</timeline>\n<reflection>\nThe timeline places the third-round win before the withdrawal, matching the gold answer.\n</reflection>\n</reasoning>\n<answer>Nadal won his third-round match in straight sets</answer>"
+      },
+      "source_sha256": "667e9312b38b4c8ec333088dcf910eee6463ff40cc39efee8bf61c8c499788df"
+    },
+    {
+      "audit_id": "trace-670d93bb92af377176931f5a",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev received a coaching warning during the first changeover. Before the warning, Rune had already broken serve for a 3-1 lead. After the warning, Zverev held serve and then called the trainer.",
+        "question": "Did Rune break serve before Zverev received the coaching warning?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Before the warning, Rune had already broken serve for a 3-1 lead.\" So Rune's break occurred before Zverev received the warning.\n<timeline>\n- Rune broke serve.\n- Zverev received coaching warning.\n</timeline>\n<reflection>\nThe phrase \"before the warning\" explicitly says the break happened earlier, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "670d93bb92af377176931f5ac536ba20468a305d59811109cc66fe39e59fb31d"
+    },
+    {
+      "audit_id": "trace-67f5f8437461bcafaa418069",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev beat Shelton in the fourth round. After that, he defeated Fritz in the quarterfinal. Before the final, Medvedev lost to Djokovic in the semifinal.",
+        "question": "Did Medvedev win the quarterfinal before losing the semifinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Medvedev beat Shelton in the fourth round.\n2. Medvedev defeated Fritz in the quarterfinal.\n3. Medvedev lost to Djokovic in the semifinal.\n</timeline>\n<reflection>\nWinning the quarterfinal happened before losing the semifinal.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "67f5f8437461bcafaa4180691d2aec4a7af96ba5f9a38bafd0d7857809c877dd"
+    },
+    {
+      "audit_id": "trace-68235b2d639a9d2b5bbf0f87",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved a break point in the opening game. Djokovic broke him two games later. After the break, Djokovic received a time violation.",
+        "question": "Which happened first: Djokovic received a time violation or Alcaraz saved a break point?",
+        "gold": "Alcaraz saved a break point",
+        "trace": "<reasoning>\nAlcaraz saved a break point in the opening game, while Djokovic broke him two games later and received a time violation after that break.\n<timeline>\n1. Alcaraz saved a break point in the opening game.\n2. Djokovic broke him two games later.\n3. After the break, Djokovic received a time violation.\n</timeline>\n<reflection>\nAlcaraz saving a break point happened before Djokovic received the time violation.\n</reflection>\n</reasoning>\n<answer>Alcaraz saved a break point</answer>"
+      },
+      "source_sha256": "68235b2d639a9d2b5bbf0f872a080b3a1bcb4d2863d0c8e5818a94e145c3d6a2"
+    },
+    {
+      "audit_id": "trace-685500cccc31b0946f707c1a",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner held serve in the opening game of the first set. Djokovic called a medical timeout before Sinner broke serve in the fourth game. After the break, rain delayed the match for twenty minutes.",
+        "question": "Did Djokovic call the medical timeout before Sinner broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context explicitly says Djokovic called a medical timeout before Sinner broke serve in the fourth game.\n<timeline>\n1. Sinner held serve in the opening game.\n2. Djokovic called a medical timeout.\n3. Sinner broke serve in the fourth game.\n4. Rain delayed the match after the break.\n</timeline>\n<reflection>\nThe timeline places Djokovic's timeout before Sinner's break, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "685500cccc31b0946f707c1a57674867fae85578a79d84503e7594dc3d649052"
+    }
+  ],
+  "batch_id": "trace-judge_a-699f786eef8538e93f4d",
+  "batch_sha256": "4248fc3c371afcccfb4decb38389a27124acca63ec06c65cafb1b649551e9bbc"
+}

@@ -1,0 +1,480 @@
+{
+  "batch_id": "semantic-judge_b-c46901a5918107061ffc",
+  "batch_sha256": "141a2b71315bd2660662c5fb2b89a24cfbd24cc6f25f77318e7bec760e747eff",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T14:56:21Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-00fb2964761c0899dcde8cef",
+      "source_sha256": "00fb2964761c0899dcde8cef1e01e9519695b650c97ee1930635e32f555306dd",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal was stretching his leg during the changeover."
+        },
+        {
+          "field": "context",
+          "quote": "At the same time, Federer spoke briefly with the chair umpire."
+        }
+      ],
+      "rationale": "The context explicitly states that Federer's conversation happened at the same time as Nadal's stretching, so the while relation follows."
+    },
+    {
+      "audit_id": "semantic-013fb18d4c14aec0d83a5ab6",
+      "source_sha256": "013fb18d4c14aec0d83a5ab6e37867f9c9b6b7b8cd15abdfeffbb6616d4d4c80",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He then held serve to lead 5-4."
+        },
+        {
+          "field": "context",
+          "quote": "Tsitsipas served for the match but double-faulted three times to get broken."
+        }
+      ],
+      "rationale": "After the stated hold, the next stated event is Tsitsipas serving for the match and getting broken after three double faults."
+    },
+    {
+      "audit_id": "semantic-016913fc28c9740f39bf064a",
+      "source_sha256": "016913fc28c9740f39bf064a2cd0afe027f97b32e6a40cc65f2419b67ac25afa",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton won the first set with a forehand winner."
+        },
+        {
+          "field": "context",
+          "quote": "De Minaur left the court after the set for a bathroom break."
+        }
+      ],
+      "rationale": "De Minaur left after the set, and the set had already been won by Shelton, so Shelton's first-set win came first."
+    },
+    {
+      "audit_id": "semantic-0177821a206a458b40ac8701",
+      "source_sha256": "0177821a206a458b40ac8701e7c5a644605c825c72ece657400c697a148d0aa5",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas argued with the umpire early in the third set."
+        },
+        {
+          "field": "context",
+          "quote": "Ruud broke serve after the argument."
+        },
+        {
+          "field": "context",
+          "quote": "At the next changeover, Tsitsipas called the trainer."
+        }
+      ],
+      "rationale": "The argument is before both later events, but the context does not explicitly fix whether Ruud's break occurred before or after the next changeover."
+    },
+    {
+      "audit_id": "semantic-017c80b6ade204843b204b97",
+      "source_sha256": "017c80b6ade204843b204b972d322fa83103dd73cb6bb09e29ff2aef89b41f45",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner won the second set with a blistering return winner."
+        },
+        {
+          "field": "context",
+          "quote": "He walked to his chair and grabbed a fresh shirt."
+        }
+      ],
+      "rationale": "Sinner's second-set win is stated before he walked to his chair."
+    },
+    {
+      "audit_id": "semantic-020bd2c487d8c4793ffe6a6b",
+      "source_sha256": "020bd2c487d8c4793ffe6a6b88d981656acd3385c4e053e9823a9d37b6b45c46",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz hit a stunning drop shot to earn a set point in the first set."
+        },
+        {
+          "field": "context",
+          "quote": "The match was delayed for ten minutes while technicians fixed the issue."
+        }
+      ],
+      "rationale": "The malfunction and delay occur before he can serve the next point after earning set point, so the delay occurred after the set point was earned."
+    },
+    {
+      "audit_id": "semantic-02386fb3e15ce917b377e18b",
+      "source_sha256": "02386fb3e15ce917b377e18b5f4cb91c034cc44ddf174ff220483a571db11c30",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He took a medical timeout for a lower back issue."
+        },
+        {
+          "field": "context",
+          "quote": "Afterward, he won six consecutive games to claim the second set."
+        }
+      ],
+      "rationale": "The word afterward places the six-game run after the medical timeout."
+    },
+    {
+      "audit_id": "semantic-02658d21d45ae977d2e739e0",
+      "source_sha256": "02658d21d45ae977d2e739e02083362de0416216cfe9eff722b7c92c6533b983",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal took a bathroom break before the second set."
+        },
+        {
+          "field": "context",
+          "quote": "After the break, Nadal broke serve in the opening game."
+        }
+      ],
+      "rationale": "The context directly states that Nadal broke serve after the bathroom break."
+    },
+    {
+      "audit_id": "semantic-02c71cf6aa0f3a2ef510a745",
+      "source_sha256": "02c71cf6aa0f3a2ef510a745fc9c7362f40f086e171c32a5284cc87d711bfb2a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Ruud slipped badly on the clay behind the baseline."
+        },
+        {
+          "field": "context",
+          "quote": "Tsitsipas served an ace right after play resumed."
+        }
+      ],
+      "rationale": "Ruud's slip is followed by a recovery interval, and Tsitsipas's ace happens after play resumed."
+    },
+    {
+      "audit_id": "semantic-02ff0745c82e7cf2e55cf78f",
+      "source_sha256": "02ff0745c82e7cf2e55cf78fcaa6abc0e1325d40d6202bc48446c875f8d24b6e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During his rest day, he practiced for two hours."
+        },
+        {
+          "field": "context",
+          "quote": "He then played the semifinal match on Saturday."
+        }
+      ],
+      "rationale": "The practice occurred during the rest day, and he then played the semifinal, so practice came first."
+    },
+    {
+      "audit_id": "semantic-0386fb64f747dbad875ec681",
+      "source_sha256": "0386fb64f747dbad875ec681c5caad9a9721744bbe638ef548d95cb64768dfdc",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas lost the first set in a tie-break."
+        },
+        {
+          "field": "context",
+          "quote": "Before the second set began, he changed rackets."
+        },
+        {
+          "field": "context",
+          "quote": "After changing rackets, he broke Ruud in the opening game."
+        }
+      ],
+      "rationale": "Changing rackets happened before the break, but the first-set loss also happened before it; the question does not specify immediately before."
+    },
+    {
+      "audit_id": "semantic-041d75d34064794185ea87ec",
+      "source_sha256": "041d75d34064794185ea87ec79832a073139260a4b2d83af37bc6b55ae437173",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz broke back after the next changeover."
+        },
+        {
+          "field": "context",
+          "quote": "The set ended when Sinner won the tie-break."
+        }
+      ],
+      "rationale": "The set-ending tie-break win is stated after the earlier breaks and is the last event given."
+    },
+    {
+      "audit_id": "semantic-044bc6f30cf9f4aafa519d63",
+      "source_sha256": "044bc6f30cf9f4aafa519d63c96e0af594322850bd8e8c4c4f00c90fc581ed54",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He won his semifinal match against Medvedev in straight sets."
+        },
+        {
+          "field": "context",
+          "quote": "He advanced to the final to play Alcaraz."
+        }
+      ],
+      "rationale": "Djokovic's semifinal win over Medvedev is stated before he advanced to the final to play Alcaraz."
+    },
+    {
+      "audit_id": "semantic-0464c628b1309919ca9f73be",
+      "source_sha256": "0464c628b1309919ca9f73be368aeeadc18c95d1a193788af43c1b2bb3f80de3",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner won the opening set after saving a set point."
+        },
+        {
+          "field": "context",
+          "quote": "After Sinner won the set, Alcaraz called for the trainer."
+        },
+        {
+          "field": "context",
+          "quote": "Later, Alcaraz broke serve in the second set."
+        }
+      ],
+      "rationale": "The trainer call happened after Sinner won the set, but a later break also happened after it, so the broad question permits more than one answer."
+    },
+    {
+      "audit_id": "semantic-04acda0c6e6a5012b897cd0d",
+      "source_sha256": "04acda0c6e6a5012b897cd0d8a0957fc718fc02fee9367dee82211500f2d24e4",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev received a walkover in the second round."
+        },
+        {
+          "field": "context",
+          "quote": "Later, he lost to Tsitsipas in the quarterfinal."
+        }
+      ],
+      "rationale": "The walkover is stated before the quarterfinal loss, so it did not happen after that loss."
+    },
+    {
+      "audit_id": "semantic-04c1ff0f5a5e35442c758da1",
+      "source_sha256": "04c1ff0f5a5e35442c758da1f7e45c12c52f8b1238c3c7d6daeb886a7e09787d",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur secured a crucial break of serve in the ninth game of the deciding set."
+        },
+        {
+          "field": "context",
+          "quote": "He sat down during the changeover and draped a cold towel over his neck."
+        },
+        {
+          "field": "context",
+          "quote": "Afterward, he stepped up to the baseline to serve for the match."
+        }
+      ],
+      "rationale": "Draping the towel happened before he stepped to the baseline, but other earlier events also did; the question does not specify the immediately prior action."
+    },
+    {
+      "audit_id": "semantic-04ee94bc0574b28867b2d96e",
+      "source_sha256": "04ee94bc0574b28867b2d96eef4d7745203a587cb6ad78a622d8a4c6bff9755c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The crowd interruption happened before the tie-break began."
+        },
+        {
+          "field": "context",
+          "quote": "Later, Nadal won the tie-break."
+        }
+      ],
+      "rationale": "The crowd interruption was before the tie-break began, while Nadal's tie-break win came later."
+    },
+    {
+      "audit_id": "semantic-051ec7aee55eae714d52416b",
+      "source_sha256": "051ec7aee55eae714d52416b4ec85601d10fca078db1204f131261cfb0ba9095",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur then held serve under pressure."
+        },
+        {
+          "field": "context",
+          "quote": "After De Minaur's hold, Shelton double-faulted on set point."
+        }
+      ],
+      "rationale": "The context directly says Shelton double-faulted after De Minaur's hold."
+    },
+    {
+      "audit_id": "semantic-0557cd9a3097a463370f731e",
+      "source_sha256": "0557cd9a3097a463370f731eb3525e9e88060d63b0e18696bfc2c8bd6bea5268",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic and Medvedev began warming up at 7:10 p.m."
+        },
+        {
+          "field": "context",
+          "quote": "The warm-up was interrupted at 7:18 p.m. because the net strap broke."
+        }
+      ],
+      "rationale": "The interruption at 7:18 p.m. is eight minutes after the warm-up began at 7:10 p.m."
+    },
+    {
+      "audit_id": "semantic-0588cea6aa9aba88281cef63",
+      "source_sha256": "0588cea6aa9aba88281cef632f9fff0d3dd0aaff015f07675d6a3483ffd4814d",
+      "label": "wrong_gold",
+      "corrected_answer": "Shelton called a coaching violation",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur won three straight games to tie at 5-5."
+        },
+        {
+          "field": "context",
+          "quote": "Shelton then called a coaching violation."
+        }
+      ],
+      "rationale": "The later event stated in the context is Shelton calling a coaching violation; the context does not say that he received one."
+    },
+    {
+      "audit_id": "semantic-0631faf148ad6b39d9809a6f",
+      "source_sha256": "0631faf148ad6b39d9809a6fc6955787413619324c9e51671836547c7bb3b390",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The stadium crowd performed the Mexican wave during the changeover."
+        },
+        {
+          "field": "context",
+          "quote": "Rublev tried to close his eyes and focus on his tactics while the crowd cheered."
+        }
+      ],
+      "rationale": "The context overlaps Rublev's focus with crowd cheering, but it does not explicitly state that the Mexican wave was occurring during that focus."
+    },
+    {
+      "audit_id": "semantic-06c5263620fe6d711608cd79",
+      "source_sha256": "06c5263620fe6d711608cd79ae1311c67b39b693796f12930cacc367ce7f91b3",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He won the next two points to take the tie-break."
+        },
+        {
+          "field": "context",
+          "quote": "While the players switched sides, the roof began to close due to impending rain."
+        }
+      ],
+      "rationale": "The roof began closing while the players switched sides after the tie-break, so the immediate-after event is not uniquely the roof closing."
+    },
+    {
+      "audit_id": "semantic-07034ce505418782cdd2daf8",
+      "source_sha256": "07034ce505418782cdd2daf87bf2d1c4337d94d9a4e42bdecd97878b581e38f3",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal went through his serving routine."
+        },
+        {
+          "field": "context",
+          "quote": "He bounced the ball ten times."
+        }
+      ],
+      "rationale": "Nadal's serving routine is stated before he bounced the ball ten times."
+    },
+    {
+      "audit_id": "semantic-0708e75436eb3acdc0b03f8b",
+      "source_sha256": "0708e75436eb3acdc0b03f8b30c8b6e0ddb4a494901fea00294c5f6f472e979e",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton won a chaotic point at the net."
+        },
+        {
+          "field": "context",
+          "quote": "He smiled and high-fived the crowd."
+        },
+        {
+          "field": "context",
+          "quote": "After the interaction, he returned to the baseline to serve."
+        }
+      ],
+      "rationale": "The smile and high-five occurred before the return to the baseline, but the earlier net point did too; the question does not specify immediately before."
+    },
+    {
+      "audit_id": "semantic-0713bd03a5a7a3fc75f8a7d2",
+      "source_sha256": "0713bd03a5a7a3fc75f8a7d2a4f1a3d1dafeb53992ed301633e68a4b1db0a037",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He then won the tie-break 8-6."
+        },
+        {
+          "field": "context",
+          "quote": "During the tie-break, Rune called a medical timeout for a blister on his hand."
+        }
+      ],
+      "rationale": "The context explicitly states that Rune called the medical timeout during the tie-break."
+    }
+  ]
+}

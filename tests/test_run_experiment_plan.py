@@ -76,7 +76,7 @@ def test_blocked_adapter_plan_reports_missing_prerequisites(
     rendered = "\n".join(missing)
 
     assert "adapter for original_tiser: model/tiser_qwen7b_full/adapter" in rendered
-    assert "tennis traced train data: data/tennis/tennis_train_traced.json" in rendered
+    assert "tennis traced train data: data/tennis/tennis_train_traced_full.json" in rendered
     assert "original TISER train data: data/TISER_train.json" in rendered
     assert (
         "mixed replay train data: data/tennis/tennis_mixed_replay_train.json"

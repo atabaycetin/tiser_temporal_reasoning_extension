@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-af62dc73f6bf4f32ca8d3479",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer left the court during a rain delay. While he was off court, Nadal remained near his bench and stretched. After Federer returned, the umpire restarted play.",
+        "question": "Was Nadal off court while Federer was off court?",
+        "gold": "No",
+        "trace": "<reasoning>\nFederer was off court, but during that time Nadal remained near his bench and stretched, so Nadal was not off court.\n<timeline>\n1. Federer left the court during a rain delay.\n2. While Federer was off court, Nadal remained near his bench and stretched.\n3. After Federer returned, the umpire restarted play.\n</timeline>\n<reflection>\nThe timeline shows Nadal stayed near his bench while Federer was off court, supporting the negative answer.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "af62dc73f6bf4f32ca8d34798148ea4304440823b7c64ba64e93df34283c6546"
+    },
+    {
+      "audit_id": "trace-af650877c2dffd468fe6337e",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz received treatment on his thigh during the changeover at 3-2. While he was being treated, Medvedev stayed near the baseline and practiced shadow swings. After treatment ended, Alcaraz returned to serve.",
+        "question": "Was Medvedev practicing shadow swings during Alcaraz's treatment?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"While he was being treated, Medvedev stayed near the baseline and practiced shadow swings.\" So practice occurred during treatment.\n<timeline>\n- Alcaraz received treatment.\n- Medvedev practiced shadow swings (during treatment).\n</timeline>\n<reflection>\n\"While he was being treated\" explicitly states the overlap, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "af650877c2dffd468fe6337ecd01020f8e38426d88b95afe396697f89584607b"
+    },
+    {
+      "audit_id": "trace-af7f0f0bc092255f999ae331",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev lost the first set in a tie-break. Before the second set began, the roof was closed because of rain. After the roof closure, Zverev broke Ruud in the opening game.",
+        "question": "Did Zverev break Ruud before the roof was closed?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe roof was closed before the second set, and Zverev broke Ruud only after the roof closure.\n<timeline>\n1. Zverev lost the first set in a tie-break.\n2. The roof was closed because of rain before the second set began.\n3. After the roof closure, Zverev broke Ruud in the opening game.\n</timeline>\n<reflection>\nZverev's break occurred after the roof was closed, so it was not before the closure.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "af7f0f0bc092255f999ae331ac84e908aa87ccb4fda9174d40b1494b989c615f"
+    },
+    {
+      "audit_id": "trace-afc1485a10f639b10a748d63",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev held serve after saving two break points. Rune received a warning for racket abuse after the hold. Minutes later, Rune broke serve to lead 5-3.",
+        "question": "Which happened first: Rune broke serve or Zverev held serve after saving two break points?",
+        "gold": "Zverev held serve after saving two break points",
+        "trace": "<reasoning>\nContext: Zverev held serve after saving two break points. Rune received a warning after the hold. Minutes later, Rune broke serve. So Zverev's hold happened first, then the break.\n<timeline>\n- Zverev held serve.\n- Rune received warning.\n- Rune broke serve.\n</timeline>\n<reflection>\nThe hold occurs before the break, so answer is Zverev held serve.\n</reflection>\n</reasoning>\n<answer>Zverev held serve after saving two break points</answer>"
+      },
+      "source_sha256": "afc1485a10f639b10a748d63cff044d3bd0d20bd3b999bf95ef6b27e7ee37e46"
+    },
+    {
+      "audit_id": "trace-b116d3fbf6dbbf162ffcb921",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer lost the first set in exactly thirty minutes. He bounced back to win the second set, dropping only one game. After winning the second set, the roof was closed due to a passing shower.",
+        "question": "Did Federer lose the first set before the roof was closed?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Federer lost the first set in exactly thirty minutes.\n2. Federer won the second set.\n3. The roof was closed due to a passing shower.\n</timeline>\n<reflection>\nThe first set was lost well before the roof closing event that happened after the second set.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "b116d3fbf6dbbf162ffcb92197956dbbfe7aab3981b0257574f3d08a8db6d05b"
+    },
+    {
+      "audit_id": "trace-b12f0ded94772cff34775962",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved three championship points in a dramatic second set tie-break. He subsequently won the set to level the match. Before the start of the third set, his opponent required a lengthy injury treatment. Djokovic went on to win the final set 6-0.",
+        "question": "Did the injury treatment happen after Djokovic saved three championship points?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Djokovic saved three championship points in the second set tie-break.\n2. Djokovic won the second set.\n3. Opponent required a lengthy injury treatment before the third set.\n4. Djokovic won the final set 6-0.\n</timeline>\n<reflection>\nThe injury treatment occurred after the second set where Djokovic saved the championship points.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "b12f0ded94772cff34775962bd9808d576764f4d990ef159dc4671eff0662c7f"
+    },
+    {
+      "audit_id": "trace-b1dda83e36cb32579e210aee",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton double-faulted on break point at 2-2 in the second set. De Minaur held serve to lead 3-2. Shelton then called a coaching violation for receiving signals from his box. After the warning, Shelton broke back immediately.",
+        "question": "Which happened first: Shelton received a coaching violation or Shelton broke back?",
+        "gold": "Shelton received a coaching violation",
+        "trace": "<reasoning>\nThe context states that Shelton received the coaching violation warning, and after that warning he broke back.\n<timeline>\n1. Shelton double-faulted on break point at 2-2.\n2. De Minaur held serve to lead 3-2.\n3. Shelton received a coaching violation for signals from his box.\n4. Shelton broke back immediately after the warning.\n</timeline>\n<reflection>\nBecause the break back happened after the warning, the coaching violation happened first.\n</reflection>\n</reasoning>\n<answer>Shelton received a coaching violation</answer>"
+      },
+      "source_sha256": "b1dda83e36cb32579e210aeec5fbe8694cba48255fc719fc4d94c2108fae4d3f"
+    },
+    {
+      "audit_id": "trace-b30bda18d1cb4427a8bdc818",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev won the first set at 4:05 p.m. Rune requested treatment at 4:12 p.m. The second set began at 4:20 p.m. after the treatment ended.",
+        "question": "How many minutes after Zverev won the first set did the second set begin?",
+        "gold": "15 minutes",
+        "trace": "<reasoning>\nZverev won the first set at 4:05 p.m., and the second set began at 4:20 p.m.; the difference is 15 minutes.\n<timeline>\n1. Zverev won the first set at 4:05 p.m.\n2. Rune requested treatment at 4:12 p.m.\n3. The second set began at 4:20 p.m.\n</timeline>\n<reflection>\nThe elapsed time from 4:05 p.m. to 4:20 p.m. supports the answer.\n</reflection>\n</reasoning>\n<answer>15 minutes</answer>"
+      },
+      "source_sha256": "b30bda18d1cb4427a8bdc81838f27dd0bd9949f1504bb22cec42753a88e0def8"
+    },
+    {
+      "audit_id": "trace-b324eacf196df34a1c3c1e42",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz broke Shelton at 1:20 p.m. Shelton broke back at 1:32 p.m. The set reached a tie-break at 1:55 p.m.",
+        "question": "How many minutes after Fritz broke serve did Shelton break back?",
+        "gold": "12 minutes",
+        "trace": "<reasoning>\nContext: Fritz broke Shelton at 1:20 p.m. Shelton broke back at 1:32 p.m. Difference is 12 minutes.\n<timeline>\n- Fritz broke serve: 1:20 p.m.\n- Shelton broke back: 1:32 p.m.\n</timeline>\n<reflection>\n1:32 - 1:20 = 12 minutes.\n</reflection>\n</reasoning>\n<answer>12 minutes</answer>"
+      },
+      "source_sha256": "b324eacf196df34a1c3c1e42f3f05b3b9536f4473121981c2054442545986958"
+    },
+    {
+      "audit_id": "trace-b3619908a7ebafefe828769a",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner won the opening set after saving a set point. After Sinner won the set, Alcaraz called for the trainer. Later, Alcaraz broke serve in the second set.",
+        "question": "What happened after Sinner won the opening set?",
+        "gold": "Alcaraz called for the trainer",
+        "trace": "<reasoning>\nContext: Sinner won the opening set after saving a set point. After Sinner won the set, Alcaraz called for the trainer. So immediately after the set win, Alcaraz called trainer.\n<timeline>\n- Sinner won opening set.\n- Alcaraz called for trainer.\n</timeline>\n<reflection>\n\"After Sinner won the set\" directly indicates the next event is Alcaraz calling trainer.\n</reflection>\n</reasoning>\n<answer>Alcaraz called for the trainer</answer>"
+      },
+      "source_sha256": "b3619908a7ebafefe828769aa21dc40e8c5ecefd5e335c7e58f232e4b0634e74"
+    }
+  ],
+  "batch_id": "trace-judge_b-319e07e13dff74ed69d7",
+  "batch_sha256": "2317ccf7425a7c7f2464abc26d5d9cb09568cc18ccd0a869d6f51ec16148de81"
+}

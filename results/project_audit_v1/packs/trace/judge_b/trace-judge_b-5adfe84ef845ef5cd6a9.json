@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-93b38d4bd1688ce2fb9dba5b",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner broke serve for 3-2 in the first set. After the break, Djokovic asked the umpire to check a ball mark. Later, Djokovic called a medical timeout at the changeover.",
+        "question": "What happened after Sinner broke serve for 3-2?",
+        "gold": "Djokovic asked the umpire to check a ball mark",
+        "trace": "<reasoning>\nContext: \"Sinner broke serve for 3-2 in the first set. After the break, Djokovic asked the umpire to check a ball mark.\" The phrase \"after the break\" directly indicates what happened immediately after.\n<timeline>\n- Sinner broke serve.\n- Djokovic asked the umpire to check a ball mark.\n</timeline>\n<reflection>\n\"After the break\" explicitly links the break to the next event: Djokovic's ball mark check.\n</reflection>\n</reasoning>\n<answer>Djokovic asked the umpire to check a ball mark</answer>"
+      },
+      "source_sha256": "93b38d4bd1688ce2fb9dba5b542e88b4222b8ae2ea2a76b9e1530506ebff79fd"
+    },
+    {
+      "audit_id": "trace-945678b94bb3b58e747a4ee2",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev complained about the lights during the warm-up. The chair umpire delayed the start before Djokovic held serve in the opening game. After Djokovic held, Medvedev won a long rally to hold his first service game.",
+        "question": "Did the chair umpire delay the start before Djokovic held serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context states: \"The chair umpire delayed the start before Djokovic held serve in the opening game.\" This explicitly means the delay occurred prior to Djokovic holding serve.\n<timeline>\n- Chair umpire delayed the start.\n- Djokovic held serve.\n</timeline>\n<reflection>\nThe phrase \"before Djokovic held serve\" directly indicates the delay happened first, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "945678b94bb3b58e747a4ee2288c0b9764b5d62ecde392c2acf44a5c0d482c2b"
+    },
+    {
+      "audit_id": "trace-947ed029e029ba4aacf115b5",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz opened the match by breaking Tsitsipas. After the break, Tsitsipas took a medical timeout for his shoulder. Later in the set, Fritz served out the opener 6-3.",
+        "question": "Did Tsitsipas take the medical timeout before Fritz broke serve?",
+        "gold": "No",
+        "trace": "<reasoning>\nFritz broke Tsitsipas at the start of the match, and Tsitsipas took the medical timeout after that break.\n<timeline>\n1. Fritz opened the match by breaking Tsitsipas.\n2. After the break, Tsitsipas took a medical timeout for his shoulder.\n3. Later in the set, Fritz served out the opener 6-3.\n</timeline>\n<reflection>\nThe medical timeout happened after Fritz broke serve, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "947ed029e029ba4aacf115b597e0686d3600a46527b6de8a1367bc623dd69499"
+    },
+    {
+      "audit_id": "trace-9520c31e0e925ed6b179a752",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev lost the first set 6-2. He then won the second set 7-6 after saving three set points. In the third set, Zverev retired at 2-2 due to a back injury.",
+        "question": "Which event happened last: Zverev lost the first set, Zverev saved three set points, or Zverev retired?",
+        "gold": "Zverev retired",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Zverev lost the first set 6-2.\n2. Zverev saved three set points and won the second set 7-6.\n3. Zverev retired at 2-2 in the third set.\n</timeline>\n<reflection>\nRetiring is the final listed event.\n</reflection>\n</reasoning>\n<answer>Zverev retired</answer>"
+      },
+      "source_sha256": "9520c31e0e925ed6b179a752870171b686c01f797dd107d60230e34420599afa"
+    },
+    {
+      "audit_id": "trace-95710005c962035f5c38c8bf",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev hit a stunning forehand winner down the line. Djokovic politely applauded the shot with his racket. Zverev then successfully held serve to win the opening set.",
+        "question": "What happened before Djokovic applauded the shot?",
+        "gold": "Zverev hit a stunning forehand winner",
+        "trace": "<reasoning>\nThe context states: Zverev hit a stunning forehand winner. Then Djokovic applauded. The question asks what happened before Djokovic applauded. The immediate preceding event is Zverev hitting the winner.\n<timeline>\n1. Zverev hit a stunning forehand winner down the line.\n2. Djokovic politely applauded the shot with his racket.\n</timeline>\n<reflection>\nThe timeline shows the applauding directly follows the forehand winner, so the answer is correct.\n</reflection>\n</reasoning>\n<answer>Zverev hit a stunning forehand winner</answer>"
+      },
+      "source_sha256": "95710005c962035f5c38c8bf14bd6c42e937a961191933019e09b27dda3c32a8"
+    },
+    {
+      "audit_id": "trace-966756066e73e5f9dd3381cc",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur broke Rublev in the third game. Rublev argued with the umpire immediately after the break. Later in the set, De Minaur served it out.",
+        "question": "Did Rublev argue with the umpire after De Minaur broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nRublev argued with the umpire immediately after De Minaur broke him in the third game.\n<timeline>\n1. De Minaur broke Rublev in the third game.\n2. Rublev argued with the umpire immediately after the break.\n3. Later in the set, De Minaur served it out.\n</timeline>\n<reflection>\nThe argument is directly after De Minaur broke serve, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "966756066e73e5f9dd3381cc1ece6f28c9ead8baa3f6ceaa527b871867d0564a"
+    },
+    {
+      "audit_id": "trace-9689e8c9a8183faf055cb63c",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic double-faulted on set point at 5-4 in the first set. The set went to a tie-break which Djokovic lost 7-4. After the tie-break, Djokovic smashed his racquet.",
+        "question": "Was the double fault before the tie-break?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Djokovic double-faulted on set point at 5-4.\n2. The set went to a tie-break.\n3. Djokovic lost the tie-break 7-4.\n4. Djokovic smashed his racquet.\n</timeline>\n<reflection>\nThe double fault happened at 5-4, triggering the events that led to the tie-break.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "9689e8c9a8183faf055cb63c3362dc1782804e4675f9860b0c1c235b30350c97"
+    },
+    {
+      "audit_id": "trace-969bd61df9b8eb6ea0ad102b",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz broke Sinner in the fifth game of the first set. After the break, Sinner called for the trainer. Immediately after the medical timeout, Alcaraz held serve for 4-2.",
+        "question": "What happened immediately after the medical timeout?",
+        "gold": "Alcaraz held serve",
+        "trace": "<reasoning>\nAfter Alcaraz broke Sinner, Sinner called for the trainer, and the context says Alcaraz held serve immediately after the medical timeout.\n<timeline>\n1. Alcaraz broke Sinner in the fifth game of the first set.\n2. After the break, Sinner called for the trainer.\n3. Immediately after the medical timeout, Alcaraz held serve for 4-2.\n</timeline>\n<reflection>\nThe event immediately after the medical timeout is Alcaraz holding serve.\n</reflection>\n</reasoning>\n<answer>Alcaraz held serve</answer>"
+      },
+      "source_sha256": "969bd61df9b8eb6ea0ad102b89fc10a4a6fa59585ae612c18e5ac54b2d1c553e"
+    },
+    {
+      "audit_id": "trace-96a69077bcbba1bbf4595dbf",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev broke serve in the third game. Fritz immediately broke back in the fourth game. After a rain delay, Rublev won the first-set tie-break.",
+        "question": "Which happened first: Fritz broke back or Rublev broke serve?",
+        "gold": "Rublev broke serve",
+        "trace": "<reasoning>\nRublev broke serve in the third game, which happened before Fritz broke back in the fourth game.\n<timeline>\n1. Third game: Rublev broke serve\n2. Fourth game: Fritz broke back\n3. Rain delay\n4. Rublev won the first-set tie-break\n</timeline>\n<reflection>\nThe third game break logically precedes the fourth game break back.\n</reflection>\n</reasoning>\n<answer>Rublev broke serve</answer>"
+      },
+      "source_sha256": "96a69077bcbba1bbf4595dbfe98cb7d81f5ef465708b5432d22a8c92b0f17ee7"
+    },
+    {
+      "audit_id": "trace-96c122121eff0ba9340ae7f4",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev held a 5-2 lead in the deciding set and seemed poised for victory. Suddenly, his opponent, Nadal, hit a miraculous passing shot to save a match point. Nadal then broke Zverev's serve, won his own service game, and broke again to level the set at 5-5. The set eventually went to a tie-break, which Nadal won comfortably.",
+        "question": "Did Nadal break Zverev's serve for the first time in the set after saving a match point?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Nadal hit a miraculous passing shot to save a match point. Nadal then broke Zverev's serve...\" So break occurred after saving match point.\n<timeline>\n- Saved match point.\n- Broke serve.\n</timeline>\n<reflection>\n\"Then broke\" indicates break after save, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "96c122121eff0ba9340ae7f46eff82099a6bdd304a02865b127d0234bdcbd6cf"
+    }
+  ],
+  "batch_id": "trace-judge_b-5adfe84ef845ef5cd6a9",
+  "batch_sha256": "f47511940232d7f2af104be5bf2a21aa1e58ec214da926c8f5f2b62e697495ad"
+}

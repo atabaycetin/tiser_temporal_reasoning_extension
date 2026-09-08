@@ -1,0 +1,100 @@
+{
+  "batch_id": "trace-judge_b-65bcf5baefa2ae1707cd",
+  "batch_sha256": "079ab0797083d13f96848d3cfe880b26017a33c72378ef6dd2a9fbd7f20f01d7",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T14:49:52Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-7ae1b1551515dd4dcad2ab9a",
+      "source_sha256": "7ae1b1551515dd4dcad2ab9a55b060e2a3d592a73ae68a0cf6cc0844b5b83e60",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Alcaraz then broke serve in the opening game of the second set.",
+      "rationale": "The trace correctly identifies the event after De Minaur's medical timeout and answers with the supported event."
+    },
+    {
+      "audit_id": "trace-7afc043d34fa57c384b5962a",
+      "source_sha256": "7afc043d34fa57c384b5962ab2634f97727dafb574784e70f4b405ead6df29e6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Before the rain delay, Sinner saved two break points.",
+      "rationale": "The trace's timeline preserves the before-delay relation and its conclusion matches the supported gold answer."
+    },
+    {
+      "audit_id": "trace-7b157e38e5f6f40ab3040910",
+      "source_sha256": "7b157e38e5f6f40ab30409104c2d7d0b3dcb99b54ba53cb00281fd00fe32ea5e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Rublev immediately broke back to 4-4. Rune then saved two break points at 4-4 before holding serve.",
+      "rationale": "The trace correctly places Rune saving two break points after Rublev broke back and gives the supported answer."
+    },
+    {
+      "audit_id": "trace-7ba8b69490325b89d59afca2",
+      "source_sha256": "7ba8b69490325b89d59afca2a7c996b00183e6429e6993bc67659cdfd73249a6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Tsitsipas started the second set at 4:00 p.m. Ruud broke serve at 4:17 p.m. The roof was fully closed at 4:29 p.m.",
+      "rationale": "The trace correctly computes the elapsed time from 4:00 p.m. to 4:29 p.m. as 29 minutes."
+    },
+    {
+      "audit_id": "trace-7be69f768ff69680acc4366a",
+      "source_sha256": "7be69f768ff69680acc4366ace0053b42aed0b73fb1c9284bcffbc9a60e5e220",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Alcaraz saved two break points in the third game. After that hold, Medvedev requested new balls from the umpire.",
+      "rationale": "The trace correctly infers that Alcaraz saving two break points occurred before Medvedev requested new balls."
+    },
+    {
+      "audit_id": "trace-7c361c39183bc35f7ed126d4",
+      "source_sha256": "7c361c39183bc35f7ed126d4821b3d76b2fd0d5b14f15cea59e7d0c50a9565d4",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Nadal played a flawless first set, winning 6-0. At the start of the second set, the roof was closed due to impending rain.",
+      "rationale": "The trace correctly treats the start of the second set as after Nadal won the first set, supporting the yes answer."
+    },
+    {
+      "audit_id": "trace-7d2ed923d138fdd92d259c3e",
+      "source_sha256": "7d2ed923d138fdd92d259c3e20c5195f8d759d2f69eae67339d0f60345a2663a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Ruud and Tsitsipas started the final set at 9:00 p.m. Ruud held serve after 6 minutes. Tsitsipas broke serve at 9:21 p.m.",
+      "rationale": "The trace correctly computes the elapsed time from 9:00 p.m. to 9:21 p.m. as 21 minutes."
+    },
+    {
+      "audit_id": "trace-7d758ca2fe43004ed06ba69b",
+      "source_sha256": "7d758ca2fe43004ed06ba69be8236dadbdd305915be7d968e2057f3ebf6b1ebc",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "In the seventh game, Sinner challenged a wide call on his forehand, which the hawk-eye system revealed was in. Sinner won the replayed point and eventually held his serve. Later in the set, Djokovic called for a fresh racket during the changeover.",
+      "rationale": "The trace correctly uses the later relation to conclude Djokovic did not call for the racket before Sinner's challenge."
+    },
+    {
+      "audit_id": "trace-7dbac6e451a72791ef42e05a",
+      "source_sha256": "7dbac6e451a72791ef42e05a81f31eff91d7fab34044c9ffcc97865285afe056",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Alcaraz saved a break point early in the first set. Medvedev complained to the umpire after Alcaraz held for 3-2. Later, Medvedev won the tie-break.",
+      "rationale": "The trace correctly orders Medvedev's tie-break win after Alcaraz saved a break point and therefore answers no."
+    },
+    {
+      "audit_id": "trace-7e8e5defc4198976c48c2aa7",
+      "source_sha256": "7e8e5defc4198976c48c2aa75f5563fcfeab4bce206a94d7894fa27fc294be3b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": "Rublev then took an injury timeout for his ankle. Before Rublev returned to serve, De Minaur spoke briefly with the umpire.",
+      "rationale": "The trace correctly identifies the injury timeout as preceding De Minaur speaking with the umpire."
+    }
+  ]
+}

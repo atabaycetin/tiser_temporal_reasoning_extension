@@ -1,0 +1,448 @@
+{
+  "batch_id": "semantic-judge_b-abf9921e26069f3b05fc",
+  "batch_sha256": "f29837a9e8562165fa81d41c1cdbbc67b0daa3d20df20ba2f6b76f20cf48cc20",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T10:58:14Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-2bd3da59c3013031df8ba6d5",
+      "source_sha256": "2bd3da59c3013031df8ba6d578453486349fed18e509d96cd53d6fed020703cd",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune received a code violation during the first set."
+        },
+        {
+          "field": "context",
+          "quote": "Zverev saved a set point later in the same set."
+        }
+      ],
+      "rationale": "The context states Rune's code violation occurred in the first set and that Zverev saved the set point later in that same set, so Rune's event came first."
+    },
+    {
+      "audit_id": "semantic-2bdf1efdaac4095fe452d38e",
+      "source_sha256": "2bdf1efdaac4095fe452d38ea8c76cd1135b8ed4cf96e36bcda4bdd9c1737510",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz saved a break point in the first set."
+        },
+        {
+          "field": "context",
+          "quote": "Medvedev won the next three games and forced a tie-break."
+        }
+      ],
+      "rationale": "Medvedev's tie-break forcing came after Alcaraz saved the break point because it followed the next three games."
+    },
+    {
+      "audit_id": "semantic-2bed9544d3836c33a2f30dc0",
+      "source_sha256": "2bed9544d3836c33a2f30dc0aeaa080caad4ebe591f1858e47891261e0f47fd6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic slipped on the slick baseline and scraped his knee."
+        },
+        {
+          "field": "context",
+          "quote": "The umpire stopped play immediately."
+        }
+      ],
+      "rationale": "The umpire stopped play immediately after Djokovic slipped and scraped his knee, so that injury event happened before the stoppage."
+    },
+    {
+      "audit_id": "semantic-2bf5d8edbaf67b8eef2f04a2",
+      "source_sha256": "2bf5d8edbaf67b8eef2f04a2651774af003beb37cf00ae48dd45916595d3131d",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev took a medical timeout for his shoulder at the start of the second set."
+        },
+        {
+          "field": "context",
+          "quote": "The timeout lasted three minutes."
+        },
+        {
+          "field": "context",
+          "quote": "Rublev then broke Rune's serve in the third game."
+        }
+      ],
+      "rationale": "The timeout lasted three minutes at the start of the set, but the duration of play before the third-game break is not specified, so the break is not uniquely 3 minutes after the set began."
+    },
+    {
+      "audit_id": "semantic-2bfcb52aff24cf5b0430bd3d",
+      "source_sha256": "2bfcb52aff24cf5b0430bd3d2b3ba43bc8ee56da7c53d9690a9dbdd49aca0792",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Later, Djokovic broke serve and then called the trainer."
+        }
+      ],
+      "rationale": "The final sentence places Djokovic calling the trainer after all earlier listed events, making it the last event."
+    },
+    {
+      "audit_id": "semantic-2c0626c795a86a1d6d481939",
+      "source_sha256": "2c0626c795a86a1d6d48193924cc1847d748420ca45d8bdcc06da21cd129c68f",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Ruud received a deep tissue leg massage from the physio during the changeover."
+        },
+        {
+          "field": "context",
+          "quote": "At the same time, the stadium announcer gave an update on other match scores."
+        }
+      ],
+      "rationale": "The phrase at the same time directly states the announcer update overlapped with Ruud's massage."
+    },
+    {
+      "audit_id": "semantic-2c0d79ee164dd7dc3fc9c985",
+      "source_sha256": "2c0d79ee164dd7dc3fc9c9850887c2e2a9b556147dd8f5b1629e30bad3d1f938",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic broke serve in the fifth game to take a 3-2 lead."
+        },
+        {
+          "field": "context",
+          "quote": "At the ensuing changeover, a medical emergency occurred in the stands."
+        }
+      ],
+      "rationale": "The medical emergency occurred at the changeover ensuing from Djokovic's break, so the break is the immediately preceding described event."
+    },
+    {
+      "audit_id": "semantic-2c3ac1a08f0d7396a78e40b9",
+      "source_sha256": "2c3ac1a08f0d7396a78e40b9cb6257695908ceaf620c690f60eabeb67d269238",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He first had to get past a resilient De Minaur in the quarterfinal."
+        },
+        {
+          "field": "context",
+          "quote": "In the semifinal, he squared off against his long-time rival Nadal"
+        }
+      ],
+      "rationale": "De Minaur is explicitly placed in the quarterfinal, while the semifinal opponent is Nadal, so Djokovic did not play De Minaur in the semifinal."
+    },
+    {
+      "audit_id": "semantic-2c742cbb7ac7e51f8a16e98f",
+      "source_sha256": "2c742cbb7ac7e51f8a16e98f8b0fcc09f7f7a7b282c4192dc36e91ec2b293e0c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Federer held serve easily."
+        },
+        {
+          "field": "context",
+          "quote": "Immediately after that hold, Nadal broke serve to level the set."
+        }
+      ],
+      "rationale": "The context directly states that Nadal broke serve immediately after Federer's hold."
+    },
+    {
+      "audit_id": "semantic-2cbf8b22209a35a6aacc0303",
+      "source_sha256": "2cbf8b22209a35a6aacc03035aa6aac0e4f580a763a8121b152d59b2b156821b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic saved a break point at 2-2 in the first set."
+        },
+        {
+          "field": "context",
+          "quote": "At 4-4, Djokovic faced another break point and double-faulted to get broken."
+        }
+      ],
+      "rationale": "The saved break point at 2-2 is earlier in the set than the double fault at 4-4."
+    },
+    {
+      "audit_id": "semantic-2cd38977a6156918bff70e9b",
+      "source_sha256": "2cd38977a6156918bff70e9b0226b7d938cf72440d5b6703ef3ee5c64ffb6abc",
+      "label": "wrong_gold",
+      "corrected_answer": "No",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz faced two break points at 2-2 in the final set."
+        },
+        {
+          "field": "context",
+          "quote": "During the same game, he saved a third break point with a forehand winner."
+        },
+        {
+          "field": "context",
+          "quote": "Alcaraz then held serve"
+        }
+      ],
+      "rationale": "The context places the faced and saved break points before Alcaraz then held serve; it does not state that he faced break points while the hold itself was occurring."
+    },
+    {
+      "audit_id": "semantic-2d60fb0e0cc1c936d5121896",
+      "source_sha256": "2d60fb0e0cc1c936d512189687a1880b9b7c1e8cf5191378a2f5058f3ab176f6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the second set, he took a medical timeout for his ankle."
+        },
+        {
+          "field": "context",
+          "quote": "After the timeout, he broke Rune's serve immediately."
+        }
+      ],
+      "rationale": "The context explicitly says Zverev broke Rune's serve after the medical timeout."
+    },
+    {
+      "audit_id": "semantic-2d86cb18878fb1a5644f8626",
+      "source_sha256": "2d86cb18878fb1a5644f862670f742f00488ffe5d001e1308c5e6c35714d4e3e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The trainer treated him on the sideline for exactly three minutes."
+        }
+      ],
+      "rationale": "The treatment duration is explicitly stated as exactly three minutes."
+    },
+    {
+      "audit_id": "semantic-2e222b8f9a50979fbec2a7f4",
+      "source_sha256": "2e222b8f9a50979fbec2a7f48d9905ece1fedb8c6bb0513880e8a60a6c1d3ebb",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas took a medical timeout early in the second set to treat a blister."
+        },
+        {
+          "field": "context",
+          "quote": "Fritz maintained his focus and won the match in straight sets."
+        }
+      ],
+      "rationale": "Winning the match in straight sets occurs after the first-set win and the second-set timeout, so Fritz winning the match is last."
+    },
+    {
+      "audit_id": "semantic-2e72c443acfde97f60755ee5",
+      "source_sha256": "2e72c443acfde97f60755ee57c66413cb80afa2e54903f467dee0e088add6aec",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The match began with a grueling rally lasting exactly 2 minutes."
+        }
+      ],
+      "rationale": "The rally duration is explicitly stated as exactly 2 minutes."
+    },
+    {
+      "audit_id": "semantic-2e781d998845a2a684edbaab",
+      "source_sha256": "2e781d998845a2a684edbaabcb272b49c33cb961e6cdc81ec3468b4646b4177f",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Later, he saved three break points at 3-4."
+        },
+        {
+          "field": "context",
+          "quote": "After saving them, he held serve with an ace."
+        }
+      ],
+      "rationale": "Rune saved the three break points before holding serve with an ace, as directly stated by after saving them."
+    },
+    {
+      "audit_id": "semantic-2e7dcab1707c43edb05b3592",
+      "source_sha256": "2e7dcab1707c43edb05b359265e503d421e21778ecf78d2e86e694c651ecf0d5",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After the timeout, he lost his serve at 2-2."
+        },
+        {
+          "field": "context",
+          "quote": "Alcaraz then held serve and broke again to win the second set 6-2."
+        }
+      ],
+      "rationale": "Alcaraz winning the second set is described after the timeout, lost serve, hold, and second break, making it the last event."
+    },
+    {
+      "audit_id": "semantic-2ed00f23b50e75c587e30ad0",
+      "source_sha256": "2ed00f23b50e75c587e30ad08c0bb6bd6f30deaeabc76e4e6fd337b7e3de9c45",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He returned and won the second set 6-4."
+        },
+        {
+          "field": "context",
+          "quote": "In the third set, Djokovic saved a match point at 4-5 before winning 7-5."
+        }
+      ],
+      "rationale": "The second-set win occurred before the third set, where Djokovic later saved the match point."
+    },
+    {
+      "audit_id": "semantic-2f383d380d07bcdee532599f",
+      "source_sha256": "2f383d380d07bcdee532599fdd357da82a02a8bd2f23b3bffb8d7c551137a7c3",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev broke Fritz in the first game of the second set."
+        },
+        {
+          "field": "context",
+          "quote": "Before the break, Fritz had taken an off-court bathroom break."
+        }
+      ],
+      "rationale": "The context explicitly says Fritz had taken the bathroom break before Rublev broke Fritz."
+    },
+    {
+      "audit_id": "semantic-2f666625736038df9119ac34",
+      "source_sha256": "2f666625736038df9119ac34e0aae381242017d824d5d30cb96436fde6cbddcf",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He then moved on to the semifinal, where he suffered a surprising defeat at the hands of Shelton."
+        }
+      ],
+      "rationale": "The semifinal defeat of Medvedev is explicitly attributed to Shelton."
+    },
+    {
+      "audit_id": "semantic-2f6990b788e6773f08fc45b0",
+      "source_sha256": "2f6990b788e6773f08fc45b0b4b1558408416314796daba9b66cd07ea3e1ecdc",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune double-faulted on break point early in the second set."
+        },
+        {
+          "field": "context",
+          "quote": "Zverev took a short medical timeout after winning that game."
+        }
+      ],
+      "rationale": "Zverev's medical timeout was after the game containing Rune's double fault, so it was not before the double fault."
+    },
+    {
+      "audit_id": "semantic-2f728eb32e8c10412b19bce7",
+      "source_sha256": "2f728eb32e8c10412b19bce76b58ae1d60caac000bbfa02686a6a259b261e9b1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the changeover, Medvedev argued with the umpire over a line call."
+        },
+        {
+          "field": "context",
+          "quote": "He then broke back immediately in the next game."
+        }
+      ],
+      "rationale": "The context directly places Medvedev's break back after his argument with the umpire."
+    },
+    {
+      "audit_id": "semantic-2f91e725b8a3ac92aea1850e",
+      "source_sha256": "2f91e725b8a3ac92aea1850e5f65fc4af134e9bda140e6ee09b2b537c3a06e8b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz saved a break point at 1-2 in the first set."
+        },
+        {
+          "field": "context",
+          "quote": "Medvedev broke serve later at 4-4."
+        }
+      ],
+      "rationale": "Medvedev's break is explicitly later than Alcaraz saving the break point."
+    },
+    {
+      "audit_id": "semantic-3020363d4f2555126adfdaed",
+      "source_sha256": "3020363d4f2555126adfdaede159f4c4c3c798289dee769cd7a420a9e69c8333",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After the timeout, he lost three straight games."
+        },
+        {
+          "field": "context",
+          "quote": "Sinner then served for the set at 5-2 and held to win the set."
+        }
+      ],
+      "rationale": "Sinner holding to win the set is described after the timeout and three straight games, so it is the last listed event."
+    },
+    {
+      "audit_id": "semantic-302da519e52afe9d4d57bc92",
+      "source_sha256": "302da519e52afe9d4d57bc92d6ee647cfe681cf52cc4aeabeef34cd61cd6d05d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Play officially started 14 minutes after the warm-up began."
+        }
+      ],
+      "rationale": "The context explicitly gives the interval from the warm-up beginning to official play as 14 minutes."
+    }
+  ]
+}

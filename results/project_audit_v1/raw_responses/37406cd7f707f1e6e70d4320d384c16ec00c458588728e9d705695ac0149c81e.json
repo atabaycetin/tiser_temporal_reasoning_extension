@@ -1,0 +1,190 @@
+{
+  "batch_id": "trace-judge_b-fab317ff040185078215",
+  "batch_sha256": "16ac4b9fe7bdfd7f10c558b59768a600f66a069431138cb433781b00b3523ae3",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T10:58:57Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-781804610d70c8876d139f3b",
+      "source_sha256": "781804610d70c8876d139f3b238332c643cfa7a889c60fe50568b9f0660f5d73",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During his rest day, he practiced for two hours. He then played the semifinal match on Saturday."
+        },
+        {
+          "field": "trace",
+          "quote": "Ruud practiced during his Friday rest day before he played the semifinal on Saturday."
+        }
+      ],
+      "rationale": "The context places the two-hour practice on Friday and the semifinal on Saturday, so the trace's before relation and Yes answer are supported."
+    },
+    {
+      "audit_id": "trace-7874aebbfcd672f47ce05a63",
+      "source_sha256": "7874aebbfcd672f47ce05a6359ad56ccf4bae3f1ad9495601d2943cca9806282",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before the second set, Ruud changed rackets. Ruud then broke Zverev in the second game."
+        },
+        {
+          "field": "reflection",
+          "quote": "Ruud's racket change happened before his break of Zverev."
+        }
+      ],
+      "rationale": "The context directly orders the racket change before Ruud's break of Zverev, matching the trace and answer."
+    },
+    {
+      "audit_id": "trace-791670a2b5e8a9c7018c47ff",
+      "source_sha256": "791670a2b5e8a9c7018c47ff4ed1a385c55ea1c73da1f593684da46a8fad1e37",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After that win, Fritz defeated De Minaur in the quarterfinal. Later, Fritz lost to Alcaraz in the semifinal."
+        },
+        {
+          "field": "trace",
+          "quote": "Fritz beat De Minaur in the quarterfinal, and later he lost to Alcaraz in the semifinal."
+        }
+      ],
+      "rationale": "The loss to Alcaraz is explicitly later than the De Minaur win, so the trace correctly identifies the later event."
+    },
+    {
+      "audit_id": "trace-7949de1de1ba8f83da889aa4",
+      "source_sha256": "7949de1de1ba8f83da889aa491d57b1f1da65f5ba8213fa3cec1ea9a7344c80e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After that hold, Shelton hit three aces in his first service game. Before the first changeover, Djokovic broke Shelton with a backhand winner."
+        },
+        {
+          "field": "trace",
+          "quote": "Shelton's three aces occurred before Djokovic broke serve, so the answer is Yes."
+        }
+      ],
+      "rationale": "The context narrates Shelton's three aces before the later break by Djokovic, and the trace preserves that event order."
+    },
+    {
+      "audit_id": "trace-797d9efeb99ff01164a016ab",
+      "source_sha256": "797d9efeb99ff01164a016ab9e9c2fdf55f71c2809dee08a7afbd1ea94d831a5",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev rolled his ankle during the semifinal tie-break. He remained on the ground in pain for five minutes. The medical staff arrived after he signaled for help."
+        },
+        {
+          "field": "reflection",
+          "quote": "Medical staff arrived after the ankle roll, not before. Answer No."
+        }
+      ],
+      "rationale": "The staff arrival follows the ankle roll sequence in the context, so the trace correctly rejects that they arrived before the injury."
+    },
+    {
+      "audit_id": "trace-7996c264578feff609edb2a9",
+      "source_sha256": "7996c264578feff609edb2a9afbd6a5d2f266f1f851f427dcef8288f1ef12c5c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner fought hard and broke back two games later. Sinner then won the set with a delicate drop shot."
+        },
+        {
+          "field": "trace",
+          "quote": "Context: Sinner broke back two games after Alcaraz broke, then later Sinner won the set."
+        }
+      ],
+      "rationale": "The context says Sinner broke back and then won the set, so the trace correctly selects the break back as first."
+    },
+    {
+      "audit_id": "trace-7a21e280d04ecd90c71ea810",
+      "source_sha256": "7a21e280d04ecd90c71ea810999303737b8c270c029568467b33f222cb062e99",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic successfully saved two championship points in the final set. Federer then hit a forehand into the net on the following point. Djokovic eventually won the match in a thrilling tie-break."
+        },
+        {
+          "field": "reflection",
+          "quote": "The championship-point saves occurred before Djokovic won the match."
+        }
+      ],
+      "rationale": "The championship-point saves are stated before the eventual match win, supporting the trace's Yes answer."
+    },
+    {
+      "audit_id": "trace-7a287a8b43ac3bc2bbb68106",
+      "source_sha256": "7a287a8b43ac3bc2bbb681069d083b47831d7d4fb41103caf82c902890eb01d1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz broke Medvedev at 2-2 in the first set. During the next changeover, Medvedev requested the trainer."
+        },
+        {
+          "field": "trace",
+          "quote": "So the break occurred before the trainer request."
+        }
+      ],
+      "rationale": "The trainer request happens during the next changeover after Alcaraz broke Medvedev, so the trace identifies the prior event correctly."
+    },
+    {
+      "audit_id": "trace-7a346d24fe751ceade992d13",
+      "source_sha256": "7a346d24fe751ceade992d135f4c4c825f434fdde1b063ac746248d23af64c6e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton served a costly double fault on break point. He immediately shouted at himself in frustration."
+        },
+        {
+          "field": "reflection",
+          "quote": "The double fault immediately preceded him shouting at himself."
+        }
+      ],
+      "rationale": "The context states that Shelton shouted immediately after serving the double fault, so the trace's before event is supported."
+    },
+    {
+      "audit_id": "trace-7ab89975810709fa641f1a4a",
+      "source_sha256": "7ab89975810709fa641f1a4a9bf60e83d7649e0186098b9ec21333aaa1ccb01b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas called the trainer during the next changeover. Later, Nadal broke serve to lead 4-2."
+        },
+        {
+          "field": "trace",
+          "quote": "Nadal broke serve later, making it the last listed event."
+        }
+      ],
+      "rationale": "The context explicitly places Nadal's break later than the hold and trainer call, so the trace's last-event answer is supported."
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-5c7e30c3f3bd329830b80253",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved three break points at 4-4 in the first set. He then held serve. During the next game, Alcaraz broke serve to win the set 6-4. The set ended without a tie-break.",
+        "question": "Did Alcaraz break serve before saving three break points?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe events are described game by game, moving from 4-4 to the end of the set.\n<timeline>\n1. 4-4 game: Alcaraz saved three break points\n2. 4-4 game: Alcaraz held serve\n3. Next game: Alcaraz broke serve\n</timeline>\n<reflection>\nAlcaraz saved the break points at 4-4, which was before he broke serve in the next game.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "5c7e30c3f3bd329830b80253f984a2bf08dfdf15627c04938965776536bea1b9"
+    },
+    {
+      "audit_id": "trace-5c912a3891f7d2673c988dd6",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud called the trainer before the final set. During the treatment, De Minaur practiced shadow swings near his chair. After the treatment, Ruud held serve.",
+        "question": "Was De Minaur practicing shadow swings while Ruud received treatment?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDuring Ruud's treatment, De Minaur practiced shadow swings near his chair.\n<timeline>\n1. Ruud called the trainer before the final set.\n2. During the treatment, De Minaur practiced shadow swings near his chair.\n3. After the treatment, Ruud held serve.\n</timeline>\n<reflection>\nThe shadow swings overlapped with Ruud receiving treatment, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "5c912a3891f7d2673c988dd650d13fb0dbffbe1f25f86546c206414f67c73734"
+    },
+    {
+      "audit_id": "trace-5cece0ac3d7bbf01beafb682",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev received a coaching violation during the second-set changeover. After the violation, Alcaraz broke serve in the next game. Later, Medvedev won four straight points to break back.",
+        "question": "What happened before Alcaraz broke serve?",
+        "gold": "Medvedev received a coaching violation",
+        "trace": "<reasoning>\nMedvedev received a coaching violation, and after that violation Alcaraz broke serve in the next game.\n<timeline>\n1. Medvedev received a coaching violation during the second-set changeover.\n2. After the violation, Alcaraz broke serve in the next game.\n3. Later, Medvedev won four straight points to break back.\n</timeline>\n<reflection>\nThe coaching violation happened before Alcaraz broke serve.\n</reflection>\n</reasoning>\n<answer>Medvedev received a coaching violation</answer>"
+      },
+      "source_sha256": "5cece0ac3d7bbf01beafb682b071a70562f2f6d0e35760548ecc30bc29c43760"
+    },
+    {
+      "audit_id": "trace-5cf0e87fe473605fdede1f30",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic missed three returns in the opening game. Sinner held serve after that game. Later, Djokovic broke serve and then called the trainer.",
+        "question": "Which event happened last?",
+        "gold": "Djokovic called the trainer",
+        "trace": "<reasoning>\nDjokovic missed returns, Sinner held serve after that game, and later Djokovic broke serve and then called the trainer.\n<timeline>\n1. Djokovic missed three returns in the opening game.\n2. Sinner held serve after that game.\n3. Later, Djokovic broke serve.\n4. Djokovic then called the trainer.\n</timeline>\n<reflection>\nThe final event in the sequence is Djokovic calling the trainer.\n</reflection>\n</reasoning>\n<answer>Djokovic called the trainer</answer>"
+      },
+      "source_sha256": "5cf0e87fe473605fdede1f30933bbc5e536fc241d2de2299db737557e2723629"
+    },
+    {
+      "audit_id": "trace-5d101ac2c32c77236592c642",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic lost the first set after a long tie-break. During the changeover that followed, he received treatment on his shoulder. Zverev broke serve only after the treatment was completed.",
+        "question": "Did Zverev break serve before Djokovic received treatment?",
+        "gold": "No",
+        "trace": "<reasoning>\nZverev broke serve only after the treatment was completed, meaning it happened after, not before.\n<timeline>\n1. Djokovic lost the first set\n2. Changeover: Djokovic received treatment on his shoulder\n3. Treatment was completed\n4. Zverev broke serve\n</timeline>\n<reflection>\nThe timeline proves Zverev's break happened subsequent to Djokovic's treatment.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "5d101ac2c32c77236592c642e3631a0c613c619b3ec9497d1ecee40d30673e37"
+    },
+    {
+      "audit_id": "trace-5d2ef347c9955a4993d162fc",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton fired a 140mph serve that was called out by the line judge. He immediately challenged the call using the electronic review system. The screen showed the ball catching the line, so the umpire overturned the call and awarded Shelton an ace.",
+        "question": "Which happened last: Shelton challenged the call, the line judge called the serve out, or the umpire overturned the call?",
+        "gold": "The umpire overturned the call",
+        "trace": "<reasoning>\nContext: \"The line judge called the serve out. He immediately challenged ... The umpire overturned the call.\" So order: out call, challenge, overturn. Overturn is last.\n<timeline>\n- Line judge called out.\n- Shelton challenged.\n- Umpire overturned.\n</timeline>\n<reflection>\nOverturn occurs after challenge and out call, so it is last.\n</reflection>\n</reasoning>\n<answer>The umpire overturned the call</answer>"
+      },
+      "source_sha256": "5d2ef347c9955a4993d162fcf133daeb8f51ddac05c4e936fd74b4f1ed8c76a2"
+    },
+    {
+      "audit_id": "trace-5f0f96e2b0d99ba3f1a36d1b",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas broke serve in the very first game of the match. Medvedev managed to break back in the fourth game. Tsitsipas eventually found his rhythm and won the first set.",
+        "question": "Did Medvedev break back before Tsitsipas won the set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nTsitsipas broke first, Medvedev broke back in the fourth game, and Tsitsipas won the first set later.\n<timeline>\n1. Tsitsipas broke serve in the very first game of the match.\n2. Medvedev broke back in the fourth game.\n3. Tsitsipas eventually found his rhythm and won the first set.\n</timeline>\n<reflection>\nMedvedev's break back happened before Tsitsipas won the set.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "5f0f96e2b0d99ba3f1a36d1bb8dc7b33f72d298a74b2fe64d2c6f6a711d0a087"
+    },
+    {
+      "audit_id": "trace-5fad2a6a62270120938520f7",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served three double faults in the first game. De Minaur broke serve immediately after those double faults. Later, Shelton recovered by breaking back at 4-5.",
+        "question": "Which happened first: De Minaur broke serve or Shelton broke back?",
+        "gold": "De Minaur broke serve",
+        "trace": "<reasoning>\nDe Minaur broke serve immediately after Shelton's double faults, while Shelton broke back later at 4-5.\n<timeline>\n1. Shelton served three double faults in the first game.\n2. De Minaur broke serve immediately after those double faults.\n3. Later, Shelton broke back at 4-5.\n</timeline>\n<reflection>\nDe Minaur's break came before Shelton's break back.\n</reflection>\n</reasoning>\n<answer>De Minaur broke serve</answer>"
+      },
+      "source_sha256": "5fad2a6a62270120938520f73dea5d190e41b0ba1cc23baa648154ea6c64aac6"
+    },
+    {
+      "audit_id": "trace-606c2f729ec5b722e7226a2d",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur led by a break at 5-3 in the first set. Shelton broke back to 5-5 after a 12-minute game. De Minaur then broke Shelton again and served out the set 7-5.",
+        "question": "Which happened first: Shelton broke back or De Minaur served out the set?",
+        "gold": "Shelton broke back",
+        "trace": "<reasoning>\nThe scoreline progression dictates the order of events.\n<timeline>\n1. Score 5-3: De Minaur led by a break\n2. Score 5-5: Shelton broke back\n3. Score 7-5: De Minaur broke again and served out the set\n</timeline>\n<reflection>\nShelton breaking back at 5-5 happened before De Minaur served out the set at 7-5.\n</reflection>\n</reasoning>\n<answer>Shelton broke back</answer>"
+      },
+      "source_sha256": "606c2f729ec5b722e7226a2d5547f73b0a7b83ecea9acf52697f1ac0df5e639a"
+    },
+    {
+      "audit_id": "trace-60d6a1bb62307dde0cc2c6ec",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton hit a massive serve out wide. Ruud immediately challenged the line judge's out call. Hawk-Eye replay showed the ball clearly clipping the line.",
+        "question": "What happened before Ruud challenged the call?",
+        "gold": "Shelton hit a massive serve",
+        "trace": "<reasoning>\nThe context: Shelton hit a massive serve. Then Ruud immediately challenged the call. The question asks what happened before Ruud challenged.\n<timeline>\n1. Shelton hit a massive serve out wide.\n2. Ruud immediately challenged the line judge's out call.\n</timeline>\n<reflection>\nThe challenge occurs immediately after the serve, so the serve is the preceding event.\n</reflection>\n</reasoning>\n<answer>Shelton hit a massive serve</answer>"
+      },
+      "source_sha256": "60d6a1bb62307dde0cc2c6eced3ddc2e621195ce7fe11f1e8501e88b3a9d7956"
+    }
+  ],
+  "batch_id": "trace-judge_a-51f28ed0a83449fb402d",
+  "batch_sha256": "1834841099313e3a268c0055c8784990b5b45ad5c435f1f8590735a58ba6d069"
+}

@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-a1947c698264c6c6e69c5fdb",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz received a coaching warning in the second set. After the warning, Sinner held serve at love. Later, Alcaraz saved two match points.",
+        "question": "What happened after Alcaraz received a coaching warning?",
+        "gold": "Sinner held serve at love",
+        "trace": "<reasoning>\nThe context states explicitly that after the warning, Sinner held serve at love.\n<timeline>\n1. Alcaraz received a coaching warning in the second set\n2. Sinner held serve at love\n3. Alcaraz saved two match points\n</timeline>\n<reflection>\nLooking at the timeline, the event immediately following the warning is Sinner holding serve at love.\n</reflection>\n</reasoning>\n<answer>Sinner held serve at love</answer>"
+      },
+      "source_sha256": "a1947c698264c6c6e69c5fdb683902b5ade516f5534a2cffeeec32856dae3691"
+    },
+    {
+      "audit_id": "trace-a1a24b58a6c456859065018a",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud hit an incredible backhand smash to save a break point. Shelton respectfully applauded the amazing shot. Ruud then served out the game with an unreturnable serve. The players exchanged nods at the net.",
+        "question": "What happened after Shelton applauded the shot?",
+        "gold": "Ruud served out the game",
+        "trace": "<reasoning>\nThe question asks what happened after Shelton applauded the shot. Context: Ruud hit smash, Shelton applauded, then Ruud served out the game. So serving out after applause.\n<timeline>\n- Ruud hit backhand smash to save break point\n- Shelton applauded\n- Ruud then served out the game\n</timeline>\n<reflection>\nServing out the game happened after the applause.\n</reflection>\n</reasoning>\n<answer>Ruud served out the game</answer>"
+      },
+      "source_sha256": "a1a24b58a6c456859065018a824a5349fc7b60b8c8a76e49edd24c10b88a53e8"
+    },
+    {
+      "audit_id": "trace-a1d15bdcf76467b85f891787",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur beat Fritz in the quarterfinal. In the semifinal, De Minaur lost the first set to Sinner. He then retired with a hamstring injury before the second set tie-break.",
+        "question": "Which happened last: De Minaur beat Fritz, De Minaur lost the first set to Sinner, or De Minaur retired?",
+        "gold": "De Minaur retired",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. De Minaur beat Fritz in the quarterfinal.\n2. De Minaur lost the first set to Sinner in the semifinal.\n3. De Minaur retired with a hamstring injury.\n</timeline>\n<reflection>\nRetiring is the final listed event in chronological order.\n</reflection>\n</reasoning>\n<answer>De Minaur retired</answer>"
+      },
+      "source_sha256": "a1d15bdcf76467b85f89178782e49eb668a2d16e5772982404265a223b3cc0e7"
+    },
+    {
+      "audit_id": "trace-a2d63ae79e46a8fb38dc19fa",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev beat Fritz in the round of 16. After that match, he lost to Djokovic in the quarterfinal. Djokovic then advanced to the semifinal.",
+        "question": "Did Medvedev play the quarterfinal after the round of 16?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: Medvedev beat Fritz in round of 16. After that match, he lost to Djokovic in quarterfinal. So quarterfinal occurred after round of 16.\n<timeline>\n- Medvedev played round of 16.\n- After that, he played quarterfinal.\n</timeline>\n<reflection>\n\"After that match\" explicitly places quarterfinal after round of 16, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "a2d63ae79e46a8fb38dc19faea548a03ff860874186f18ccc90b2609782fdf93"
+    },
+    {
+      "audit_id": "trace-a3242a25760f6065afae5cd0",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas broke a string on his racket during a heavy baseline rally. He quickly swapped rackets at the back of the court. He then lost the point via an unforced forehand error.",
+        "question": "What happened before Tsitsipas swapped rackets?",
+        "gold": "He broke a string",
+        "trace": "<reasoning>\nTsitsipas broke a string, then quickly swapped rackets at the back of the court.\n<timeline>\n1. Tsitsipas broke a string.\n2. Tsitsipas swapped rackets.\n</timeline>\n<reflection>\nBreaking a string was the event that caused him to swap rackets.\n</reflection>\n</reasoning>\n<answer>He broke a string</answer>"
+      },
+      "source_sha256": "a3242a25760f6065afae5cd0fb5bcf32b06d22738dc750ecc1366a61e86db2bc"
+    },
+    {
+      "audit_id": "trace-a389446336bc714603f82e29",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton hit three aces in his first service game. De Minaur earned a break point later in the set. Before De Minaur earned the break point, Shelton had already received a time violation.",
+        "question": "Did Shelton receive a time violation before De Minaur earned a break point?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nShelton had already received a time violation before De Minaur earned the break point.\n<timeline>\n1. Shelton hit three aces in his first service game.\n2. Shelton received a time violation.\n3. Later in the set, De Minaur earned a break point.\n</timeline>\n<reflection>\nThe warning is explicitly before De Minaur's break point.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "a389446336bc714603f82e29e9b78791af9e3d3eecb990f59e747fb759e55dab"
+    },
+    {
+      "audit_id": "trace-a3ce3381061ed10366143c49",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev received a code violation during the second set. Before the violation, Fritz had already broken serve for a 3-1 lead. After the violation, Fritz held serve comfortably.",
+        "question": "What happened before Rublev received a code violation?",
+        "gold": "Fritz broke serve",
+        "trace": "<reasoning>\nThe context says Fritz had already broken serve before Rublev received the code violation.\n<timeline>\n1. Fritz broke serve for a 3-1 lead.\n2. Rublev received a code violation during the second set.\n3. After the violation, Fritz held serve comfortably.\n</timeline>\n<reflection>\nFritz's break of serve is the event before Rublev's code violation.\n</reflection>\n</reasoning>\n<answer>Fritz broke serve</answer>"
+      },
+      "source_sha256": "a3ce3381061ed10366143c49c03d9a86ef9224f446ae7e73b4a2f942740feaaa"
+    },
+    {
+      "audit_id": "trace-a3e1a82227119252812f6cdc",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev took a medical timeout for a blister on his toe. Earlier in the match, he had changed his shoes twice trying to find comfort. After the timeout, he finally seemed comfortable moving around the court.",
+        "question": "Which happened first: Rublev changed his shoes twice or Rublev took a medical timeout?",
+        "gold": "Rublev changed his shoes twice",
+        "trace": "<reasoning>\nThe text states Rublev took a medical timeout, but notes that earlier in the match, he had changed his shoes twice.\n<timeline>\n1. Rublev changed his shoes twice.\n2. Rublev took a medical timeout.\n</timeline>\n<reflection>\nChanging shoes happened earlier than the medical timeout.\n</reflection>\n</reasoning>\n<answer>Rublev changed his shoes twice</answer>"
+      },
+      "source_sha256": "a3e1a82227119252812f6cdc88c60a92aaaf0af983e4c6c641b74ead66963320"
+    },
+    {
+      "audit_id": "trace-a477e27bf8cc4e577333b313",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner saved a championship point with a forehand winner down the line. He then served an ace to gain the advantage. Alcaraz missed a return long, giving Sinner the game. Sinner fell to the ground in celebration.",
+        "question": "Which event happened last?",
+        "gold": "Sinner fell to the ground in celebration",
+        "trace": "<reasoning>\nSinner's celebration happened after saving championship point, serving an ace, and winning the game.\n<timeline>\n1. Sinner saved a championship point with a forehand winner down the line.\n2. Sinner served an ace to gain the advantage.\n3. Alcaraz missed a return long, giving Sinner the game.\n4. Sinner fell to the ground in celebration.\n</timeline>\n<reflection>\nThe final event in the sequence is Sinner falling to the ground in celebration.\n</reflection>\n</reasoning>\n<answer>Sinner fell to the ground in celebration</answer>"
+      },
+      "source_sha256": "a477e27bf8cc4e577333b313e86e283c6ab6d8544ef1c29407b7af9e95b66fa2"
+    },
+    {
+      "audit_id": "trace-a4d60e9910f824c1108e4228",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved a break point in the second game. Medvedev broke serve later in the first set after a long rally. Before the tie-break began, Alcaraz received a coaching warning.",
+        "question": "Did Medvedev break serve before Alcaraz saved a break point?",
+        "gold": "No",
+        "trace": "<reasoning>\nAlcaraz saved a break point first, and Medvedev broke serve later in the first set.\n<timeline>\n1. Alcaraz saved a break point in the second game.\n2. Medvedev broke serve later in the first set.\n3. Before the tie-break began, Alcaraz received a coaching warning.\n</timeline>\n<reflection>\nSince Medvedev's break happened after Alcaraz saved the break point, it did not happen before it.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "a4d60e9910f824c1108e4228c563a64c7e7b19faab4aebb0c3ac4d968fc706ac"
+    }
+  ],
+  "batch_id": "trace-judge_b-7126ae79f805e1326165",
+  "batch_sha256": "8ff13d4c766c2b1b4e5ee0808b78eda61c11e82028da9aa5758f74a29f9a051d"
+}

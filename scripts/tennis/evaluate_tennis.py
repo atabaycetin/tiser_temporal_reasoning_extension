@@ -16,8 +16,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from src.inference.generate import generate_batch
-from src.model.loader import load_adapter_for_inference, load_base_for_inference
+from src.experiment.artifacts import append, now
+from src.experiment.evaluation import EvaluationStore, apply_tennis_view, evaluation_spec, write_predictions
 from src.tennis.eval import extract_tennis_answer, render_markdown_report, score_prediction_rows
 from src.tennis.normalize import tennis_exact_match_for_category, tennis_token_f1_for_category
 from src.tennis.prompts import (
@@ -53,20 +53,29 @@ def main(argv: list[str] | None = None) -> None:
         raise ValueError(f"No evaluation records found in {test_file}")
 
     prompts = [prompt_for_row(row, args.prompt_style) for row in rows]
-    model, tokenizer = (
-        load_base_for_inference(cfg)
-        if args.no_adapter
-        else load_adapter_for_inference(cfg, str(adapter_dir))
-    )
-    generations = generate_batch(model, tokenizer, prompts, cfg.eval)
-
-    predictions = build_prediction_rows(
-        rows=rows,
-        prompts=prompts,
-        generations=generations,
-        condition=args.condition,
-        prompt_style=args.prompt_style,
-    )
+    spec = evaluation_spec(rows, prompts, cfg, adapter_dir, input_file=test_file, view=args.scoring_view)
+    spec.update({"condition": args.condition, "prompt_style": args.prompt_style})
+    store = EvaluationStore(output_dir, spec, resume=args.resume, manifest=args.manifest)
+    append(output_dir / "execution_attempts.jsonl", {"started_at": now(), "resume": bool(args.resume),
+                                                      "completed_before_attempt": len(store.rows)})
+    if len(store.rows) < len(rows):
+        from src.inference.generate import generate_batch
+        from src.model.loader import load_adapter_for_inference, load_base_for_inference
+        model, tokenizer = (load_base_for_inference(cfg) if args.no_adapter else load_adapter_for_inference(cfg, str(adapter_dir)))
+        checkpoint_rows = int(cfg.eval.get("checkpoint_rows", 64))
+        if checkpoint_rows < cfg.eval.batch_size:
+            raise ValueError("Evaluation checkpoint_rows must be at least batch_size")
+        pending = []
+        for start in range(len(store.rows), len(rows), cfg.eval.batch_size):
+            part = rows[start:start + cfg.eval.batch_size]
+            part_prompts = prompts[start:start + len(part)]
+            generations = generate_batch(model, tokenizer, part_prompts, cfg.eval)
+            pending.extend(build_prediction_rows(rows=part, prompts=part_prompts, generations=generations,
+                                                 condition=args.condition, prompt_style=args.prompt_style))
+            if len(pending) >= checkpoint_rows or start + len(part) == len(rows):
+                store.add(pending)
+                pending = []
+    predictions = store.finish()
     metrics = score_prediction_rows(predictions)
     metrics.update(
         {
@@ -88,20 +97,26 @@ def main(argv: list[str] | None = None) -> None:
     report_path = output_dir / "metrics_report.md"
     run_meta_path = output_dir / "run_meta.json"
 
-    write_jsonl(predictions_path, predictions)
     write_json(metrics_path, metrics)
+    if args.scoring_view:
+        primary = apply_tennis_view(predictions, args.scoring_view, test_file)
+        write_predictions(output_dir / "primary_predictions.jsonl", primary)
+        write_json(output_dir / "primary_metrics.json", score_prediction_rows(primary))
     write_text(report_path, render_markdown_report(metrics, predictions_path))
-    write_json(
-        run_meta_path,
-        build_run_meta(
-            cfg=cfg,
-            args=args,
-            test_file=test_file,
-            output_dir=output_dir,
-            adapter_dir=adapter_dir,
-            n_records=len(rows),
-        ),
-    )
+    if not run_meta_path.exists():
+        write_json(
+            run_meta_path,
+            build_run_meta(
+                cfg=cfg,
+                args=args,
+                test_file=test_file,
+                output_dir=output_dir,
+                adapter_dir=adapter_dir,
+                n_records=len(rows),
+            ),
+        )
+    append(output_dir / "execution_attempts.jsonl", {"completed_at": now(), "status": "complete",
+                                                      "completed_records": len(predictions)})
 
     overall = metrics["overall"]
     print(
@@ -129,6 +144,9 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=None, help="Limit examples for smoke tests.")
     parser.add_argument("--max-new-tokens", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=None)
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--manifest", help="Require this exact evaluation_spec.json")
+    parser.add_argument("--scoring-view", help="Frozen audit eligibility/gold sidecar")
     parser.add_argument(
         "--prompt-style",
         choices=("tiser", "standard"),
@@ -237,6 +255,8 @@ def build_prediction_rows(
     condition: str,
     prompt_style: str,
 ) -> list[dict[str, Any]]:
+    if not (len(rows) == len(prompts) == len(generations)):
+        raise ValueError("Generation/prompt/input counts differ")
     predictions = []
     for index, (row, prompt, raw_generation) in enumerate(
         zip(rows, prompts, generations), start=1
@@ -349,13 +369,6 @@ def library_versions() -> dict[str, str]:
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-
-
-def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
-        for row in rows:
-            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
 def write_text(path: Path, text: str) -> None:

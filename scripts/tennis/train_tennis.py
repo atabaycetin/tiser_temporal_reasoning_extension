@@ -1,9 +1,4 @@
-"""Train tennis-domain TISER adapters with data validation.
-
-This is intentionally a thin wrapper around src.train.trainer.run_training.
-It applies tennis-specific CLI overrides, validates the selected training file,
-then hands control to the baseline training stack.
-"""
+"""Train tennis-domain TISER adapters with validated data and CLI overrides."""
 
 from __future__ import annotations
 
@@ -41,6 +36,10 @@ def main() -> None:
         cfg.train.subset_size = args.subset
     if args.epochs is not None:
         cfg.train.num_epochs = args.epochs
+    if args.max_steps is not None:
+        cfg.train.max_steps = args.max_steps
+    if args.resume_from_checkpoint is not None:
+        cfg.train.resume_from_checkpoint = str(resolve_repo_path(args.resume_from_checkpoint))
 
     train_file = select_train_file(args.train_file or cfg.paths.train_file)
     cfg.paths.train_file = str(train_file)
@@ -93,6 +92,16 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--subset", type=int, default=None, help="Cap training examples.")
     parser.add_argument("--epochs", type=float, default=None)
+    parser.add_argument("--resume-from-checkpoint", help="Full trainer checkpoint, including optimizer/RNG/token counters")
+    parser.add_argument(
+        "--max-steps",
+        type=int,
+        default=None,
+        help=(
+            "Cap optimizer steps. A positive value overrides epoch-derived length "
+            "and is useful for compute-matched replay comparisons."
+        ),
+    )
     parser.add_argument(
         "--min-answer-match-rate",
         type=float,
@@ -107,7 +116,10 @@ def parse_args() -> argparse.Namespace:
             "plumbing/smoke checks and is not scientifically valid."
         ),
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.max_steps is not None and args.max_steps < 1:
+        parser.error("--max-steps must be at least 1")
+    return args
 
 
 def resolve_repo_path(path: str | Path) -> Path:

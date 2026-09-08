@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-00a08b7ce195f91cae0999ab",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved a break point in the third game. After that hold, the roof was closed because of light rain. Sinner won the next two games after the roof closure.",
+        "question": "Did Alcaraz save a break point before the roof was closed?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context says Alcaraz saved a break point in the third game, and after that hold the roof was closed. Therefore, Alcaraz saved the break point before the roof closure.\n<timeline>\n1. Alcaraz saved a break point in the third game.\n2. Alcaraz completed that hold.\n3. The roof was closed because of light rain.\n4. Sinner won the next two games after the roof closure.\n</timeline>\n<reflection>\nThe timeline places Alcaraz's saved break point before the roof was closed, supporting the gold answer.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "00a08b7ce195f91cae0999abb23c82a37d032031e3ec90e78b38b1a72d8a906d"
+    },
+    {
+      "audit_id": "trace-01339f89e63620fddbe1aa00",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz slipped near the baseline during the first set. After the slip, he received treatment during the changeover. Later in the same set, he broke Zverev to lead 5-3.",
+        "question": "Did Alcaraz receive treatment before breaking Zverev?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nAlcaraz received treatment during the changeover after slipping. Later in the same set, he broke Zverev.\n<timeline>\n1. Alcaraz received treatment.\n2. Alcaraz broke Zverev.\n</timeline>\n<reflection>\nThe treatment occurred before breaking Zverev.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "01339f89e63620fddbe1aa001cc83c875db49dce62ceebaddfd353ec47a5f672"
+    },
+    {
+      "audit_id": "trace-015018732061349017d29b06",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev held serve in the opening game after 6 minutes. Rune broke serve 21 minutes after the match started. Later, the first set ended 49 minutes after the match started.",
+        "question": "How many minutes after the match started did Rune break serve?",
+        "gold": "21 minutes",
+        "trace": "<reasoning>\nThe context states directly that Rune broke serve 21 minutes after the match started.\n<timeline>\n1. Zverev held serve in the opening game after 6 minutes.\n2. Rune broke serve 21 minutes after the match started.\n3. Later, the first set ended 49 minutes after the match started.\n</timeline>\n<reflection>\nThe timeline gives Rune's break time as 21 minutes after the match started.\n</reflection>\n</reasoning>\n<answer>21 minutes</answer>"
+      },
+      "source_sha256": "015018732061349017d29b0682ba10d9351ec46f249c0cf04fbedd8f830c5752"
+    },
+    {
+      "audit_id": "trace-0184a22e713918132b3fe67b",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune held serve to start the match. He then broke Rublev's serve in the second game. Rublev called a medical timeout for his back at 0-3. The timeout lasted four minutes. After play resumed, Rublev held serve for 1-3.",
+        "question": "How many minutes after the medical timeout ended did Rublev hold serve?",
+        "gold": "0 minutes",
+        "trace": "<reasoning>\nThe text mentions \"After play resumed, Rublev held serve\", which implies he held serve right as the game was played when the timeout ended, but strictly speaking \"how many minutes\" and \"0 minutes\" points to immediate continuation. Or maybe it means \"play resumed\" means 0 minutes.\nLet's see: \"After play resumed, Rublev held serve for 1-3.\" So the timeout ended, play resumed, and he held serve. The gold is \"0 minutes\". I'll say: The holding of serve happened immediately after play resumed following the timeout.\n<timeline>\n1. Rublev called a medical timeout\n2. Timeout ended after 4 minutes / Play resumed\n3. Immediately (0 minutes later): Rublev held serve\n</timeline>\n<reflection>\nHolding serve occurred immediately upon resumption of play, meaning 0 minutes elapsed between the end of the timeout and the start of the action leading to the hold.\n</reflection>\n</reasoning>\n<answer>0 minutes</answer>"
+      },
+      "source_sha256": "0184a22e713918132b3fe67b6f25c45be5721f7affae8d71c7a24882cd8834c7"
+    },
+    {
+      "audit_id": "trace-01876537502a3501dd4d893b",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur started the match with back-to-back double faults. He then hit three consecutive forehand winners to save the game. Afterward, the crowd erupted in applause as he held serve.",
+        "question": "Did De Minaur hit three consecutive forehand winners before serving back-to-back double faults?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: \"De Minaur started the match with back-to-back double faults. He then hit three consecutive forehand winners...\" So double faults occurred before winners.\n<timeline>\n- Double faults.\n- Forehand winners.\n</timeline>\n<reflection>\nWinners happened after double faults, not before, so answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "01876537502a3501dd4d893b083cdec5ebaf491ae20629a13d9a7ffad349f710"
+    },
+    {
+      "audit_id": "trace-0225aa7e8c2ff1f35214b969",
+      "kind": "trace",
+      "payload": {
+        "context": "The match was tied at one set apiece. Medvedev requested a new racket at the start of the third set. After getting the racket, he won the first four games. Tsitsipas then retired from the match due to an ankle injury.",
+        "question": "Did Tsitsipas retire before Medvedev requested a new racket?",
+        "gold": "No",
+        "trace": "<reasoning>\nMedvedev requested a new racket before winning four games, and Tsitsipas retired only after that.\n<timeline>\n1. The match was tied at one set apiece.\n2. Medvedev requested a new racket at the start of the third set.\n3. After getting the racket, Medvedev won the first four games.\n4. Tsitsipas then retired due to an ankle injury.\n</timeline>\n<reflection>\nTsitsipas's retirement came after the racket request, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "0225aa7e8c2ff1f35214b96901283a77c04d3210c1eca6209eacb693cfaa18ae"
+    },
+    {
+      "audit_id": "trace-0250a55c215106fc63cd358c",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz lost the first set after a series of unforced errors. He changed his racket right before the second set began. Rublev then broke Fritz immediately in the opening game.",
+        "question": "Did Fritz change his racket before Rublev broke his serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nFritz changed his racket right before the second set began, and Rublev broke him immediately in the opening game.\n<timeline>\n1. Fritz lost the first set after a series of unforced errors.\n2. Fritz changed his racket right before the second set began.\n3. Rublev broke Fritz immediately in the opening game.\n</timeline>\n<reflection>\nThe racket change happened before Rublev broke Fritz's serve.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "0250a55c215106fc63cd358cf01d6abd685ed77af9d190a4a1d98106b2817804"
+    },
+    {
+      "audit_id": "trace-031414ad5a5e8cb4f3438904",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz defeated Rublev in the quarterfinal. Djokovic won his semifinal before Alcaraz played his own semifinal. After beating Fritz in the semifinal, Alcaraz advanced to face Djokovic in the final.",
+        "question": "Which round did Alcaraz play after the quarterfinal?",
+        "gold": "The semifinal",
+        "trace": "<reasoning>\nContext: \"Alcaraz defeated Rublev in the quarterfinal. ... After beating Fritz in the semifinal, Alcaraz advanced to face Djokovic in the final.\" So after quarterfinal, he played the semifinal.\n<timeline>\n- Quarterfinal.\n- Semifinal.\n- Final.\n</timeline>\n<reflection>\nThe round immediately after the quarterfinal is the semifinal.\n</reflection>\n</reasoning>\n<answer>The semifinal</answer>"
+      },
+      "source_sha256": "031414ad5a5e8cb4f3438904ce10b1a6a9a484e5cc9cd7a2f7d0c4a12bb1cb6e"
+    },
+    {
+      "audit_id": "trace-03350637f4979ba25b653330",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev argued with the chair umpire after dropping serve in the third game. Before that argument, Fritz had already held serve twice. Later, a crowd interruption stopped play for three minutes.",
+        "question": "Did the crowd interruption happen before Rublev argued with the chair umpire?",
+        "gold": "No",
+        "trace": "<reasoning>\nRublev argued after dropping serve, and the crowd interruption happened later, so the interruption was not before the argument.\n<timeline>\n1. Fritz had already held serve twice before Rublev's argument.\n2. Rublev argued with the chair umpire after dropping serve in the third game.\n3. Later, a crowd interruption stopped play for three minutes.\n</timeline>\n<reflection>\nThe crowd interruption is later than the argument, supporting the answer.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "03350637f4979ba25b6533306da85309e4d5ccf26ae295430f43772107fbb1f7"
+    },
+    {
+      "audit_id": "trace-0345c7fa2ce3bee1f7718867",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz missed a volley at 30-30. Immediately after that point, Djokovic challenged a baseline call. Later, Djokovic held serve to force a tie-break.",
+        "question": "Did Djokovic challenge the baseline call after Alcaraz missed the volley?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDjokovic challenged the baseline call immediately after Alcaraz missed the volley.\n<timeline>\n1. Alcaraz missed a volley at 30-30.\n2. Immediately after that point, Djokovic challenged a baseline call.\n3. Later, Djokovic held serve to force a tie-break.\n</timeline>\n<reflection>\nThe challenge occurred after the missed volley, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "0345c7fa2ce3bee1f7718867c211419bb29a94e2089b03ef73d7b278b6d2a2ac"
+    }
+  ],
+  "batch_id": "trace-judge_b-a3df3ebd4fed0cd9550e",
+  "batch_sha256": "a3d2cfff053934acac00cf4b971429402597fc272e186639cc0b37217dbcd77d"
+}

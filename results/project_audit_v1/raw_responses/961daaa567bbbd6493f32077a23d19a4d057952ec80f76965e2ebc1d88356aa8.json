@@ -1,0 +1,50 @@
+{
+  "batch_id": "semantic-adjudicator-45c44b8354b0cbcc486a",
+  "batch_sha256": "5b4b9e7e81325c9b9b630341e6bc9147ed7b29c047a95282f9b3838b3895ced8",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-08T11:02:31Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-2cd38977a6156918bff70e9b",
+      "source_sha256": "2cd38977a6156918bff70e9b0226b7d938cf72440d5b6703ef3ee5c64ffb6abc",
+      "label": "wrong_gold",
+      "corrected_answer": "No",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz faced two break points at 2-2 in the final set."
+        },
+        {
+          "field": "context",
+          "quote": "During the same game, he saved a third break point with a forehand winner."
+        },
+        {
+          "field": "context",
+          "quote": "Alcaraz then held serve"
+        }
+      ],
+      "rationale": "The context states that Alcaraz faced and saved the break points before he then held serve. Under the rubric, temporal co-occurrence cannot be assumed from the same game, so the unique answer to whether he was facing break points while holding serve is no."
+    },
+    {
+      "audit_id": "semantic-2e781d998845a2a684edbaab",
+      "source_sha256": "2e781d998845a2a684edbaabcb272b49c33cb961e6cdc81ec3468b4646b4177f",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune received a time violation during the first set."
+        },
+        {
+          "field": "context",
+          "quote": "Later, he saved three break points at 3-4. After saving them, he held serve with an ace."
+        }
+      ],
+      "rationale": "Rune saved three break points before holding serve with an ace, but the earlier time violation also occurred before that hold. The broad question has multiple true answers, so the gold answer is not uniquely entailed."
+    }
+  ]
+}

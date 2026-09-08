@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-a8d85be0ea6e24c88c6c1f9d",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal received treatment during the changeover at 2-3. After the treatment, Federer held serve easily. Immediately after that hold, Nadal broke serve to level the set.",
+        "question": "What happened immediately after Federer held serve?",
+        "gold": "Nadal broke serve",
+        "trace": "<reasoning>\nAfter Nadal received treatment, Federer held serve, and the context says Nadal broke serve immediately after that hold.\n<timeline>\n1. Nadal received treatment during the changeover at 2-3.\n2. After the treatment, Federer held serve easily.\n3. Immediately after that hold, Nadal broke serve to level the set.\n</timeline>\n<reflection>\nThe event immediately after Federer's hold is Nadal breaking serve.\n</reflection>\n</reasoning>\n<answer>Nadal broke serve</answer>"
+      },
+      "source_sha256": "a8d85be0ea6e24c88c6c1f9df1e019d8a7145f6a2a04af2d157aec7b9cc307e1"
+    },
+    {
+      "audit_id": "trace-a907d986d9dd728c9474b037",
+      "kind": "trace",
+      "payload": {
+        "context": "The warm-up was interrupted by a fan running onto the court. The fan was escorted off after two minutes. The players then resumed warm-up for five more minutes before the match started.",
+        "question": "Was the fan being escorted off while the players were warming up?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. The warm-up began.\n2. A fan ran onto the court, interrupting the warm-up.\n3. The fan was escorted off after two minutes.\n4. The players resumed warm-up for five more minutes.\n</timeline>\n<reflection>\nThe interruption and escorting off happened within the timeline of the warm-up phase.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "a907d986d9dd728c9474b0379cbc9066a4fa63702bd4cfe1137f7c677e30c999"
+    },
+    {
+      "audit_id": "trace-a92ebb48f011b6da286b8f22",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic received a warning during the first-set changeover. Medvedev held serve immediately after the warning. Later, Djokovic won the tie-break 7-5.",
+        "question": "Did Djokovic win the tie-break before Medvedev held serve?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe context states that Medvedev held serve immediately after Djokovic's warning, while Djokovic won the tie-break later. Therefore, Djokovic did not win the tie-break before Medvedev held serve.\n<timeline>\n1. Djokovic received a warning during the first-set changeover.\n2. Medvedev held serve immediately after the warning.\n3. Djokovic later won the tie-break 7-5.\n</timeline>\n<reflection>\nThe timeline shows Medvedev's hold came before Djokovic won the tie-break, supporting the gold answer.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "a92ebb48f011b6da286b8f22738bcd1d7a4ff26995d5d70f0a6b56e965e3ace7"
+    },
+    {
+      "audit_id": "trace-aa1ce84368c29effdb4f7b04",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev won his first-round match on Monday. He withdrew from the tournament on Tuesday morning before his second-round match. Later that day, Fritz advanced by walkover.",
+        "question": "Did Rublev play the second round before withdrawing?",
+        "gold": "No",
+        "trace": "<reasoning>\nRublev withdrew on Tuesday morning before his second-round match, so he did not play the second round before withdrawing.\n<timeline>\n1. Rublev won his first-round match on Monday.\n2. Rublev withdrew from the tournament on Tuesday morning before his second-round match.\n3. Later that day, Fritz advanced by walkover.\n</timeline>\n<reflection>\nThe withdrawal is explicitly before the second-round match, supporting the negative answer.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "aa1ce84368c29effdb4f7b04666680bb1104e962f5cb297c7feed2292c9ea4d1"
+    },
+    {
+      "audit_id": "trace-aa1e4a089cb71e673fba48fb",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz started his clay-court campaign with a dominant victory over Rune in the quarterfinal. He advanced to the semifinal, where he faced a tough test against Ruud. Alcaraz won the match and progressed to the final stage of the tournament.",
+        "question": "Did Alcaraz play Rune before playing Ruud?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe sequence of tournament rounds shows when Alcaraz played each opponent.\n<timeline>\n1. Quarterfinal: Alcaraz played Rune\n2. Semifinal: Alcaraz played Ruud\n3. Final: Alcaraz progressed to final stage\n</timeline>\n<reflection>\nThe quarterfinal match against Rune occurred before the semifinal match against Ruud.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "aa1e4a089cb71e673fba48fbe99e0cd92c44e36d7c2f622ab04e7e4a52e88d5c"
+    },
+    {
+      "audit_id": "trace-aa28c1ef963713b1d44d7c2c",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur held serve to begin the final set. Shelton broke him two games later. Before Shelton broke serve, the umpire had already warned the crowd to stay quiet.",
+        "question": "Did Shelton break serve before the umpire warned the crowd?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe text states that before Shelton broke serve, the umpire had already warned the crowd.\n<timeline>\n1. The umpire warned the crowd.\n2. Shelton broke serve.\n</timeline>\n<reflection>\nShelton broke serve after the umpire warned the crowd, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "aa28c1ef963713b1d44d7c2c0aa0dac34fbd51f8c17afe28ae10d0f2101e48c2"
+    },
+    {
+      "audit_id": "trace-aa91a96cdf5f17ad86731f87",
+      "kind": "trace",
+      "payload": {
+        "context": "The match between Sinner and Alcaraz started at 2:00 p.m. Sinner broke serve after 18 minutes. Rain stopped play at 2:45 p.m., before the roof was closed.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nContext: Match started at 2:00 p.m. Rain stopped play at 2:45 p.m. Difference is 45 minutes.\n<timeline>\n- Match start: 2:00 p.m.\n- Rain delay: 2:45 p.m.\n</timeline>\n<reflection>\n2:45 - 2:00 = 45 minutes. Direct subtraction.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "aa91a96cdf5f17ad86731f87b492fbe38c209f4e27bf528c774ec6ac0dac4bec"
+    },
+    {
+      "audit_id": "trace-abad45c284a545f91c052c62",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas saved two set points at 5-6 in the first set. He then won the tie-break 8-6. During the tie-break, Rune called a medical timeout for a blister on his hand.",
+        "question": "What happened during the tie-break?",
+        "gold": "Rune called a medical timeout",
+        "trace": "<reasoning>\nThe context specifies an event that took place simultaneously with the tie-break.\n<timeline>\n1. 5-6: Tsitsipas saved two set points\n2. Tie-break: Tsitsipas won 8-6 / Rune called a medical timeout (simultaneous)\n</timeline>\n<reflection>\nThe text explicitly states that Rune called a medical timeout during the tie-break.\n</reflection>\n</reasoning>\n<answer>Rune called a medical timeout</answer>"
+      },
+      "source_sha256": "abad45c284a545f91c052c62ec6b8bc0f86f1da1092f90d88d267f91adf5ff94"
+    },
+    {
+      "audit_id": "trace-abbb52a6701acb9653f251f4",
+      "kind": "trace",
+      "payload": {
+        "context": "The championship match started promptly at 2 PM. After 45 minutes of intense play, a light rain delayed the match. The players finally returned to the court an hour later to resume.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe match started at 2 PM. After 45 minutes of play, rain delayed the match. The question asks how many minutes after start the delay began.\n<timeline>\n1. Championship match started at 2 PM.\n2. After 45 minutes of intense play, a light rain delayed the match.\n</timeline>\n<reflection>\nThe context directly states the rain began after 45 minutes, so the answer is 45 minutes.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "abbb52a6701acb9653f251f4d25691e7c5209a3dfc8ef6b3ab3cccc29018a473"
+    },
+    {
+      "audit_id": "trace-abdaf539d3fc13c3dc996df0",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz broke Sinner's serve to take a 5-3 lead in the third set. He then sat down for the changeover and ate a banana. After the break, Alcaraz served out the match without dropping a point.",
+        "question": "Which happened first: Alcaraz ate a banana or Alcaraz broke Sinner's serve?",
+        "gold": "Alcaraz broke Sinner's serve",
+        "trace": "<reasoning>\nContext: \"Alcaraz broke Sinner's serve to take a 5-3 lead ... He then sat down for the changeover and ate a banana.\" So break occurred before eating banana.\n<timeline>\n- Alcaraz broke serve.\n- Ate banana.\n</timeline>\n<reflection>\nBreak happens first, then banana, so answer is Alcaraz broke Sinner's serve.\n</reflection>\n</reasoning>\n<answer>Alcaraz broke Sinner's serve</answer>"
+      },
+      "source_sha256": "abdaf539d3fc13c3dc996df009994722b445026423106f8c0f3d04545ebf396a"
+    }
+  ],
+  "batch_id": "trace-judge_b-d1cbb339141404dcdae2",
+  "batch_sha256": "2fe68632842324afce017a970715088a85a6d2f093b22fc89d42da11010341a3"
+}

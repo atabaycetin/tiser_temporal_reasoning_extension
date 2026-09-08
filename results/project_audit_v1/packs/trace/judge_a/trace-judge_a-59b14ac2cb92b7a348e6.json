@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-769e7c6de8e7ef3f43fd2c6c",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal won the opening set in exactly 45 minutes. He then immediately requested the physiotherapist. After a brief consultation on court, play resumed without any medical treatment being given.",
+        "question": "Which happened first: Play resumed or Nadal requested the physiotherapist?",
+        "gold": "Nadal requested the physiotherapist",
+        "trace": "<reasoning>\nNadal requested the physiotherapist immediately after winning the opening set, and after a brief consultation, play resumed.\n<timeline>\n1. Nadal requested the physiotherapist.\n2. Play resumed.\n</timeline>\n<reflection>\nNadal requested the physiotherapist before play resumed.\n</reflection>\n</reasoning>\n<answer>Nadal requested the physiotherapist</answer>"
+      },
+      "source_sha256": "769e7c6de8e7ef3f43fd2c6cb685e7e7deb37427be44c450448dd0fcfe80d38f"
+    },
+    {
+      "audit_id": "trace-76ca514ba6f3d2fffc5f7377",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz had a notoriously tough draw at the French Open. He defeated Zverev in the quarterfinal after a grueling five-setter. He then beat Sinner in the semifinal before easily winning the final against Ruud.",
+        "question": "Did Alcaraz defeat Zverev before playing the semifinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nAlcaraz defeated Zverev in the quarterfinal, and then beat Sinner in the semifinal.\n<timeline>\n1. Alcaraz defeated Zverev in the quarterfinal.\n2. Alcaraz played and beat Sinner in the semifinal.\n</timeline>\n<reflection>\nThe quarterfinal win over Zverev happened before the semifinal.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "76ca514ba6f3d2fffc5f7377faefad2f11238451803be1d9ba1e516e847fc2df"
+    },
+    {
+      "audit_id": "trace-76fdf0db910ad645e20d50fb",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer won his first-round match on Monday. He beat De Minaur in the second round on Wednesday. After that, Federer lost to Nadal in the quarterfinal.",
+        "question": "Which happened last: Federer won the first round, Federer won the second round, or Federer lost the quarterfinal?",
+        "gold": "Federer lost the quarterfinal",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Federer won his first-round match on Monday.\n2. Federer beat De Minaur in the second round on Wednesday.\n3. Federer lost to Nadal in the quarterfinal.\n</timeline>\n<reflection>\nFederer losing the quarterfinal is the chronologically last event listed.\n</reflection>\n</reasoning>\n<answer>Federer lost the quarterfinal</answer>"
+      },
+      "source_sha256": "76fdf0db910ad645e20d50fb9b0b7c7d3ca2d0072de16c6fbe44a907a131281e"
+    },
+    {
+      "audit_id": "trace-777056fcee19fcac8166fe3c",
+      "kind": "trace",
+      "payload": {
+        "context": "During the rain delay, Sinner and Alcaraz left the court. While the players were off court, the tournament staff closed the roof. After the roof was closed, the players returned for a short warm-up.",
+        "question": "Was the roof being closed while the players were off court?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe players left the court during the rain delay, and while they were off court the staff closed the roof. Therefore, the roof was being closed while the players were off court.\n<timeline>\n1. During the rain delay, Sinner and Alcaraz left the court.\n2. While the players were off court, the tournament staff closed the roof.\n3. After the roof was closed, the players returned for a short warm-up.\n</timeline>\n<reflection>\nThe context explicitly states that the roof was closed while the players were off court, so the gold answer is supported.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "777056fcee19fcac8166fe3cc90ca9f3833fca6bc24aa28208cee23861bf8600"
+    },
+    {
+      "audit_id": "trace-777c3293cdf01cdd8780e43d",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud won his opening match on Monday. After that, he defeated Fritz in the quarterfinal on Thursday. He lost to Tsitsipas in the semifinal on Saturday.",
+        "question": "Which happened last in Ruud's tournament?",
+        "gold": "He lost to Tsitsipas",
+        "trace": "<reasoning>\nRuud's tournament events are ordered by Monday, Thursday, and Saturday, with the Saturday semifinal loss last.\n<timeline>\n1. Ruud won his opening match on Monday.\n2. Ruud defeated Fritz in the quarterfinal on Thursday.\n3. Ruud lost to Tsitsipas in the semifinal on Saturday.\n</timeline>\n<reflection>\nThe last event in Ruud's tournament timeline is his loss to Tsitsipas.\n</reflection>\n</reasoning>\n<answer>He lost to Tsitsipas</answer>"
+      },
+      "source_sha256": "777c3293cdf01cdd8780e43de91beb306726a8dfb82525fabde6297c51770015"
+    },
+    {
+      "audit_id": "trace-77a59297a1929eb6fc5dc8fb",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal broke Federer in the sixth game of the first set. Federer broke back two games later. After the break back, the set moved into a tie-break.",
+        "question": "What happened before the set moved into a tie-break?",
+        "gold": "Federer broke back",
+        "trace": "<reasoning>\nContext: Nadal broke Federer, then Federer broke back two games later, then after break back the set moved to tie-break. Question asks what happened before tie-break.\n<timeline>\n1. Nadal broke Federer in sixth game.\n2. Federer broke back two games later.\n3. After the break back, the set moved into a tie-break.\n</timeline>\n<reflection>\nThe tie-break is immediately after Federer's break back, so preceding event is Federer broke back.\n</reflection>\n</reasoning>\n<answer>Federer broke back</answer>"
+      },
+      "source_sha256": "77a59297a1929eb6fc5dc8fb7fb31b09bd16fcb0731c055383ff4ad3a7fb583d"
+    },
+    {
+      "audit_id": "trace-77af4d01148e83fc31fb004e",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune broke serve early in the decisive third set. Shelton smashed his racket on the court in visible frustration. The umpire immediately gave Shelton a point penalty for the outburst.",
+        "question": "Which happened first: Shelton smashed his racket or the umpire gave a point penalty?",
+        "gold": "Shelton smashed his racket",
+        "trace": "<reasoning>\nShelton smashed his racket, and the umpire gave the point penalty immediately after that outburst.\n<timeline>\n1. Rune broke serve early in the decisive third set.\n2. Shelton smashed his racket on the court in visible frustration.\n3. The umpire immediately gave Shelton a point penalty for the outburst.\n</timeline>\n<reflection>\nThe racket smash happened before the point penalty.\n</reflection>\n</reasoning>\n<answer>Shelton smashed his racket</answer>"
+      },
+      "source_sha256": "77af4d01148e83fc31fb004e54888f6cc9dcd80b5709e06934a56e45343ef968"
+    },
+    {
+      "audit_id": "trace-77c104cf7f499544c71c988c",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz hit a stunning drop shot to earn a set point in the first set. Before he could serve the next point, the electronic line calling system malfunctioned. The match was delayed for ten minutes while technicians fixed the issue. Once resolved, Alcaraz served an ace to win the set.",
+        "question": "Did the match delay occur after Alcaraz earned a set point?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Alcaraz hit a stunning drop shot to earn a set point ... Before he could serve the next point, the electronic line calling system malfunctioned. The match was delayed...\" So delay occurred after earning set point.\n<timeline>\n- Earned set point.\n- Malfunction.\n- Delay.\n</timeline>\n<reflection>\nDelay happens after earning set point, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "77c104cf7f499544c71c988ca6e6c92102122fc93742a7f61bb1db0e07d02112"
+    },
+    {
+      "audit_id": "trace-7803ef01ed5c1ecdfe4a3b78",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton saved a set point during the first-set tie-break. Immediately after the tie-break, De Minaur changed his shoes. Later, Shelton took a medical timeout before the second set.",
+        "question": "Did Shelton save a set point before De Minaur changed his shoes?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nShelton saved a set point during the tie-break, and De Minaur changed shoes immediately after the tie-break.\n<timeline>\n1. Shelton saved a set point during the first-set tie-break.\n2. Immediately after the tie-break, De Minaur changed his shoes.\n3. Later, Shelton took a medical timeout before the second set.\n</timeline>\n<reflection>\nThe saved set point is placed before De Minaur's shoe change, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7803ef01ed5c1ecdfe4a3b78fecbc998ea389205f4b62f3b63706dcaa9117cd0"
+    },
+    {
+      "audit_id": "trace-7810dc8a2b3ae23019ecfad7",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal won the first set with a late break. Federer changed rackets before the second set began. After the racket change, Federer broke Nadal in the opening game.",
+        "question": "Did Federer change rackets before breaking Nadal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nFederer changed rackets before the second set, and after that racket change he broke Nadal.\n<timeline>\n1. Nadal won the first set with a late break.\n2. Federer changed rackets before the second set began.\n3. After the racket change, Federer broke Nadal in the opening game.\n</timeline>\n<reflection>\nThe racket change occurred before Federer broke Nadal, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7810dc8a2b3ae23019ecfad726e27e257c4d417152e46fb6680ef1129a45394a"
+    }
+  ],
+  "batch_id": "trace-judge_a-59b14ac2cb92b7a348e6",
+  "batch_sha256": "10a19f772ad4230a28044e97ef2e712ea1dc356726dad2c66cba57f1578c1058"
+}

@@ -1,0 +1,72 @@
+{
+  "review_date": "2026-09-04",
+  "review_type": "targeted AI-assisted semantic review; human adjudication pending",
+  "population": "data/tennis/tennis_train.json",
+  "population_count": 785,
+  "reviewed_count": 302,
+  "reviewed_ids_sha256": "816cf11d2d12201cec0216f394b4dcd392c4a1dfa0ab201e03dbd8d799697dd1",
+  "reviewed_status_counts": {
+    "reported_traced_full": 193,
+    "pilot": 50,
+    "ungenerated_tail": 59,
+    "absent_from_reported_traced_full": 109
+  },
+  "outcome_counts": {
+    "no_unequivocal_issue_detected": 292,
+    "wrong_or_not_uniquely_entailed": 10
+  },
+  "warning": "This targeted review is not an unbiased prevalence estimate and does not certify unreviewed or unflagged records.",
+  "findings": [
+    {
+      "question_id": "tennis_000370",
+      "location": "reported_traced_full",
+      "issue": "The shoe change and net inspection are both placed between sets, but their relative order is not stated; gold Yes is not uniquely entailed."
+    },
+    {
+      "question_id": "tennis_000416",
+      "location": "reported_traced_full",
+      "issue": "The trainer call and earning break points both precede the trainer's arrival, but their relative order is not stated; gold Yes is not uniquely entailed."
+    },
+    {
+      "question_id": "tennis_000627",
+      "location": "reported_traced_full",
+      "issue": "Suspension and the roof order are expressed in one coordinated action; a strict before relation is not explicit and requires adjudication."
+    },
+    {
+      "question_id": "tennis_000677",
+      "location": "reported_traced_full",
+      "issue": "A three-minute timeout is followed by a break in the third game; gameplay duration is unstated, so exactly three minutes is unsupported."
+    },
+    {
+      "question_id": "tennis_000703",
+      "location": "reported_traced_full",
+      "issue": "The hold occurs after play resumes, but no elapsed duration is stated; zero minutes is unsupported."
+    },
+    {
+      "question_id": "tennis_000720",
+      "location": "reported_traced_full",
+      "issue": "The timeout begins at 0-1 in the second set, after at least one game; elapsed minutes since the first set are not given, so zero minutes is unsupported."
+    },
+    {
+      "question_id": "tennis_000885",
+      "location": "reported_traced_full",
+      "issue": "The warm-up is interrupted while the fan is removed and resumes afterward, conflicting with gold Yes for simultaneous warm-up and escort."
+    },
+    {
+      "question_id": "tennis_001078",
+      "location": "ungenerated_tail",
+      "issue": "A three-minute interruption is followed by two games before the break; exact elapsed time is not three minutes from the stated evidence."
+    },
+    {
+      "question_id": "tennis_001096",
+      "location": "ungenerated_tail",
+      "issue": "Both semifinals are dated only to Saturday, so their relative order is not stated; gold No is not uniquely entailed."
+    },
+    {
+      "question_id": "tennis_001112",
+      "location": "ungenerated_tail",
+      "issue": "Retirement occurs during the final, making 'played the final before retirement' dependent on whether playing denotes the match start or completion."
+    }
+  ]
+}
+

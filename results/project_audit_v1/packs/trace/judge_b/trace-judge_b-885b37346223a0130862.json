@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-ed691e2912b3e330eaeb1f08",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz and Ruud started the second set at 4:30 p.m. Fritz held serve after 7 minutes. Ruud broke serve at 4:52 p.m.",
+        "question": "How many minutes after the second set started did Ruud break serve?",
+        "gold": "22 minutes",
+        "trace": "<reasoning>\nThe second set started at 4:30 p.m., and Ruud broke serve at 4:52 p.m., which is 22 minutes later.\n<timeline>\n1. The second set started at 4:30 p.m.\n2. Fritz held serve after 7 minutes.\n3. Ruud broke serve at 4:52 p.m.\n</timeline>\n<reflection>\nFrom 4:30 p.m. to 4:52 p.m. is 22 minutes, so the gold answer is supported.\n</reflection>\n</reasoning>\n<answer>22 minutes</answer>"
+      },
+      "source_sha256": "ed691e2912b3e330eaeb1f08cc8e18eebba40752c0711515f76f2f21325618ca"
+    },
+    {
+      "audit_id": "trace-ed96aea43de5380443a6900c",
+      "kind": "trace",
+      "payload": {
+        "context": "The match commenced exactly at 2:00 PM local time. Both players held their serves comfortably during the early exchanges. At 2:45 PM, heavy rain began to fall, prompting the umpire to suspend play.",
+        "question": "How many minutes after the match commenced did the rain begin to fall?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe start time is 2:00 PM and the rain began at 2:45 PM. The duration between these two times is calculated by subtracting 2:00 from 2:45.\n<timeline>\n1. 2:00 PM: The match commenced\n2. 2:45 PM: Heavy rain began to fall\n</timeline>\n<reflection>\nThe difference between 2:00 PM and 2:45 PM is exactly 45 minutes.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "ed96aea43de5380443a6900c524c239bdbd70c06cc3b91b231a22b984de4039d"
+    },
+    {
+      "audit_id": "trace-ee0aa76c32a2d0d6139bd274",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner won the first set 6-3. After a seven-minute bathroom break, Medvedev came back to win the second set 6-4. In the third set, Medvedev faced a break point at 4-4 and saved it with an ace.",
+        "question": "How many minutes after the first set did the second set begin?",
+        "gold": "7 minutes",
+        "trace": "<reasoning>\nThe start of the second set was delayed by a bathroom break right after the first set.\n<timeline>\n1. Sinner won the first set\n2. 7-minute bathroom break occurred\n3. Second set began\n</timeline>\n<reflection>\nThe duration of the bathroom break explicitly marks the 7 minutes between the end of the first set and the start of the second.\n</reflection>\n</reasoning>\n<answer>7 minutes</answer>"
+      },
+      "source_sha256": "ee0aa76c32a2d0d6139bd2743e9360605f76bf02eb77ded3f688e3b18746f94c"
+    },
+    {
+      "audit_id": "trace-ef082f68ae988ef98891b944",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic received a walkover in the quarterfinal after Nadal withdrew. After the walkover, Djokovic played Sinner in the semifinal. Two days later, Djokovic reached the final by winning that semifinal.",
+        "question": "Did Djokovic receive the walkover before playing the semifinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDjokovic received the walkover first, and after that walkover he played Sinner in the semifinal.\n<timeline>\n1. Djokovic received a walkover in the quarterfinal after Nadal withdrew.\n2. After the walkover, Djokovic played Sinner in the semifinal.\n3. Two days later, Djokovic reached the final by winning that semifinal.\n</timeline>\n<reflection>\nThe walkover is explicitly before the semifinal, supporting the answer.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "ef082f68ae988ef98891b944c4b51941f0eaf4357708931e6aa689f47cc4683b"
+    },
+    {
+      "audit_id": "trace-ef82081ad07f811310ffd7c2",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas lost the first set after a double fault. Before the second set started, Ruud left the court for a bathroom break. Immediately after Ruud returned, Tsitsipas held serve.",
+        "question": "What happened immediately before Tsitsipas held serve?",
+        "gold": "Ruud returned",
+        "trace": "<reasoning>\nRuud left the court before the second set, then returned, and Tsitsipas held serve immediately after Ruud returned.\n<timeline>\n1. Tsitsipas lost the first set after a double fault.\n2. Before the second set started, Ruud left the court for a bathroom break.\n3. Ruud returned.\n4. Immediately after Ruud returned, Tsitsipas held serve.\n</timeline>\n<reflection>\nThe event immediately before Tsitsipas held serve is Ruud's return.\n</reflection>\n</reasoning>\n<answer>Ruud returned</answer>"
+      },
+      "source_sha256": "ef82081ad07f811310ffd7c2a9a0998d657422f378ce96550193b82beb1118e3"
+    },
+    {
+      "audit_id": "trace-ef974303b2c3b1d234c35043",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev requested a bathroom break following the third set. While he was away, the crowd began doing the wave around the stadium. Medvedev returned and immediately served a double fault. He quickly recovered to win the next point.",
+        "question": "Did the crowd do the wave after Medvedev served a double fault?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe question asks if crowd did the wave after Medvedev served a double fault. Context: While Medvedev was away (bathroom break), crowd did wave; then Medvedev returned and served double fault. So wave before double fault.\n<timeline>\n- Medvedev requested bathroom break after third set\n- While he was away: crowd did wave\n- Medvedev returned and served double fault\n</timeline>\n<reflection>\nWave happened before the double fault, not after. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "ef974303b2c3b1d234c350431f601c79cb196ed4df327e444b32818930e510d2"
+    },
+    {
+      "audit_id": "trace-f005bf4c38b219c5d2fb5e2f",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton hit three aces in his opening service game. De Minaur broke serve later in the first set. Before the second set began, Shelton asked for new shoes.",
+        "question": "Did Shelton ask for new shoes before De Minaur broke serve?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe context states that De Minaur broke serve later in the first set, and Shelton asked for new shoes before the second set began. Therefore, Shelton's request came after De Minaur's break, not before it.\n<timeline>\n1. Shelton hit three aces in his opening service game.\n2. De Minaur broke serve later in the first set.\n3. Shelton asked for new shoes before the second set began.\n</timeline>\n<reflection>\nThe timeline shows Shelton asked for new shoes after De Minaur broke serve, supporting the gold answer.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f005bf4c38b219c5d2fb5e2fed7a5715c8c18e0861ad33a69a02cb94ab2e0d40"
+    },
+    {
+      "audit_id": "trace-f042f8a9fe6f9ea1327f8446",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud was trailing 0-40, facing three break points early in the first set. He managed to hit two consecutive aces to bring the score to 30-40. On the next point, his opponent hit a backhand into the net, bringing the game to deuce. Ruud ultimately won the game to hold his serve.",
+        "question": "What happened before the opponent hit a backhand into the net?",
+        "gold": "Ruud hit two consecutive aces",
+        "trace": "<reasoning>\nThe context describes the points leading up to the opponent's backhand error.\n<timeline>\n1. Ruud faced three break points at 0-40\n2. Ruud hit two consecutive aces (score 30-40)\n3. Opponent hit a backhand into the net (score deuce)\n4. Ruud won the game\n</timeline>\n<reflection>\nThe event right before the opponent's backhand into the net was Ruud hitting two consecutive aces.\n</reflection>\n</reasoning>\n<answer>Ruud hit two consecutive aces</answer>"
+      },
+      "source_sha256": "f042f8a9fe6f9ea1327f8446ba5dd4f5a00020c98a602d238e451c9adc0247dd"
+    },
+    {
+      "audit_id": "trace-f0a9835dc2c4ab6618299133",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz saved a break point at 2-2. Tsitsipas broke serve two games later. After the break, rain delayed the match before Tsitsipas served for the set.",
+        "question": "Which happened first: the rain delay or Fritz saved a break point?",
+        "gold": "Fritz saved a break point",
+        "trace": "<reasoning>\nFritz saved a break point at 2-2 before Tsitsipas broke serve, and the rain delay happened only after that break.\n<timeline>\n1. Fritz saved a break point at 2-2.\n2. Tsitsipas broke serve two games later.\n3. After the break, rain delayed the match.\n4. Tsitsipas served for the set after the rain delay.\n</timeline>\n<reflection>\nFritz saving a break point happened before the rain delay.\n</reflection>\n</reasoning>\n<answer>Fritz saved a break point</answer>"
+      },
+      "source_sha256": "f0a9835dc2c4ab661829913354f3e7bfd1f51e877c95bb5abbb4d1424c638d03"
+    },
+    {
+      "audit_id": "trace-f0cc8e2b8ac47a5fcd46d8a8",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz dropped the first set after a poor tie-break. He took a strategic bathroom break before the second set. In the second set, he immediately broke Medvedev's serve. Medvedev then smashed his racket in frustration.",
+        "question": "Did Medvedev smash his racket before Alcaraz took a bathroom break?",
+        "gold": "No",
+        "trace": "<reasoning>\nAlcaraz took the bathroom break before the second set, and Medvedev smashed his racket later in the second set.\n<timeline>\n1. Alcaraz dropped the first set after a poor tie-break.\n2. Alcaraz took a strategic bathroom break before the second set.\n3. In the second set, Alcaraz immediately broke Medvedev's serve.\n4. Medvedev then smashed his racket in frustration.\n</timeline>\n<reflection>\nMedvedev smashed his racket after the bathroom break, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f0cc8e2b8ac47a5fcd46d8a87272552bbc24d0dce0b7b9d71b4d6faa9e6f0293"
+    }
+  ],
+  "batch_id": "trace-judge_b-885b37346223a0130862",
+  "batch_sha256": "affb0b736414d7f9696c0243907b4a30169f8b8dcd422ff6d71c783b70bd7859"
+}

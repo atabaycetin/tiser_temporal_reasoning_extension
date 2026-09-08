@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-e7e67a977f7e553919133ca0",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev led 4-1 in the final set. De Minaur broke back after a long rally game. Later, Rublev received a time violation before serving at 4-4.",
+        "question": "Did Rublev receive a time violation before De Minaur broke back?",
+        "gold": "No",
+        "trace": "<reasoning>\nDe Minaur broke back first, and Rublev received the time violation later before serving at 4-4.\n<timeline>\n1. Rublev led 4-1 in the final set.\n2. De Minaur broke back after a long rally game.\n3. Later, Rublev received a time violation before serving at 4-4.\n</timeline>\n<reflection>\nThe time violation occurred after De Minaur broke back, so it was not before it.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e7e67a977f7e553919133ca07aeb97284139f5e0d4131d37f56fd80a2da3e182"
+    },
+    {
+      "audit_id": "trace-e7f6669719802f5fd8ce9661",
+      "kind": "trace",
+      "payload": {
+        "context": "Rain began during the changeover after Djokovic won the first set. While the players were off court, the stadium staff closed the roof. Play resumed only after the roof was fully closed.",
+        "question": "Was the roof being closed while the players were off court?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context explicitly says that while the players were off court, stadium staff closed the roof.\n<timeline>\n1. Rain began during the changeover after Djokovic won the first set.\n2. The players were off court.\n3. While they were off court, the stadium staff closed the roof.\n4. Play resumed only after the roof was fully closed.\n</timeline>\n<reflection>\nThe roof closure overlapped with the players being off court, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e7f6669719802f5fd8ce96610127933997cf81fc356c2c91d9a0e1a6c55dc9ed"
+    },
+    {
+      "audit_id": "trace-e803716656f3fc51864b6501",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer held his serve easily to start the match. Nadal called the trainer during the first changeover. Minutes later, Nadal retired from the match due to injury.",
+        "question": "Did Nadal call the trainer after retiring?",
+        "gold": "No",
+        "trace": "<reasoning>\nNadal called the trainer during the first changeover, and only minutes later retired due to injury.\n<timeline>\n1. Federer held serve easily to start the match.\n2. Nadal called the trainer during the first changeover.\n3. Minutes later, Nadal retired from the match due to injury.\n</timeline>\n<reflection>\nNadal called the trainer before retiring, not after.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e803716656f3fc51864b6501a7315dc8b151d68b39431ba0387434b2535a662d"
+    },
+    {
+      "audit_id": "trace-e835be35e4365b8325578f1e",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune argued with the umpire after losing serve. Rublev was already sitting down during that argument. When the changeover ended, Rublev served for the set.",
+        "question": "Was Rublev serving while Rune argued with the umpire?",
+        "gold": "No",
+        "trace": "<reasoning>\nRune argued with the umpire while Rublev was sitting down during the changeover, not serving. Rublev only served when the changeover ended.\n<timeline>\n1. Rune lost serve\n2. Changeover: Rune argued with umpire / Rublev was sitting down\n3. Changeover ended\n4. Rublev served for the set\n</timeline>\n<reflection>\nRublev was seated, not serving, during the argument.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e835be35e4365b8325578f1e52bfb51b546a6572e13d8a56c0c16ac32a82c5c4"
+    },
+    {
+      "audit_id": "trace-e87fa0558f46b6a85925f2a3",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won a grueling 30-shot rally that exhausted both players. Immediately after the point, Medvedev bent over to catch his breath. The umpire then announced a time violation warning against Medvedev.",
+        "question": "What happened immediately before Medvedev bent over to catch his breath?",
+        "gold": "Alcaraz won a grueling 30-shot rally",
+        "trace": "<reasoning>\nContext: \"Alcaraz won a grueling 30-shot rally ... Immediately after the point, Medvedev bent over to catch his breath.\" So the rally win occurred immediately before bending over.\n<timeline>\n- Alcaraz won rally.\n- Medvedev bent over.\n</timeline>\n<reflection>\n\"Immediately after the point\" directly indicates the rally win is the event before.\n</reflection>\n</reasoning>\n<answer>Alcaraz won a grueling 30-shot rally</answer>"
+      },
+      "source_sha256": "e87fa0558f46b6a85925f2a37acc8f44125199a804d276a06325087d72c6a88a"
+    },
+    {
+      "audit_id": "trace-e8f8b5a7ec61d755178f6749",
+      "kind": "trace",
+      "payload": {
+        "context": "The roof was closed due to a sudden rain shower. Alcaraz then dropped his serve when play restarted. Zverev consolidated the break minutes later with a quick service hold.",
+        "question": "Did Alcaraz drop his serve before the roof was closed?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe roof was closed first, and Alcaraz dropped serve only when play restarted afterward.\n<timeline>\n1. The roof was closed due to a sudden rain shower.\n2. Alcaraz dropped his serve when play restarted.\n3. Zverev consolidated the break minutes later with a quick service hold.\n</timeline>\n<reflection>\nAlcaraz dropped serve after the roof closure, so not before it.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e8f8b5a7ec61d755178f6749d503476490cebc3e9c6fcfa02d9fd76bd95fecb6"
+    },
+    {
+      "audit_id": "trace-e906717d4cbd2a6e3ab44a94",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz won the first set at 4:05 p.m. Shelton took a bathroom break immediately after the set. The second set started at 4:14 p.m. Shelton broke serve at 4:22 p.m.",
+        "question": "How many minutes passed between Fritz winning the first set and the second set starting?",
+        "gold": "9 minutes",
+        "trace": "<reasoning>\nFritz won first set at 4:05 p.m. Second set started at 4:14 p.m. Question asks minutes between these two events.\n<timeline>\n1. Fritz won first set at 4:05 p.m.\n2. Second set started at 4:14 p.m.\n</timeline>\n<reflection>\n4:14 minus 4:05 equals 9 minutes.\n</reflection>\n</reasoning>\n<answer>9 minutes</answer>"
+      },
+      "source_sha256": "e906717d4cbd2a6e3ab44a942f645d5ff33d206f9d7369836bcf5d23834b0369"
+    },
+    {
+      "audit_id": "trace-e95dbeebeffe127b4e436707",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev broke Rune at 3:20 p.m. Rune broke back eight minutes later. The roof started closing 17 minutes after Rune broke back.",
+        "question": "How many minutes after Zverev broke Rune did the roof start closing?",
+        "gold": "25 minutes",
+        "trace": "<reasoning>\nRune broke back 8 minutes after Zverev broke, and the roof started closing 17 minutes after Rune broke back. The total time is 8 + 17 = 25 minutes.\n<timeline>\n1. 3:20 p.m.: Zverev broke Rune\n2. 3:28 p.m. (+8 minutes): Rune broke back\n3. 3:45 p.m. (+17 minutes): The roof started closing\n</timeline>\n<reflection>\nThe timeline calculates the total duration from the initial break to the roof closing as 25 minutes, validating the answer.\n</reflection>\n</reasoning>\n<answer>25 minutes</answer>"
+      },
+      "source_sha256": "e95dbeebeffe127b4e436707bc74d579531a5714c922fef0767a03872439aa14"
+    },
+    {
+      "audit_id": "trace-ea371b7d93d97df54eecdd8d",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz held serve to start the match. After that, Rublev received a warning for racket abuse. Later in the set, Fritz broke Rublev at 4-3.",
+        "question": "Which happened first: Fritz broke Rublev or Rublev received a warning?",
+        "gold": "Rublev received a warning",
+        "trace": "<reasoning>\nContext: \"Fritz held serve to start the match. After that, Rublev received a warning... Later in the set, Fritz broke Rublev at 4-3.\" So warning occurs before the break.\n<timeline>\n- Rublev received warning.\n- Fritz broke Rublev.\n</timeline>\n<reflection>\nThe warning happens first, then later the break, so answer is Rublev received a warning.\n</reflection>\n</reasoning>\n<answer>Rublev received a warning</answer>"
+      },
+      "source_sha256": "ea371b7d93d97df54eecdd8d667e34bbe8807fab2f039da83cc8f6419d66e902"
+    },
+    {
+      "audit_id": "trace-ea5fbff25b08120f54a94cd2",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal and Ruud started the deciding set at 6:30 p.m. Nadal saved a break point at 6:38 p.m. Ruud broke serve at 6:51 p.m. The next changeover came after Ruud consolidated the break.",
+        "question": "How many minutes after the deciding set started did Ruud break serve?",
+        "gold": "21 minutes",
+        "trace": "<reasoning>\nDeciding set started at 6:30 p.m. Ruud broke serve at 6:51 p.m. Question asks minutes after set start until break.\n<timeline>\n1. Deciding set started at 6:30 p.m.\n2. Ruud broke serve at 6:51 p.m.\n</timeline>\n<reflection>\n6:51 minus 6:30 equals 21 minutes.\n</reflection>\n</reasoning>\n<answer>21 minutes</answer>"
+      },
+      "source_sha256": "ea5fbff25b08120f54a94cd2e3eccff83f1de0c0ba5ae9e5a8868a76afe3a608"
+    }
+  ],
+  "batch_id": "trace-judge_a-fc517e95c8b742b6aa6a",
+  "batch_sha256": "bb76429a5694a43403968fa642941d6148f06d9359aebc6198014c721df47c03"
+}

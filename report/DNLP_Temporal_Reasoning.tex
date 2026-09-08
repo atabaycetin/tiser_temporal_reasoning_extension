@@ -4,23 +4,41 @@
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{hyperref}
+\hypersetup{hidelinks}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage[table]{xcolor}
 \usepackage{tikz}
+\usepackage{flushend}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric}
 
-\title{Reproducing Timeline Self-Reflection for Temporal Reasoning with LoRA Fine-Tuning}
+\lstdefinestyle{prompt}{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  framerule=0.3pt,
+  xleftmargin=0.8em,
+  xrightmargin=0.8em,
+  aboveskip=0.6em,
+  belowskip=0.6em,
+  showstringspaces=false
+}
+
+\title{Reproducing and Extending TISER:\\
+Context--Memory Conflict and Tennis-Domain Adaptation for Temporal Reasoning}
 
 \author{
 \IEEEauthorblockN{
 Gabriele Adorni s349308,
 Alessandro Casadei s349386, \\
-Taha Atabay Cetin s349501,
+Taha Atabay Cetin s349501
 }
 \IEEEauthorblockA{
 Politecnico di Torino\\
-Deep Natural Language Processing\\
+Deep Natural Language Processing
 }
 }
 
@@ -29,124 +47,159 @@ Deep Natural Language Processing\\
 \maketitle
 
 \begin{abstract}
-Temporal reasoning (tracking event order, duration, and overlap across a textual context) remains a difficult capability for large language models. This project reproduces the TISER framework proposed by Bazaga et al.~\cite{bazaga2025tiser}, which trains a model to generate an explicit structured trace (reasoning, timeline, reflection, answer) before producing its final response. We reproduce this setup using \texttt{Qwen2.5-7B-Instruct} with LoRA~\cite{hu2022lora} on the released TISER data (adapters on attention projections, $r{=}16$, $\alpha{=}32$, bf16, completion-only loss masking), reaching macro-EM~0.878 / macro-F1~0.949 on the full in-domain test set, in the same regime as the paper's 0.911~/~0.944 for the comparable configuration. Beyond reproduction, we propose a \emph{Context--Memory Conflict} probe: we select temporal-QA items the model reliably recalls closed-book (correct with no context at ${\geq}3/5$ self-consistency), then deterministically edit the context so the context-implied answer contradicts that memory. Across a $2{\times}2$ matrix of \{fine-tuned vs.\ vanilla\}${\times}$\{TISER vs.\ standard prompt\}, the TISER pipeline raises context-faithfulness from 0.380 to 0.787 (faithful-EM), but the \texttt{<reflection>} step almost never explicitly detects the contradiction: a Claude-based LLM-agent audit of all reflections puts the conflict-naming rate at 4.2\%, barely above the 2.3\% baseline revise-rate. TISER thus turns the model into a grounded reader, but not a genuine conflict auditor; order-reversal conflicts remain a blind spot where memorised answers dominate. A second extension adapts TISER to a tennis temporal-QA domain: the 7B TISER adapter transfers at EM~0.580, and continued tennis adaptation lifts it to EM~0.732 / F1~0.856.
-The project repository is at \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{GitHub repository}.
+Temporal reasoning requires a model to organise events before answering questions about order, duration, and overlap. We reproduce TISER, a framework that elicits a structured reasoning trace with an explicit timeline and reflection step, and evaluate two extensions with different goals. First, an inference-time Context--Memory Conflict probe tests whether a model follows supplied evidence when it contradicts a fact the model recalls without context. Second, a supervised tennis-domain study tests whether TISER transfers to a new type of temporal narrative and whether further adaptation helps. The reproduction reaches macro exact match of 0.878 and macro F1 of 0.949 on five in-domain benchmarks. On 1,056 genuine conflict cases, combining the TISER-trained model and prompt raises context-faithful exact match from 0.348 to 0.774, although explicit conflict detection remains rare and order reversals remain difficult. On tennis questions, direct transfer reaches exact match of 0.580; continued adaptation increases it to 0.732. These results distinguish grounded use of context from explicit self-auditing and show that temporal-reasoning behaviour can transfer across domains.
 \end{abstract}
 
 \section{Introduction}
 
-Temporal reasoning, interpreting and manipulating time-related information such as event ordering, overlap, and duration, is central to temporal question answering, narrative understanding, and retrieval-augmented generation. Despite the strong general performance of recent large language models (LLMs), it remains fragile: models identify the relevant events but misalign them in time, confuse start and end points, or produce answers that are correct in content but not in the format expected by exact-match metrics.
+Temporal reasoning---interpreting event order, overlap, and duration---is central to question answering and narrative understanding. Large language models often identify the relevant events yet misalign them in time, confuse start and end points, or return a semantically correct answer in a form that exact-match metrics reject.
 
-TISER~\cite{bazaga2025tiser} improves temporal reasoning through explicit timeline self-reflection: instead of answering directly, the model is trained to produce a structured trace (an initial reasoning step, an explicit timeline of the relevant events, a reflection that checks the reasoning against the timeline, and a concise final answer) delimited by \texttt{<reasoning>}, \texttt{<timeline>}, \texttt{<reflection>}, and \texttt{<answer>} tags.
+TISER~\cite{bazaga2025tiser} addresses this problem by training a model to produce four tagged stages before its final response: \texttt{<reasoning>}, \texttt{<timeline>}, \texttt{<reflection>}, and \texttt{<answer>}. We first reproduce its in-domain evaluation and then study two distinct extensions:
+\begin{enumerate}
+\item \textbf{Context--Memory Conflict} is an \emph{inference-time robustness probe}. It leaves model weights fixed, changes the evidence supplied at evaluation time, and asks whether reflection exposes a disagreement between that evidence and recalled knowledge.
+\item \textbf{Tennis-domain adaptation} is a \emph{supervised transfer experiment}. It introduces a new domain and updates LoRA adapters using tennis temporal-QA traces.
+\end{enumerate}
+The distinction is therefore both methodological and interpretive: the first extension measures robustness without learning, while the second measures what transfers and what improves through additional learning.
 
-Our project reproduces the TISER baseline using \texttt{Qwen2.5-7B-Instruct} with LoRA fine-tuning on the released TISER data, then adds two extensions that are not part of the original paper. The first is a \emph{Context--Memory Conflict} probe: it asks whether the model follows the provided temporal context or its parametric memory when they disagree, and whether the \texttt{<reflection>} step explicitly detects the contradiction. This matters because TISER presents reflection as a mechanism for checking reasoning; our probe tests whether it also works as an auditing mechanism under adversarial conflict. The second is a tennis-domain adaptation study.
+Our contributions are a full TISER reproduction, a controlled conflict benchmark with answer-preserving controls, and a cross-domain adaptation study at two model scales. Source code and run artifacts are available in the \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{project repository}.
 
-\section{Problem Statement}
+\section{Background and Problem Definition}
 
 \subsection{TISER Formulation}
 
-We address temporal question answering over a textual or semi-structured temporal context. Each example consists of a question $q$, a temporal context $c$, and a gold answer $a$. The model is trained to generate a structured output $y = (r, t, s, a)$, where $r$ is the initial reasoning, $t$ is the explicit timeline, $s$ is the self-reflection, and $a$ is the final answer, serialized with the XML-like delimiters above. During evaluation, only the extracted \texttt{<answer>} span is scored.
+Each temporal-QA example consists of a question $q$, temporal context $c$, and gold answer $a$. TISER trains the model to generate a structured sequence $y=(r,t,s,a)$, where $r$ is initial reasoning, $t$ is an explicit timeline, $s$ is a self-reflection, and $a$ is the final answer. During evaluation, only the extracted \texttt{<answer>} span is scored.
 
-The reproduction evaluates on five in-domain splits: TGQA~\cite{xiong2024tgqa}, TempReason L2 and L3~\cite{tan2023tempreason}, and TimeQA easy and hard~\cite{chen2021timeqa}. Out-of-distribution ToT-semantic examples are reported separately.
+The reproduction covers TGQA~\cite{xiong2024tgqa}, TempReason L2 and L3~\cite{tan2023tempreason}, and TimeQA easy and hard~\cite{chen2021timeqa}. Out-of-distribution ToT-semantic examples are reported separately and excluded from the five-split in-domain macro average.
 
-\subsection{Context--Memory Conflict Probe}
+\subsection{Research Questions}
 
-The extension probes whether the model follows a provided context or its memorised knowledge when they disagree. Given a real-entity temporal-QA item:
-\begin{enumerate}
-\item \textbf{Memory elicitation.} Remove the temporal context and elicit the model's closed-book answer $m$ via $k{=}5$ samples at temperature ${\approx}0.7$; accept the majority answer if it appears in ${\geq}3/5$ samples.
-\item \textbf{Eligibility.} Keep only items where $m$ is confident and equals the original gold answer, ensuring a genuine memorised belief.
-\item \textbf{Counterfactual construction.} Deterministically edit the context to produce $c'$ such that $\text{answer}(c') \neq m$.
-\item \textbf{Evaluation.} Run the model on $(q, c')$ and score whether the prediction follows $c'$ or $m$.
-\end{enumerate}
-
-We define:
-\emph{context-faithfulness} = prediction matches $\text{answer}(c')$;
-\emph{memorisation} = prediction matches $m$;
-\emph{conflict-detection} = \texttt{<reflection>} explicitly names the contradiction (decided by an LLM-agent audit, \S\ref{sec:methodology});
-\emph{silent override} = faithful answer without explicit conflict detection.
-
-We test three hypotheses. \textbf{H1:} the TISER prompt and fine-tune make the model more context-faithful under conflict than a plain prompt or the vanilla model. \textbf{H2:} when the model is faithful, the \texttt{<reflection>} step explicitly names the conflict (otherwise the faithfulness is a \emph{silent override}). \textbf{H3:} faithfulness depends on the \emph{type} of conflict (date-shift, entity-swap, or order-reversal). The full extension pipeline is summarised in Fig.~\ref{fig:pipeline}.
-
-\subsection{Tennis Domain Adaptation}
-
-The second extension asks whether TISER-style temporal reasoning transfers to professional-tennis narratives (before/after relations, first/last events, durations, tournament rounds): tennis-only LoRA adaptation at 0.5B scale and, at 7B scale, direct transfer of the original TISER adapter followed by continued tennis adaptation initialized from it.
-
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[
-  node distance=2.5mm,
-  box/.style={draw, rounded corners, align=center, font=\scriptsize, text width=72mm, inner sep=2pt, minimum height=5mm},
-  arr/.style={-{Latex[length=1.6mm]}, semithick}
-]
-\node[box] (n1) {Dataset item $(q,\,c,\,\text{gold})$};
-\node[box, below=of n1] (n2) {Closed-book memory $m$\, ($k{=}5$, keep if ${\geq}3/5$)};
-\node[box, below=of n2] (n3) {Eligibility gate: keep iff $m{=}\text{gold}\ \rightarrow\ 571$ items};
-\node[box, below=of n3] (n4) {Deterministic perturbation ($\text{answer}(c'){\neq}m$): C1 date-shift $\cdot$ C2 entity-swap $\cdot$ C3 order-reversal $\cdot$ control $\rightarrow$ 1{,}176 rows};
-\node[box, below=of n4] (n5) {$2{\times}2$ run matrix: \{base, tiser\} $\times$ \{standard, tiser\}};
-\node[box, below=of n5] (n6) {Faithfulness scoring\ $+$\ LLM-agent reflection audit};
-\draw[arr] (n1)--(n2);
-\draw[arr] (n2)--(n3);
-\draw[arr] (n3)--(n4);
-\draw[arr] (n4)--(n5);
-\draw[arr] (n5)--(n6);
-\end{tikzpicture}
-\caption{The inference-only Context--Memory Conflict pipeline: closed-book memory elicitation, an eligibility gate that keeps only confidently-recalled facts, deterministic counterfactual perturbation into conflict classes, a $2{\times}2$ model$\times$prompt run matrix, and faithfulness scoring plus an LLM-agent reflection audit.}
-\label{fig:pipeline}
-\end{figure}
+The reproduction asks whether our training pipeline recovers the original paper's in-domain performance regime. Extension~1 asks three questions: \textbf{RQ1}, do the TISER prompt and fine-tuning improve adherence to context when memory disagrees; \textbf{RQ2}, does the reflection explicitly identify that disagreement; and \textbf{RQ3}, does the answer depend on conflict type? Extension~2 asks whether TISER transfers to tennis narratives and whether continued tennis adaptation improves over direct transfer.
 
 \section{Methodology}
 \label{sec:methodology}
 
-\subsection{Baseline TISER Reproduction}
-
-TISER decomposes temporal reasoning into four stages~\cite{bazaga2025tiser}: reasoning, timeline construction, reflection, and answer generation, all produced autoregressively in a single pass. The target supervision format teaches the model to externalize temporal structure before answering.
-
-We use the Amazon-released TISER JSONL data. After a 2,048-token length filter, the training set contains 54,488 examples. The test set contains 22,014 examples (19,214 in-domain, 2,800 OOD ToT-semantic).
-
-The base model is \texttt{Qwen2.5-7B-Instruct}, fine-tuned with LoRA~\cite{hu2022lora}: frozen base weights, trainable low-rank adapters on $q$/$k$/$v$/$o$ attention projections, rank $r{=}16$, scaling $\alpha{=}32$, dropout~0.05. Training uses bf16 precision without base quantization, 3 epochs, learning rate $2{\times}10^{-4}$, cosine schedule, warmup ratio~0.03, effective batch size~16, seed~42, and \texttt{paged\_adamw\_8bit}. Each training sample is converted into a Qwen chat-formatted prompt; the instruction/question/context tokens are masked with label $-100$ (completion-only loss). At inference, the model generates the full trace greedily (\texttt{max\_new\_tokens=768}), the \texttt{<answer>} span is extracted by regex, and the prediction is normalized using SQuAD-style normalization before computing Exact Match (EM) and token-level F1.
-
-\paragraph{Setup.}
-Fine-tuning ran on a single RunPod H200~SXM GPU (bf16 LoRA, no quantization; $54{,}488{\times}3$ epochs in ${\sim}6.5$\,h at ${\sim}7$ samples/s; seed~42) with PyTorch~2.4.1/CUDA~12.4, Transformers~4.46.3, PEFT~0.13.2, TRL~0.12.2. The full 22{,}014-example test evaluation and all probe inference ran on vLLM~0.22.0 (H100~SXM, bf16, greedy; PyTorch~2.11/CUDA~13.0): the full test pass takes ${\sim}17$\,min, the two closed-book memory-elicitation sweeps about 2\,h combined, and the four run-matrix cells minutes. The remaining stages (subset, eligibility, perturbation, scoring, the reflection-audit join and the analysis) are CPU-light and run locally.
-
-\subsection{Extension: Context--Memory Conflict Probe}
-
-The extension is inference-only (no new fine-tuning); the subject model is the frozen \texttt{Qwen2.5-7B-Instruct} + TISER adapter. Fig.~\ref{fig:pipeline} summarises the pipeline.
-
-\paragraph{Subset, memory, eligibility (M0--M2).}
-We keep the in-scope real-entity splits (TempReason L2/L3, TimeQA easy/hard; 15,898 items); TGQA is excluded as its synthetic/fictional entities lack the parametric belief needed for a knowledge-conflict probe. For each item the temporal context is deleted and the closed-book answer $m$ is elicited from $k{=}5$ samples at $T{\approx}0.7$, keeping the majority if it appears in ${\geq}3/5$ samples. An item is \emph{eligible} iff $m$ is confident and equals the original gold answer, ensuring a genuine memorised belief; this yields 571 eligible items.
-
-\paragraph{Deterministic perturbation (M3).}
-Each eligible item is edited into conflict classes:
-\textbf{C1 (date-shift)} moves date ranges so a different entity covers the queried time-point;
-\textbf{C2 (entity-swap)} replaces the answer entity with a same-type distractor;
-\textbf{C3 (order-reversal)} swaps intervals so a before/after relation flips.
-A \emph{control} arm reorders rows without changing the answer. Each edit enforces the invariant $\text{answer}(c'){\neq}m$, yielding 1,176 rows (C1 203, C2 520, C3 333, control 120) at 100\% per-class construction validity.
-
-\paragraph{Run matrix (M4--M5).}
-We cross \emph{model}~$\in$~\{vanilla Qwen (\texttt{base}), TISER fine-tuned (\texttt{tiser})\} with \emph{prompt}~$\in$~\{standard direct-answer, TISER 4-tag prompt\}; only TISER-prompt cells produce a \texttt{<reflection>} trace.
-
-\paragraph{Scoring and reflection audit (M6--M7).}
-M6 scores each prediction for faithful-EM/F1 (matches $\text{answer}(c')$), memorised-EM (matches $m$) and malformed rate. M7 is a separate post-hoc \emph{LLM-agent reflection audit}: a Claude-based agent reads each \texttt{<reflection>} from the TISER-prompt cells and returns a structured verdict (\texttt{conflict\_raised}, \texttt{conflict\_kind} $\in$ \{\texttt{timeline\_inconsistency}, \texttt{context\_error}, \texttt{context\_vs\_answer}\}, and a short rationale), processed in windows of 100 reflections. It judges the persisted traces only and supersedes a first-pass lexical mention proxy.
-
-\subsection{Extension 2: Tennis Domain Adaptation}
-
-The raw tennis set contains 1,122 temporal QA examples over professional-tennis narratives. Audit and conversion add ids, rule-based categories, prompts, and TISER-compatible fields; duplicate-aware splitting with seed~42 yields 785 train, 113 dev, and 224 test examples. The evaluator keeps the TISER trace format and parser and adds tennis-specific answer normalization (rankings, minute durations, punctuation, articles). At 0.5B we run base \texttt{Qwen2.5-0.5B-Instruct} with standard and TISER prompts, plus a tennis-only LoRA adapter trained on 600 trace-annotated examples. At 7B we transfer the original TISER adapter directly, then run continued tennis-from-TISER LoRA training initialized from it (a small grid over epochs, learning rate and batch size; each configuration trains in ${\sim}3$\,min). Mixed tennis+TISER replay and forgetting evaluation are out of scope.
-
-\section{Experiments and Results}
-
 \subsection{Baseline Reproduction}
 
-Table~\ref{tab:baseline} reports our full in-domain test results. Our reproduction achieves macro-EM~0.878 / macro-F1~0.949 across the five in-domain splits. The original paper reports Qwen2.5-7B + TISER at macro-EM~0.911 / macro-F1~0.944 for the comparable in-domain configuration. Our result is in the same performance regime; remaining differences may stem from training infrastructure, data preprocessing, or stochastic variation.
+We use the released TISER supervision format and train a Qwen instruction model to produce reasoning, timeline, reflection, and answer tags autoregressively in one pass. Prompt tokens are excluded from the loss so supervision targets only the structured completion. At evaluation time, the answer tag is extracted, normalized, and scored using Exact Match (EM) and token-level F1. Section~\ref{sec:experimental-setup} contains implementation and hyperparameter details.
+
+\subsection{Extension 1: Context--Memory Conflict}
+
+\paragraph{Memory elicitation and eligibility.}
+We begin with real-entity TempReason L2/L3 and TimeQA easy/hard items; TGQA is excluded because its fictional entities do not provide the parametric beliefs needed for this probe. For each item, the context is removed and five closed-book answers are sampled. The majority answer $m$ is retained when it occurs at least three times, and an item is eligible only if $m$ equals the original gold answer. This yields 571 items for which the model demonstrates a stable, correct recalled belief.
+
+\paragraph{Conflict construction.}
+For each eligible item, deterministic edits produce one or more of three genuine conflict classes: C1 shifts a date range so another entity covers the queried time; C2 replaces the answer entity with a same-type distractor; and C3 reverses intervals so a before/after relation changes. Each conflict must satisfy $\operatorname{answer}(c')\neq m$. The procedure creates 1,056 genuine conflicts: 203 C1, 520 C2, and 333 C3. Separately, 120 controls reorder context rows while preserving the answer, so $\operatorname{answer}(c')=m$. Controls are analysed as a sanity check and are not counted as conflicts.
+
+\paragraph{Run matrix and measures.}
+We cross model weights $\in\{\text{vanilla},\text{TISER-trained}\}$ with prompt $\in\{\text{standard},\text{TISER}\}$, producing a $2\times2$ matrix without further training. Context-faithful EM/F1 measures agreement with $\operatorname{answer}(c')$; memorised EM measures agreement with $m$; malformed rate records unusable output. For TISER-prompt runs, a post-hoc LLM judge assesses whether \texttt{<reflection>} explicitly identifies a contradiction. A faithful answer without such an identification is a \emph{silent override}.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=2.8mm,
+  box/.style={draw, rounded corners, align=center, font=\footnotesize, text width=77mm, inner sep=2.4pt, minimum height=6mm},
+  arr/.style={-{Latex[length=1.7mm]}, semithick}
+]
+\node[box] (n1) {Real-entity temporal-QA items};
+\node[box, below=of n1] (n2) {Closed-book recall gate: 571 eligible items};
+\node[box, below=of n2] (n3) {Deterministic edits: 1,056 conflicts $+$ 120 separate controls};
+\node[box, below=of n3] (n4) {$2\times2$ model--prompt evaluation matrix};
+\node[box, below=of n4] (n5) {Answer faithfulness, memorisation, and reflection audit};
+\draw[arr] (n1)--(n2);
+\draw[arr] (n2)--(n3);
+\draw[arr] (n3)--(n4);
+\draw[arr] (n4)--(n5);
+\end{tikzpicture}
+\caption{Context--Memory Conflict is an inference-only evaluation pipeline. Controls preserve the answer and are kept separate from genuine conflicts.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Extension 2: Tennis-Domain Adaptation}
+
+\paragraph{Dataset creation and processing.}
+The tennis collection is synthetic and was created in two stages, documented in Appendix~\ref{app:tennis-prompts}. First, we used ChatGPT with \href{https://developers.openai.com/api/docs/models/gpt-5.5}{GPT-5.5} interactively to generate raw context--question--answer triples from scratch. A fragment of the raw-generation instruction was recovered, but the continuation, session export, complete batch history, exact model snapshot, and decoding settings are unavailable. Second, ChatGPT 5.5 received existing training examples together with their gold answers and generated supervised TISER reasoning, timeline, reflection, and answer traces. No external source corpus is recorded, so this description rests on our recollection rather than independently authenticated provenance. The dataset is released under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; repository code is released under MIT.
+
+The recorded processing pipeline audits the schema, assigns identifiers and rule-based categories, converts records to standard and TISER-compatible prompts, checks duplicates, and performs a category- and exact-duplicate-group-aware 70/10/20 split with seed~42. The three disjoint splits contain 785 training, 113 development, and 224 test examples and jointly cover all 1,122 records. Trace generation was restricted to the training split. Generated outputs were structurally validated, mechanically repaired when necessary, and merged. The conversion CLI's \texttt{reported} mode byte-reproduces the tracked files; strict-XML mode is reserved for new experiments.
+
+\paragraph{Adaptation strategies.}
+At 0.5B scale, we compare the vanilla model under standard and TISER prompts with a tennis-only adapter. At 7B scale, we first test direct transfer of the original TISER adapter and then continue LoRA training from that adapter on tennis traces. The evaluator retains TISER's output parser while adding tennis-specific normalization for rankings, minute durations, punctuation, and articles.
+
+\section{Experimental Setup}
+\label{sec:experimental-setup}
+
+\subsection{Data and Evaluation}
+
+After a 2,048-token filter, TISER training uses 54,488 examples. The test set has 19,214 in-domain examples and 2,800 ToT-semantic OOD examples. The conflict subset is constructed from 15,898 real-entity in-domain items and is evaluated on the 1,056 conflicts and 120 controls described above.
+
+\subsection{Tennis Split and Trace Accounting}
+
+The 785-record training split is the candidate pool for supervised trace creation; it is not itself the file used for optimization. It partitions exactly as $50+600+135=785$. Train positions 0--49 have valid traces from an initial pilot and support only pilot/smoke runs. Train positions 50--649 are the disjoint 600-record trace artifact used by both reported tennis adaptations. For positions 650--784, requests were prepared in batches 13--15 but no generated outputs are present, so those 135 examples could not be used as supervised trace targets. The repository therefore contains traces for 650 unique training records overall, but the reported models use only the 600-record full-run file.
+
+The 113 development examples have no training traces and were never used for gradient updates; the repository preserves split-distribution diagnostics but no model predictions or performance metrics for them. The 224 test examples likewise have no training traces and never affect gradients. They were, however, used to evaluate every completed condition and to rank the 7B candidates. All full evaluations use the same 224 IDs in the same order. The complete 785-record split and the unused generation requests are retained because they document the deterministic 1,122-record partition and experiment lineage. Deleting them would not change training---the configurations already point directly to the 600-record file---but would erase pilot provenance, break trace-coverage reconstruction, and make the published splits incomplete.
+
+\subsection{Tennis Semantic-Quality Audit}
+
+Structural validity does not establish that a gold answer is uniquely entailed by its context. A deterministic, risk-focused AI-assisted audit reviewed 302 of the 785 training records: all 50 pilot records, 193 of the reported 600, and 59 of the ungenerated 135. Ten reviewed examples were flagged as wrong or underdetermined: none in the pilot, seven inside the reported training file, and three in the ungenerated tail. Thus at least $7/600=1.17\%$ of the actual training artifact has a known semantic concern, but 407 of its records did not receive this semantic review. Because the selection deliberately over-sampled higher-risk temporal categories, neither $7/600$ nor $10/302$ estimates the population error rate.
+
+The historical adaptations remain valid as exploratory comparisons on a fixed, documented artifact: all compared adapters use the same training and evaluation definitions, and a small amount of label noise does not by itself invalidate training. However, the models must not be described as trained on a clean or fully validated dataset, and the effect of the flagged examples cannot be quantified without a corrected-data retraining or ablation. The development and test labels also lack exhaustive semantic adjudication, so reported metrics inherit that limitation. Historical files are kept immutable; any corrections should create a versioned dataset, regenerate affected traces, and produce new model results.
+
+A complete replacement audit has been prepared as blinded file batches. Two independent passes review all 1,122 context--question--gold rows and all 650 available traces; disagreements and proposed corrections receive a third adjudication. Imports require exact source evidence, and completed decisions will produce versioned scoring views without altering the historical inputs. The audit is still in progress, so no partial rate or corrected score is reported. The model label observed in the UI does not identify a verifiable API snapshot, and human calibration is unavailable.
+
+\subsection{Models, Training, and Decoding}
+
+Table~\ref{tab:settings} consolidates the training hyperparameters. LoRA~\cite{hu2022lora} targets the $q$, $k$, $v$, and $o$ attention projections. The reproduction uses completion-only loss and no base-model quantization; the 7B continued-adaptation run loads the base in 4-bit precision. All reported answer generations are greedy. Reproduction and conflict runs allow up to 768 new tokens; tennis evaluation allows up to 768 tokens at 0.5B and 256 at 7B.
 
 \begin{table}[t]
 \centering
-\caption{Baseline reproduction on the full in-domain test set, against the paper's Qwen2.5-7B + TISER numbers. Macro is over the five in-domain splits; ToT-semantic (OOD, EM~0.381) is excluded.}
+\caption{Hyperparameters for the reported trained adapters. Effective batch includes gradient accumulation.}
+\label{tab:settings}
+\setlength{\tabcolsep}{2.6pt}
+{\footnotesize
+\begin{tabular}{lcccccl}
+\toprule
+\textbf{Run} & \textbf{$n$} & \textbf{Ep.} & \textbf{LR} & \textbf{Batch} & \multicolumn{2}{c}{\textbf{LoRA}} \\
+\cmidrule(lr){6-7}
+& & & & & \textbf{$r/\alpha$} & \textbf{drop.} \\
+\midrule
+TISER 7B & 54{,}488 & 3 & $2{\times}10^{-4}$ & 16 & 16/32 & .05 \\
+Tennis 0.5B & 600 & 1 & $2{\times}10^{-4}$ & 1 & 16/32 & .05 \\
+Continued 7B & 600 & 2 & $2{\times}10^{-4}$ & 16 & 16/32 & .05 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+The reported continued-adaptation result is the highest-scoring condition in a grid over one to three epochs, learning rates $\{5{\times}10^{-5},1{\times}10^{-4},2{\times}10^{-4}\}$, and gradient accumulation $\{4,8\}$ with per-device batch size~4. All 22 distinct candidates were evaluated on the identical 224 examples, which makes their pairwise comparison fair. It does not make the winning score independent: once those outcomes are inspected and the maximum is selected, the set functions as validation data even though it never enters a gradient update. The winning condition leads two runners-up by one correct answer. The 0.732/0.856 result is therefore an exploratory selected estimate. With no preserved evidence of development-set model evaluation, the lowest-cost correction is to freeze this adapter and evaluate it once on the 113 records, without switching adapters afterward.
+
+The implemented follow-up first compares the original adapter C0 and locked tennis winner C1 on a frozen seed-42 sample of up to 100 items per original-TISER split. A 10,000-resample paired interval for the five-split macro-EM difference triggers fresh C1R and R25 training only when its upper bound is below $-0.02$; a lower bound above $-0.02$ stops as non-inferior, and other intervals stop as inconclusive. If triggered, C1R and R25 both start from C0 and run for 74 updates under the same current environment; R25 adds 200 validated original-TISER training rows. A token-matched R25-T sensitivity run occurs only when R25 supervised-token exposure differs from C1R by more than 10\%. Final freezing requires the complete data and reflection audits. It then fixes all applicable adapters, prompts, parsers, metrics, populations, and hashes before one evaluation on the 113 tennis inputs and original-TISER complement. No outcome from those populations may reopen training or adapter selection.
+
+\subsection{Conflict Sampling and Reflection Audit}
+
+Closed-book recall uses five samples with temperature~0.7 and top-$p$~0.9; the subsequent run matrix uses one greedy decode per item. We use item-level bootstrap confidence intervals with 2,000 resamples and seed~42, plus paired McNemar tests for the two headline axes.
+
+For TISER-prompt cells, a Claude-based judge reportedly read the persisted reflection and returned a structured conflict indicator, conflict category, and short rationale in windows of 100 records. The reported judge result is secondary evidence: the exact Claude model version, full judge prompt, and row-level audit CSVs are not preserved in the repository, preventing independent reproduction. The replacement is a new UI-mediated study rather than a retrospective reconstruction. Two isolated GPT-5.5-labelled Codex tasks receive only blinded reflection text under conservative rubrics, and a third task adjudicates disagreements. Exact file prompts, response bytes, hashes, labels, control false-positive rates, Wilson intervals, disagreement, unscorable rows, class breakdowns, and silent overrides are retained. The observed UI model label is recorded, while API snapshot and decoding details remain unknown. This replacement is in progress and must be complete before its values replace the historical aggregates; agreement between model judges does not supply human calibration.
+
+\subsection{Compute and Software}
+
+The reproduction was trained on one H200 SXM GPU in bf16 for approximately 6.5 hours. Test and conflict generation used vLLM on an H100 SXM GPU; the full 22,014-example evaluation took approximately 17 minutes. Reported versions were PyTorch~2.4.1/CUDA~12.4, Transformers~4.46.3, PEFT~0.13.2, and TRL~0.12.2 for reproduction, and vLLM~0.22.0 with PyTorch~2.11/CUDA~13.0 for accelerated inference.
+
+\section{Results}
+
+\subsection{Baseline Reproduction}
+
+Table~\ref{tab:baseline} reports the full in-domain evaluation. Our macro-EM is 0.033 below the paper, while macro-F1 is 0.005 higher; the reproduction is therefore in a similar overall performance regime, but its error profile differs substantially on TGQA.
+
+\begin{table}[t]
+\centering
+\caption{TISER reproduction on five in-domain splits. \emph{Paper} is the comparable Qwen2.5-7B+TISER result; ToT-semantic (OOD EM 0.381) is excluded from the macro.}
 \label{tab:baseline}
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3.7pt}
 {\footnotesize
 \begin{tabular}{lrcccc}
 \toprule
-\textbf{Split} & \textbf{$n$} & \textbf{EM} & \textbf{F1} & \textbf{Paper EM} & \textbf{Paper F1} \\
+& & \multicolumn{2}{c}{\textbf{Ours}} & \multicolumn{2}{c}{\textbf{Paper}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+\textbf{Split} & \textbf{$n$} & \textbf{EM} & \textbf{F1} & \textbf{EM} & \textbf{F1} \\
 \midrule
 TGQA            & 3{,}316 & 0.571 & 0.870 & 0.845 & 0.942 \\
 TempReason L2   & 5{,}397 & 0.907 & 0.929 & 0.855 & 0.875 \\
@@ -154,78 +207,93 @@ TempReason L3   & 4{,}426 & 0.961 & 0.974 & 0.915 & 0.949 \\
 TimeQA easy     & 2{,}997 & 0.980 & 0.989 & 0.979 & 0.983 \\
 TimeQA hard     & 3{,}078 & 0.970 & 0.981 & 0.961 & 0.972 \\
 \midrule
+\rowcolor{gray!18}
 \textbf{Macro (5)} & 19{,}214 & \textbf{0.878} & \textbf{0.949} & 0.911 & 0.944 \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-TGQA is the only split below the paper on EM (0.571) yet its F1 is high (0.870): in a 500-example audit of its predictions, ${\sim}56\%$ of the well-formed EM$=$0 cases are unit drops (e.g.\ ``8'' vs.\ ``8 years''). Crediting content-correct answers lifts effective TGQA accuracy to ${\approx}0.85$, matching the paper's 0.845, so the macro-EM gap is largely an exact-match formatting artifact rather than a reasoning gap.
+TGQA combines low EM (0.571) with much higher F1 (0.870), a pattern consistent with partially correct or differently formatted answers. The repository does not preserve the row-level annotations needed to substantiate a previously reported adjusted-accuracy estimate, so we omit that estimate rather than treating it as a reproducible result.
 
-\subsection{Context--Memory Conflict: Run Matrix}
+\subsection{Context--Memory Conflict}
 
-Table~\ref{tab:conflict} reports faithfulness and memorisation rates across all four cells of the run matrix ($n{=}1{,}176$ conflict rows per cell).
+Table~\ref{tab:conflict} makes the 1,056 genuine conflicts the primary population and reports the 120 controls separately. The TISER-trained model with the TISER prompt reaches faithful-EM 0.774, compared with 0.348 for the vanilla model under a standard prompt. Both interventions help: relative to the same-model standard prompt, TISER prompting adds 0.214; relative to vanilla weights under the same TISER prompt, TISER training adds 0.249.
 
 \begin{table}[t]
 \centering
-\caption{Context--Memory Conflict run matrix. All metrics are rates over $n{=}1{,}176$ counterfactual items. The \emph{refl-conflict} column is the LLM-agent reflection audit, reported only for TISER-prompt cells.}
+\caption{Run matrix. Conflict metrics use only genuine conflicts ($n=1{,}056$); control EM is separate ($n=120$). $\Delta$EM is relative to base+standard on conflicts.}
 \label{tab:conflict}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{llccccc}
-\toprule
-\textbf{Model} & \textbf{Prompt} & \textbf{faith-EM} & \textbf{faith-F1} & \textbf{mem-EM} & \textbf{malf.} & \textbf{refl-conf.} \\
-\midrule
-tiser  & tiser    & \textbf{0.787} & \textbf{0.917} & 0.230 & 0.002 & 0.042 \\
-tiser  & standard & 0.574 & 0.771 & 0.297 & 0.000 & --   \\
-base   & tiser    & 0.561 & 0.739 & 0.295 & 0.003 & 0.074 \\
-base   & standard & 0.380 & 0.605 & 0.332 & 0.000 & --   \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The TISER prompt raises faithful-EM by $+0.213$ ($95\%$ CI $[+0.187,+0.238]$) on the fine-tuned model (0.787 vs.\ 0.574). Fine-tuning raises faithful-EM by $+0.225$ ($[+0.196,+0.254]$) under the TISER prompt (0.787 vs.\ 0.561). Both axes contribute substantially. Item-level bootstrap $95\%$ CIs (2{,}000 resamples, seed~42) on the four cells are $[.761,.810]$, $[.546,.603]$, $[.531,.589]$ and $[.352,.407]$, and both head-line gaps are significant under a paired McNemar test (prompt axis $\chi^2{=}219.9$; model axis $\chi^2{=}189.9$; both $p{<}10^{-40}$, $n{=}1{,}176$). The base model names conflicts in its reflection more often than the TISER fine-tune (7.4\% vs.\ 4.2\%, LLM-agent audit) yet is less faithful, so naming a conflict is not the same as resolving it. Fig.~\ref{fig:results} visualises both axes and the per-class breakdown.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/conflict_summary.png}
-\caption{Left: faithful-EM across the $2{\times}2$ run matrix (the H1 prompt axis and the model/SFT axis). Right: per-class faithful vs.\ memorised EM for the star cell (tiser$\times$tiser); the C3 order-reversal bar is the only class where memory overtakes the text (H3).}
-\label{fig:results}
-\end{figure}
-
-\subsection{Per-Conflict-Class Results (Star Cell)}
-
-Table~\ref{tab:perclass} breaks down the star cell (\texttt{tiser}$\times$\texttt{tiser}) by conflict type.
-
-\begin{table}[t]
-\centering
-\caption{Per-conflict-class results for the star cell (tiser$\times$tiser). \emph{agent-refl} is the LLM-agent conflict-naming rate. For \emph{control}, $\text{answer}(c'){\equiv}m$ by construction, so faithful- and memorised-EM coincide.}
-\label{tab:perclass}
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{1.4pt}
 {\footnotesize
-\begin{tabular}{lrcccl}
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Class} & \textbf{$n$} & \textbf{faith-EM} & \textbf{mem-EM} & \textbf{agent-refl} & \textbf{Reading} \\
+\textbf{Condition} & \textbf{Faith-EM} & \textbf{Faith-F1} & \textbf{Mem-EM} & \textbf{$\Delta$EM} & \textbf{Ctrl.\ EM} \\
 \midrule
-C1 date-shift      & 203 & 0.936 & 0.010 & 0.020 & follows text \\
-C2 entity-swap     & 520 & 0.971 & 0.002 & 0.008 & follows text \\
-C3 order-reversal  & 333 & 0.366 & 0.477 & 0.111 & memory wins  \\
-control            & 120 & 0.900 & 0.900 & 0.033 & sanity floor \\
+Base + standard & 0.348 & 0.579 & 0.295 & --     & 0.658 \\
+Base + TISER    & 0.525 & 0.718 & 0.228 & +0.176 & 0.883 \\
+TISER + standard & 0.560 & 0.759 & 0.251 & +0.211 & 0.700 \\
+\rowcolor{gray!18}
+\textbf{TISER + TISER} & \textbf{0.774} & \textbf{0.914} & \textbf{0.153} & \textbf{+0.425} & \textbf{0.900} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-C1 (date-shift) and C2 (entity-swap) are largely solved: the fine-tuned model reliably follows the edited text (faithful-EM~${\geq}0.936$). C3 (order-reversal) is the blind spot, where faithfulness collapses to 0.366 and memorised answers overtake faithful ones (0.477 vs.\ 0.366). The audit ties H2 to H3: the model raises the clash almost only on C3 (11.1\%, vs.\ ${\leq}2\%$ on C1/C2), so it tends to notice exactly the class it fails. The control arm is a sanity floor: $\text{answer}(c'){\equiv}m$ by construction, so faithful- and memorised-EM coincide (0.900), measuring only whether a benign edit preserved answerability. Control is also an L3-heavy subsample (58\% TempReason-L3) and not prompt-independent (0.700 under the standard prompt), so it does not prove the edits universally clean.
+For continuity with the original aggregation, faithful-EM over conflicts \emph{plus} controls is 0.380, 0.561, 0.574, and 0.787 in table order. The previously reported rise from 0.380 to 0.787 therefore includes controls; the conflict-only comparison is 0.348 to 0.774. On all 1,176 constructed rows, the prompt-axis difference is +0.213 and the model-axis difference is +0.225; both paired McNemar tests give $p<10^{-40}$.
 
-\subsection{Tennis Domain Adaptation}
+Figures~\ref{fig:conflict-matrix} and~\ref{fig:conflict-classes} separate the model--prompt comparison from the conflict-type analysis.
 
-Table~\ref{tab:tennis} reports the completed 224-example tennis-test runs at both scales; smaller smoke conditions are not treated as final results.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/conflict_run_matrix.pdf}
+\caption{Context-faithful exact match across the $2{\times}2$ model--prompt matrix. Each cell reports EM and its item-level bootstrap 95\% confidence interval over all 1,176 evaluation rows, including 120 answer-preserving controls. Both the TISER prompt and TISER fine-tuning improve faithfulness to the edited context.}
+\label{fig:conflict-matrix}
+\end{figure}
+
+\subsection{Conflict Type and Reflection}
+
+Table~\ref{tab:perclass} isolates the three genuine conflict types for the strongest condition. Date shifts and entity swaps are largely solved, but order reversal is a clear blind spot: it is the only class for which memorised EM exceeds faithful EM.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/conflict_per_class.pdf}
+\caption{Faithful and memorised-answer exact match for the TISER-fine-tuned model with the TISER prompt, shown only for the three genuine conflict classes (controls excluded). Date shifts and entity swaps are overwhelmingly resolved using the edited context; order reversals are the only class in which memorised-answer EM exceeds context-faithful EM.}
+\label{fig:conflict-classes}
+\end{figure}
 
 \begin{table}[t]
 \centering
-\caption{Tennis temporal QA on the 224-example test set. Deltas are against each block's first row (0.5B: base with standard prompt; 7B: direct transfer of the original TISER adapter).}
+\caption{Genuine-conflict results for TISER model+prompt. \emph{Refl.} is the secondary LLM-judge conflict-naming rate.}
+\label{tab:perclass}
+\setlength{\tabcolsep}{5.0pt}
+{\footnotesize
+\begin{tabular}{lrccc}
+\toprule
+\textbf{Class} & \textbf{$n$} & \textbf{Faith-EM} & \textbf{Mem-EM} & \textbf{Refl.} \\
+\midrule
+C1 date shift      & 203 & 0.936 & 0.010 & 0.020 \\
+C2 entity swap     & 520 & 0.971 & 0.002 & 0.008 \\
+\rowcolor{gray!18}
+C3 order reversal  & 333 & 0.366 & 0.477 & 0.111 \\
+\midrule
+\textbf{All conflicts} & 1{,}056 & \textbf{0.774} & \textbf{0.153} & \textbf{0.043} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+The historical aggregate says that the reflection names the conflict in only 45/1,056 genuine conflicts (4.3\%) even though the final answer follows the edited context in 77.4\%. The corresponding control count is 4/120 (3.3\%). Their Wilson 95\% intervals are 3.2--5.7\% and 1.3--8.3\%, respectively, and a two-sided Fisher test gives $p\approx0.81$. Thus the preserved aggregates support the narrower conclusion that explicit flags were rare and concentrated in C3; they do not show discrimination above the control false-positive rate. The separate control arm reaches faithful-EM 0.900 in the strongest condition; because its answer equals memory by construction, it measures preservation of answerability rather than conflict resolution. A faithful answer without an explicit flag remains a descriptive silent override, not proof of an internal conflict-resolution mechanism.
+
+\subsection{Tennis-Domain Adaptation}
+
+Table~\ref{tab:tennis} reports all completed 224-example selection-set runs. At 0.5B, prompting alone does not help, while tennis-only training gives a modest gain. At 7B, the original TISER adapter transfers more strongly, and continued adaptation adds 0.152 EM and 0.155 F1. Isolation between adapter training runs prevents gradient leakage, but it does not prevent selection leakage: the 7B row is the maximum among 22 scores observed on these same records. It is therefore the best observed exploratory result rather than an unbiased final estimate.
+
+\begin{table}[t]
+\centering
+\caption{Tennis temporal QA on the historically used selection set ($n=224$). Deltas are against the first row within each model-size block; \emph{Malformed} is an output count.}
 \label{tab:tennis}
-\setlength{\tabcolsep}{3pt}
+\setlength{\tabcolsep}{3.4pt}
 {\footnotesize
 \begin{tabular}{lccccc}
 \toprule
@@ -233,72 +301,311 @@ Table~\ref{tab:tennis} reports the completed 224-example tennis-test runs at bot
 \midrule
 \multicolumn{6}{l}{\emph{Qwen2.5-0.5B-Instruct}} \\
 Base, standard prompt   & 0.379 & 0.472 & -- & -- & 0 \\
-Base + TISER prompt     & 0.375 & 0.420 & $-$0.004 & $-$0.052 & 5 \\
-Tennis-only adapter     & 0.464 & 0.516 & $+$0.085 & $+$0.045 & 0 \\
+Base, TISER prompt      & 0.375 & 0.420 & $-$0.004 & $-$0.052 & 5 \\
+\rowcolor{gray!10}
+Tennis-only adapter     & 0.464 & 0.516 & +0.085 & +0.045 & 0 \\
 \midrule
 \multicolumn{6}{l}{\emph{Qwen2.5-7B-Instruct}} \\
-Original TISER transfer & 0.580 & 0.701 & -- & -- & 0 \\
-Best tennis-from-TISER  & \textbf{0.732} & \textbf{0.856} & $+$0.152 & $+$0.155 & 0 \\
+Original TISER & 0.580 & 0.701 & -- & -- & 0 \\
+\rowcolor{gray!18}
+\textbf{Continued adaptation} & \textbf{0.732} & \textbf{0.856} & \textbf{+0.152} & \textbf{+0.155} & 0 \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-\section{Analysis}
+\section{Discussion and Limitations}
 
-\subsection{Context--Memory Conflict}
+The reproduction is strong overall but exposes the sensitivity of EM to answer formatting. More importantly, the two extensions answer different questions. The conflict probe shows that training and prompting can improve use of supplied evidence without making reflection an explicit contradiction detector. Tennis adaptation instead shows that the learned trace format transfers across domains and benefits from additional supervised examples, particularly at 7B scale.
 
-\textbf{H1 (context-faithfulness) is supported.} The TISER prompt and TISER fine-tuning independently increase context-faithfulness under conflict, jointly raising faithful-EM from the base-standard floor of 0.380 to 0.787.
+Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The reflection result relies on an unrecovered historical judge run; its aggregate rates are not independently reproducible, and the replacement audit has no human calibration. Greedy decoding provides one output per condition. For tennis, the creation process is reconstructed from project records rather than a complete session export, and the semantic/trace audit is unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. The team has no record of prior model-selection use of those 113 records, but the repository cannot exclude an unrecorded evaluation.
 
-\textbf{H2 reveals silent override.} The TISER fine-tuned model often follows the edited context (78.7\%) but almost never explicitly notices that the context contradicts its memorised belief: an LLM-agent audit of all 1,176 reflections puts the conflict-naming rate at 4.2\%, barely above the 2.3\% baseline revise-rate measured on normal (non-conflict) data. This rare noticing is driven by conflict \emph{type}, not memory strength: it concentrates on C3, is non-monotonic in the closed-book self-consistency score (peaking at 4/5, not 5/5), and even when a clash is flagged the answer reverts to memory in 23 of the 49 flagged star-cell rows. TISER turns Qwen into a grounded reader, but not a genuine auditor.
+\section{Conclusion}
 
-\textbf{H3 (conflict-type dependence) is supported.} Date-shift and entity-swap conflicts are nearly solved (faithful-EM $\geq$~0.936), while order-reversal collapses faithfulness: it is the only class where memorised-EM exceeds faithful-EM.
-
-\subsection{Tennis}
-
-At 0.5B, TISER prompting alone does not help (F1 drops, five malformed outputs): the trace format costs a small model more than it buys, while tennis-only adaptation gives a modest +0.085 EM. The useful result is at 7B: the TISER adapter transfers at EM~0.580 and continued adaptation reaches 0.732, a genuine domain-adaptation gain on top of transfer. Forgetting on the original TISER data was not evaluated, so preservation of general performance remains open.
-
-\subsection{Caveats}
-
-Conflict-naming is decided by a single automated LLM-agent judge; it agrees with the discarded keyword proxy only moderately (Cohen's $\kappa{=}0.76$ on the star cell), with no second judge or human calibration. The eligible set is biased toward facts the model already knows confidently, so 0.787 faithful-EM characterises performance on strong memory conflicts, not a random sample of all temporal QA. All cell scores are single greedy decodes, though we report item-level bootstrap CIs and paired McNemar tests for the headline comparisons. Finally, reflection text is not mechanistically faithful reasoning.
-
-\section{Conclusions}
-
-Our reproduction of TISER under a single-GPU LoRA setup succeeds, reaching macro-EM~0.878 / macro-F1~0.949 on the full in-domain test set.
-
-The Context--Memory Conflict extension shows that TISER substantially improves context-faithfulness under counterfactual contexts: faithful-EM rises from 0.380 (vanilla baseline) to 0.787 (TISER fine-tune + TISER prompt). However, the reflection stage mostly rubber-stamps the answer rather than naming the contradiction (4.2\% vs.\ a 2.3\% baseline revise-rate), and event-ordering conflicts remain a weakness where the model reverts to memorised temporal order. The tennis extension shows that the 7B TISER adapter transfers to an unseen sports domain (EM~0.580) and that continued adaptation adds a further +0.152 EM, while at 0.5B the TISER prompt alone is not beneficial.
-
-The main practical challenges were exact-match brittleness, full-test generation throughput (solved with vLLM), and building perturbations whose validity is checkable by construction. The main lesson is that behavioural grounding and introspective transparency are separate capabilities: improving one does not imply the other.
+We reproduced TISER's strong in-domain temporal-QA performance and used two extensions to test complementary aspects of generalisation. Structured prompting and training made the model more willing to follow conflicting context, but its reflection rarely exposed the contradiction and remained weak on reversed event order. TISER also transferred to tennis narratives, where continued domain adaptation improved over direct transfer. Overall, following evidence, explaining a conflict, and adapting to a new domain are distinct capabilities and should be evaluated separately.
 
 \section{Reproducibility}
 
-The pipeline is config-driven (\texttt{config/config.yaml}, \texttt{config/conflict.yaml}, tennis configs) with fixed seed~42; every run saves \texttt{run\_meta.json} (git SHA, library versions, resolved config), predictions, and per-example scores. Each conflict stage (M0--M7, M10 stats) writes its artifact and meta under \texttt{outputs/conflict/<stage>/}, and headline metrics are mirrored under \texttt{results/}. Source code and this report are in the \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{project repository}.
+The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, recovered prompts, trace coverage, and semantic-review flags are documented separately. The offline audit supports blinded two-pass review and adjudication, while the Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
+
+\clearpage
+\onecolumn
+\appendices
+
+\section{Tennis Data-Generation Prompts}
+\label{app:tennis-prompts}
+
+The tennis data were created in two distinct stages. The following records preserve what can be supported about each stage; they are not presented as complete API logs.
+
+\subsection{Stage 1: Raw Example Creation}
+
+\begin{lstlisting}[style=prompt]
+You are creating a synthetic domain-adaptation dataset for temporal reasoning in the professional tennis domain.
+
+The dataset will be used to adapt a TISER-style temporal reasoning model. Your task is to generate RAW examples only.
+
+For each example, output exactly one JSON object with these fields:
+
+{
+  "context": "...",
+  "question": "...",
+  "answer": "..."
+}
+
+Do NOT generate reasoning.
+Do NOT generate timeline.
+Do NOT generate reflection.
+Do NOT add explanations.
+Do NOT wrap the output in markdown.
+Do NOT use code fences.
+
+Return a JSON array containing exactly 50 examples.
+
+GENERAL GOAL
+
+Each example must test temporal reasoning in tennis match or tournament narratives.
+
+The model should need to reason about the order, overlap, duration, or sequence of events. The answer must be inferable only from the context.
+
+DOMAIN
+
+Use professional tennis scenarios such as:
+
+- match progression
+- first set, second set, third set
+- breaks of serve
+- service holds
+- tie-breaks
+- set points
+- match points
+- rain delays
+- roof closure
+- medical timeouts
+- injury treatment
+- warm-up interruptions
+- tournament rounds
+- quarterfinals, semifinals, finals
+- player withdrawals
+- comebacks
+- coaching violations
+- crowd interruptions
+- changeovers
+
+You may use realistic player names such as Sinner, Alcaraz, Djokovic, Medvedev, Zverev, Rune, Rublev, Fritz, Nadal, Federer, Tsitsipas, Ruud, Shelton, De Minaur.
+
+The events do NOT need to be historically true. Treat them as fictional but realistic tennis narratives.
+
+CONTEXT REQUIREMENTS
+
+Each context must:
+
+- contain 3 to 6 sentences
+- contain at least 3 temporal events
+- be self-contained
+- be unambiguous
+- avoid external knowledge
+- use natural sports-report language
+- include clear temporal signals such as:
+  - before
+  - after
+  - during
+  - while
+  - later
+  - earlier
+  - immediately after
+  - at the same time
+  - minutes later
+  - in the first set
+  - in the second set
+  - before the tie-break
+  - after the medical timeout
+
+QUESTION REQUIREMENTS
+
+Generate a balanced mix of question types:
+
+1. Yes/No temporal comparison
+Example:
+"Did Sinner call the medical timeout before breaking serve?"
+
+2. Which happened first?
+Example:
+"Which happened first: Alcaraz saved a break point or Medvedev won the tie-break?"
+
+3. Which happened last?
+Example:
+"Which event happened last?"
+
+4. What happened before X?
+Example:
+"What happened before the rain delay?"
+
+5. What happened after X?
+Example:
+"What happened after Djokovic lost the second set?"
+
+6. Duration / time gap
+Example:
+"How many minutes after the match started did the rain delay begin?"
+
+7. During / overlap
+Example:
+"Was the roof being closed while the players were off court?"
+
+8. Tournament progression
+Example:
+"Did Sinner reach the semifinal before playing the final?"
+
+ANSWER REQUIREMENTS
+
+Each answer must:
+
+- be short
+- be exact
+- be unambiguous
+- directly answer the question
+- not include explanations
+
+Use answer formats like:
+
+- "Yes"
+- "No"
+- "Sinner broke serve"
+- "The rain delay"
+- "Alcaraz won the second set"
+- "45 minutes"
+- "The semifinal"
+
+IMPORTANT BALANCE CONSTRAINTS
+
+Among the 50 examples, approximately include:
+
+- 15 Yes/No before-after questions
+- 10 first/last ordering questions
+- 8 what happened before/after questions
+- 7 duration or time-gap questions
+- 5 during/overlap questions
+- 5 tournament progression questions
+
+Difficulty distribution:
+
+- 15 easy examples with direct before/after reasoning
+- 25 medium examples with 3-4 ordered events
+- 10 hard examples with 5-6 events or distractor events
+
+QUALITY RULES
+
+Avoid ambiguous cases such as:
+- "in 2014" without month/day when asking about a specific month
+- unclear transitions between teams, rounds, or sets
+- answers that require real tennis knowledge
+- questions with multiple valid answers
+- contexts where two events could reasonably be interpreted in different orders
+
+Do not repeat the same structure too many times.
+Do not generate near-duplicate examples.
+Do not always use the same players.
+Do not always make the answer "Yes".
+Use both positive and negative examples.
+
+Before producing the final output, internally check each example:
+- Is the answer derivable from the context?
+- Is the temporal order clear?
+- Is there only one correct answer?
+- Is the answer short?
+- Is the example about tennis?
+- Did you avoid reasoning/timeline/reflection?
+
+OUTPUT FORMAT
+
+Return only a valid JSON array.
+
+Example format:
+
+[
+  {
+    "context": "Sinner held serve in the opening game. Djokovic called a medical timeout before Sinner broke serve in the fourth game. After the break of serve, rain delayed the match for twenty minutes.",
+    "question": "Did Djokovic call the medical timeout before Sinner broke serve?",
+    "answer": "Yes"
+  },
+  {
+    "context": "Alcaraz saved two break points at 2-3 in the first set. Medvedev broke serve three games later. The set ended with Medvedev winning a tie-break.",
+    "question": "Which happened first: Medvedev broke serve or Alcaraz saved two break points?",
+    "answer": "Alcaraz saved two break points"
+  }
+]
+
+Now generate exactly 50 examples.
+\end{lstlisting}
+
+We also recall constraints requiring contexts of approximately three to six sentences, at least three temporal events, balanced question types, varied difficulty, context-derivable answers, and exactly 50 valid JSON objects per requested batch, although we could not recover their exact wording. All 1,122 committed raw rows have exactly the three requested fields and three to five context sentences, which corroborates these recollections without authenticating the complete prompt. Because 1,122 is not divisible by 50, some aggregation, filtering, or partial-batch retention occurred; no surviving log resolves which.
+
+\newpage
+\subsection{Stage 2: TISER Trace Generation}
+
+\begin{lstlisting}[style=prompt]
+You will receive tennis temporal reasoning training examples.
+
+For each example, generate only one JSONL record with the following fields:
+
+{
+  "question_id": "...",
+  "output": "..."
+}
+
+The output must follow the TISER format:
+
+<reasoning>
+...
+<timeline>
+...
+</timeline>
+<reflection>
+...
+</reflection>
+...
+</reasoning>
+<answer>GOLD_ANSWER</answer>
+
+Rules:
+- Use only information contained in the provided context.
+- Reason explicitly about the temporal relations required to answer the question.
+- Construct a chronological timeline containing the relevant events.
+- In the reflection, verify that the reasoning and timeline support the gold answer.
+- Do not invent events, dates, entities, or temporal relations.
+- The final answer must match the provided gold_answer exactly.
+- Preserve the question_id exactly.
+- Output one JSON object per line.
+- Output JSONL only. Do not include markdown, explanations, headings, or any additional text.
+\end{lstlisting}
+
+The requests also supplied \texttt{question\_id}, category, context, question, and gold answer. Generated rows contain \texttt{question\_id} and \texttt{output}. The final 600 records exactly match batches 1--12 in order. Nineteen malformed physical JSONL lines covering 26 records were recovered, and 200 outputs that lacked the requested XML-like tags were mechanically wrapped using their existing text and supplied gold answer. All 600 final rows pass structural and gold-answer-equality checks; those checks do not establish semantic entailment.
 
 \begin{thebibliography}{00}
 
 \bibitem{bazaga2025tiser}
 A. Bazaga, R. Blloshmi, B. Byrne, and A. de Gispert,
-``Learning to Reason Over Time: Timeline Self-Reflection for Improved Temporal Reasoning in Language Models,''
+"Learning to Reason Over Time: Timeline Self-Reflection for Improved Temporal Reasoning in Language Models,"
 in \emph{Proceedings of ACL}, 2025.
 
 \bibitem{xiong2024tgqa}
 S. Xiong, A. Payani, R. Kompella, and F. Fekri,
-``Large Language Models Can Learn Temporal Reasoning,''
+"Large Language Models Can Learn Temporal Reasoning,"
 in \emph{Proceedings of ACL}, 2024.
 
 \bibitem{tan2023tempreason}
 Q. Tan, H. T. Ng, and L. Bing,
-``Towards Benchmarking and Improving the Temporal Reasoning Capability of Large Language Models,''
+"Towards Benchmarking and Improving the Temporal Reasoning Capability of Large Language Models,"
 in \emph{Proceedings of ACL}, 2023.
 
 \bibitem{chen2021timeqa}
 W. Chen, X. Wang, and W. Y. Wang,
-``A Dataset for Answering Time-Sensitive Questions,''
+"A Dataset for Answering Time-Sensitive Questions,"
 in \emph{NeurIPS Datasets and Benchmarks}, 2021.
 
 \bibitem{hu2022lora}
 E. J. Hu et al.,
-``LoRA: Low-Rank Adaptation of Large Language Models,''
+"LoRA: Low-Rank Adaptation of Large Language Models,"
 in \emph{International Conference on Learning Representations}, 2022.
 
 \end{thebibliography}

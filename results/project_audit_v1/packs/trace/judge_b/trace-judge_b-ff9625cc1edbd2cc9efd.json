@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-53a7f8a2e19fdd1687394904",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev saved set point in the second-set tie-break. Immediately after that, De Minaur won a long rally to earn another set point. De Minaur converted the next point and then left the court for a shirt change.",
+        "question": "Which happened first: De Minaur earned another set point or Rublev saved set point?",
+        "gold": "Rublev saved set point",
+        "trace": "<reasoning>\nContext: \"Rublev saved set point ... Immediately after that, De Minaur won a long rally to earn another set point.\" So saving set point occurred first.\n<timeline>\n- Rublev saved set point.\n- De Minaur earned another set point.\n</timeline>\n<reflection>\n\"Immediately after that\" indicates saving point happened first, so answer Rublev saved set point.\n</reflection>\n</reasoning>\n<answer>Rublev saved set point</answer>"
+      },
+      "source_sha256": "53a7f8a2e19fdd168739490431dad85a45aa990d415ca2636ba01f7636d5909b"
+    },
+    {
+      "audit_id": "trace-5432563cf23c0229f0fc918e",
+      "kind": "trace",
+      "payload": {
+        "context": "Heavy rain forced the players to leave the court in the middle of the second set. While the players were in the locker room, tournament officials ordered the stadium roof to be closed. Play resumed once the roof was fully secured.",
+        "question": "Was the roof closed while the players were in the locker room?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text describes what happened concurrently with the players being in the locker room.\n<timeline>\n1. Players left the court for the locker room\n2. Stadium roof was closed (while players were in locker room)\n3. Play resumed\n</timeline>\n<reflection>\nThe context explicitly states that officials ordered the roof to be closed while the players were in the locker room.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "5432563cf23c0229f0fc918e561c958889e6fbe9cd1eb0caa9d5ff2ad7a63c2d"
+    },
+    {
+      "audit_id": "trace-54455e3a0b929feb028dc5da",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved three break points in the opening game of the final. He then secured a break of his own in the fourth game. Following a brief rain shower, the match resumed. Djokovic held his nerve and won the set.",
+        "question": "Did Djokovic secure a break before the rain shower?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe question asks if Djokovic secured a break before the rain shower. Context: Djokovic secured a break in the fourth game, then following a brief rain shower, match resumed. So break before rain.\n<timeline>\n- Djokovic saved three break points in opening game\n- He secured a break in fourth game\n- Following a brief rain shower, match resumed\n</timeline>\n<reflection>\nBreak occurred before the rain shower, answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "54455e3a0b929feb028dc5da9e0f29bcd1798f2dac44acbdc76f65d705348cfd"
+    },
+    {
+      "audit_id": "trace-5508878606cd22e1ee4f68b7",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev took an early lead, breaking serve 15 minutes into the match. The set continued with intense baseline rallies, and another break of serve occurred 25 minutes after the first break. Ten minutes later, Zverev closed out the set with a forehand winner.",
+        "question": "How many minutes into the match did the second break of serve occur?",
+        "gold": "40 minutes",
+        "trace": "<reasoning>\nThe first break was at 15 minutes. The second break occurred 25 minutes after the first. Total time is the sum of these durations.\n<timeline>\n1. 15 minutes: First break of serve\n2. +25 minutes (40 minutes): Second break of serve\n</timeline>\n<reflection>\nAdding 15 minutes and 25 minutes results in 40 minutes into the match for the second break.\n</reflection>\n</reasoning>\n<answer>40 minutes</answer>"
+      },
+      "source_sha256": "5508878606cd22e1ee4f68b71e6ef58624094aa90803c54b546f908f8615dc04"
+    },
+    {
+      "audit_id": "trace-5529039d4ee7eb0505997abc",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud lost the first set after a loose service game. Tsitsipas took a bathroom break after the set ended. Later, Ruud broke serve in the opening game of the second set.",
+        "question": "Did Ruud break serve before Tsitsipas took a bathroom break?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Tsitsipas took a bathroom break after the set ended. Later, Ruud broke serve in the opening game of the second set. So the bathroom break occurred before the second set started, and the break of serve occurred in the second set. Thus break of serve happened after the bathroom break.\n<timeline>\n- Set ended.\n- Tsitsipas took bathroom break.\n- Second set started.\n- Ruud broke serve in opening game.\n</timeline>\n<reflection>\nBreak of serve occurred after the bathroom break, not before; answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "5529039d4ee7eb0505997abc523811721af4ab89fe903b528503118b3859a433"
+    },
+    {
+      "audit_id": "trace-55565760e8ef54d2256e2e0e",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton reached match point after 2 hours and 6 minutes. De Minaur saved it two minutes later. Shelton earned another match point five minutes after that.",
+        "question": "How many minutes after the first match point did Shelton earn another match point?",
+        "gold": "7 minutes",
+        "trace": "<reasoning>\nDe Minaur saved the first match point 2 minutes after it was reached, and Shelton earned another match point 5 minutes after that. Total time is 2 + 5 = 7 minutes.\n<timeline>\n1. 2h 6m: Shelton reached first match point\n2. +2 minutes: De Minaur saved it\n3. +5 minutes: Shelton earned another match point\n</timeline>\n<reflection>\nThe total duration between the first and second match point is 7 minutes.\n</reflection>\n</reasoning>\n<answer>7 minutes</answer>"
+      },
+      "source_sha256": "55565760e8ef54d2256e2e0e0af1033d057d83a2aa1018fa58497bcf969ab09d"
+    },
+    {
+      "audit_id": "trace-556081a470a11cf4a7e6c432",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal argued with the umpire after a foot-fault call. Before the next game, the crowd was asked to quiet down. Later, Nadal broke Alcaraz to lead 3-2.",
+        "question": "What happened before Nadal broke Alcaraz?",
+        "gold": "The crowd was asked to quiet down",
+        "trace": "<reasoning>\nThe crowd was asked to quiet down before the next game, and Nadal broke Alcaraz later.\n<timeline>\n1. Nadal argued with the umpire after a foot-fault call.\n2. Before the next game, the crowd was asked to quiet down.\n3. Later, Nadal broke Alcaraz to lead 3-2.\n</timeline>\n<reflection>\nThe crowd instruction happened before Nadal broke Alcaraz, supporting the answer.\n</reflection>\n</reasoning>\n<answer>The crowd was asked to quiet down</answer>"
+      },
+      "source_sha256": "556081a470a11cf4a7e6c432da2a6fa5d6ceaf87f08a3640bce3ae8fd572bb12"
+    },
+    {
+      "audit_id": "trace-55c2aa4fc98071cfd98723fd",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz sprinted to retrieve a drop shot. While sprinting forward, he lost his footing and fell over. He slid into the net but avoided injury. He got up quickly and dusted off his shirt.",
+        "question": "Did Alcaraz lose his footing while sprinting forward?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context explicitly says Alcaraz lost his footing while sprinting forward.\n<timeline>\n1. Alcaraz sprinted to retrieve a drop shot.\n2. While sprinting forward, he lost his footing and fell over.\n3. He slid into the net but avoided injury.\n4. He got up quickly and dusted off his shirt.\n</timeline>\n<reflection>\nThe fall happened during the sprint, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "55c2aa4fc98071cfd98723fd69a49ee2580ffc8db45b1b8479af136bb7777a4f"
+    },
+    {
+      "audit_id": "trace-56879c6dc844f1a02f4ca799",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner blitzed through the first set, winning it in 30 minutes. The second set lasted exactly 60 minutes before Medvedev finally won it. The third set started immediately after a brief changeover.",
+        "question": "How long did the second set last?",
+        "gold": "60 minutes",
+        "trace": "<reasoning>\nContext: The second set lasted exactly 60 minutes before Medvedev finally won it. Question asks how long the second set lasted.\n<timeline>\n1. Sinner won first set in 30 minutes.\n2. The second set lasted exactly 60 minutes before Medvedev won it.\n</timeline>\n<reflection>\nThe duration is explicitly given as 60 minutes.\n</reflection>\n</reasoning>\n<answer>60 minutes</answer>"
+      },
+      "source_sha256": "56879c6dc844f1a02f4ca79950f644be662fdb87484911ecada17aec49e8b476"
+    },
+    {
+      "audit_id": "trace-56c2da25c72004957a78de7b",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner faced break point in the seventh game. He hit a drop shot that clipped the net cord and fell on Djokovic's side. Djokovic smiled and gave a thumbs up. Sinner subsequently held serve.",
+        "question": "Did Sinner hit the drop shot before Djokovic gave a thumbs up?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nSinner hit the drop shot before Djokovic smiled and gave a thumbs up.\n<timeline>\n1. Sinner faced break point in the seventh game.\n2. Sinner hit a drop shot that clipped the net cord and fell on Djokovic's side.\n3. Djokovic smiled and gave a thumbs up.\n4. Sinner subsequently held serve.\n</timeline>\n<reflection>\nThe drop shot precedes Djokovic's thumbs up, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "56c2da25c72004957a78de7bb1d3a46d6fc9fc0906f389a10f532f73641e25f5"
+    }
+  ],
+  "batch_id": "trace-judge_b-ff9625cc1edbd2cc9efd",
+  "batch_sha256": "5f1b2fdfbc6349ad4c3b004e8be44169bbb4f0bb54f4a70c77e7c1facc259115"
+}

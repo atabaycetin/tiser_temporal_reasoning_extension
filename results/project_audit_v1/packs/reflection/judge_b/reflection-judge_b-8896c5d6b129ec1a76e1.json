@@ -1,0 +1,371 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "reflection",
+  "pass": "judge_b",
+  "rubric": "Apply a conservative falsification test to one reflection.\nThe positive label explicit_conflict requires words in the reflection that clearly\nrecognise tension between context-provided evidence and something remembered,\ngenerally known, expected, or otherwise believed. The existence of an experimental\nconflict is not evidence: judge only what the reflection says.\n\nRoutine self-verification, agreement with a timeline, or 'no errors' language is\nno_explicit_conflict. Use unscorable only for empty or uninterpretable text. A\npositive evidence_quote must be copied exactly from the reflection; non-positive\nlabels require an empty quote. Give one concise sentence of rationale.",
+  "rubric_sha256": "810c7ac6ee62b17bff9fd45e1a9b8d32e8c9c610e3b40fe5b4482b978e5982df",
+  "items": [
+    {
+      "audit_id": "reflection-fc2a5e06451fdb6cea0649d3",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline provided indicates that the stadium was named \"New Orleans Zephyrs\" from 2019 to 2020, which is likely incorrect as it refers to a baseball team, not the stadium. The stadium's name should remain \"StubHub Center\" as it was the name from 2013 to 2018."
+      },
+      "source_sha256": "fc2a5e06451fdb6cea0649d38ac5a8b1b506461ba0eca0b24a6a2d9372e32b62"
+    },
+    {
+      "audit_id": "reflection-fc2aef7786c2ab7768935253",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that after the Member of the 12th Parliament of the United Kingdom, William Taylor Copeland held the position of Governor of New York. The Lord Mayor of London position is not relevant as it overlaps with the Parliament position and is not a direct successor."
+      },
+      "source_sha256": "fc2aef7786c2ab7768935253e701c3619e0cf84239470b01c354d5e2f2ef04bd"
+    },
+    {
+      "audit_id": "reflection-fc3121390f4eb8882a4601f1",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position held by David McClarty immediately before his tenure as a Member of the 4th Northern Ireland Assembly. The timeline confirms that the Member of the 2nd Northern Ireland Assembly position ends in Jan, 2007, which is well before the start of his tenure as a Member of the 4th Northern Ireland Assembly in May, 2011. There are no errors or improvements needed in the reasoning or timeline."
+      },
+      "source_sha256": "fc3121390f4eb8882a4601f1da2e6a31225fcbe5ec8f49c732de30492ba22675"
+    },
+    {
+      "audit_id": "reflection-fc37dfaa56dc80f70f19f6d4",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position held immediately before becoming a Member of the 27th Parliament of the United Kingdom as Warren Christopher. The timeline confirms that Warren Christopher was the position held just before the 27th Parliament. There are no errors or improvements needed in the reasoning or timeline."
+      },
+      "source_sha256": "fc37dfaa56dc80f70f19f6d43770670af345418a454c39cbc8683c48b103ad6e"
+    },
+    {
+      "audit_id": "reflection-fc439a4d90c8984865fb7173",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the transition from the 45th to the 47th Parliament. There is no indication of him holding any other position between these two. The short overlap between the 46th and 47th Parliaments does not affect the immediate succession of positions."
+      },
+      "source_sha256": "fc439a4d90c8984865fb7173125940a0b53dc86020ba5ede72be6de9cfbc0945"
+    },
+    {
+      "audit_id": "reflection-fc5459d57e73fa46af6efbd7",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the relevant period for November 1997 and matches it with the correct team, Elche CF. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "fc5459d57e73fa46af6efbd7b89504234a4022cceea2b1771d3df3e7e59dbf6d"
+    },
+    {
+      "audit_id": "reflection-fc955b47c7e28834daf52d23",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Mikel Antu00eda Mendiaraz was with Real Valladolid from January 1995 to January 1997. Since November 1997 is within this period, the conclusion is correct."
+      },
+      "source_sha256": "fc955b47c7e28834daf52d23a373623349800835c0ce421a2ca5a77afc62a9d3"
+    },
+    {
+      "audit_id": "reflection-fc9fdeac5505e85cc3c2528d",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the 3rd Parliament as the position held before the 4th Parliament, based on the provided timeline. There are no gaps or inconsistencies in the timeline that would suggest another position was held in between the 3rd and 4th Parliaments. The conclusion is straightforward and aligns with the given temporal context."
+      },
+      "source_sha256": "fc9fdeac5505e85cc3c2528d6c2d0d50f0b8904fa35baae5d59b81f0944f5e5a"
+    },
+    {
+      "audit_id": "reflection-fcb21bda71b527dfc575496d",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position held immediately before the 18th Parliament by examining the temporal context and the unidirectional relations. The timeline confirms that the 19th Parliament ends just before the start of the 18th Parliament, making it the correct position held before the 18th Parliament."
+      },
+      "source_sha256": "fcb21bda71b527dfc575496d63f483139c9dba94e72612654c03c9eb298313cc"
+    },
+    {
+      "audit_id": "reflection-fce717f258d304933107dca9",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline shows that the 30th Parliament ended in October 1922, and the next relevant information is about his membership in the 31st Parliament, which started in January 1910. However, this is not the correct sequence to answer the question. The correct sequence should be from the 30th Parliament to the next relevant parliament after that. There is no direct information about his position immediately after the 30th Parliament ended in October 1922."
+      },
+      "source_sha256": "fce717f258d304933107dca90fd76e0dae53dadf874b0be134c7c4c0a68cd887"
+    },
+    {
+      "audit_id": "reflection-fcf24b5b3fbca00feb76b8b0",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position held by Abdul-Rashid Pelpuo immediately before the 6th Parliament of the 4th Republic of Ghana. The timeline confirms that the 17th Parliament of Great Britain was the position held just prior to the 6th Parliament of the 4th Republic of Ghana. No errors or improvements are necessary."
+      },
+      "source_sha256": "fcf24b5b3fbca00feb76b8b0ac2785c364975e962d2e144ae2b6c36e85e2b22c"
+    },
+    {
+      "audit_id": "reflection-fcfb234099464e29699add1e",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the sequence of Charles Frewen's parliamentary positions. There is no direct transition from the 14th Parliament to the 33rd Parliament, indicating that he did not hold any position immediately after the 14th Parliament but before the 33rd Parliament."
+      },
+      "source_sha256": "fcfb234099464e29699add1ef7ad5f9260d7666d9836604ffb87a1060332e87e"
+    },
+    {
+      "audit_id": "reflection-fd14d6b0193e8ec6a446cb0a",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Charles Coulson was at King's College London from January 1947 to January 1952, which includes November 1968. There are no errors in the timeline or the reasoning."
+      },
+      "source_sha256": "fd14d6b0193e8ec6a446cb0a8ca4064bc375db15e01f307ca014f9327ce9a2df"
+    },
+    {
+      "audit_id": "reflection-fd35858b696871cd09f4faf5",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline indicates that Eugene Sawyer was the head of the government of Chicago in April 1989, and Colin Powell took over in April 1989. Since June 1997 is after April 1989, the head of the government of Chicago in June 1997 would be Colin Powell."
+      },
+      "source_sha256": "fd35858b696871cd09f4faf59c06ea80c73ffbfd361b1a8ab09bcced6ff95b0e"
+    },
+    {
+      "audit_id": "reflection-fd6808207315b23789f10d6f",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the sequence of his parliamentary positions. There are no errors in the sequence, and the reflection confirms that the position he held before the 8th Parliament was the 7th Parliament."
+      },
+      "source_sha256": "fd6808207315b23789f10d6fd4ab4d503fc2c9498f168caf721a1bd4d724917a"
+    },
+    {
+      "audit_id": "reflection-fdb59743ba21b0fce2a82f4e",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position held by John Russell in April 1835 as Danilo Medina. The timeline confirms that Danilo Medina is the position held during that specific month. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "fdb59743ba21b0fce2a82f4efe3bc14f9e6a78b5edc7c46c7532e057e073a4e2"
+    },
+    {
+      "audit_id": "reflection-fdba0368552e4191fb171768",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning process correctly identifies Helmut Schmidt as the leader whose term includes April 1977. There are no errors or improvements needed in the reasoning or timeline."
+      },
+      "source_sha256": "fdba0368552e4191fb17176803cc08e56f891aabbb9cecec030135697446c73e"
+    },
+    {
+      "audit_id": "reflection-fdbd305215e3044933715c13",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline shows that Helen Clark's position from Dec 1999 to Nov 2008 is state attorney general. This period includes Feb 2001, so the answer should be state attorney general. There are no errors or improvements needed in the reasoning."
+      },
+      "source_sha256": "fdbd305215e3044933715c13614f3ba995e171d3d940d2b3c48d6ba05dc6748f"
+    },
+    {
+      "audit_id": "reflection-fdc004489afe210536e56542",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that James Christopher Flynn was a Member of the 27th Parliament of the United Kingdom before he became a Member of the 28th Parliament of the United Kingdom. There are no errors or improvements needed in the reasoning."
+      },
+      "source_sha256": "fdc004489afe210536e56542ddf658e82ae5b6fcd5547f98b45d6b1f850d183c"
+    },
+    {
+      "audit_id": "reflection-fdc484e7d0ceede8a3a95c14",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the transition from the Secretary of State for Employment to the Secretary of State for Northern Ireland. There are no other positions held between these two roles, so the reflection confirms the accuracy of the reasoning."
+      },
+      "source_sha256": "fdc484e7d0ceede8a3a95c14575417c7804cc635f115edee2e76a53124074f00"
+    },
+    {
+      "audit_id": "reflection-fdfc43568c5e39d8f4003c9c",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the sequence of Charles Frewen's parliamentary positions. There are no errors in the timeline or the reasoning. The reflection confirms that the position held before the 15th Parliament is correctly identified as the 14th Parliament."
+      },
+      "source_sha256": "fdfc43568c5e39d8f4003c9ca2c936d845d034edbfa2115139d8acf36e9f3cc1"
+    },
+    {
+      "audit_id": "reflection-fe072b8a860c0d51c80d6457",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the next position Clement Kinloch-Cooke held after the 30th Parliament, which is the 31st Parliament. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "fe072b8a860c0d51c80d6457b8963338290106592bd2555a8a2fdc4dc723ca5a"
+    },
+    {
+      "audit_id": "reflection-fe17d969be4a40faae1a053d",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Harry Pursey was a Member of the 40th Parliament from July 1945 to February 1950, which is the period immediately before he became a Member of the 39th Parliament from February 1950 to October 1951. There are no errors in the timeline provided, and the reasoning is straightforward."
+      },
+      "source_sha256": "fe17d969be4a40faae1a053d05a2e591fb0e3341a0390c5d8e6150c1aa24c072"
+    },
+    {
+      "audit_id": "reflection-fe3d7026676aa70c346d342e",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, it is clear that the position held after the 23rd Parliament is the 24th Parliament. The timeline shows that the 24th Parliament began in July 1895, which is after the end of the 23rd Parliament in June 1886."
+      },
+      "source_sha256": "fe3d7026676aa70c346d342ec7847c0a64e6b8515ad1ba26eaf826b1a5ed0814"
+    },
+    {
+      "audit_id": "reflection-fe79d17380516c0ae5f4ee53",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly indicates that Martín Palermo played for Boca Juniors from 1997 to 1999. There are no errors or improvements needed in the reasoning as the information is straightforward and directly answers the question."
+      },
+      "source_sha256": "fe79d17380516c0ae5f4ee5326350c89d888698b82ebdc23a531e66a01a12ad7"
+    },
+    {
+      "audit_id": "reflection-fe9929184c4eb390463459eb",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Valentina Tereshkova was a member of the Russian Party of Life from Jan, 1960 to Jan, 1991, which is the period before she joined Our Home u2013 Russia. There are no errors in the timeline, and it directly answers the question."
+      },
+      "source_sha256": "fe9929184c4eb390463459eb8d99965a4850595d7237efe2f235ba1168959ed9"
+    },
+    {
+      "audit_id": "reflection-fe9f65a0eec208b0493f7d46",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, it is clear that Wen Jiabao's term ends in Mar, 2003, and Li Keqiang's term begins in Mar, 2013. This indicates that Wen Jiabao was the head of the People's Republic of China immediately before Li Keqiang. There are no gaps or overlaps in the provided timeline, so the sequence is consistent and accurate."
+      },
+      "source_sha256": "fe9f65a0eec208b0493f7d465509f492eb370565e7e3c269654084b23835af76"
+    },
+    {
+      "audit_id": "reflection-feacf789b33f300ab3528f23",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "My reasoning correctly identifies Yuri Andropov as the head of Germany during the specified period. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "feacf789b33f300ab3528f232d5ee62922c62db82bd834792906336e0159246c"
+    },
+    {
+      "audit_id": "reflection-feb3cd34f219d139144a0aeb",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows the transition from the 21st Parliament to the 24th Parliament. There are no errors or improvements needed in the reasoning."
+      },
+      "source_sha256": "feb3cd34f219d139144a0aebb3a011988fc2897c4ceed38e50948203ae60e80b"
+    },
+    {
+      "audit_id": "reflection-feb9326d56e8ff88565323e2",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that after C.S. Herediano, Mauricio Wright played for the Costa Rica national football team. There are no errors in the timeline, and the reasoning is straightforward and accurate."
+      },
+      "source_sha256": "feb9326d56e8ff88565323e2cbe4fa1337a7da37b889d67581cfb404e2888ee1"
+    },
+    {
+      "audit_id": "reflection-feea4c6744507e68809dbb34",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly indicates that from 1801 to Dec 1923, Wellington, Somerset was part of the United Kingdom. There are no errors in the provided timeline, and the reasoning aligns with the given temporal context."
+      },
+      "source_sha256": "feea4c6744507e68809dbb34b07f841f4a376a7cd61a5156031f192308ad1e32"
+    },
+    {
+      "audit_id": "reflection-feeab0f0a21c7474a08f0984",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that after Jiang Zemin's term ended, the Democratic Party of the Left took over. However, the question asks specifically about the head of state after Jiang Zemin, not the party. The Democratic Party of the Left is not a person, so there must be a mistake in the timeline provided or in the interpretation of the question. The next person in the timeline after Jiang Zemin is Xi Jinping, who took over in March 2013."
+      },
+      "source_sha256": "feeab0f0a21c7474a08f09842504e0d8bcf203f5d93ee24f495d4cc91269555d"
+    },
+    {
+      "audit_id": "reflection-fefcb1dedd7b34e3b2c381f1",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reflection confirms that the Anti-Rightist Movement, which started in 1957, was a significant political campaign that would have had a lasting impact on Li Sizhong's life and career. The timeline provided does not specify any other events for this period, so the inference that the significant event during 1966 to 1976 was his involvement in the Anti-Rightist Movement is reasonable."
+      },
+      "source_sha256": "fefcb1dedd7b34e3b2c381f12730e1f8893a0b28aec2b515ee39fe691a2cd92f"
+    },
+    {
+      "audit_id": "reflection-ff24154365de2c5136764289",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that before Valentine Browne, 4th Earl of Kenmare became a Member of the 18th Parliament of the United Kingdom, he held the position of Real Madrid Baloncesto from Mar, 1857 to Apr, 1859. There are no other positions listed between these two."
+      },
+      "source_sha256": "ff24154365de2c51367642893318e130cb54487a2c9b8c986081b52a0a200f90"
+    },
+    {
+      "audit_id": "reflection-ff4a972f56ffb11300a27150",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Georges Pompidou held the position of Prime Minister of France from April 1962 to April 1967. December 1965 is within this period, so the position he held in December 1965 was Prime Minister of France. There are no errors in the timeline provided, and the reasoning is sound."
+      },
+      "source_sha256": "ff4a972f56ffb11300a27150206995f5ca1c07835d3b1c27a2d29c94a536a94e"
+    },
+    {
+      "audit_id": "reflection-ff59c26ba6fbca9860aa5735",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the next position Mike Hedges held after being a Member of the 4th National Assembly for Wales. The timeline confirms that the position of Member of the 5th National Assembly for Wales directly follows the position of Member of the 4th National Assembly for Wales. There are no errors or improvements needed in the reasoning or timeline."
+      },
+      "source_sha256": "ff59c26ba6fbca9860aa573554007326e5c89fee4a58557c9c8ff053d01509e9"
+    },
+    {
+      "audit_id": "reflection-ff660aa92683df10a6397d4b",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that William Langer held the position of state attorney general from Jan 1937 to Jan 1939. There is no indication of a change in his position during the specific period of Aug 1938 to Nov 1938. The reasoning is sound and does not require any adjustments."
+      },
+      "source_sha256": "ff660aa92683df10a6397d4b999f3035336a5abf0d0774e2c23170e68ea24836"
+    },
+    {
+      "audit_id": "reflection-ff671130c4e93389abd5c063",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that after his term as a Member of the 39th Parliament, Harry Pursey held the position of Danilo Medina. There are no other positions listed between these two, so it is reasonable to conclude that Danilo Medina is the position he held immediately after his term in the 39th Parliament."
+      },
+      "source_sha256": "ff671130c4e93389abd5c063afa63a6935302eb10a75ff7e8d67b8de62422168"
+    },
+    {
+      "audit_id": "reflection-ff818283eb776bad9af4e58f",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that before Marshall Warmington became a Member of the 24th Parliament of the United Kingdom, he held the position of Brown University. The transition period is from Jun, 1886 to Jul, 1886, which is a short period and can be considered as the transition from one position to another."
+      },
+      "source_sha256": "ff818283eb776bad9af4e58f65fe7663c2516c2e41d221c783cf9788c08db068"
+    },
+    {
+      "audit_id": "reflection-ffb1e19bcc933555908dfab5",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline provided initially had an error in the sequence of events. Viktor Chernomyrdin's term was from August 1998 to September 1998, and Sergei Stepashin's term was from May 1999 to August 1999. Therefore, Viktor Chernomyrdin was the head of the government of Russia immediately after Sergei Stepashin."
+      },
+      "source_sha256": "ffb1e19bcc933555908dfab571e0a624ff29bf840df17b6f50ba2acc09dfb25a"
+    },
+    {
+      "audit_id": "reflection-ffcda489ce5dc702e3ea6dcc",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the position of Claudia Roth from July 1989 to October 1998 as \"United States Senator\" based on the provided temporal context. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "ffcda489ce5dc702e3ea6dcc65565e7e8f3b1719f7220a5a3ca4d8ff219c38f5"
+    },
+    {
+      "audit_id": "reflection-ffdcb416d6c7873082073a4f",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that Thomas Klestil was the head of state of Austria from July 1992 to July 2004, which is the period immediately before Alexander Van der Bellen's term. There are no errors in the timeline, and the sequence of events is clear."
+      },
+      "source_sha256": "ffdcb416d6c7873082073a4f99ff572d4710888fb4bd58cc8f9c0bfef770d90c"
+    },
+    {
+      "audit_id": "reflection-ffe42b48f651cde4cd40fbed",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the 32nd Parliament of the United Kingdom as the position held immediately after the 31st Parliament. The timeline confirms that the 32nd Parliament ends in Nov, 1918, which is before the start of the 31st Parliament, making it the correct answer."
+      },
+      "source_sha256": "ffe42b48f651cde4cd40fbed951b5750fb9d9986e5dd1f1dc72fcf5d17e03ef8"
+    },
+    {
+      "audit_id": "reflection-ffe6f9d026bcf0cc5230a62c",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, it is clear that Yegor Gaidar's term as the head of the government of Russia spans from June 1992 to December 1992. This period includes April 1992, making him the individual who held the position during that time. There are no errors or improvements needed in the reasoning process."
+      },
+      "source_sha256": "ffe6f9d026bcf0cc5230a62c30a23fe7311363038251554b4c66b1571ed68501"
+    },
+    {
+      "audit_id": "reflection-fff2d401652a33e5ce0bbdaa",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The reasoning correctly identifies the relevant position based on the given time periods. The timeline confirms that the position of San Francisco District Attorneys (Jan 2011 - Jan 2017) is the one held during the specified time period of June 2014 to July 2015. No errors or improvements are needed."
+      },
+      "source_sha256": "fff2d401652a33e5ce0bbdaa2338ed90bc04bc46b359af6bf208a3be3e8e7073"
+    }
+  ],
+  "batch_id": "reflection-judge_b-8896c5d6b129ec1a76e1",
+  "batch_sha256": "a8b6df43d99de0741b8a4b9cff5f184f2913d2a2b84f24a87194b1c8e5aee8f3"
+}

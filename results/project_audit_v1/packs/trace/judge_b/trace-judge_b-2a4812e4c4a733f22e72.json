@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-7874aebbfcd672f47ce05a63",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev won the first set with an early break. Before the second set, Ruud changed rackets. Ruud then broke Zverev in the second game.",
+        "question": "Which happened first: Ruud changed rackets or Ruud broke Zverev?",
+        "gold": "Ruud changed rackets",
+        "trace": "<reasoning>\nRuud changed rackets before the second set, and then broke Zverev in the second game.\n<timeline>\n1. Zverev won the first set with an early break.\n2. Before the second set, Ruud changed rackets.\n3. Ruud then broke Zverev in the second game.\n</timeline>\n<reflection>\nRuud's racket change happened before his break of Zverev.\n</reflection>\n</reasoning>\n<answer>Ruud changed rackets</answer>"
+      },
+      "source_sha256": "7874aebbfcd672f47ce05a6359ad56ccf4bae3f1ad9495601d2943cca9806282"
+    },
+    {
+      "audit_id": "trace-797d9efeb99ff01164a016ab",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev rolled his ankle during the semifinal tie-break. He remained on the ground in pain for five minutes. The medical staff arrived after he signaled for help. He was eventually forced to retire from the match.",
+        "question": "Did the medical staff arrive before Zverev rolled his ankle?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe question asks if medical staff arrived before Zverev rolled his ankle. Context: Zverev rolled his ankle, then medical staff arrived after he signaled for help. So ankle roll first.\n<timeline>\n- Zverev rolled his ankle\n- Remained in pain\n- Medical staff arrived after he signaled\n</timeline>\n<reflection>\nMedical staff arrived after the ankle roll, not before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "797d9efeb99ff01164a016ab9e9c2fdf55f71c2809dee08a7afbd1ea94d831a5"
+    },
+    {
+      "audit_id": "trace-7a21e280d04ecd90c71ea810",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic successfully saved two championship points in the final set. Federer then hit a forehand into the net on the following point. Djokovic eventually won the match in a thrilling tie-break.",
+        "question": "Did Djokovic save the championship points before winning the match?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDjokovic saved the championship points first, and he eventually won the match later in the tie-break.\n<timeline>\n1. Djokovic saved two championship points in the final set.\n2. Federer hit a forehand into the net on the following point.\n3. Djokovic eventually won the match in a thrilling tie-break.\n</timeline>\n<reflection>\nThe championship-point saves occurred before Djokovic won the match.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7a21e280d04ecd90c71ea810999303737b8c270c029568467b33f222cb062e99"
+    },
+    {
+      "audit_id": "trace-7a346d24fe751ceade992d13",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served a costly double fault on break point. He immediately shouted at himself in frustration. The umpire then announced the score, confirming the break of serve.",
+        "question": "What happened before Shelton shouted at himself?",
+        "gold": "He served a double fault",
+        "trace": "<reasoning>\nShelton served a double fault and immediately shouted at himself in frustration.\n<timeline>\n1. Shelton served a double fault.\n2. Shelton shouted at himself.\n</timeline>\n<reflection>\nThe double fault immediately preceded him shouting at himself.\n</reflection>\n</reasoning>\n<answer>He served a double fault</answer>"
+      },
+      "source_sha256": "7a346d24fe751ceade992d135f4c4c825f434fdde1b063ac746248d23af64c6e"
+    },
+    {
+      "audit_id": "trace-7ae1b1551515dd4dcad2ab9a",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won the first set tie-break after trailing 4-6. De Minaur immediately took a medical timeout for his shoulder. Alcaraz then broke serve in the opening game of the second set.",
+        "question": "What happened after De Minaur took a medical timeout?",
+        "gold": "Alcaraz broke serve",
+        "trace": "<reasoning>\nContext: De Minaur took a medical timeout. Then Alcaraz broke serve in the opening game of the second set. The question asks what happened after De Minaur's timeout.\n<timeline>\n1. De Minaur took a medical timeout for his shoulder.\n2. Alcaraz then broke serve in the opening game of the second set.\n</timeline>\n<reflection>\n\"Then\" indicates Alcaraz's break of serve follows immediately after the timeout.\n</reflection>\n</reasoning>\n<answer>Alcaraz broke serve</answer>"
+      },
+      "source_sha256": "7ae1b1551515dd4dcad2ab9a55b060e2a3d592a73ae68a0cf6cc0844b5b83e60"
+    },
+    {
+      "audit_id": "trace-7afc043d34fa57c384b5962a",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic held serve for 4-3 in the second set. Before the rain delay, Sinner saved two break points. After the delay, Djokovic broke Sinner immediately.",
+        "question": "What happened before the rain delay?",
+        "gold": "Sinner saved two break points",
+        "trace": "<reasoning>\nSinner saved two break points before the rain delay, and Djokovic broke Sinner only after the delay.\n<timeline>\n1. Djokovic held serve for 4-3 in the second set.\n2. Before the rain delay, Sinner saved two break points.\n3. The rain delay occurred.\n4. After the delay, Djokovic broke Sinner immediately.\n</timeline>\n<reflection>\nThe timeline identifies Sinner saving two break points as the relevant event before the rain delay.\n</reflection>\n</reasoning>\n<answer>Sinner saved two break points</answer>"
+      },
+      "source_sha256": "7afc043d34fa57c384b5962ab2634f97727dafb574784e70f4b405ead6df29e6"
+    },
+    {
+      "audit_id": "trace-7b157e38e5f6f40ab3040910",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune broke Rublev's serve at 3-3 in the third set. Rublev immediately broke back to 4-4. Rune then saved two break points at 4-4 before holding serve. Rublev held serve at 5-5, and Rune won the tie-break 7-4.",
+        "question": "What happened after Rublev broke back?",
+        "gold": "Rune saved two break points",
+        "trace": "<reasoning>\nThe progression of events at 4-4 follows Rublev breaking back.\n<timeline>\n1. 3-3: Rune broke serve\n2. 4-4: Rublev broke back\n3. 4-4: Rune saved two break points\n4. Rune held serve\n</timeline>\n<reflection>\nDirectly after Rublev broke back to make it 4-4, Rune saved two break points.\n</reflection>\n</reasoning>\n<answer>Rune saved two break points</answer>"
+      },
+      "source_sha256": "7b157e38e5f6f40ab30409104c2d7d0b3dcb99b54ba53cb00281fd00fe32ea5e"
+    },
+    {
+      "audit_id": "trace-7ba8b69490325b89d59afca2",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas started the second set at 4:00 p.m. Ruud broke serve at 4:17 p.m. The roof was fully closed at 4:29 p.m. after a short drizzle.",
+        "question": "How many minutes after the second set started was the roof fully closed?",
+        "gold": "29 minutes",
+        "trace": "<reasoning>\nThe second set started at 4:00 p.m. and the roof was fully closed at 4:29 p.m., which is 29 minutes later.\n<timeline>\n1. Tsitsipas started the second set at 4:00 p.m.\n2. Ruud broke serve at 4:17 p.m.\n3. The roof was fully closed at 4:29 p.m.\n</timeline>\n<reflection>\nFrom 4:00 p.m. to 4:29 p.m. is 29 minutes.\n</reflection>\n</reasoning>\n<answer>29 minutes</answer>"
+      },
+      "source_sha256": "7ba8b69490325b89d59afca2a7c996b00183e6429e6993bc67659cdfd73249a6"
+    },
+    {
+      "audit_id": "trace-7be69f768ff69680acc4366a",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved two break points in the third game. After that hold, Medvedev requested new balls from the umpire. Later, rain interrupted the match before the tie-break.",
+        "question": "What happened before Medvedev requested new balls?",
+        "gold": "Alcaraz saved two break points",
+        "trace": "<reasoning>\nContext: Alcaraz saved two break points. After that hold, Medvedev requested new balls. Question asks what happened before Medvedev requested new balls.\n<timeline>\n1. Alcaraz saved two break points in third game.\n2. After that hold, Medvedev requested new balls from umpire.\n</timeline>\n<reflection>\n\"After that hold\" indicates the save directly precedes the request, so answer is Alcaraz saved two break points.\n</reflection>\n</reasoning>\n<answer>Alcaraz saved two break points</answer>"
+      },
+      "source_sha256": "7be69f768ff69680acc4366ace0053b42aed0b73fb1c9284bcffbc9a60e5e220"
+    },
+    {
+      "audit_id": "trace-7c361c39183bc35f7ed126d4",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal played a flawless first set, winning 6-0. At the start of the second set, the roof was closed due to impending rain. Following the 15-minute roof closure, Zverev completely changed his tactics. Zverev ended up winning the second set.",
+        "question": "Was the roof closed after Nadal won the first set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe roof was closed at the start of the second set, after Nadal had already won the first set.\n<timeline>\n1. Nadal won the first set 6-0.\n2. At the start of the second set, the roof was closed due to impending rain.\n3. Following the 15-minute roof closure, Zverev changed his tactics.\n4. Zverev ended up winning the second set.\n</timeline>\n<reflection>\nThe roof closure followed Nadal's first-set win, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7c361c39183bc35f7ed126d4821b3d76b2fd0d5b14f15cea59e7d0c50a9565d4"
+    }
+  ],
+  "batch_id": "trace-judge_b-2a4812e4c4a733f22e72",
+  "batch_sha256": "0b60c555364b9fff4829ff4e98ee569e6b848974d7e0795666157d055404a3bd"
+}

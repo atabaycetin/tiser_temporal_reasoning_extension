@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-c25b0a0a5fb31382c34af809",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal struggled with his movement early in the third set. He took a medical timeout at the 2-1 changeover. Following the timeout, he immediately broke Tsitsipas's serve. Tsitsipas then received a coaching violation.",
+        "question": "Did Nadal take a medical timeout before Tsitsipas received a coaching violation?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nNadal's medical timeout is placed before his break of serve and before Tsitsipas's later coaching violation.\n<timeline>\n1. Nadal struggled with his movement early in the third set.\n2. Nadal took a medical timeout at the 2-1 changeover.\n3. Following the timeout, Nadal broke Tsitsipas's serve.\n4. Tsitsipas then received a coaching violation.\n</timeline>\n<reflection>\nThe medical timeout happened before the coaching violation, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c25b0a0a5fb31382c34af809d131365ad6ce3850fde59dc1b730cfd11bde75eb"
+    },
+    {
+      "audit_id": "trace-c2a7d8c34f4d840ffb590d2b",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner led 5-3 in the final set of the championship. Alcaraz broke back, hitting three consecutive return winners. Before the ensuing tie-break, Sinner changed his shirt and racket. The tie-break lasted over fifteen minutes.",
+        "question": "Did Sinner change his racket after Alcaraz broke back?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe question asks if Sinner changed his racket after Alcaraz broke back. Context: Alcaraz broke back, then before the tie-break Sinner changed his shirt and racket. So racket change after the break.\n<timeline>\n- Sinner led 5-3\n- Alcaraz broke back\n- Before tie-break: Sinner changed racket\n</timeline>\n<reflection>\nRacket change occurred after Alcaraz broke back, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c2a7d8c34f4d840ffb590d2b4dd9ad9e4d98d3ae47a74112b89f4c6721e43d46"
+    },
+    {
+      "audit_id": "trace-c32c6f5ffcad69d5792c9b48",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev lost his serve at 2-2 in the first set. During the changeover, Medvedev argued with the umpire over a line call. He then broke back immediately in the next game.",
+        "question": "Did Medvedev break back after arguing with the umpire?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Medvedev lost his serve at 2-2 in the first set.\n2. Medvedev argued with the umpire during the changeover.\n3. Medvedev broke back immediately in the next game.\n</timeline>\n<reflection>\nBreaking back occurred in the game following the changeover argument.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c32c6f5ffcad69d5792c9b486eddbf05282feb9932c9c339dc6e1a8705afba51"
+    },
+    {
+      "audit_id": "trace-c4599fb7c57bfaa4ccb0277d",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz and Rune began the warm-up at 7:10 p.m. The warm-up was interrupted by a lighting issue after 6 minutes. Play officially started 14 minutes after the warm-up began.",
+        "question": "How many minutes after the warm-up began did play officially start?",
+        "gold": "14 minutes",
+        "trace": "<reasoning>\nThe context explicitly says play officially started 14 minutes after the warm-up began.\n<timeline>\n1. The warm-up began at 7:10 p.m.\n2. The warm-up was interrupted after 6 minutes.\n3. Play officially started 14 minutes after the warm-up began.\n</timeline>\n<reflection>\nThe stated elapsed time from warm-up start to official play is 14 minutes.\n</reflection>\n</reasoning>\n<answer>14 minutes</answer>"
+      },
+      "source_sha256": "c4599fb7c57bfaa4ccb0277d1a589e86acd75c942284f0bb9d55988c0170f768"
+    },
+    {
+      "audit_id": "trace-c48b5698a6ba22c68bb03d50",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won the opening set 6-4. Medvedev called a medical timeout before the second set began. Later, Medvedev won the second set and forced a decider.",
+        "question": "Which happened first: Medvedev called a medical timeout or Alcaraz won the opening set?",
+        "gold": "Alcaraz won the opening set",
+        "trace": "<reasoning>\nContext: \"Alcaraz won the opening set 6-4. Medvedev called a medical timeout before the second set began.\" Winning the set occurs before the second set and before the timeout.\n<timeline>\n- Alcaraz won opening set.\n- Medvedev called medical timeout (before second set).\n</timeline>\n<reflection>\nWinning the set happens first, then the timeout, so answer is Alcaraz won the opening set.\n</reflection>\n</reasoning>\n<answer>Alcaraz won the opening set</answer>"
+      },
+      "source_sha256": "c48b5698a6ba22c68bb03d500111cbacae6aac276836d23fa9ab91278c26522b"
+    },
+    {
+      "audit_id": "trace-c68672f25f36b4aea439af76",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved match point at 4-5 in the final set. After that save, the crowd interrupted play for two minutes. Before Medvedev double-faulted on break point, Djokovic received a code warning. Djokovic then served out the match after the break.",
+        "question": "Did Medvedev double-fault on break point before Djokovic received a code warning?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe context states: \"Before Medvedev double-faulted on break point, Djokovic received a code warning.\" This means Djokovic's warning occurred before Medvedev's double-fault.\n<timeline>\n- Djokovic received a code warning.\n- Medvedev double-faulted on break point.\n</timeline>\n<reflection>\nSince the double-fault happened after the warning, it did not happen before the warning; answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "c68672f25f36b4aea439af769be9557723819fd85ba22ff29862d98b0be9a8cf"
+    },
+    {
+      "audit_id": "trace-c6ca6d5d81fb895b2ecc2c38",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud won the opening set after a long rally on set point. Tsitsipas broke early in the second set before rain interrupted the match. After the rain delay, Ruud broke back immediately.",
+        "question": "Did Tsitsipas break serve before the rain delay?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nTsitsipas broke early in the second set before rain interrupted the match.\n<timeline>\n1. Tsitsipas broke serve.\n2. Rain interrupted the match.\n</timeline>\n<reflection>\nThe break of serve occurred before the rain delay.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c6ca6d5d81fb895b2ecc2c38e5e6686c263fefdfb18e10a839092d6f1d29be20"
+    },
+    {
+      "audit_id": "trace-c6e7ea6c47ddfefd4fc1bd2c",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas argued with the umpire early in the third set. Ruud broke serve after the argument. At the next changeover, Tsitsipas called the trainer.",
+        "question": "Which happened last?",
+        "gold": "Tsitsipas called the trainer",
+        "trace": "<reasoning>\nContext: Tsitsipas argued early in third set. Ruud broke serve after the argument. At the next changeover, Tsitsipas called the trainer. So the trainer call is the last event.\n<timeline>\n- Tsitsipas argued.\n- Ruud broke serve.\n- Tsitsipas called trainer (next changeover).\n</timeline>\n<reflection>\nCalling the trainer occurs after the break and after the argument, so it is last.\n</reflection>\n</reasoning>\n<answer>Tsitsipas called the trainer</answer>"
+      },
+      "source_sha256": "c6e7ea6c47ddfefd4fc1bd2cf720a7ed8f1d6c4f574de1ef3581246641898345"
+    },
+    {
+      "audit_id": "trace-c7bf31db015d6dea75296a11",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic slipped and fell awkwardly behind the baseline. The tournament trainer came onto the court to check his ankle. Djokovic resumed play shortly after and ultimately won the game.",
+        "question": "Which event happened last?",
+        "gold": "Djokovic won the game",
+        "trace": "<reasoning>\nDjokovic slipped first, the trainer checked his ankle, and after resuming play Djokovic won the game.\n<timeline>\n1. Djokovic slipped and fell awkwardly behind the baseline.\n2. The tournament trainer came onto the court to check his ankle.\n3. Djokovic resumed play shortly after.\n4. Djokovic won the game.\n</timeline>\n<reflection>\nDjokovic winning the game is the final event listed.\n</reflection>\n</reasoning>\n<answer>Djokovic won the game</answer>"
+      },
+      "source_sha256": "c7bf31db015d6dea75296a11289fd2e5db268dcd38a87b1ea9b721077c5efe07"
+    },
+    {
+      "audit_id": "trace-c8315257e2e7a3e2818c796a",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas won a long rally to save set point. Ruud challenged the call after the rally. After the challenge failed, Tsitsipas held serve.",
+        "question": "What happened after Ruud challenged the call?",
+        "gold": "Tsitsipas held serve",
+        "trace": "<reasoning>\nContext: Ruud challenged the call after a rally. After challenge failed, Tsitsipas held serve. Question asks what happened after Ruud challenged.\n<timeline>\n1. Tsitsipas won rally to save set point.\n2. Ruud challenged the call after rally.\n3. After challenge failed, Tsitsipas held serve.\n</timeline>\n<reflection>\n\"After challenge failed\" indicates holding serve follows the challenge.\n</reflection>\n</reasoning>\n<answer>Tsitsipas held serve</answer>"
+      },
+      "source_sha256": "c8315257e2e7a3e2818c796ad9fcc5aef7020e915c5ebec0dca67397c548b99e"
+    }
+  ],
+  "batch_id": "trace-judge_b-2c34fb80ff9cfb5cea04",
+  "batch_sha256": "c6e4ba0acd0bf32ed353812e9753ffb2167bb170dce3b5702ca2991a1ebba5a2"
+}

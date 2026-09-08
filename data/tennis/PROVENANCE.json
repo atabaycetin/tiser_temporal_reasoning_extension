@@ -1,0 +1,81 @@
+{
+  "schema_version": 2,
+  "documented_at": "2026-09-08",
+  "information_status": {
+    "observed": "Directly present in a preserved repository artifact.",
+    "author_attested": "Recalled and stated by the author, without a complete contemporaneous record.",
+    "derived": "Recomputed deterministically from preserved artifacts.",
+    "unavailable": "Not preserved and not recoverable from current repository evidence."
+  },
+  "raw_generation": {
+    "artifact": "data/tennis/raw/tennis_raw.json",
+    "record_count": 1122,
+    "method": "interactive synthetic generation",
+    "producer": "ChatGPT",
+    "reported_model": "GPT-5.5",
+    "model_reference": "https://developers.openai.com/api/docs/models/gpt-5.5",
+    "evidence": "documented recollection",
+    "field_status": {
+      "artifact": "observed",
+      "record_count": "derived",
+      "method": "author_attested",
+      "producer": "author_attested",
+      "reported_model": "author_attested",
+      "recovered_prompt": "observed",
+      "conversation_export": "unavailable",
+      "model_snapshot": "unavailable",
+      "decoding_settings": "unavailable"
+    },
+    "model_reference_scope": "The API documentation identifies an API model family/snapshot; it does not establish the model snapshot behind the historical UI session.",
+    "external_source_corpus_recorded": false,
+    "prompt_recovered": true,
+    "prompt_recovery_status": "recovered fragment; continuation is incomplete",
+    "recovered_prompt": "docs/extensions/tennis_domain_adaptation/RAW_GENERATION_PROMPT.md",
+    "conversation_export_recovered": false,
+    "model_snapshot_recorded": false,
+    "decoding_settings_recorded": false
+  },
+  "trace_generation": {
+    "artifacts": [
+      "data/tennis/tennis_train_traced_50.json",
+      "data/tennis/tennis_train_traced_full.json"
+    ],
+    "method": "supervised generation with context, question, and gold answer supplied",
+    "producer": "ChatGPT",
+    "reported_model": "GPT-5.5",
+    "evidence": "documented recollection plus committed request and output artifacts",
+    "field_status": {
+      "artifacts": "observed",
+      "method": "author_attested",
+      "producer": "author_attested",
+      "reported_model": "author_attested",
+      "recovered_prompt": "observed",
+      "exact_outer_prompt": "unavailable",
+      "model_snapshot": "unavailable",
+      "decoding_settings": "unavailable",
+      "record_counts_and_repairs": "derived"
+    },
+    "recovered_prompt": "docs/extensions/tennis_domain_adaptation/TRACE_GENERATION_PROMPT.md",
+    "exact_prompt_authenticated": false,
+    "model_snapshot_recorded": false,
+    "decoding_settings_recorded": false,
+    "full_run_generated_records": 600,
+    "mechanical_repair": {
+      "outputs_wrapped_for_missing_tags": 200,
+      "malformed_physical_jsonl_lines": 19,
+      "records_recovered_from_malformed_lines": 26,
+      "semantic_entailment_validated": false
+    }
+  },
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "spdx": "CC-BY-4.0",
+    "file": "data/tennis/DATASET_LICENSE.md",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "repository_code_license": {
+    "name": "MIT License",
+    "spdx": "MIT",
+    "file": "LICENSE"
+  }
+}

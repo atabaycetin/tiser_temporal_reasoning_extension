@@ -1,0 +1,138 @@
+{
+  "batch_id": "semantic-adjudicator-f88bc402a7fcb5a5669e",
+  "batch_sha256": "f772e5aa1c78185440fb3b889991ee9added52164a2ff1e86c0a9fb927a3e1e1",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-08T15:00:14Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-0177821a206a458b40ac8701",
+      "source_sha256": "0177821a206a458b40ac8701e7c5a644605c825c72ece657400c697a148d0aa5",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas argued with the umpire early in the third set."
+        },
+        {
+          "field": "context",
+          "quote": "Ruud broke serve after the argument."
+        },
+        {
+          "field": "context",
+          "quote": "At the next changeover, Tsitsipas called the trainer."
+        }
+      ],
+      "rationale": "The trainer call happened after the argument, and Ruud's break also happened after the argument, but the context does not explicitly order Ruud's break relative to the next changeover."
+    },
+    {
+      "audit_id": "semantic-0386fb64f747dbad875ec681",
+      "source_sha256": "0386fb64f747dbad875ec681c5caad9a9721744bbe638ef548d95cb64768dfdc",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas lost the first set in a tie-break."
+        },
+        {
+          "field": "context",
+          "quote": "Before the second set began, he changed rackets."
+        },
+        {
+          "field": "context",
+          "quote": "After changing rackets, he broke Ruud in the opening game."
+        }
+      ],
+      "rationale": "Changing rackets is before the break, but losing the first set is also before the break, so the gold answer is not the unique answer to the broad question."
+    },
+    {
+      "audit_id": "semantic-0464c628b1309919ca9f73be",
+      "source_sha256": "0464c628b1309919ca9f73be368aeeadc18c95d1a193788af43c1b2bb3f80de3",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner won the opening set after saving a set point."
+        },
+        {
+          "field": "context",
+          "quote": "After Sinner won the set, Alcaraz called for the trainer."
+        },
+        {
+          "field": "context",
+          "quote": "Later, Alcaraz broke serve in the second set."
+        }
+      ],
+      "rationale": "Alcaraz's trainer call is after Sinner won the opening set, but Alcaraz's later break is also after that set win, leaving more than one supported answer."
+    },
+    {
+      "audit_id": "semantic-04c1ff0f5a5e35442c758da1",
+      "source_sha256": "04c1ff0f5a5e35442c758da1f7e45c12c52f8b1238c3c7d6daeb886a7e09787d",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur secured a crucial break of serve in the ninth game of the deciding set."
+        },
+        {
+          "field": "context",
+          "quote": "He sat down during the changeover and draped a cold towel over his neck."
+        },
+        {
+          "field": "context",
+          "quote": "Afterward, he stepped up to the baseline to serve for the match."
+        }
+      ],
+      "rationale": "Draping the cold towel occurred before he stepped to the baseline, but the earlier break of serve and sitting down also occurred before that step, so the gold is not unique."
+    },
+    {
+      "audit_id": "semantic-0588cea6aa9aba88281cef63",
+      "source_sha256": "0588cea6aa9aba88281cef632f9fff0d3dd0aaff015f07675d6a3483ffd4814d",
+      "label": "wrong_gold",
+      "corrected_answer": "Shelton called a coaching violation",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur won three straight games to tie at 5-5."
+        },
+        {
+          "field": "context",
+          "quote": "Shelton then called a coaching violation."
+        }
+      ],
+      "rationale": "The context states that Shelton called a coaching violation after De Minaur tied the set; it does not state that Shelton received one."
+    },
+    {
+      "audit_id": "semantic-0708e75436eb3acdc0b03f8b",
+      "source_sha256": "0708e75436eb3acdc0b03f8b30c8b6e0ddb4a494901fea00294c5f6f472e979e",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton won a chaotic point at the net."
+        },
+        {
+          "field": "context",
+          "quote": "He smiled and high-fived the crowd."
+        },
+        {
+          "field": "context",
+          "quote": "After the interaction, he returned to the baseline to serve."
+        }
+      ],
+      "rationale": "The smile and high-five happened before Shelton returned to the baseline, but the point at the net also happened before he returned, so the answer is not unique."
+    }
+  ]
+}

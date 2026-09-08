@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-c1a98eee53921bf496374fe7",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner was preparing to serve at 30-all. At the same time, an alarm started ringing in the stands. Sinner stopped his motion and waited for the noise to stop. The alarm was silenced after a minute.",
+        "question": "Did the alarm start ringing while Sinner was preparing to serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe alarm began at the same time Sinner was preparing to serve.\n<timeline>\n1. Sinner was preparing to serve at 30-all.\n2. At the same time, an alarm started ringing in the stands.\n3. Sinner stopped his motion and waited for the noise to stop.\n4. The alarm was silenced after a minute.\n</timeline>\n<reflection>\nThe simultaneous timing supports the answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c1a98eee53921bf496374fe7d8aa2e1abce4321ee7743f915cc9b3ca99ad1588"
+    },
+    {
+      "audit_id": "trace-c1c74a33289848f158c999a8",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz broke Shelton at 2-2 in the first set. Shelton smashed a racket after losing the next game. Later, the umpire issued Shelton a code violation.",
+        "question": "What happened before Shelton smashed a racket?",
+        "gold": "Fritz broke Shelton",
+        "trace": "<reasoning>\nContext: Fritz broke Shelton at 2-2. Shelton smashed racket after losing next game. Question asks what happened before Shelton smashed racket.\n<timeline>\n1. Fritz broke Shelton at 2-2 in first set.\n2. Shelton smashed a racket after losing the next game.\n</timeline>\n<reflection>\nThe break occurs before the smash, so answer is Fritz broke Shelton.\n</reflection>\n</reasoning>\n<answer>Fritz broke Shelton</answer>"
+      },
+      "source_sha256": "c1c74a33289848f158c999a802455238b5cf7dd8e6e67723a0048c6b8bb2df11"
+    },
+    {
+      "audit_id": "trace-c1d624cd9f827d846c253aa0",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev saved a set point at 4:05 p.m. Fritz won the tie-break at 4:17 p.m. After the tie-break, the players sat down for a changeover.",
+        "question": "How many minutes after Rublev saved a set point did Fritz win the tie-break?",
+        "gold": "12 minutes",
+        "trace": "<reasoning>\nRublev saved a set point at 4:05 p.m. and Fritz won the tie-break at 4:17 p.m. The difference is 12 minutes.\n<timeline>\n1. 4:05 p.m.: Rublev saved a set point\n2. 4:17 p.m.: Fritz won the tie-break\n3. After the tie-break: The players sat down for a changeover\n</timeline>\n<reflection>\nThe duration from 4:05 p.m. to 4:17 p.m. correctly calculates to 12 minutes.\n</reflection>\n</reasoning>\n<answer>12 minutes</answer>"
+      },
+      "source_sha256": "c1d624cd9f827d846c253aa0f21052177f1ca7792845a65b44b9bedf7dfafe82"
+    },
+    {
+      "audit_id": "trace-c20512933d1dbd487dcf56eb",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz saved a break point at 3-3 in the first set. Zverev broke Fritz two games later at 4-4. Zverev then served for the set at 5-4 but was broken to love. Fritz won the tie-break 7-5.",
+        "question": "Which happened first: Zverev broke Fritz or Zverev served for the set?",
+        "gold": "Zverev broke Fritz",
+        "trace": "<reasoning>\nThe score progression from 4-4 to 5-4 indicates the chronological order.\n<timeline>\n1. 4-4: Zverev broke Fritz\n2. 5-4: Zverev served for the set\n3. Tie-break: Fritz won 7-5\n</timeline>\n<reflection>\nBreaking Fritz at 4-4 logically and chronologically precedes serving for the set at 5-4.\n</reflection>\n</reasoning>\n<answer>Zverev broke Fritz</answer>"
+      },
+      "source_sha256": "c20512933d1dbd487dcf56eb7c4000a0642feca441d9d259b44834df64cb716a"
+    },
+    {
+      "audit_id": "trace-c2405610519ce7834c46433b",
+      "kind": "trace",
+      "payload": {
+        "context": "The Sinner-Alcaraz match started at 2:00 p.m. Sinner broke serve 18 minutes after the start. Rain delayed the match 45 minutes after the start, after Alcaraz had saved a break point.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe context states directly that rain delayed the match 45 minutes after the start.\n<timeline>\n1. The Sinner-Alcaraz match started at 2:00 p.m.\n2. Sinner broke serve 18 minutes after the start.\n3. Rain delayed the match 45 minutes after the start, after Alcaraz had saved a break point.\n</timeline>\n<reflection>\nThe timeline gives the rain delay time as 45 minutes after the match started.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "c2405610519ce7834c46433b426309b08ea3b11afbdd47fe8f9a2a8c2a07ad49"
+    },
+    {
+      "audit_id": "trace-c24ce69dc001a8b6f29f1c2d",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas saved a set point during the first-set tie-break. Rublev won the tie-break two points later. After the set ended, Tsitsipas took a bathroom break.",
+        "question": "Which happened last?",
+        "gold": "Tsitsipas took a bathroom break",
+        "trace": "<reasoning>\nTsitsipas saved a set point, Rublev won the tie-break two points later, and Tsitsipas took a bathroom break after the set ended.\n<timeline>\n1. Tsitsipas saved a set point during the first-set tie-break.\n2. Rublev won the tie-break two points later.\n3. After the set ended, Tsitsipas took a bathroom break.\n</timeline>\n<reflection>\nThe bathroom break is the last listed event.\n</reflection>\n</reasoning>\n<answer>Tsitsipas took a bathroom break</answer>"
+      },
+      "source_sha256": "c24ce69dc001a8b6f29f1c2d63ac2e3e6734925534c70d13b87336f1d0a30c98"
+    },
+    {
+      "audit_id": "trace-c25b0a0a5fb31382c34af809",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal struggled with his movement early in the third set. He took a medical timeout at the 2-1 changeover. Following the timeout, he immediately broke Tsitsipas's serve. Tsitsipas then received a coaching violation.",
+        "question": "Did Nadal take a medical timeout before Tsitsipas received a coaching violation?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nNadal's medical timeout is placed before his break of serve and before Tsitsipas's later coaching violation.\n<timeline>\n1. Nadal struggled with his movement early in the third set.\n2. Nadal took a medical timeout at the 2-1 changeover.\n3. Following the timeout, Nadal broke Tsitsipas's serve.\n4. Tsitsipas then received a coaching violation.\n</timeline>\n<reflection>\nThe medical timeout happened before the coaching violation, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c25b0a0a5fb31382c34af809d131365ad6ce3850fde59dc1b730cfd11bde75eb"
+    },
+    {
+      "audit_id": "trace-c2a7d8c34f4d840ffb590d2b",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner led 5-3 in the final set of the championship. Alcaraz broke back, hitting three consecutive return winners. Before the ensuing tie-break, Sinner changed his shirt and racket. The tie-break lasted over fifteen minutes.",
+        "question": "Did Sinner change his racket after Alcaraz broke back?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe question asks if Sinner changed his racket after Alcaraz broke back. Context: Alcaraz broke back, then before the tie-break Sinner changed his shirt and racket. So racket change after the break.\n<timeline>\n- Sinner led 5-3\n- Alcaraz broke back\n- Before tie-break: Sinner changed racket\n</timeline>\n<reflection>\nRacket change occurred after Alcaraz broke back, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c2a7d8c34f4d840ffb590d2b4dd9ad9e4d98d3ae47a74112b89f4c6721e43d46"
+    },
+    {
+      "audit_id": "trace-c32c6f5ffcad69d5792c9b48",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev lost his serve at 2-2 in the first set. During the changeover, Medvedev argued with the umpire over a line call. He then broke back immediately in the next game.",
+        "question": "Did Medvedev break back after arguing with the umpire?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Medvedev lost his serve at 2-2 in the first set.\n2. Medvedev argued with the umpire during the changeover.\n3. Medvedev broke back immediately in the next game.\n</timeline>\n<reflection>\nBreaking back occurred in the game following the changeover argument.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c32c6f5ffcad69d5792c9b486eddbf05282feb9932c9c339dc6e1a8705afba51"
+    },
+    {
+      "audit_id": "trace-c4599fb7c57bfaa4ccb0277d",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz and Rune began the warm-up at 7:10 p.m. The warm-up was interrupted by a lighting issue after 6 minutes. Play officially started 14 minutes after the warm-up began.",
+        "question": "How many minutes after the warm-up began did play officially start?",
+        "gold": "14 minutes",
+        "trace": "<reasoning>\nThe context explicitly says play officially started 14 minutes after the warm-up began.\n<timeline>\n1. The warm-up began at 7:10 p.m.\n2. The warm-up was interrupted after 6 minutes.\n3. Play officially started 14 minutes after the warm-up began.\n</timeline>\n<reflection>\nThe stated elapsed time from warm-up start to official play is 14 minutes.\n</reflection>\n</reasoning>\n<answer>14 minutes</answer>"
+      },
+      "source_sha256": "c4599fb7c57bfaa4ccb0277d1a589e86acd75c942284f0bb9d55988c0170f768"
+    }
+  ],
+  "batch_id": "trace-judge_b-712fdd2ed99d62bdfcc5",
+  "batch_sha256": "9b50e6b582cfe721f008eabb6d8d541f7848b6488072c3de440259e36662f1c6"
+}

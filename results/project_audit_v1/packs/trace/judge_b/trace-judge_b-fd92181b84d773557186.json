@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-d27ad973ef48cdfbf57a93bd",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur took a medical timeout at 5:06 p.m. The trainer left the court at 5:11 p.m. Rublev broke serve at 5:18 p.m.",
+        "question": "How many minutes after the medical timeout began did Rublev break serve?",
+        "gold": "12 minutes",
+        "trace": "<reasoning>\nThe medical timeout began at 5:06 p.m. and Rublev broke serve at 5:18 p.m., which is 12 minutes later.\n<timeline>\n1. De Minaur took a medical timeout at 5:06 p.m.\n2. The trainer left the court at 5:11 p.m.\n3. Rublev broke serve at 5:18 p.m.\n</timeline>\n<reflection>\nThe elapsed time from 5:06 p.m. to 5:18 p.m. is 12 minutes.\n</reflection>\n</reasoning>\n<answer>12 minutes</answer>"
+      },
+      "source_sha256": "d27ad973ef48cdfbf57a93bdd1a819dd4855dc9403f17f20a3e69b1d5d5daf51"
+    },
+    {
+      "audit_id": "trace-d2815a6915bbd6631418e08b",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer dominated the opening set, closing it out in just twenty-five minutes. However, Shelton found his rhythm in the second set, securing a break in the eighth game. Before Shelton could serve for the set, rain interrupted the match for an hour. Once they returned, Shelton held serve to win the second set.",
+        "question": "Did the rain interrupt the match after Shelton secured a break in the second set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Shelton found his rhythm in the second set, securing a break in the eighth game. Before Shelton could serve for the set, rain interrupted the match.\" So rain occurred after the break.\n<timeline>\n- Shelton secured break.\n- Rain interrupted.\n</timeline>\n<reflection>\nRain happened after the break, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d2815a6915bbd6631418e08b88ab2a0861a75b4edabef7685914e116355d939e"
+    },
+    {
+      "audit_id": "trace-d296c64b7dca64de89c77839",
+      "kind": "trace",
+      "payload": {
+        "context": "The match began with a marathon 15-minute game, which Zverev finally won. Two games later, a light drizzle started to fall, making the grass slippery. Ruud slipped during a rally and tweaked his knee, prompting an immediate medical timeout. After the trainer evaluated him, the referee decided to suspend the match due to the worsening rain.",
+        "question": "Which event happened last?",
+        "gold": "The referee suspended the match",
+        "trace": "<reasoning>\nContext: \"Zverev won marathon game. ... Ruud slipped and tweaked his knee, prompting medical timeout. ... referee decided to suspend the match.\" Suspension is last event.\n<timeline>\n- Zverev won first game.\n- Drizzle started.\n- Ruud slipped, timeout.\n- Referee suspended match.\n</timeline>\n<reflection>\nSuspension is the final action, so it happened last.\n</reflection>\n</reasoning>\n<answer>The referee suspended the match</answer>"
+      },
+      "source_sha256": "d296c64b7dca64de89c778397cf1a5dfe50ea298eecc80c5c1b1e4f2b1f06f0c"
+    },
+    {
+      "audit_id": "trace-d2fabdcf4ec143221398addb",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton lost the first set 6-3. He received an injury treatment for his ankle at the changeover. After the treatment, Shelton won the second set 6-1. He then retired before the third set.",
+        "question": "Which happened last: Shelton retired or Shelton won the second set?",
+        "gold": "Shelton retired",
+        "trace": "<reasoning>\nThe events follow the progression of the match from the first set to the third set.\n<timeline>\n1. Shelton lost the first set\n2. Shelton won the second set\n3. Shelton retired before the third set\n</timeline>\n<reflection>\nShelton's retirement is the final chronological event, occurring after he won the second set.\n</reflection>\n</reasoning>\n<answer>Shelton retired</answer>"
+      },
+      "source_sha256": "d2fabdcf4ec143221398addbbafaff71950e52c21acd62d8b1ee2c929881e74e"
+    },
+    {
+      "audit_id": "trace-d31544b21bc60911d9d1853c",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev broke serve at 4-4 in the third set. He served for the match before calling a medical timeout for his shoulder. After the timeout, he closed the match with a forehand winner.",
+        "question": "Did Zverev serve for the match before the medical timeout?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nZverev served for the match before calling the medical timeout. He then closed the match after the timeout.\n<timeline>\n1. Zverev broke serve at 4-4 in the third set.\n2. Zverev served for the match.\n3. Zverev called a medical timeout for his shoulder.\n4. After the timeout, Zverev closed the match with a forehand winner.\n</timeline>\n<reflection>\nThe timeline shows Zverev served for the match before the medical timeout, so the gold answer is supported.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d31544b21bc60911d9d1853ca8a395e3981e3b565600bf55d3ae174611b0fbdc"
+    },
+    {
+      "audit_id": "trace-d36576d6d0cdb5f0fc8eb256",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer broke serve in a thrilling game that lasted 12 minutes. The subsequent changeover took the standard 90 seconds. Federer then held his serve in just 3 minutes. The quick hold secured him the set.",
+        "question": "How long was the changeover?",
+        "gold": "90 seconds",
+        "trace": "<reasoning>\nThe question asks how long the changeover was. Context says the subsequent changeover took the standard 90 seconds.\n<timeline>\n- Federer broke serve in 12-minute game\n- Changeover took standard 90 seconds\n- Federer held serve in 3 minutes\n</timeline>\n<reflection>\nDirect statement: 90 seconds.\n</reflection>\n</reasoning>\n<answer>90 seconds</answer>"
+      },
+      "source_sha256": "d36576d6d0cdb5f0fc8eb256d6a57b9102c5155b6dbaeea8b11da7dc16836f24"
+    },
+    {
+      "audit_id": "trace-d377abed302bf3633b489cbe",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur lost the first set. Before the second set, he changed his shirt. During the second set, he broke Rublev twice and then won it 6-2.",
+        "question": "Which happened last?",
+        "gold": "De Minaur won the second set",
+        "trace": "<reasoning>\nDe Minaur lost the first set, changed his shirt before the second set, then during the second set broke Rublev twice and won it 6-2.\n<timeline>\n1. De Minaur lost the first set.\n2. Before the second set, he changed his shirt.\n3. During the second set, he broke Rublev twice.\n4. He then won the second set 6-2.\n</timeline>\n<reflection>\nThe final event described is De Minaur winning the second set.\n</reflection>\n</reasoning>\n<answer>De Minaur won the second set</answer>"
+      },
+      "source_sha256": "d377abed302bf3633b489cbefd6a4256d5fb475407ab22abee3141b1fd4aa989"
+    },
+    {
+      "audit_id": "trace-d3a58879653f8d6a3a626c6c",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer saved two break points early in the first set. Nadal broke serve later at 4-4. After Nadal broke serve, he closed the set with a love hold.",
+        "question": "What happened after Nadal broke serve?",
+        "gold": "Nadal closed the set",
+        "trace": "<reasoning>\nNadal broke serve at 4-4, and after that break he closed the set with a love hold.\n<timeline>\n1. Federer saved two break points early in the first set.\n2. Nadal broke serve later at 4-4.\n3. After Nadal broke serve, he closed the set with a love hold.\n</timeline>\n<reflection>\nThe event after Nadal broke serve was that Nadal closed the set.\n</reflection>\n</reasoning>\n<answer>Nadal closed the set</answer>"
+      },
+      "source_sha256": "d3a58879653f8d6a3a626c6c4efde22d33be71057bfb5657eda24f83000cf93a"
+    },
+    {
+      "audit_id": "trace-d3f9a9d4d550bd2e71f20e3a",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton fired an ace to hold for 3-3. De Minaur challenged a baseline call before the next point. Minutes later, De Minaur broke serve.",
+        "question": "Which happened first: De Minaur challenged a baseline call or De Minaur broke serve?",
+        "gold": "De Minaur challenged a baseline call",
+        "trace": "<reasoning>\nDe Minaur challenged a baseline call before the next point. He broke serve minutes later.\n<timeline>\n1. Shelton fired an ace to hold for 3-3.\n2. De Minaur challenged a baseline call before the next point.\n3. Minutes later, De Minaur broke serve.\n</timeline>\n<reflection>\nThe timeline shows De Minaur challenged the baseline call before he broke serve, so the gold answer is supported.\n</reflection>\n</reasoning>\n<answer>De Minaur challenged a baseline call</answer>"
+      },
+      "source_sha256": "d3f9a9d4d550bd2e71f20e3a07b542be1e7da62a746030df5a221fa59ddb25b8"
+    },
+    {
+      "audit_id": "trace-d4177fef0f38f90c0d8726d2",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton launched a massive 140mph serve down the T. Djokovic somehow managed to return it deep into the court. Shelton stepped up and volleyed the ball into the open court.",
+        "question": "Which happened first: Djokovic returned the serve or Shelton volleyed the ball?",
+        "gold": "Djokovic returned the serve",
+        "trace": "<reasoning>\nShelton served, Djokovic returned that serve, and Shelton volleyed only after the return.\n<timeline>\n1. Shelton launched a massive 140mph serve down the T.\n2. Djokovic returned it deep into the court.\n3. Shelton stepped up and volleyed the ball into the open court.\n</timeline>\n<reflection>\nDjokovic's return happened before Shelton's volley.\n</reflection>\n</reasoning>\n<answer>Djokovic returned the serve</answer>"
+      },
+      "source_sha256": "d4177fef0f38f90c0d8726d250e30b94e2f63405649db5ed94aed3ec97c827ca"
+    }
+  ],
+  "batch_id": "trace-judge_b-fd92181b84d773557186",
+  "batch_sha256": "85d6cabf3418433a2933cab3a57ce0378f3d1edc2f8c85e63a0544f17fe7ee28"
+}

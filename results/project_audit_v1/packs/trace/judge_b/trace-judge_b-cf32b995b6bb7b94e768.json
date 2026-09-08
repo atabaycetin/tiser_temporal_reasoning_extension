@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-72a646b0a7b143f611acac4a",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner defeated Alcaraz in a thrilling Friday semifinal. He advanced to the championship final on Sunday. In the final, he defeated Medvedev in straight sets to win the title. He lifted the trophy with a huge smile.",
+        "question": "Did Sinner reach the semifinal before playing the final?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe question asks if Sinner reached semifinal before playing final. Context: He defeated Alcaraz in semifinal on Friday, then advanced to final on Sunday. So semifinal before final.\n<timeline>\n- Sinner defeated Alcaraz in Friday semifinal\n- Advanced to championship final on Sunday\n- Defeated Medvedev in final\n</timeline>\n<reflection>\nSemifinal occurred before final, answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "72a646b0a7b143f611acac4acf6e87f5d0f4ae106ec732c3720dc0f63db6da9c"
+    },
+    {
+      "audit_id": "trace-72a69a2d14efdd900f9706fc",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev violently threw his racket after losing the second set. He received a point penalty immediately after the racket throw. He then broke Rune's serve in the opening game of the third set.",
+        "question": "Did Rublev break Rune's serve before receiving the point penalty?",
+        "gold": "No",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Rublev lost the second set.\n2. Rublev violently threw his racket.\n3. Rublev received a point penalty immediately after the throw.\n4. Rublev broke Rune's serve in the opening game of the third set.\n</timeline>\n<reflection>\nBreaking serve happened in the third set, which was after the point penalty.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "72a69a2d14efdd900f9706fc189669e87f3893cc231e39473cbb2680a11dfb3e"
+    },
+    {
+      "audit_id": "trace-734117b05849f522154bdc36",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz won the first set at 4:05 p.m. After a short break, Rublev began serving the second set at 4:12 p.m. Rublev held serve before the next changeover.",
+        "question": "How many minutes passed between Fritz winning the first set and Rublev beginning the second set?",
+        "gold": "7 minutes",
+        "trace": "<reasoning>\nFritz won the first set at 4:05 p.m. and Rublev began serving the second set at 4:12 p.m., so 7 minutes passed.\n<timeline>\n1. Fritz won the first set at 4:05 p.m.\n2. Rublev began serving the second set at 4:12 p.m.\n3. Rublev held serve before the next changeover.\n</timeline>\n<reflection>\nThe interval from 4:05 p.m. to 4:12 p.m. is 7 minutes, so the answer follows directly.\n</reflection>\n</reasoning>\n<answer>7 minutes</answer>"
+      },
+      "source_sha256": "734117b05849f522154bdc36ffa4354b5e871b2c6278c50e69c0ea661ca471ea"
+    },
+    {
+      "audit_id": "trace-734f6e70a42facda3e7361d3",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner held serve in the opening game of the first set. Before Djokovic called a medical timeout, Sinner saved a break point at 1-1. After the medical timeout, Djokovic double-faulted and Sinner broke serve in the fourth game.",
+        "question": "Did Djokovic call the medical timeout before Sinner broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text states that before Djokovic called a medical timeout, Sinner saved a break point. After the medical timeout, Djokovic double-faulted and Sinner broke serve in the fourth game.\n<timeline>\n1. Djokovic called a medical timeout.\n2. Sinner broke serve in the fourth game.\n</timeline>\n<reflection>\nThe medical timeout happened before Sinner broke serve.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "734f6e70a42facda3e7361d35283d9aed230d60451975258035168f04153f56e"
+    },
+    {
+      "audit_id": "trace-73aa6e49f883363cc10c4382",
+      "kind": "trace",
+      "payload": {
+        "context": "The match between Sinner and Alcaraz started at 2:00. Sinner broke serve at 2:18. Rain stopped play at 2:45, after Alcaraz had held for 4-3.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe match started at 2:00 and rain stopped play at 2:45, so the elapsed time is 45 minutes.\n<timeline>\n1. The match between Sinner and Alcaraz started at 2:00.\n2. Sinner broke serve at 2:18.\n3. Rain stopped play at 2:45 after Alcaraz held for 4-3.\n</timeline>\n<reflection>\nFrom 2:00 to 2:45 is 45 minutes, matching the gold answer.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "73aa6e49f883363cc10c4382692a431fb80172b11defe9ec84765789e64d2f57"
+    },
+    {
+      "audit_id": "trace-74974be7d0a1ef899e28c2bd",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal sat down during the rain delay. While the court crew dried the baseline, Federer remained in the locker room. After the baseline was dry, both players returned to court.",
+        "question": "Was Federer on court while the baseline was being dried?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: \"While the court crew dried the baseline, Federer remained in the locker room.\" So Federer was not on court during drying.\n<timeline>\n- Court crew dried baseline.\n- Federer remained in locker room (not on court).\n</timeline>\n<reflection>\nFederer was in the locker room, not on court, so answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "74974be7d0a1ef899e28c2bd096b007bacad8c12f38bc68315b972a5c88eaa91"
+    },
+    {
+      "audit_id": "trace-74c3faa6ef810301141429a4",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud won the first set 6-3. During the second set, De Minaur broke serve for 4-2. After that break, Ruud requested treatment on his shoulder.",
+        "question": "Did Ruud request shoulder treatment before De Minaur broke serve?",
+        "gold": "No",
+        "trace": "<reasoning>\nDe Minaur broke serve for 4-2, and Ruud requested shoulder treatment after that break.\n<timeline>\n1. Ruud won the first set 6-3.\n2. During the second set, De Minaur broke serve for 4-2.\n3. After that break, Ruud requested treatment on his shoulder.\n</timeline>\n<reflection>\nRuud requested treatment after the break, not before it.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "74c3faa6ef810301141429a463158ee47a312fbe27a8b6d97dea6f73e3a90720"
+    },
+    {
+      "audit_id": "trace-74d7fd7ebb6b75724bef993a",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner trailed 1-4 in the first set. After saving a break point, he won four straight games. Later, he clinched the set on his second set point.",
+        "question": "Did Sinner save a break point before clinching the set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nSinner saved a break point before winning four straight games, and later he clinched the set.\n<timeline>\n1. Sinner trailed 1-4 in the first set.\n2. Sinner saved a break point.\n3. He won four straight games.\n4. Later, he clinched the set on his second set point.\n</timeline>\n<reflection>\nThe saved break point happened before Sinner clinched the set, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "74d7fd7ebb6b75724bef993a6be8f06ef7bdced21513a3c4f8ce6bf1775dbe55"
+    },
+    {
+      "audit_id": "trace-756ea1e91b018d959cabe12c",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev argued with the umpire over a controversial double bounce call. After the argument, he received an official warning. He then double-faulted on the very next point.",
+        "question": "Did Zverev double-fault after arguing with the umpire?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe question asks if Zverev double-faulted after arguing with umpire. Context: He argued, after argument received warning, then double-faulted. So double-fault after argument.\n<timeline>\n- Zverev argued with umpire\n- After argument: received warning\n- Then double-faulted on next point\n</timeline>\n<reflection>\nDouble-fault occurred after the argument, answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "756ea1e91b018d959cabe12c324509ab2e5711608a961bf92abf1c0d2b1c57ac"
+    },
+    {
+      "audit_id": "trace-75dbe762d57d94672a3bbfcf",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer hit a crosscourt winner to break serve. The crowd erupted in cheers for the spectacular shot. Federer then walked to his chair for the changeover. He wiped his face with a towel and took a drink.",
+        "question": "What happened after the crowd erupted in cheers?",
+        "gold": "Federer walked to his chair for the changeover",
+        "trace": "<reasoning>\nThe question asks what happened after the crowd erupted in cheers. Context: Federer hit winner to break serve, crowd erupted, then Federer walked to his chair. So walking to chair after cheers.\n<timeline>\n- Federer hit crosscourt winner to break serve\n- Crowd erupted in cheers\n- Federer then walked to his chair for changeover\n</timeline>\n<reflection>\nWalking to chair happened after the crowd erupted.\n</reflection>\n</reasoning>\n<answer>Federer walked to his chair for the changeover</answer>"
+      },
+      "source_sha256": "75dbe762d57d94672a3bbfcf0d73dba702a06ee0dd77cf1a9564b747aad4fcc4"
+    }
+  ],
+  "batch_id": "trace-judge_b-cf32b995b6bb7b94e768",
+  "batch_sha256": "e29aac43881483cc0a1d88ef2701fa56dab59685eaf86a5b014097badd006355"
+}

@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-7d2ed923d138fdd92d259c3e",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud and Tsitsipas started the final set at 9:00 p.m. Ruud held serve after 6 minutes. Tsitsipas broke serve at 9:21 p.m., after a long deuce game.",
+        "question": "How many minutes after the final set started did Tsitsipas break serve?",
+        "gold": "21 minutes",
+        "trace": "<reasoning>\nContext: Final set started at 9:00 p.m. Tsitsipas broke serve at 9:21 p.m. Difference is 21 minutes.\n<timeline>\n- Final set start: 9:00 p.m.\n- Tsitsipas broke serve: 9:21 p.m.\n</timeline>\n<reflection>\n9:21 - 9:00 = 21 minutes.\n</reflection>\n</reasoning>\n<answer>21 minutes</answer>"
+      },
+      "source_sha256": "7d2ed923d138fdd92d259c3e20c5195f8d759d2f69eae67339d0f60345a2663a"
+    },
+    {
+      "audit_id": "trace-7d758ca2fe43004ed06ba69b",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic and Sinner traded breaks in the opening two games of the match. In the seventh game, Sinner challenged a wide call on his forehand, which the hawk-eye system revealed was in. Sinner won the replayed point and eventually held his serve. Later in the set, Djokovic called for a fresh racket during the changeover.",
+        "question": "Did Djokovic call for a fresh racket before Sinner challenged the wide call?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: \"In the seventh game, Sinner challenged a wide call ... Later in the set, Djokovic called for a fresh racket during the changeover.\" So racket call occurred after challenge.\n<timeline>\n- Sinner challenged call.\n- Later, Djokovic called for fresh racket.\n</timeline>\n<reflection>\n\"Later\" indicates racket call after challenge, so not before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "7d758ca2fe43004ed06ba69be8236dadbdd305915be7d968e2057f3ebf6b1ebc"
+    },
+    {
+      "audit_id": "trace-7dbac6e451a72791ef42e05a",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved a break point early in the first set. Medvedev complained to the umpire after Alcaraz held for 3-2. Later, Medvedev won the tie-break.",
+        "question": "Did Medvedev win the tie-break before Alcaraz saved a break point?",
+        "gold": "No",
+        "trace": "<reasoning>\nAlcaraz saved a break point early, while Medvedev won the tie-break later.\n<timeline>\n1. Alcaraz saved a break point early in the first set.\n2. Medvedev complained after Alcaraz held for 3-2.\n3. Later, Medvedev won the tie-break.\n</timeline>\n<reflection>\nBecause Medvedev won the tie-break after Alcaraz saved a break point, he did not win it before.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "7dbac6e451a72791ef42e05a81f31eff91d7fab34044c9ffcc97865285afe056"
+    },
+    {
+      "audit_id": "trace-7e8e5defc4198976c48c2aa7",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur held serve after a ten-shot rally. Rublev then took an injury timeout for his ankle. Before Rublev returned to serve, De Minaur spoke briefly with the umpire.",
+        "question": "Did Rublev take the injury timeout before De Minaur spoke with the umpire?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Rublev then took an injury timeout for his ankle. Before Rublev returned to serve, De Minaur spoke briefly with the umpire.\" So timeout occurred before De Minaur spoke.\n<timeline>\n- Rublev took injury timeout.\n- De Minaur spoke with umpire (before Rublev returned).\n</timeline>\n<reflection>\nThe timeout happens first, then De Minaur speaks, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7e8e5defc4198976c48c2aa75f5563fcfeab4bce206a94d7894fa27fc294be3b"
+    },
+    {
+      "audit_id": "trace-7ecbe1bd6f2471efc14699ee",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev beat Fritz in the round of sixteen. He then lost to Zverev in the quarterfinal. After Zverev won the semifinal, he played Djokovic in the final.",
+        "question": "Did Medvedev play the semifinal after the quarterfinal?",
+        "gold": "No",
+        "trace": "<reasoning>\nMedvedev lost to Zverev in the quarterfinal; the later semifinal and final involved Zverev, not Medvedev.\n<timeline>\n1. Medvedev beat Fritz in the round of sixteen.\n2. Medvedev lost to Zverev in the quarterfinal.\n3. After Zverev won the semifinal, Zverev played Djokovic in the final.\n</timeline>\n<reflection>\nMedvedev did not play the semifinal after the quarterfinal, so the answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "7ecbe1bd6f2471efc14699ee149bf0568d1b0590bf0e3ad5b0e950a669130bc5"
+    },
+    {
+      "audit_id": "trace-7f29996b81cda0d15ca0dce6",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur saved a match point at 5-6. After that, he forced a final-set tie-break. Later, Zverev won the tie-break 7-4.",
+        "question": "What happened after De Minaur saved a match point?",
+        "gold": "He forced a tie-break",
+        "trace": "<reasoning>\nThe context states that after De Minaur saved a match point, he forced a final-set tie-break.\n<timeline>\n1. De Minaur saved a match point at 5-6.\n2. After that, he forced a final-set tie-break.\n3. Later, Zverev won the tie-break 7-4.\n</timeline>\n<reflection>\nThe event following the saved match point is that he forced a tie-break.\n</reflection>\n</reasoning>\n<answer>He forced a tie-break</answer>"
+      },
+      "source_sha256": "7f29996b81cda0d15ca0dce665bb3e648a7343104e30ca6283a85423c69f4618"
+    },
+    {
+      "audit_id": "trace-7f4a0a27a8fc7a069e09bfdb",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune received a medical timeout for a blister on his dominant hand. Play resumed five minutes later. After play resumed, he won four straight games to close out the match.",
+        "question": "Did Rune win four straight games before the medical timeout?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe question asks if Rune won four straight games before medical timeout. Context: He received medical timeout, then after play resumed he won four straight games. So winning after timeout.\n<timeline>\n- Rune received medical timeout\n- Play resumed five minutes later\n- After play resumed: won four straight games\n</timeline>\n<reflection>\nWinning happened after the timeout, not before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "7f4a0a27a8fc7a069e09bfdb8ad9be548777117d5f672b23694cddcacfbb429f"
+    },
+    {
+      "audit_id": "trace-7f52814618848ccee80ddce1",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton fired an ace to hold for 3-2 in the first set. Before Ruud asked for the trainer, Shelton broke serve with a forehand winner. After the trainer visit, Ruud held serve to stop the run.",
+        "question": "Did Shelton break serve before Ruud asked for the trainer?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nShelton broke serve before Ruud asked for the trainer, and Ruud held serve only after the trainer visit.\n<timeline>\n1. Shelton fired an ace to hold for 3-2 in the first set.\n2. Shelton broke serve with a forehand winner.\n3. Ruud asked for the trainer.\n4. After the trainer visit, Ruud held serve to stop the run.\n</timeline>\n<reflection>\nThe timeline places Shelton's break before Ruud asked for the trainer.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7f52814618848ccee80ddce133e92159e2bf4debbe21f7af131b2fed7cacc8d6"
+    },
+    {
+      "audit_id": "trace-800ead6a3dc007e653ae054d",
+      "kind": "trace",
+      "payload": {
+        "context": "The match began with a grueling rally lasting exactly 2 minutes. Fritz ultimately won the marathon point with a dropshot. He then comfortably won the game 3 minutes later.",
+        "question": "How long did the grueling rally last?",
+        "gold": "2 minutes",
+        "trace": "<reasoning>\nContext: The match began with a grueling rally lasting exactly 2 minutes. Question asks how long the rally lasted.\n<timeline>\n1. Match began with a grueling rally lasting exactly 2 minutes.\n2. Fritz won the point with a dropshot.\n3. He won the game 3 minutes later.\n</timeline>\n<reflection>\nThe rally duration is explicitly given as 2 minutes.\n</reflection>\n</reasoning>\n<answer>2 minutes</answer>"
+      },
+      "source_sha256": "800ead6a3dc007e653ae054dbdddb55c885cc2a28a3d9a353ad0bbb524a45a5b"
+    },
+    {
+      "audit_id": "trace-8038b03a232940459e4aa051",
+      "kind": "trace",
+      "payload": {
+        "context": "The stadium crowd performed the Mexican wave during the changeover. Rublev tried to close his eyes and focus on his tactics while the crowd cheered. Shelton just smiled at the crowd's energetic antics.",
+        "question": "Did the crowd perform the wave while Rublev tried to focus?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: Crowd performed the wave during the changeover. Rublev tried to focus while the crowd cheered. The question asks if the wave occurred while Rublev tried to focus.\n<timeline>\n1. Stadium crowd performed Mexican wave during the changeover.\n2. Rublev tried to close his eyes and focus while the crowd cheered.\n</timeline>\n<reflection>\nThe cheering is part of the wave performance, and Rublev's focusing happens during that time, so yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "8038b03a232940459e4aa0517dbffd96be35837b81317dcc2c4e3a6f42841295"
+    }
+  ],
+  "batch_id": "trace-judge_b-5981a97eb2ca7bd58eeb",
+  "batch_sha256": "702c5686b7baff4e8be6c815077cf2365ca19a60fbbe0caef3fd82c1c5925610"
+}

@@ -1,0 +1,42 @@
+{
+  "batch_id": "reflection-adjudicator-8c62da6b2c90ff1caaea",
+  "batch_sha256": "e20d655ef768c26322949c5508f937e1e9808d0de871543195a16a873aaa0b47",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-08T11:02:46Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "reflection-2cdbb0f2444be3fbab58cac3",
+      "source_sha256": "2cdbb0f2444be3fbab58cac3f9f7a81b82ca99c0e46abce8e47a8265c6859eeb",
+      "label": "explicit_conflict",
+      "corrected_answer": null,
+      "mention_kind": "contradiction_or_inconsistency",
+      "evidence": [
+        {
+          "field": "reflection",
+          "quote": "the Vladimir Putin position is clearly a misinterpretation or error in the provided context"
+        }
+      ],
+      "rationale": "The reflection names Financial Secretary as the contextual next position and explicitly rejects the competing Vladimir Putin position as a misinterpretation or error in the provided context."
+    },
+    {
+      "audit_id": "reflection-2f4b504069525d86b59103b4",
+      "source_sha256": "2f4b504069525d86b59103b40c8c151ce502b52de7b1f9474a771b9bd502f913",
+      "label": "no_explicit_conflict",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [],
+      "rationale": "The reflection notices a timeline gap and possible missing interim leader, but does not explicitly contrast the supplied context with prior knowledge, expectation, or a specific alternative answer."
+    },
+    {
+      "audit_id": "reflection-2fefc8a3d86f373678b987ca",
+      "source_sha256": "2fefc8a3d86f373678b987cab35e8d5061bdeab32a2c74c72da603d9c74da26e",
+      "label": "no_explicit_conflict",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [],
+      "rationale": "The reflection corrects an initial interpretation and affirms the timeline, but does not explicitly identify a conflict with the supplied context or an outside factual expectation."
+    }
+  ]
+}

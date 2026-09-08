@@ -1,0 +1,66 @@
+{
+  "batch_id": "semantic-adjudicator-e127e70442da9f1a05d0",
+  "batch_sha256": "51dfa9f87527925cb0c42bc2d89f1651fc0771a6ea8c0c80509bdc36bbb81291",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-08T11:16:03Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-094983c09240408a42d31e1d",
+      "source_sha256": "094983c09240408a42d31e1ddf64520c1e4ec0918989141a1939b9b6e4d98e63",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev double-faulted on set point at 5-6 in the first set. He lost the set 5-7. Before the second set, Rublev received a coaching violation from the umpire."
+        }
+      ],
+      "rationale": "The gold event happened before the coaching violation, but the earlier double fault also happened before it, so the broad question has multiple possible answers."
+    },
+    {
+      "audit_id": "semantic-094a7fc4bdf94031bda38791",
+      "source_sha256": "094a7fc4bdf94031bda387918ff1585b29b8ec8b90b0579a160d613de00314e0",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz broke Shelton at 2-2 in the first set. Shelton smashed a racket after losing the next game."
+        }
+      ],
+      "rationale": "Fritz breaking Shelton occurred before the racket smash, but Shelton losing the next game also occurred before the smash, so the question does not uniquely identify the gold event."
+    },
+    {
+      "audit_id": "semantic-0afe07caa7121dd732b14f24",
+      "source_sha256": "0afe07caa7121dd732b14f2483a8e5ff7d2943cd8588e7237d590c43591518f5",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal broke Federer in the sixth game of the first set. Federer broke back two games later. After the break back, the set moved into a tie-break."
+        }
+      ],
+      "rationale": "Federer breaking back happened before the tie-break, but Nadal's earlier break also happened before it, so more than one answer is possible."
+    },
+    {
+      "audit_id": "semantic-0c0190e94b9b63f68710c349",
+      "source_sha256": "0c0190e94b9b63f68710c3491f081eefeb2677dba855953329274b7190fc4321",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic broke Sinner at 2-2. After the break, the roof was closed because of rain. When play resumed, Sinner immediately broke back."
+        }
+      ],
+      "rationale": "The roof closure happened after Djokovic broke Sinner, but Sinner breaking back also happened after that break, so the broad after-question allows multiple answers."
+    }
+  ]
+}

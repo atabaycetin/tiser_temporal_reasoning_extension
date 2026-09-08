@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-f5650cc7619f059e2d3817d6",
+      "kind": "trace",
+      "payload": {
+        "context": "The quarterfinal between Zverev and Shelton started at noon. A crowd interruption happened 25 minutes later. The roof was closed 15 minutes after the interruption.",
+        "question": "How many minutes after the match started was the roof closed?",
+        "gold": "40 minutes",
+        "trace": "<reasoning>\nThe crowd interruption was 25 minutes after the match started, and the roof closed 15 minutes after that interruption, totaling 40 minutes.\n<timeline>\n1. The match started at noon.\n2. A crowd interruption happened 25 minutes later.\n3. The roof was closed 15 minutes after the interruption.\n</timeline>\n<reflection>\nAdding 25 and 15 gives 40 minutes after the match started.\n</reflection>\n</reasoning>\n<answer>40 minutes</answer>"
+      },
+      "source_sha256": "f5650cc7619f059e2d3817d6a29d8da84df5d7aaf6f0ef4a60d1ce8f0e10e518"
+    },
+    {
+      "audit_id": "trace-f5c2e12a244d1c5067e5ef73",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz won his first-round match comfortably on Monday. He played a second-round match on Wednesday, winning in four sets. He then lost his third-round match on Friday to a qualifier. It was considered a major upset.",
+        "question": "Did Fritz play the third round before the second round?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe question asks if Fritz played third round before second round. Context: He played first round Monday, second round Wednesday, then third round Friday. So second before third.\n<timeline>\n- First round Monday\n- Second round Wednesday\n- Third round Friday\n</timeline>\n<reflection>\nThird round occurred after second round, not before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "f5c2e12a244d1c5067e5ef7369e922f4a66d4ed26737599277753625545fc4ed"
+    },
+    {
+      "audit_id": "trace-f5c469b6be0e931f057e1471",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev won the second set 6-2. Rune changed his shirt before the final set. After the shirt change, Rune broke twice and won the match.",
+        "question": "Which event happened last?",
+        "gold": "Rune won the match",
+        "trace": "<reasoning>\nContext: \"Zverev won the second set 6-2. Rune changed his shirt before the final set. After the shirt change, Rune broke twice and won the match.\" Winning the match is the final event.\n<timeline>\n- Zverev won second set.\n- Rune changed shirt.\n- Rune broke twice.\n- Rune won the match.\n</timeline>\n<reflection>\nWinning the match is listed last, so it happened last.\n</reflection>\n</reasoning>\n<answer>Rune won the match</answer>"
+      },
+      "source_sha256": "f5c469b6be0e931f057e14718d9d23dbe90cff9ffbc66ea5e71f8924c2bbee78"
+    },
+    {
+      "audit_id": "trace-f61cd288e602b6b30da0111e",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal opened the final set with a service hold. Federer then saved three break points. After Federer saved them, the crowd interruption stopped play for several minutes.",
+        "question": "What happened after Federer saved three break points?",
+        "gold": "The crowd interruption stopped play",
+        "trace": "<reasoning>\nContext: \"Federer then saved three break points. After Federer saved them, the crowd interruption stopped play for several minutes.\" So the interruption occurs after saving break points.\n<timeline>\n- Federer saved three break points.\n- Crowd interruption stopped play.\n</timeline>\n<reflection>\n\"After Federer saved them\" directly indicates the next event is the crowd interruption.\n</reflection>\n</reasoning>\n<answer>The crowd interruption stopped play</answer>"
+      },
+      "source_sha256": "f61cd288e602b6b30da0111e1f1c0de258a45f9ca04618efb9aea63743556b92"
+    },
+    {
+      "audit_id": "trace-fb392c79863afc32f5dc8b96",
+      "kind": "trace",
+      "payload": {
+        "context": "The roof started closing at 4:05 p.m. While the roof was closing, both players stayed off court. Play resumed at 4:23 p.m., and Rune held serve immediately after the restart.",
+        "question": "How long after the roof started closing did play resume?",
+        "gold": "18 minutes",
+        "trace": "<reasoning>\nContext: Roof started closing at 4:05 p.m. Play resumed at 4:23 p.m. Difference is 18 minutes.\n<timeline>\n- Roof started closing: 4:05 p.m.\n- Play resumed: 4:23 p.m.\n</timeline>\n<reflection>\n4:23 - 4:05 = 18 minutes. No other intervals given.\n</reflection>\n</reasoning>\n<answer>18 minutes</answer>"
+      },
+      "source_sha256": "fb392c79863afc32f5dc8b9645fc380a5034e9f3b74f70af7d797159754c314b"
+    },
+    {
+      "audit_id": "trace-fb3bc25c9aedc779d23c50fb",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev hit a massive serve out wide. Shelton successfully returned it for a clean winner. The umpire called the ball in, but Zverev challenged the call. Hawk-Eye showed the ball was on the line.",
+        "question": "Did Zverev challenge the call before the umpire called the ball in?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe umpire called the ball in before Zverev challenged the call.\n<timeline>\n1. Zverev hit a massive serve out wide.\n2. Shelton returned it for a clean winner.\n3. The umpire called the ball in.\n4. Zverev challenged the call.\n5. Hawk-Eye showed the ball was on the line.\n</timeline>\n<reflection>\nThe challenge followed the umpire's call, so it did not happen before it.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "fb3bc25c9aedc779d23c50fb328227241e2ba3afa2d114b9d391203256aa6d43"
+    },
+    {
+      "audit_id": "trace-fc83d398fb8effc137beebab",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic and Medvedev began warming up at 7:10 p.m. The warm-up was interrupted at 7:18 p.m. because the net strap broke. Play finally began at 7:30 p.m.",
+        "question": "How many minutes after the warm-up began was it interrupted?",
+        "gold": "8 minutes",
+        "trace": "<reasoning>\nThe warm-up began at 7:10 p.m. and was interrupted at 7:18 p.m., an 8-minute difference.\n<timeline>\n1. Djokovic and Medvedev began warming up at 7:10 p.m.\n2. The warm-up was interrupted at 7:18 p.m. because the net strap broke.\n3. Play began at 7:30 p.m.\n</timeline>\n<reflection>\nThe time from 7:10 p.m. to 7:18 p.m. is 8 minutes.\n</reflection>\n</reasoning>\n<answer>8 minutes</answer>"
+      },
+      "source_sha256": "fc83d398fb8effc137beebabd8f28e0aebfe4f8d15abd06b78352c8c4926fff3"
+    },
+    {
+      "audit_id": "trace-fd580a319c1a9e342018d3f9",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz broke serve after 25 minutes of play. De Minaur broke back 14 minutes later. After that, both players held serve until the tie-break.",
+        "question": "How many minutes after Fritz broke serve did De Minaur break back?",
+        "gold": "14 minutes",
+        "trace": "<reasoning>\nThe context explicitly states that De Minaur broke back 14 minutes later (after Fritz broke serve).\n<timeline>\n1. 25 minutes into play: Fritz broke serve\n2. 14 minutes later: De Minaur broke back\n3. After that: both players held serve until the tie-break\n</timeline>\n<reflection>\nThe timeline explicitly records the gap between the two breaks as 14 minutes.\n</reflection>\n</reasoning>\n<answer>14 minutes</answer>"
+      },
+      "source_sha256": "fd580a319c1a9e342018d3f9de4acac9cb6bfa97a00a90520705bc19713dd8c4"
+    },
+    {
+      "audit_id": "trace-fecddfb0f7156f9a3e7c1502",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur held serve to start the third set. Shelton broke him at 2-1. Later, De Minaur broke back before the final changeover.",
+        "question": "Which happened first: Shelton broke serve or De Minaur held serve to start the third set?",
+        "gold": "De Minaur held serve to start the third set",
+        "trace": "<reasoning>\nDe Minaur held serve to start the third set before Shelton broke him at 2-1.\n<timeline>\n1. De Minaur held serve to start the third set.\n2. Shelton broke him at 2-1.\n3. Later, De Minaur broke back before the final changeover.\n</timeline>\n<reflection>\nDe Minaur's opening hold is before Shelton's break, so it happened first.\n</reflection>\n</reasoning>\n<answer>De Minaur held serve to start the third set</answer>"
+      },
+      "source_sha256": "fecddfb0f7156f9a3e7c1502ee50b19973aee6e9a855e938b24da5c13126596f"
+    },
+    {
+      "audit_id": "trace-feefa8d5c8a0daacdbf06cdf",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner requested a review on a close baseline call. The review clearly showed the ball was out by millimeters. The umpire announced the score as 15-40 immediately after. Sinner nodded in agreement with the technology.",
+        "question": "What happened before the review showed the ball was out?",
+        "gold": "Sinner requested a review",
+        "trace": "<reasoning>\nThe question asks what happened before the review showed the ball was out. Context: Sinner requested a review, then the review showed the ball out. So request before showing.\n<timeline>\n- Sinner requested a review\n- Review showed ball was out\n</timeline>\n<reflection>\nThe request occurred immediately before the review result.\n</reflection>\n</reasoning>\n<answer>Sinner requested a review</answer>"
+      },
+      "source_sha256": "feefa8d5c8a0daacdbf06cdf9a7c1078ea272d50bd177a5a471058d53f43df6a"
+    }
+  ],
+  "batch_id": "trace-judge_b-654970a35b3604e877bc",
+  "batch_sha256": "9e9d3b029b5bdd90750285a19fe59e9a8ebe2b56f3751993830cc48b915a1b4f"
+}

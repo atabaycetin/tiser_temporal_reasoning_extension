@@ -1,0 +1,56 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "adjudicator",
+  "rubric": "Resolve the two supplied decisions from the source text. Verify any proposed correction independently.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "31fe856ac6d72eb25df877815227baf1e11ccb9a5f0940d5c542708375bb9af6",
+  "items": [
+    {
+      "audit_id": "trace-7949de1de1ba8f83da889aa4",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved a break point in the opening game. After that hold, Shelton hit three aces in his first service game. Before the first changeover, Djokovic broke Shelton with a backhand winner.",
+        "question": "Did Shelton hit three aces before Djokovic broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nShelton hit three aces before the first changeover, and Djokovic broke Shelton before that same changeover after Shelton's service game.\n<timeline>\n1. Djokovic saved a break point in the opening game.\n2. After that hold, Shelton hit three aces in his first service game.\n3. Before the first changeover, Djokovic broke Shelton with a backhand winner.\n</timeline>\n<reflection>\nShelton's three aces occurred before Djokovic broke serve, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "7949de1de1ba8f83da889aa491d57b1f1da65f5ba8213fa3cec1ea9a7344c80e",
+      "decisions": [
+        {
+          "audit_id": "trace-7949de1de1ba8f83da889aa4",
+          "source_sha256": "7949de1de1ba8f83da889aa491d57b1f1da65f5ba8213fa3cec1ea9a7344c80e",
+          "label": "supported",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [
+            {
+              "field": "context",
+              "quote": "After that hold, Shelton hit three aces in his first service game. Before the first changeover, Djokovic broke Shelton with a backhand winner."
+            }
+          ],
+          "rationale": "The trace follows the context's sequence: Shelton's three aces are given before Djokovic's break of Shelton."
+        },
+        {
+          "audit_id": "trace-7949de1de1ba8f83da889aa4",
+          "source_sha256": "7949de1de1ba8f83da889aa491d57b1f1da65f5ba8213fa3cec1ea9a7344c80e",
+          "label": "unsupported_reasoning",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [
+            {
+              "field": "context",
+              "quote": "After that hold, Shelton hit three aces in his first service game. Before the first changeover, Djokovic broke Shelton with a backhand winner."
+            },
+            {
+              "field": "trace",
+              "quote": "Djokovic broke Shelton before that same changeover after Shelton's service game."
+            }
+          ],
+          "rationale": "The context supports the queried order by placing Shelton hitting three aces before Djokovic broke Shelton, but the trace adds that Djokovic broke Shelton after Shelton's service game. That extra timing detail is not stated by the context and is not needed for the conclusion."
+        }
+      ]
+    }
+  ],
+  "batch_id": "trace-adjudicator-4d12f4a02cfb871b39ff",
+  "batch_sha256": "7e417df6cc5606195a2d0ea70569b81d0ba842aab46a89389b0dda1f05b53d6d"
+}

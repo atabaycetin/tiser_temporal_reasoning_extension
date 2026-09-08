@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-093af3e81a90ed88268f44a3",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic faced a break point at 3-3 in the first set. The roof was closed due to rain during the changeover. After the roof closure, Djokovic saved the break point and held serve.",
+        "question": "What happened after the roof was closed?",
+        "gold": "Djokovic saved the break point",
+        "trace": "<reasoning>\nThe text explains the sequence of events surrounding the roof closure.\n<timeline>\n1. Djokovic faced a break point at 3-3\n2. Roof was closed during the changeover\n3. Djokovic saved the break point\n4. Djokovic held serve\n</timeline>\n<reflection>\nThe event immediately following the roof closure was Djokovic saving the break point.\n</reflection>\n</reasoning>\n<answer>Djokovic saved the break point</answer>"
+      },
+      "source_sha256": "093af3e81a90ed88268f44a3c953b0756d081d1bad04749e635521c8b36038dc"
+    },
+    {
+      "audit_id": "trace-0a09662f492be50a122509dc",
+      "kind": "trace",
+      "payload": {
+        "context": "Medvedev saved a match point at 4-5. Sinner broke serve in the next return game. After that, Medvedev requested a medical timeout before the final tie-break.",
+        "question": "Which happened last?",
+        "gold": "Medvedev requested a medical timeout",
+        "trace": "<reasoning>\nContext: Medvedev saved match point at 4-5. Sinner broke serve in next return game. After that, Medvedev requested a medical timeout before final tie-break. The timeout request is the last event listed.\n<timeline>\n- Medvedev saved match point.\n- Sinner broke serve.\n- Medvedev requested medical timeout.\n</timeline>\n<reflection>\nThe request occurs after the break, so it is last.\n</reflection>\n</reasoning>\n<answer>Medvedev requested a medical timeout</answer>"
+      },
+      "source_sha256": "0a09662f492be50a122509dcc178ca7bcc69600471441fa0491e45a21c1f368d"
+    },
+    {
+      "audit_id": "trace-0a96f98390acb0da3f0a7d5c",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur chased down a drop shot but hit the ball wide. He challenged the call, hoping it caught the line. The replay showed the ball was out, and he subsequently lost the game.",
+        "question": "Did De Minaur challenge the call before the replay showed the ball was out?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text states De Minaur hit the ball wide, challenged the call, and then the replay showed the ball was out.\n<timeline>\n1. De Minaur challenged the call.\n2. The replay showed the ball was out.\n</timeline>\n<reflection>\nThe timeline confirms De Minaur challenged the call before the replay was shown.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "0a96f98390acb0da3f0a7d5c732d3c5607c80e761322f55846730c369651ada7"
+    },
+    {
+      "audit_id": "trace-0bc36163f480791ae3db56c6",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz broke serve in the first game of the final. Djokovic broke back immediately after that. Later, Alcaraz won the second-set tie-break.",
+        "question": "Which happened first: Djokovic broke back or Alcaraz broke serve?",
+        "gold": "Alcaraz broke serve",
+        "trace": "<reasoning>\nContext: Alcaraz broke serve in the first game of the final. Djokovic broke back immediately after that. So Alcaraz's break occurred first.\n<timeline>\n- Alcaraz broke serve.\n- Djokovic broke back.\n</timeline>\n<reflection>\n\"Immediately after that\" indicates Alcaraz's break precedes Djokovic's break back.\n</reflection>\n</reasoning>\n<answer>Alcaraz broke serve</answer>"
+      },
+      "source_sha256": "0bc36163f480791ae3db56c6cca18c8e2028b0cf1fe82f130fbf7077c02647ba"
+    },
+    {
+      "audit_id": "trace-0bc9eb6341e7dcb950cc2220",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz saved a set point during the first-set tie-break. Immediately after that, Sinner won two straight points. Later, Sinner closed the set with an ace.",
+        "question": "Did Sinner close the set with an ace before Alcaraz saved a set point?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Alcaraz saved a set point during the first-set tie-break. Immediately after that, Sinner won two straight points. Later, Sinner closed the set with an ace. So the ace occurred after the saved set point.\n<timeline>\n- Alcaraz saved set point.\n- Sinner won two points.\n- Sinner closed set with ace (later).\n</timeline>\n<reflection>\nSince ace happened after the saved point, it did not happen before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "0bc9eb6341e7dcb950cc2220807560e942b6b33aa82bbc7bdf571a46b19f6702"
+    },
+    {
+      "audit_id": "trace-0ca9cbcd374b92724cd4f3db",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas lost the first set after a tie-break. Before the second set started, Ruud changed rackets twice. Later, Tsitsipas broke serve in the second game.",
+        "question": "What happened before Tsitsipas broke serve in the second set?",
+        "gold": "Ruud changed rackets twice",
+        "trace": "<reasoning>\nBefore the second set started, Ruud changed rackets twice; Tsitsipas broke serve later in the second game.\n<timeline>\n1. Tsitsipas lost the first set after a tie-break.\n2. Before the second set started, Ruud changed rackets twice.\n3. Later, Tsitsipas broke serve in the second game.\n</timeline>\n<reflection>\nRuud's racket changes happened before Tsitsipas broke serve in the second set.\n</reflection>\n</reasoning>\n<answer>Ruud changed rackets twice</answer>"
+      },
+      "source_sha256": "0ca9cbcd374b92724cd4f3db1ad5fc62d48c5ffcbe8ff4de924a2409c8ca5890"
+    },
+    {
+      "audit_id": "trace-0d39eada66788347fe04948f",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton hit a passing shot to earn break point. De Minaur saved the break point with a volley. Two games later, Shelton won the set with an ace.",
+        "question": "Which happened first: De Minaur saved the break point or Shelton earned break point?",
+        "gold": "Shelton earned break point",
+        "trace": "<reasoning>\nShelton earned the break point with a passing shot first, and then De Minaur saved it.\n<timeline>\n1. Shelton hit a passing shot to earn break point\n2. De Minaur saved the break point with a volley\n3. Two games later: Shelton won the set with an ace\n</timeline>\n<reflection>\nEarning the break point is a prerequisite to it being saved.\n</reflection>\n</reasoning>\n<answer>Shelton earned break point</answer>"
+      },
+      "source_sha256": "0d39eada66788347fe04948f689cc98031c4e3644f21bad04ac626edc5918dd1"
+    },
+    {
+      "audit_id": "trace-0d6d905c1bdf35d575a9bc49",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton won the first set at 8:22 p.m. De Minaur took a bathroom break immediately after the set. Play restarted at 8:31 p.m., and De Minaur broke serve four minutes later.",
+        "question": "How many minutes after Shelton won the first set did De Minaur break serve?",
+        "gold": "13 minutes",
+        "trace": "<reasoning>\nShelton won the set at 8:22 p.m. Play restarted at 8:31 p.m. and De Minaur broke serve 4 minutes later at 8:35 p.m. The duration from 8:22 p.m. to 8:35 p.m. is 13 minutes.\n<timeline>\n1. 8:22 p.m.: Shelton won the first set\n2. Immediately after: De Minaur took a bathroom break\n3. 8:31 p.m.: Play restarted\n4. 8:35 p.m. (+4 minutes): De Minaur broke serve\n</timeline>\n<reflection>\nThe elapsed time from the end of the first set (8:22 p.m.) to the break (8:35 p.m.) is 13 minutes.\n</reflection>\n</reasoning>\n<answer>13 minutes</answer>"
+      },
+      "source_sha256": "0d6d905c1bdf35d575a9bc49082f1eaddfee8c81ea3b76da9e5f1b86d8643d97"
+    },
+    {
+      "audit_id": "trace-0db05b11ca1fea20e504b41a",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner defeated Alcaraz in the quarterfinal. In the semifinal, Sinner lost to Djokovic in two tie-breaks. Djokovic then withdrew from the final due to a knee injury.",
+        "question": "Did Sinner reach the final before Djokovic withdrew?",
+        "gold": "No",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Sinner defeated Alcaraz in the quarterfinal.\n2. Sinner lost to Djokovic in the semifinal.\n3. Djokovic withdrew from the final.\n</timeline>\n<reflection>\nSinner was eliminated in the semifinal, meaning he did not reach the final at all.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "0db05b11ca1fea20e504b41a6bae98ac42e648ccfe97c6a1463bb1ef700a3a2d"
+    },
+    {
+      "audit_id": "trace-0e6f585f4b12a22117f3e8fb",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz won the opening set after a tie-break. Before the second set began, Medvedev left the court for a clothing change. Later, Medvedev broke serve in the fourth game.",
+        "question": "Which event happened last?",
+        "gold": "Medvedev broke serve",
+        "trace": "<reasoning>\nAlcaraz won the opening set, Medvedev left the court before the second set, and later Medvedev broke serve in the fourth game.\n<timeline>\n1. Alcaraz won the opening set after a tie-break.\n2. Before the second set began, Medvedev left the court for a clothing change.\n3. Later, Medvedev broke serve in the fourth game.\n</timeline>\n<reflection>\nThe last event in the timeline is Medvedev breaking serve.\n</reflection>\n</reasoning>\n<answer>Medvedev broke serve</answer>"
+      },
+      "source_sha256": "0e6f585f4b12a22117f3e8fb42d2d80fb3ddf6d484376511c38b26096c6b2c61"
+    }
+  ],
+  "batch_id": "trace-judge_b-f443b2e548015c9eb9fa",
+  "batch_sha256": "c6dc278e01c7edebf5ae0879184e059f7d2cd33615adcd1a9a29b2faa8b2f427"
+}

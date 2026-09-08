@@ -1,0 +1,194 @@
+{
+  "batch_id": "trace-judge_a-0e377f08b00bf115405d",
+  "batch_sha256": "f735de0c51f4fa9a16ba9f176a49794367f21a6940b3a0811af343f00c2356c7",
+  "pass": "judge_a",
+  "judged_at": "2026-09-08T11:11:28Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-f6cc7c3e0e49551a36a28aaa",
+      "source_sha256": "f6cc7c3e0e49551a36a28aaadec93f5b64fb392bdd22836c10ad91829856da6b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev called the trainer during the next changeover. After the medical timeout, Rune held serve to lead 3-0."
+        },
+        {
+          "field": "trace",
+          "quote": "However the context says \"After the medical timeout, Rune held serve\", so Rune held serve is after the call."
+        }
+      ],
+      "rationale": "The trace correctly recognizes that Rune's hold occurred after the trainer call, although an intervening medical timeout happened first."
+    },
+    {
+      "audit_id": "trace-f727d02f3b92eb5da183bf07",
+      "source_sha256": "f727d02f3b92eb5da183bf077a3b7a00a5e4e3c367910702f7a4f70ed6d3d393",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Medvedev anticipated the move and hit a lob over him. De Minaur scrambled back and hit a spectacular tweener winner."
+        },
+        {
+          "field": "trace",
+          "quote": "2. Medvedev hit a lob over him.\n3. De Minaur scrambled back and hit a tweener winner."
+        }
+      ],
+      "rationale": "The context and trace both place Medvedev's lob before De Minaur's tweener winner."
+    },
+    {
+      "audit_id": "trace-f7e89909b39ab2afdb9d3a8f",
+      "source_sha256": "f7e89909b39ab2afdb9d3a8f65aa61b2edce4d355703f1d33c256b0ee7843a8c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During his opponent's service toss, a loud emergency siren went off outside the stadium."
+        },
+        {
+          "field": "trace",
+          "quote": "The siren interrupted the toss as it happened simultaneously."
+        }
+      ],
+      "rationale": "The trace correctly treats the siren as occurring during the opponent's service toss."
+    },
+    {
+      "audit_id": "trace-f7ef94e03fcac037ea44b323",
+      "source_sha256": "f7ef94e03fcac037ea44b323f9ae1129e7804c270d3d693ff876bb0d03a62c40",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Medvedev won the first set at 6:18 p.m."
+        },
+        {
+          "field": "context",
+          "quote": "The second set began at 6:27 p.m."
+        },
+        {
+          "field": "trace",
+          "quote": "6:27 - 6:18 = 9 minutes."
+        }
+      ],
+      "rationale": "The trace correctly calculates the elapsed time from 6:18 p.m. to 6:27 p.m. as 9 minutes."
+    },
+    {
+      "audit_id": "trace-f810214adc82c022f6c7a678",
+      "source_sha256": "f810214adc82c022f6c7a678418aba04aa7c48d7b8645662e2f4a53496f5732a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Later, Alcaraz broke back, forced a tie-break, and won the set."
+        },
+        {
+          "field": "trace",
+          "quote": "The sequence ends with Alcaraz winning the set, so that is last."
+        }
+      ],
+      "rationale": "The trace correctly identifies Alcaraz winning the set as the final listed event."
+    },
+    {
+      "audit_id": "trace-f88e8eddefc92d8f2371f36c",
+      "source_sha256": "f88e8eddefc92d8f2371f36cd86a2eb9f0348f1382e082892ec450e26d9bc142",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before Fritz converted the break point, Shelton received a time violation."
+        },
+        {
+          "field": "trace",
+          "quote": "The time violation is explicitly before the conversion, so the answer is Yes."
+        }
+      ],
+      "rationale": "The trace correctly answers that Shelton's time violation occurred before Fritz converted the break point."
+    },
+    {
+      "audit_id": "trace-f9845e86389dbf1301bfdad2",
+      "source_sha256": "f9845e86389dbf1301bfdad295afd7e1ff4a7054ea54c44673ca6fa23fa1478b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas broke serve immediately after that error. Later, Djokovic won five straight points in the tie-break."
+        },
+        {
+          "field": "trace",
+          "quote": "\"Later\" indicates tie-break points happen after the break, so not before; answer no."
+        }
+      ],
+      "rationale": "The trace correctly concludes that Djokovic's five straight tie-break points happened after, not before, Tsitsipas broke serve."
+    },
+    {
+      "audit_id": "trace-f9c570f6d7e9c2acd4cdf6ce",
+      "source_sha256": "f9c570f6d7e9c2acd4cdf6ce1dc37a8476b6be5fd03b2e7f870604b02548c4ae",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After the interruption, Medvedev saved the break point."
+        },
+        {
+          "field": "trace",
+          "quote": "The interruption is before Medvedev saved the break point, so the answer is Yes."
+        }
+      ],
+      "rationale": "The trace correctly places the crowd interruption before Medvedev saved the break point."
+    },
+    {
+      "audit_id": "trace-f9c68cd7f3d617669c91e43e",
+      "source_sha256": "f9c68cd7f3d617669c91e43e30c9f5a159351fd5cd52fed224e5f0e7e5f803fb",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune's argument had already ended before the interruption."
+        },
+        {
+          "field": "trace",
+          "quote": "Since the argument ended before the interruption, Rune was not arguing during it."
+        }
+      ],
+      "rationale": "The trace correctly concludes Rune was not arguing during the crowd interruption because the argument had already ended."
+    },
+    {
+      "audit_id": "trace-fa7548cb361182f0549e9f3a",
+      "source_sha256": "fa7548cb361182f0549e9f3a630f957db7eb1374dd64e6200452c85cc18cbaba",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After holding twice in the first set, he called the trainer at 3-4. Medvedev broke serve later, immediately before serving out the set."
+        },
+        {
+          "field": "trace",
+          "quote": "The ordered events show Djokovic called the trainer before Medvedev broke serve, supporting the gold answer."
+        }
+      ],
+      "rationale": "The trace correctly identifies Djokovic's trainer call as before Medvedev's later break of serve."
+    }
+  ]
+}

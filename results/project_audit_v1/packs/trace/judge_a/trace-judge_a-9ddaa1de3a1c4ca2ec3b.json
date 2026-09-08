@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-d06a0f14c77398b304b26825",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas held serve to start the match. Ruud challenged a line call during the third game. After the challenge, Tsitsipas broke serve for a 3-1 lead.",
+        "question": "Did Ruud challenge a line call before Tsitsipas broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: Ruud challenged a line call during third game. After the challenge, Tsitsipas broke serve. Question asks if challenge occurred before break.\n<timeline>\n1. Tsitsipas held serve to start.\n2. Ruud challenged a line call during the third game.\n3. After the challenge, Tsitsipas broke serve for 3-1 lead.\n</timeline>\n<reflection>\n\"After the challenge\" explicitly indicates the break happened later, so yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d06a0f14c77398b304b26825747d4e914fba0b71ad7c56308b7f7f9ae8b32fd6"
+    },
+    {
+      "audit_id": "trace-d0bae9ecda924af9bf413fde",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic won the first set in 30 minutes. The second set was a grueling battle that lasted 60 minutes. The third set went quickly, finishing in just 25 minutes. Djokovic won the match in straight sets.",
+        "question": "How many minutes did the entire match last?",
+        "gold": "115 minutes",
+        "trace": "<reasoning>\nThe three sets lasted 30, 60, and 25 minutes; their sum is 115 minutes.\n<timeline>\n1. Djokovic won the first set in 30 minutes.\n2. The second set lasted 60 minutes.\n3. The third set finished in 25 minutes.\n4. Djokovic won the match in straight sets.\n</timeline>\n<reflection>\nAdding 30 + 60 + 25 gives 115 minutes.\n</reflection>\n</reasoning>\n<answer>115 minutes</answer>"
+      },
+      "source_sha256": "d0bae9ecda924af9bf413fdeda89b4c4042b6944acb22e35e8094b3ddd10f477"
+    },
+    {
+      "audit_id": "trace-d13f27c4aa1857a6f780c02f",
+      "kind": "trace",
+      "payload": {
+        "context": "Rain stopped the match while Sinner was leading 4-3 in the first set. During the delay, the roof was being closed and both players remained off court. After the roof closed, Djokovic held serve.",
+        "question": "Was the roof being closed while the players were off court?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"During the delay, the roof was being closed and both players remained off court.\" This explicitly states the roof closure overlapped with players off court.\n<timeline>\n- Rain delay started.\n- Roof was being closed while players off court.\n- Roof closed.\n</timeline>\n<reflection>\n\"During the delay, the roof was being closed and both players remained off court\" directly indicates overlap, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d13f27c4aa1857a6f780c02fef1d8b35b59ed36a5048fab60dd0db20244c287a"
+    },
+    {
+      "audit_id": "trace-d18cdec68f6fea8f8bdd9a0b",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner slipped behind the baseline during the second game. He received treatment at the next changeover. After the treatment, he saved three break points and held serve.",
+        "question": "Did Sinner receive treatment before saving three break points?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: Sinner received treatment at changeover. After treatment, he saved three break points. Question asks if treatment occurred before saving break points.\n<timeline>\n1. Sinner slipped behind baseline.\n2. He received treatment at next changeover.\n3. After the treatment, he saved three break points and held serve.\n</timeline>\n<reflection>\n\"After the treatment\" explicitly places treatment first, so yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d18cdec68f6fea8f8bdd9a0b569909041484e800a7a2b6b9473911644b576c03"
+    },
+    {
+      "audit_id": "trace-d1c35a97d64f52075a2176e7",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz dropped serve at 1-1 in the first set. After the break, he complained about the court lights. Medvedev served out the set later without facing a break point.",
+        "question": "Did Alcaraz complain about the court lights after dropping serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nAlcaraz dropped serve at 1-1, and after that break he complained about the court lights.\n<timeline>\n1. Alcaraz dropped serve at 1-1 in the first set.\n2. After the break, Alcaraz complained about the court lights.\n3. Medvedev served out the set later without facing a break point.\n</timeline>\n<reflection>\nThe complaint is placed after Alcaraz dropped serve, so the answer follows.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d1c35a97d64f52075a2176e796478e1c8b7f3ebb816990bb2085b3ead1160f10"
+    },
+    {
+      "audit_id": "trace-d20ea8312182634083e71c26",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev missed a set point at 5-4. Tsitsipas held serve after saving that point. During the tie-break, Rublev took a 5-2 lead before Tsitsipas retired with a leg injury.",
+        "question": "Which event happened last?",
+        "gold": "Tsitsipas retired",
+        "trace": "<reasoning>\nContext: \"Rublev missed a set point at 5-4. Tsitsipas held serve after saving that point. During the tie-break, Rublev took a 5-2 lead before Tsitsipas retired with a leg injury.\" The retirement is the last event described (after the tie-break lead).\n<timeline>\n- Rublev missed set point.\n- Tsitsipas held serve.\n- Rublev took 5-2 lead in tie-break.\n- Tsitsipas retired.\n</timeline>\n<reflection>\nThe final action in the sequence is Tsitsipas retiring, so that is last.\n</reflection>\n</reasoning>\n<answer>Tsitsipas retired</answer>"
+      },
+      "source_sha256": "d20ea8312182634083e71c262df67f8a68c18719b9916fcded7bdc17451aa7fc"
+    },
+    {
+      "audit_id": "trace-d27ad973ef48cdfbf57a93bd",
+      "kind": "trace",
+      "payload": {
+        "context": "De Minaur took a medical timeout at 5:06 p.m. The trainer left the court at 5:11 p.m. Rublev broke serve at 5:18 p.m.",
+        "question": "How many minutes after the medical timeout began did Rublev break serve?",
+        "gold": "12 minutes",
+        "trace": "<reasoning>\nThe medical timeout began at 5:06 p.m. and Rublev broke serve at 5:18 p.m., which is 12 minutes later.\n<timeline>\n1. De Minaur took a medical timeout at 5:06 p.m.\n2. The trainer left the court at 5:11 p.m.\n3. Rublev broke serve at 5:18 p.m.\n</timeline>\n<reflection>\nThe elapsed time from 5:06 p.m. to 5:18 p.m. is 12 minutes.\n</reflection>\n</reasoning>\n<answer>12 minutes</answer>"
+      },
+      "source_sha256": "d27ad973ef48cdfbf57a93bdd1a819dd4855dc9403f17f20a3e69b1d5d5daf51"
+    },
+    {
+      "audit_id": "trace-d2815a6915bbd6631418e08b",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer dominated the opening set, closing it out in just twenty-five minutes. However, Shelton found his rhythm in the second set, securing a break in the eighth game. Before Shelton could serve for the set, rain interrupted the match for an hour. Once they returned, Shelton held serve to win the second set.",
+        "question": "Did the rain interrupt the match after Shelton secured a break in the second set?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nContext: \"Shelton found his rhythm in the second set, securing a break in the eighth game. Before Shelton could serve for the set, rain interrupted the match.\" So rain occurred after the break.\n<timeline>\n- Shelton secured break.\n- Rain interrupted.\n</timeline>\n<reflection>\nRain happened after the break, so answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d2815a6915bbd6631418e08b88ab2a0861a75b4edabef7685914e116355d939e"
+    },
+    {
+      "audit_id": "trace-d296c64b7dca64de89c77839",
+      "kind": "trace",
+      "payload": {
+        "context": "The match began with a marathon 15-minute game, which Zverev finally won. Two games later, a light drizzle started to fall, making the grass slippery. Ruud slipped during a rally and tweaked his knee, prompting an immediate medical timeout. After the trainer evaluated him, the referee decided to suspend the match due to the worsening rain.",
+        "question": "Which event happened last?",
+        "gold": "The referee suspended the match",
+        "trace": "<reasoning>\nContext: \"Zverev won marathon game. ... Ruud slipped and tweaked his knee, prompting medical timeout. ... referee decided to suspend the match.\" Suspension is last event.\n<timeline>\n- Zverev won first game.\n- Drizzle started.\n- Ruud slipped, timeout.\n- Referee suspended match.\n</timeline>\n<reflection>\nSuspension is the final action, so it happened last.\n</reflection>\n</reasoning>\n<answer>The referee suspended the match</answer>"
+      },
+      "source_sha256": "d296c64b7dca64de89c778397cf1a5dfe50ea298eecc80c5c1b1e4f2b1f06f0c"
+    },
+    {
+      "audit_id": "trace-d2fabdcf4ec143221398addb",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton lost the first set 6-3. He received an injury treatment for his ankle at the changeover. After the treatment, Shelton won the second set 6-1. He then retired before the third set.",
+        "question": "Which happened last: Shelton retired or Shelton won the second set?",
+        "gold": "Shelton retired",
+        "trace": "<reasoning>\nThe events follow the progression of the match from the first set to the third set.\n<timeline>\n1. Shelton lost the first set\n2. Shelton won the second set\n3. Shelton retired before the third set\n</timeline>\n<reflection>\nShelton's retirement is the final chronological event, occurring after he won the second set.\n</reflection>\n</reasoning>\n<answer>Shelton retired</answer>"
+      },
+      "source_sha256": "d2fabdcf4ec143221398addbbafaff71950e52c21acd62d8b1ee2c929881e74e"
+    }
+  ],
+  "batch_id": "trace-judge_a-9ddaa1de3a1c4ca2ec3b",
+  "batch_sha256": "0015c11be8bff0ed1b1470adad88dc3be38bd448e706fab650dad78b77cbb8c5"
+}

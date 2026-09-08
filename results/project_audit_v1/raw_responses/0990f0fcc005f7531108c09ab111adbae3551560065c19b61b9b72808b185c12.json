@@ -1,0 +1,368 @@
+{
+  "batch_id": "semantic-judge_b-22de17493e5a065e9f78",
+  "batch_sha256": "f9dedc37b86c05a56083d11d977f0a627f12164471ee5078a5fa6042c5be0b73",
+  "pass": "judge_b",
+  "judged_at": "2026-09-08T11:16:24Z",
+  "observed_model_label": "unknown",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-757fc85a084aa48c6feb6fd9",
+      "source_sha256": "757fc85a084aa48c6feb6fd961064aa373356b337bbcd709d0e262e7edbc708e",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "In the final, he played against Medvedev, who had beaten Rune in the other semifinal."
+        }
+      ],
+      "rationale": "The context states Medvedev had beaten Rune when describing the final against Tsitsipas, so the Rune win occurred before that final."
+    },
+    {
+      "audit_id": "semantic-75b8317419ec07f628454d5f",
+      "source_sha256": "75b8317419ec07f628454d5f87eac85ecc89f4a7c69a8121eb0964e39b67bf70",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz broke serve at 5-4 in the second set to win the set. He then smashed a racquet in frustration."
+        }
+      ],
+      "rationale": "The sentence following the break states that Fritz then smashed a racquet in frustration."
+    },
+    {
+      "audit_id": "semantic-7644421b99461d37435702ad",
+      "source_sha256": "7644421b99461d37435702adafe88fc3de8d2e0a63379c2dc4c17f6c5bb05056",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Both players struggled with their visibility while the shadow was shifting."
+        }
+      ],
+      "rationale": "The context directly states that both players struggled with visibility during the shadow's shift."
+    },
+    {
+      "audit_id": "semantic-765eb3f0deab7ff883030a1a",
+      "source_sha256": "765eb3f0deab7ff883030a1ab776034fc941c445016a73f1e62f2736e11a17d9",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before calling for the trainer, he visibly limped between points."
+        }
+      ],
+      "rationale": "The context explicitly identifies visible limping as occurring before Nadal called for the trainer."
+    },
+    {
+      "audit_id": "semantic-76ae78a865f94b574b8bb66a",
+      "source_sha256": "76ae78a865f94b574b8bb66a3e9393686139e458bb1e3dee4c843a2a6a06ae18",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "A fan yelled out during Nadal's service motion. Nadal abruptly stopped his serve mid-toss."
+        }
+      ],
+      "rationale": "The fan yelling is followed by Nadal stopping his serve mid-toss."
+    },
+    {
+      "audit_id": "semantic-76e17270bae444efabfe5bb4",
+      "source_sha256": "76e17270bae444efabfe5bb4a75295ae7d5ddb031f5b0f65d708a2581015162d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev double-faulted to lose the opening set. Before the second set began, he requested to change his racket."
+        }
+      ],
+      "rationale": "Rublev's double fault to lose the opening set happened before the racket-change request before the second set."
+    },
+    {
+      "audit_id": "semantic-772ba544b02adf8a50496179",
+      "source_sha256": "772ba544b02adf8a50496179e36d3f72e38401ade44bdc2ef4713ca7c015728b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz practiced his serve on the side practice court for 20 minutes."
+        }
+      ],
+      "rationale": "The context directly gives the duration of Fritz's serve practice as 20 minutes."
+    },
+    {
+      "audit_id": "semantic-773b54c6f16d17c478287b0e",
+      "source_sha256": "773b54c6f16d17c478287b0e0e750a283cfa526da9fa66f7e6d781e401c8dec1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz hit a drop shot winner to secure the tie-break. Before that, he had successfully challenged a baseline call on a crucial point."
+        }
+      ],
+      "rationale": "The context says the successful challenge occurred before the drop shot winner."
+    },
+    {
+      "audit_id": "semantic-778f4ff608386e3e76f3a882",
+      "source_sha256": "778f4ff608386e3e76f3a8822923c8856fc1b380251232f0112b79b1d44b2642",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton hit a passing shot to earn break point. De Minaur saved the break point with a volley."
+        }
+      ],
+      "rationale": "Shelton earned the break point before De Minaur saved it."
+    },
+    {
+      "audit_id": "semantic-77974ee16dcc6fe37b34366d",
+      "source_sha256": "77974ee16dcc6fe37b34366d164f4b55df6e15b5c1d9703d3ad6d499d6fe048c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Following the treatment, Rublev won his service game at love."
+        }
+      ],
+      "rationale": "The context directly states Rublev won his service game at love following the shoulder treatment."
+    },
+    {
+      "audit_id": "semantic-77e41e2c7204d5fc1090249b",
+      "source_sha256": "77e41e2c7204d5fc1090249bae833ac4207ec0eff0ead13d3cab13669748cd2a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He rebounded quickly, breaking Medvedev's serve in the opening game of the second set. After holding his own serve to go up 2-0, Medvedev requested a medical timeout for a shoulder issue."
+        }
+      ],
+      "rationale": "Alcaraz broke Medvedev's serve in the opening game before the later medical timeout request."
+    },
+    {
+      "audit_id": "semantic-77f90455f0bed8310f9121d5",
+      "source_sha256": "77f90455f0bed8310f9121d50d94f2804bb828af6cf15271d31aa58d7c459172",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "He double-faulted twice to face break point. Djokovic then saved the break point"
+        }
+      ],
+      "rationale": "After Djokovic faced break point, the next stated event is that he saved it."
+    },
+    {
+      "audit_id": "semantic-77fc0645606f2531d5c64569",
+      "source_sha256": "77fc0645606f2531d5c64569651c93510722e919cd7b3e749f7442cb878172f2",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before Djokovic called a medical timeout, Sinner had already broken serve for 3-1."
+        }
+      ],
+      "rationale": "The context says Sinner had already broken serve before Djokovic called the medical timeout, so the timeout was not before the break."
+    },
+    {
+      "audit_id": "semantic-7820194aaaa0aab2770d559c",
+      "source_sha256": "7820194aaaa0aab2770d559c16ee3b2fe2ff3d573ab3aaac1be215be2eed667a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before the roof was closed, Djokovic broke back."
+        }
+      ],
+      "rationale": "The context directly states that Djokovic broke back before the roof was closed."
+    },
+    {
+      "audit_id": "semantic-7842cb368428296f8ef6b9e2",
+      "source_sha256": "7842cb368428296f8ef6b9e20b14d9a32df24b165fffdd143f967801bedd14f2",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas broke his opponent's serve in the opening game. He then held his own serve to take a 2-0 lead. A sudden rain shower forced the players off the court right after the second game."
+        }
+      ],
+      "rationale": "The rain shower forced the players off court after the second game, which was after Tsitsipas broke serve in the opening game."
+    },
+    {
+      "audit_id": "semantic-787e925aeae5ad135c8224b3",
+      "source_sha256": "787e925aeae5ad135c8224b3d31b431113c84f2a64773217840651b0e0524a3c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After De Minaur broke serve, the chair umpire paused play because of crowd noise."
+        }
+      ],
+      "rationale": "The context directly says the chair umpire paused play after De Minaur broke serve."
+    },
+    {
+      "audit_id": "semantic-78837688bcd423c29e1b21ca",
+      "source_sha256": "78837688bcd423c29e1b21cad0668c156268b48240a2b80e4cdcc0f19a2c1663",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the next changeover, Tsitsipas called the trainer. After the medical timeout, Djokovic held serve easily."
+        }
+      ],
+      "rationale": "Tsitsipas called the trainer, and the later medical-timeout statement is followed by Djokovic holding serve."
+    },
+    {
+      "audit_id": "semantic-7893cc8da40ad300d7caacb9",
+      "source_sha256": "7893cc8da40ad300d7caacb9e84679b6a6c1904adfaed894d09cf90163a12b27",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Ruud held serve twice after the break. Before Tsitsipas served for the set, rain forced the players off court."
+        }
+      ],
+      "rationale": "The context places Ruud's two holds after the break and then states the rain interruption before Tsitsipas served for the set."
+    },
+    {
+      "audit_id": "semantic-78a1a0bd350f5bde99625de2",
+      "source_sha256": "78a1a0bd350f5bde99625de261e2f0dd0142ead26ed1686c908c847046d315f4",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The players waited on court for three minutes."
+        },
+        {
+          "field": "context",
+          "quote": "The fireworks ended while the players were still waiting."
+        }
+      ],
+      "rationale": "The fireworks ended while the players were still waiting, so their waiting overlapped with the fireworks display."
+    },
+    {
+      "audit_id": "semantic-78ad5bac3b2c02f4648740b9",
+      "source_sha256": "78ad5bac3b2c02f4648740b9b2bf7ca7db4e953502f48de9030f024fac18fac1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal called the trainer after losing the set."
+        }
+      ],
+      "rationale": "Nadal called the trainer after losing the opening set, so he did not call before losing it."
+    },
+    {
+      "audit_id": "semantic-78d11e061d05c6db600c591c",
+      "source_sha256": "78d11e061d05c6db600c591cff749d8240ed038daad8c083f00e2f9c2bd27af0",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev called the trainer to the court before the changeover. After the medical timeout, Zverev won three games in a row."
+        }
+      ],
+      "rationale": "The three-game run is stated after the medical timeout, which follows the trainer call, so it was not before the call."
+    },
+    {
+      "audit_id": "semantic-790ec0b7dd5e9f0a42e67a09",
+      "source_sha256": "790ec0b7dd5e9f0a42e67a0975e892e34a613177fd50ce0d49aa616d555faccb",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "While the players were in the locker room, tournament officials ordered the stadium roof to be closed."
+        },
+        {
+          "field": "context",
+          "quote": "Play resumed once the roof was fully secured."
+        }
+      ],
+      "rationale": "The context establishes that the order to close the roof occurred while the players were in the locker room, but it does not explicitly state that the roof was actually closed or fully secured while they were still there."
+    },
+    {
+      "audit_id": "semantic-7a31ced2c076a7dfef6d9a55",
+      "source_sha256": "7a31ced2c076a7dfef6d9a553ab8957102d4efd6b0f6eff820ca1d371237145b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After that win, he beat Djokovic in the semifinal on Saturday. On Sunday, Sinner played Alcaraz in the final."
+        }
+      ],
+      "rationale": "Sinner's semifinal win on Saturday occurred before he played the final on Sunday."
+    },
+    {
+      "audit_id": "semantic-7adacf1bc8b10c00fd564e34",
+      "source_sha256": "7adacf1bc8b10c00fd564e346248ccda5e5ac7b2ce95574977fd13c0edb001a6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Medvedev was receiving a massage from the physiotherapist during a medical timeout. At the same time, his opponent was practicing serves on the other side of the court."
+        }
+      ],
+      "rationale": "The context explicitly says the opponent practiced serves at the same time Medvedev received the massage."
+    },
+    {
+      "audit_id": "semantic-7af979b7678102c5ab904dfe",
+      "source_sha256": "7af979b7678102c5ab904dfea8678e047e474df93743f117c089d9156b5cd9c2",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz left the court for treatment after losing the first set. While Fritz was away, Shelton practiced serves on the empty court."
+        }
+      ],
+      "rationale": "Shelton practiced serves while Fritz was away from court, so he was not practicing while Fritz was on court."
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-c090e68ca2c9b4dfeab8ff4f",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner defeated De Minaur in the quarterfinal on Friday. After that, he beat Zverev in the semifinal on Saturday evening. On Sunday, Sinner played the final against Alcaraz.",
+        "question": "Did Sinner reach the semifinal before playing the final?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nSinner won the quarterfinal on Friday, then won the semifinal on Saturday evening, and played the final on Sunday.\n<timeline>\n1. Sinner defeated De Minaur in the quarterfinal on Friday.\n2. After that, Sinner beat Zverev in the semifinal on Saturday evening.\n3. On Sunday, Sinner played the final against Alcaraz.\n</timeline>\n<reflection>\nThe semifinal occurred before the final, so the answer is supported.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c090e68ca2c9b4dfeab8ff4ffc2bb6ed86a113972cc9ed39987ad4a7fe4f52b3"
+    },
+    {
+      "audit_id": "trace-c14e8486157edc4a376591c9",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud won a long first set against Shelton. After the set, Shelton changed shoes at the bench. Before the second set began, the umpire inspected a loose net strap.",
+        "question": "Did Shelton change shoes before the umpire inspected the net strap?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context says: \"After the set, Shelton changed shoes at the bench. Before the second set began, the umpire inspected a loose net strap.\" So shoe change occurred after the set and before the umpire inspection (since inspection is before second set, and shoe change is after first set but still before second set). The ordering is: set ends → Shelton changes shoes → umpire inspects net strap → second set begins. Thus shoe change happened before inspection.\n<timeline>\n- Shelton changed shoes (after the set).\n- Umpire inspected net strap (before second set began).\n</timeline>\n<reflection>\nBoth events happen between sets, but the context implies shoe change occurs first, then inspection; therefore answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c14e8486157edc4a376591c9c8a01c64195671efaaec7d519b67224edd438b40"
+    },
+    {
+      "audit_id": "trace-c17446d637614054e61171d7",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz faced a break point at 5-5 in the second set. He saved it with a drop shot. Two points later, Alcaraz won the set with a backhand winner.",
+        "question": "How many points after saving the break point did Alcaraz win the set?",
+        "gold": "Two points",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Alcaraz faced a break point at 5-5 in the second set.\n2. Alcaraz saved it with a drop shot.\n3. Two points passed.\n4. Alcaraz won the set with a backhand winner.\n</timeline>\n<reflection>\nThe text explicitly states he won the set two points later.\n</reflection>\n</reasoning>\n<answer>Two points</answer>"
+      },
+      "source_sha256": "c17446d637614054e61171d7ace71689f0c9a73530bd5c1a9c6ae4311bef5420"
+    },
+    {
+      "audit_id": "trace-c179fe0343d518343921a53a",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz slipped behind the baseline while chasing a wide ball. He took a moment to wipe his shoes with a towel. Medvedev then served an ace on the following point. The game ended two points later.",
+        "question": "What happened before Medvedev served an ace?",
+        "gold": "Alcaraz wiped his shoes with a towel",
+        "trace": "<reasoning>\nThe question asks what happened before Medvedev served an ace. Context: Alcaraz slipped, then wiped shoes, then Medvedev served ace. So wiping shoes before ace.\n<timeline>\n- Alcaraz slipped\n- He wiped his shoes with a towel\n- Medvedev then served an ace\n</timeline>\n<reflection>\nWiping shoes occurred directly before the ace.\n</reflection>\n</reasoning>\n<answer>Alcaraz wiped his shoes with a towel</answer>"
+      },
+      "source_sha256": "c179fe0343d518343921a53ae4696a01c70bca53d915c0ded7a8b40153c5fd95"
+    },
+    {
+      "audit_id": "trace-c1a98eee53921bf496374fe7",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner was preparing to serve at 30-all. At the same time, an alarm started ringing in the stands. Sinner stopped his motion and waited for the noise to stop. The alarm was silenced after a minute.",
+        "question": "Did the alarm start ringing while Sinner was preparing to serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe alarm began at the same time Sinner was preparing to serve.\n<timeline>\n1. Sinner was preparing to serve at 30-all.\n2. At the same time, an alarm started ringing in the stands.\n3. Sinner stopped his motion and waited for the noise to stop.\n4. The alarm was silenced after a minute.\n</timeline>\n<reflection>\nThe simultaneous timing supports the answer Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "c1a98eee53921bf496374fe7d8aa2e1abce4321ee7743f915cc9b3ca99ad1588"
+    },
+    {
+      "audit_id": "trace-c1c74a33289848f158c999a8",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz broke Shelton at 2-2 in the first set. Shelton smashed a racket after losing the next game. Later, the umpire issued Shelton a code violation.",
+        "question": "What happened before Shelton smashed a racket?",
+        "gold": "Fritz broke Shelton",
+        "trace": "<reasoning>\nContext: Fritz broke Shelton at 2-2. Shelton smashed racket after losing next game. Question asks what happened before Shelton smashed racket.\n<timeline>\n1. Fritz broke Shelton at 2-2 in first set.\n2. Shelton smashed a racket after losing the next game.\n</timeline>\n<reflection>\nThe break occurs before the smash, so answer is Fritz broke Shelton.\n</reflection>\n</reasoning>\n<answer>Fritz broke Shelton</answer>"
+      },
+      "source_sha256": "c1c74a33289848f158c999a802455238b5cf7dd8e6e67723a0048c6b8bb2df11"
+    },
+    {
+      "audit_id": "trace-c1d624cd9f827d846c253aa0",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev saved a set point at 4:05 p.m. Fritz won the tie-break at 4:17 p.m. After the tie-break, the players sat down for a changeover.",
+        "question": "How many minutes after Rublev saved a set point did Fritz win the tie-break?",
+        "gold": "12 minutes",
+        "trace": "<reasoning>\nRublev saved a set point at 4:05 p.m. and Fritz won the tie-break at 4:17 p.m. The difference is 12 minutes.\n<timeline>\n1. 4:05 p.m.: Rublev saved a set point\n2. 4:17 p.m.: Fritz won the tie-break\n3. After the tie-break: The players sat down for a changeover\n</timeline>\n<reflection>\nThe duration from 4:05 p.m. to 4:17 p.m. correctly calculates to 12 minutes.\n</reflection>\n</reasoning>\n<answer>12 minutes</answer>"
+      },
+      "source_sha256": "c1d624cd9f827d846c253aa0f21052177f1ca7792845a65b44b9bedf7dfafe82"
+    },
+    {
+      "audit_id": "trace-c20512933d1dbd487dcf56eb",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz saved a break point at 3-3 in the first set. Zverev broke Fritz two games later at 4-4. Zverev then served for the set at 5-4 but was broken to love. Fritz won the tie-break 7-5.",
+        "question": "Which happened first: Zverev broke Fritz or Zverev served for the set?",
+        "gold": "Zverev broke Fritz",
+        "trace": "<reasoning>\nThe score progression from 4-4 to 5-4 indicates the chronological order.\n<timeline>\n1. 4-4: Zverev broke Fritz\n2. 5-4: Zverev served for the set\n3. Tie-break: Fritz won 7-5\n</timeline>\n<reflection>\nBreaking Fritz at 4-4 logically and chronologically precedes serving for the set at 5-4.\n</reflection>\n</reasoning>\n<answer>Zverev broke Fritz</answer>"
+      },
+      "source_sha256": "c20512933d1dbd487dcf56eb7c4000a0642feca441d9d259b44834df64cb716a"
+    },
+    {
+      "audit_id": "trace-c2405610519ce7834c46433b",
+      "kind": "trace",
+      "payload": {
+        "context": "The Sinner-Alcaraz match started at 2:00 p.m. Sinner broke serve 18 minutes after the start. Rain delayed the match 45 minutes after the start, after Alcaraz had saved a break point.",
+        "question": "How many minutes after the match started did the rain delay begin?",
+        "gold": "45 minutes",
+        "trace": "<reasoning>\nThe context states directly that rain delayed the match 45 minutes after the start.\n<timeline>\n1. The Sinner-Alcaraz match started at 2:00 p.m.\n2. Sinner broke serve 18 minutes after the start.\n3. Rain delayed the match 45 minutes after the start, after Alcaraz had saved a break point.\n</timeline>\n<reflection>\nThe timeline gives the rain delay time as 45 minutes after the match started.\n</reflection>\n</reasoning>\n<answer>45 minutes</answer>"
+      },
+      "source_sha256": "c2405610519ce7834c46433b426309b08ea3b11afbdd47fe8f9a2a8c2a07ad49"
+    },
+    {
+      "audit_id": "trace-c24ce69dc001a8b6f29f1c2d",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas saved a set point during the first-set tie-break. Rublev won the tie-break two points later. After the set ended, Tsitsipas took a bathroom break.",
+        "question": "Which happened last?",
+        "gold": "Tsitsipas took a bathroom break",
+        "trace": "<reasoning>\nTsitsipas saved a set point, Rublev won the tie-break two points later, and Tsitsipas took a bathroom break after the set ended.\n<timeline>\n1. Tsitsipas saved a set point during the first-set tie-break.\n2. Rublev won the tie-break two points later.\n3. After the set ended, Tsitsipas took a bathroom break.\n</timeline>\n<reflection>\nThe bathroom break is the last listed event.\n</reflection>\n</reasoning>\n<answer>Tsitsipas took a bathroom break</answer>"
+      },
+      "source_sha256": "c24ce69dc001a8b6f29f1c2d63ac2e3e6734925534c70d13b87336f1d0a30c98"
+    }
+  ],
+  "batch_id": "trace-judge_b-c9ab7c269b5154becf3e",
+  "batch_sha256": "bd6d99000825aef0439c7838e43bc9ceaa8d47f17e1efc97457178493b8c140c"
+}

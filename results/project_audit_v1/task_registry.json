@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "status_source": "progress.json",
+  "initial_user_owned_tasks": {
+    "semantic_judge_a": "01a07c71-52a1-7470-9435-56ef0e21d22e",
+    "semantic_judge_b": "01a07c71-5d29-77f2-98be-985d7e076c7b",
+    "reflection_judge_a_rejected": "01a07c71-6905-7713-a1e7-9a7cfdd41048",
+    "reflection_judge_b": "01a07c71-7396-7d50-97d5-3707b5da4cb4"
+  },
+  "initial_execution": "superseded_after_usage-limit_and_validation_failures",
+  "dispatch_policy": "one batch per fresh isolated task",
+  "accepted_evidence": "accepted.jsonl plus immutable raw_responses; see progress.json for live counts"
+}

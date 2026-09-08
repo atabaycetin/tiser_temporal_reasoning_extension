@@ -1,0 +1,101 @@
+{
+  "version": "offline-audit-v1",
+  "status": "pending",
+  "expected": {
+    "semantic": 1121,
+    "trace": 650,
+    "reflection": 2295
+  },
+  "completed": {
+    "semantic": 125,
+    "trace": 30,
+    "reflection": 200
+  },
+  "pending": {
+    "semantic": 996,
+    "trace": 620,
+    "reflection": 2095
+  },
+  "two_pass_disagreements_unique_items": {
+    "semantic": 12,
+    "trace": 1,
+    "reflection": 9
+  },
+  "human_calibration": false,
+  "actual_snapshot": null,
+  "interpretation": "UI-mediated model judgments; shared judge bias and accuracy remain uncalibrated.",
+  "coverage": {
+    "semantic/dev/all/duration_minutes": {
+      "supported": 1
+    },
+    "semantic/dev/all/immediate_before_after": {
+      "supported": 6
+    },
+    "semantic/dev/all/which_first_last": {
+      "supported": 2
+    },
+    "semantic/dev/all/yes_no_before_after": {
+      "supported": 3
+    },
+    "semantic/test/all/duration_minutes": {
+      "supported": 2
+    },
+    "semantic/test/all/immediate_before_after": {
+      "underdetermined": 3,
+      "supported": 4
+    },
+    "semantic/test/all/which_first_last": {
+      "supported": 4
+    },
+    "semantic/test/all/yes_no_before_after": {
+      "supported": 8
+    },
+    "semantic/train/all/duration_minutes": {
+      "supported": 11,
+      "underdetermined": 1
+    },
+    "semantic/train/all/immediate_before_after": {
+      "supported": 13,
+      "underdetermined": 7
+    },
+    "semantic/train/all/overlap_while_during": {
+      "supported": 11,
+      "underdetermined": 2,
+      "wrong_gold": 1
+    },
+    "semantic/train/all/tournament_round_sequence": {
+      "supported": 2
+    },
+    "semantic/train/all/which_first_last": {
+      "supported": 18,
+      "underdetermined": 1,
+      "wrong_gold": 1
+    },
+    "semantic/train/all/yes_no_before_after": {
+      "supported": 23,
+      "inconsistent": 1
+    },
+    "trace/train/pilot/which_first_last": {
+      "supported": 1
+    },
+    "trace/train/pilot/yes_no_before_after": {
+      "supported": 1
+    },
+    "trace/train/reported600/duration_minutes": {
+      "supported": 3
+    },
+    "trace/train/reported600/immediate_before_after": {
+      "supported": 7
+    },
+    "trace/train/reported600/overlap_while_during": {
+      "supported": 2
+    },
+    "trace/train/reported600/which_first_last": {
+      "supported": 5
+    },
+    "trace/train/reported600/yes_no_before_after": {
+      "supported": 10,
+      "unsupported_reasoning": 1
+    }
+  }
+}

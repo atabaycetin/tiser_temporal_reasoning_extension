@@ -1,0 +1,54 @@
+{
+  "status": "pass",
+  "conclusion": "The 600-record artifact is the ordered output of the first 12 non-pilot batches. The cutoff is operational, not a recorded quality filter.",
+  "counts": {
+    "train": 785,
+    "pilot": 50,
+    "manifest_selected_after_pilot_exclusion": 735,
+    "manifest_batches": 15,
+    "consumed_complete_batches": 12,
+    "reported_traced_full": 600,
+    "ungenerated_tail": 135,
+    "absent_from_reported_traced_full": 185
+  },
+  "checks": {
+    "pilot_is_first_train_block": true,
+    "manifest_is_train_minus_pilot_in_order": true,
+    "manifest_batches_flatten_to_selected_ids": true,
+    "traced_is_manifest_prefix": true,
+    "pilot_and_traced_are_disjoint": true,
+    "missing_is_exactly_pilot_plus_ungenerated_tail": true,
+    "all_ids_belong_to_train": true
+  },
+  "boundaries": {
+    "last_reported_traced_id": "tennis_000934",
+    "first_ungenerated_tail_id": "tennis_000935",
+    "last_ungenerated_tail_id": "tennis_001122"
+  },
+  "category_counts": {
+    "reported_traced_full": {
+      "duration_minutes": 83,
+      "immediate_before_after": 107,
+      "other_temporal": 7,
+      "overlap_while_during": 60,
+      "tennis_injury_or_medical": 1,
+      "tournament_round_sequence": 11,
+      "which_first_last": 123,
+      "yes_no_before_after": 208
+    },
+    "absent_from_reported_traced_full": {
+      "duration_minutes": 20,
+      "immediate_before_after": 30,
+      "other_temporal": 5,
+      "overlap_while_during": 21,
+      "tournament_round_sequence": 2,
+      "which_first_last": 42,
+      "yes_no_before_after": 65
+    }
+  },
+  "interpretation": {
+    "pilot_note": "The 50 pilot records validate separately but were not concatenated into tennis_train_traced_full.json.",
+    "tail_note": "Requests exist for the final 135 selected IDs in batches 13-15, but no corresponding generated output is committed.",
+    "quality_note": "This coverage audit explains selection mechanics only; semantic quality is evaluated separately."
+  }
+}

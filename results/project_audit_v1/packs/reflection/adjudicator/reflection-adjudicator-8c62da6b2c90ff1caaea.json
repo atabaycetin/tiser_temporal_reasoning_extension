@@ -1,0 +1,110 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "reflection",
+  "pass": "adjudicator",
+  "rubric": "Adjudicate two labels for the same reflection using the\nsame conservative rule: explicit_conflict requires an explicit textual\nacknowledgement of tension between supplied context and prior knowledge, memory,\nexpectation, or an alternative factual answer. Judge only the reflection. Routine\nself-checking is negative. Copy an exact evidence substring only for a positive\nlabel; otherwise use an empty quote. Return the best final label and one concise\nsentence of rationale.",
+  "rubric_sha256": "a88d48dd8ed7635fa06170b1669e582407a7121d2ddf8ca0bc65864169c3178c",
+  "items": [
+    {
+      "audit_id": "reflection-2cdbb0f2444be3fbab58cac3",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The timeline clearly shows that after the 24th Parliament, the next position mentioned is Financial Secretary to the Treasury. There are no other positions mentioned in between, and the Vladimir Putin position is clearly a misinterpretation or error in the provided context."
+      },
+      "source_sha256": "2cdbb0f2444be3fbab58cac3f9f7a81b82ca99c0e46abce8e47a8265c6859eeb",
+      "decisions": [
+        {
+          "audit_id": "reflection-2cdbb0f2444be3fbab58cac3",
+          "source_sha256": "2cdbb0f2444be3fbab58cac3f9f7a81b82ca99c0e46abce8e47a8265c6859eeb",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "Although it calls the Vladimir Putin position an error in the provided context, it does not explicitly compare the context to memory, familiarity, or an alternative factual answer."
+        },
+        {
+          "audit_id": "reflection-2cdbb0f2444be3fbab58cac3",
+          "source_sha256": "2cdbb0f2444be3fbab58cac3f9f7a81b82ca99c0e46abce8e47a8265c6859eeb",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "contradiction_or_inconsistency",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "the Vladimir Putin position is clearly a misinterpretation or error in the provided context"
+            }
+          ],
+          "rationale": "The reflection explicitly identifies a context item as a misinterpretation or error."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-2f4b504069525d86b59103b4",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "Upon reviewing the timeline, it appears that there is a gap between the end of Mikhail Fradkov's term in September 2007 and the start of Dmitry Medvedev's term in May 2012. This suggests that there might be an interim leader or a period without a specified leader in the provided context. However, based on the given information, Dmitry Medvedev is the next leader listed after Mikhail Fradkov."
+      },
+      "source_sha256": "2f4b504069525d86b59103b40c8c151ce502b52de7b1f9474a771b9bd502f913",
+      "decisions": [
+        {
+          "audit_id": "reflection-2f4b504069525d86b59103b4",
+          "source_sha256": "2f4b504069525d86b59103b40c8c151ce502b52de7b1f9474a771b9bd502f913",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection notices a gap and possible interim leader within the given context, but it does not compare that uncertainty to memory or a specific alternative factual answer."
+        },
+        {
+          "audit_id": "reflection-2f4b504069525d86b59103b4",
+          "source_sha256": "2f4b504069525d86b59103b40c8c151ce502b52de7b1f9474a771b9bd502f913",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "uncertainty_or_doubt",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "there is a gap between the end of Mikhail Fradkov's term in September 2007 and the start of Dmitry Medvedev's term in May 2012"
+            }
+          ],
+          "rationale": "The reflection explicitly recognizes a gap in the timeline and doubts whether an interim leader is missing."
+        }
+      ]
+    },
+    {
+      "audit_id": "reflection-2fefc8a3d86f373678b987ca",
+      "kind": "reflection",
+      "payload": {
+        "reflection": "The initial interpretation of Vladimir Putin as a position was incorrect. The next chronological position after Member of the 24th Parliament of the United Kingdom is indeed Member of the 26th Parliament of the United Kingdom. There are no errors in the timeline or reasoning."
+      },
+      "source_sha256": "2fefc8a3d86f373678b987cab35e8d5061bdeab32a2c74c72da603d9c74da26e",
+      "decisions": [
+        {
+          "audit_id": "reflection-2fefc8a3d86f373678b987ca",
+          "source_sha256": "2fefc8a3d86f373678b987cab35e8d5061bdeab32a2c74c72da603d9c74da26e",
+          "label": "no_explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "none",
+          "evidence": [],
+          "rationale": "The reflection corrects an initial interpretation within the reasoning but does not contrast the supplied context with memory or an alternative factual answer."
+        },
+        {
+          "audit_id": "reflection-2fefc8a3d86f373678b987ca",
+          "source_sha256": "2fefc8a3d86f373678b987cab35e8d5061bdeab32a2c74c72da603d9c74da26e",
+          "label": "explicit_conflict",
+          "corrected_answer": null,
+          "mention_kind": "contradiction_or_inconsistency",
+          "evidence": [
+            {
+              "field": "reflection",
+              "quote": "The initial interpretation of Vladimir Putin as a position was incorrect."
+            }
+          ],
+          "rationale": "The reflection explicitly recognizes that treating Vladimir Putin as a position was incorrect."
+        }
+      ]
+    }
+  ],
+  "batch_id": "reflection-adjudicator-8c62da6b2c90ff1caaea",
+  "batch_sha256": "e20d655ef768c26322949c5508f937e1e9808d0de871543195a16a873aaa0b47"
+}

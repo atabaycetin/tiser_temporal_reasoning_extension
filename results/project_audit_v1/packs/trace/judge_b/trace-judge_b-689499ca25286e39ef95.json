@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-d43c51f79a532efd044c5a94",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner called the trainer during the changeover at 5-4. While the trainer treated Sinner's leg, Medvedev stayed seated and spoke with the umpire. After the treatment ended, Sinner served for the set.",
+        "question": "Was Medvedev speaking with the umpire while Sinner was receiving treatment?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text says that while the trainer treated Sinner's leg, Medvedev stayed seated and spoke with the umpire.\n<timeline>\n1. Sinner called the trainer during the changeover at 5-4\n2. The trainer treated Sinner's leg / Medvedev stayed seated and spoke with the umpire (simultaneous)\n3. After the treatment ended, Sinner served for the set\n</timeline>\n<reflection>\nThe timeline confirms the events occurred concurrently, meaning the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d43c51f79a532efd044c5a94880c0cbd49977865ce128171bf74a930655688d6"
+    },
+    {
+      "audit_id": "trace-d470d71649bd1467d81974b5",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev broke serve at 3-3 in the second set. He then held serve to lead 5-3. Before serving for the set, a rain delay interrupted play for 30 minutes. After the delay, Zverev served out the set 6-3.",
+        "question": "What happened after Zverev held serve to lead 5-3?",
+        "gold": "A rain delay interrupted play",
+        "trace": "<reasoning>\nThe context describes the interruption between Zverev holding for 5-3 and serving out the set.\n<timeline>\n1. Zverev held serve to lead 5-3\n2. A rain delay interrupted play\n3. Zverev served out the set\n</timeline>\n<reflection>\nThe rain delay occurred immediately after Zverev held serve and before he served for the set.\n</reflection>\n</reasoning>\n<answer>A rain delay interrupted play</answer>"
+      },
+      "source_sha256": "d470d71649bd1467d81974b5a85b9fd6d791b9ca5e626619fe6d55fc657d5d42"
+    },
+    {
+      "audit_id": "trace-d48a8cd2d46acae5c8b55524",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton entered the prestigious tournament as a wildcard. He upset the top seed in the second round. After winning his quarterfinal, he lost in the semifinal to Ruud. It was still a breakthrough performance for him.",
+        "question": "What round did Shelton reach before losing to Ruud?",
+        "gold": "The semifinal",
+        "trace": "<reasoning>\nThe question asks what round Shelton reached before losing to Ruud. Context: He won quarterfinal, then lost in semifinal to Ruud. So semifinal is the round before losing.\n<timeline>\n- Shelton upset top seed in second round\n- Won quarterfinal\n- Lost in semifinal to Ruud\n</timeline>\n<reflection>\nHe lost in the semifinal, so that is the round he reached before losing.\n</reflection>\n</reasoning>\n<answer>The semifinal</answer>"
+      },
+      "source_sha256": "d48a8cd2d46acae5c8b555240604b4af166988ee659574fe070b1edaf4a83b46"
+    },
+    {
+      "audit_id": "trace-d50336f62429142ee0ea50a2",
+      "kind": "trace",
+      "payload": {
+        "context": "The stadium roof closure took exactly ten minutes. Play resumed with De Minaur serving at 30-all. De Minaur won the point, but Rune eventually broke his serve in that game. Rune consolidated the break to take the lead.",
+        "question": "Which happened last: De Minaur won the point or Rune broke serve?",
+        "gold": "Rune broke serve",
+        "trace": "<reasoning>\nThe question asks which happened last: De Minaur won point or Rune broke serve. Context: Play resumed, De Minaur won the point, but Rune eventually broke serve in that game. So break after the point.\n<timeline>\n- Roof closed\n- Play resumed with De Minaur serving at 30-all\n- De Minaur won the point\n- Rune eventually broke serve in that game\n</timeline>\n<reflection>\nThe break happened after De Minaur won the point, so break is last.\n</reflection>\n</reasoning>\n<answer>Rune broke serve</answer>"
+      },
+      "source_sha256": "d50336f62429142ee0ea50a2f3c693348cc9a10e8bd492eededc6cabd115d72f"
+    },
+    {
+      "audit_id": "trace-d5edd8d445e85ac3056b5779",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner held serve in the opening game. Djokovic called a medical timeout before Sinner broke serve in the fourth game. After the break, rain stopped play for twenty minutes.",
+        "question": "Did Djokovic call the medical timeout before Sinner broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context explicitly states that Djokovic called a medical timeout before Sinner broke serve in the fourth game.\n<timeline>\n1. Sinner held serve in the opening game.\n2. Djokovic called a medical timeout.\n3. Sinner broke serve in the fourth game.\n4. After the break, rain stopped play for twenty minutes.\n</timeline>\n<reflection>\nThe medical timeout is placed before Sinner broke serve, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d5edd8d445e85ac3056b57796972e139ba7ed828c26f6f7c919be22ffd3dd988"
+    },
+    {
+      "audit_id": "trace-d7045f587dca4000984c3067",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz challenged a baseline call during the first set. After the challenge was upheld, Rublev saved a break point. Immediately before the rain delay, Fritz held serve for 4-4.",
+        "question": "What happened immediately before the rain delay?",
+        "gold": "Fritz held serve",
+        "trace": "<reasoning>\nThe context explicitly states that Fritz held serve for 4-4 immediately before the rain delay.\n<timeline>\n1. Fritz challenged a baseline call during the first set.\n2. The challenge was upheld.\n3. Rublev saved a break point.\n4. Fritz held serve for 4-4 immediately before the rain delay.\n</timeline>\n<reflection>\nThe immediately preceding event to the rain delay is Fritz holding serve.\n</reflection>\n</reasoning>\n<answer>Fritz held serve</answer>"
+      },
+      "source_sha256": "d7045f587dca4000984c30672cb70a41553dea665b29584bc85d10bccf39a1e2"
+    },
+    {
+      "audit_id": "trace-d770f52d944d2b7c3aced66d",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune held serve to start the final set. Zverev saved match point at 4-5 before breaking Rune in the next game. After the break, Zverev served for the match.",
+        "question": "Did Zverev save match point before breaking Rune?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nZverev saved match point at 4-5 before breaking Rune in the next game.\n<timeline>\n1. Rune held serve to start the final set.\n2. Zverev saved match point at 4-5.\n3. Zverev broke Rune in the next game.\n4. After the break, Zverev served for the match.\n</timeline>\n<reflection>\nThe saved match point comes before the break of Rune's serve.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d770f52d944d2b7c3aced66dadf7717261ca57c4cc21410bf9510e16fc0097bd"
+    },
+    {
+      "audit_id": "trace-d78bc3bb53c897b62388da5c",
+      "kind": "trace",
+      "payload": {
+        "context": "In the first semifinal, Sinner battled Fritz in a grueling three-hour marathon. Sinner lost the first set but mounted a comeback to win the second set via a tie-break. During the third set, Fritz suffered an ankle sprain and required a lengthy medical timeout. Despite the injury, Fritz played on, but Sinner secured the match with a late break of serve.",
+        "question": "Did Sinner win the second set tie-break after Fritz suffered an ankle sprain?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: \"Sinner lost the first set but mounted a comeback to win the second set via a tie-break. During the third set, Fritz suffered an ankle sprain.\" So second set win occurred before the ankle sprain.\n<timeline>\n- Sinner won second set tie-break.\n- Third set began.\n- Fritz suffered ankle sprain.\n</timeline>\n<reflection>\nSecond set win happened before the sprain, so answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "d78bc3bb53c897b62388da5c9c67e99c3ea7d0597648bf13504d3b948bd2ce2c"
+    },
+    {
+      "audit_id": "trace-d7bcfd3a2f13744f3dd92c05",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev won his quarterfinal match after saving multiple match points. He then faced Tsitsipas in the semifinal, winning decisively in straight sets. He ultimately lost the championship match to Djokovic. The final was considered one of the best matches of the year.",
+        "question": "Who did Zverev defeat in the semifinal before reaching the championship match?",
+        "gold": "Tsitsipas",
+        "trace": "<reasoning>\nThe question asks who Zverev defeated in the semifinal before reaching championship match. Context: He faced Tsitsipas in semifinal and won, then lost final to Djokovic. So Tsitsipas.\n<timeline>\n- Zverev won quarterfinal\n- Then faced Tsitsipas in semifinal, won\n- Then lost championship match to Djokovic\n</timeline>\n<reflection>\nSemifinal opponent was Tsitsipas.\n</reflection>\n</reasoning>\n<answer>Tsitsipas</answer>"
+      },
+      "source_sha256": "d7bcfd3a2f13744f3dd92c054ed93a5f8277fe8015d75f84877d65cd00717515"
+    },
+    {
+      "audit_id": "trace-d7db0c8fcdf7b2c13a9b878c",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud held serve to open the first set. Before Tsitsipas broke serve, Ruud had already saved a break point in the third game. After the break, Tsitsipas consolidated for 5-2.",
+        "question": "Did Ruud save a break point before Tsitsipas broke serve?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context explicitly says Ruud had already saved a break point before Tsitsipas broke serve.\n<timeline>\n1. Ruud held serve to open the first set.\n2. Ruud saved a break point in the third game.\n3. Tsitsipas broke serve.\n4. After the break, Tsitsipas consolidated for 5-2.\n</timeline>\n<reflection>\nThe saved break point is placed before Tsitsipas's break, so the answer is Yes.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "d7db0c8fcdf7b2c13a9b878c538bce0b9ceb4f1a668b03e78f041d10aedd6c77"
+    }
+  ],
+  "batch_id": "trace-judge_b-689499ca25286e39ef95",
+  "batch_sha256": "525f8cec8f9dce3fb7c64e88d3916e3f74f4c43d9e8a470adedccf51acaefbae"
+}

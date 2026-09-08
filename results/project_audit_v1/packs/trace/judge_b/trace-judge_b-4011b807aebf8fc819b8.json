@@ -1,0 +1,121 @@
+{
+  "version": "offline-audit-v1",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-60ea91f9879423927fbe5006",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic received a time violation before serving at 3-4. After the warning, he held serve with an ace. Later, Zverev broke him at 5-5.",
+        "question": "What happened before Djokovic held serve with an ace?",
+        "gold": "Djokovic received a time violation",
+        "trace": "<reasoning>\nContext: \"Djokovic received a time violation before serving at 3-4. After the warning, he held serve with an ace.\" So the time violation occurred before the ace.\n<timeline>\n- Djokovic received a time violation.\n- Djokovic held serve with an ace.\n</timeline>\n<reflection>\nThe warning happens first, then the hold, so answer is Djokovic received a time violation.\n</reflection>\n</reasoning>\n<answer>Djokovic received a time violation</answer>"
+      },
+      "source_sha256": "60ea91f9879423927fbe5006b08954be764bc9cff6d35d7a99ca666f3f8fe343"
+    },
+    {
+      "audit_id": "trace-618d5981679157f2060ece82",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev took the first set after Rune missed a backhand on set point. Rune received treatment before the second set started. Later, Rune broke Zverev twice and won the second set.",
+        "question": "Which event happened last?",
+        "gold": "Rune won the second set",
+        "trace": "<reasoning>\nZverev took the first set, Rune received treatment, then Rune broke Zverev twice and won the second set.\n<timeline>\n1. Zverev took the first set.\n2. Rune received treatment.\n3. Rune won the second set.\n</timeline>\n<reflection>\nRune winning the second set was the final event described.\n</reflection>\n</reasoning>\n<answer>Rune won the second set</answer>"
+      },
+      "source_sha256": "618d5981679157f2060ece825055c63794e91e1fb574c04a82382792ec8c2afc"
+    },
+    {
+      "audit_id": "trace-61d9b14ba9da3a47399dc59b",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz broke Medvedev early in the first set. Later, Medvedev asked for the trainer during the changeover at 2-4. After the medical timeout, Alcaraz served out the set.",
+        "question": "Did Medvedev ask for the trainer before Alcaraz broke serve?",
+        "gold": "No",
+        "trace": "<reasoning>\nAlcaraz broke Medvedev early in the first set. Later, Medvedev asked for the trainer at 2-4.\n<timeline>\n1. Alcaraz broke Medvedev.\n2. Medvedev asked for the trainer.\n</timeline>\n<reflection>\nMedvedev asked for the trainer after Alcaraz broke serve, not before.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "61d9b14ba9da3a47399dc59bb400ba4782e62fd51f1175d0dadfed6f3a964d47"
+    },
+    {
+      "audit_id": "trace-622effe1d126f1b9e4af84f0",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev lost the quarterfinal match in straight sets. After the match, he withdrew from the doubles tournament. The singles semifinal started two hours later without him.",
+        "question": "What happened after Rublev withdrew from doubles?",
+        "gold": "The singles semifinal started",
+        "trace": "<reasoning>\nThe text clearly orders the events following the quarterfinal match.\n<timeline>\n1. Rublev lost the quarterfinal match\n2. Rublev withdrew from the doubles tournament\n3. The singles semifinal started two hours later\n</timeline>\n<reflection>\nThe event listed chronologically after his withdrawal from doubles is the start of the singles semifinal.\n</reflection>\n</reasoning>\n<answer>The singles semifinal started</answer>"
+      },
+      "source_sha256": "622effe1d126f1b9e4af84f063a53bbde34f332ddf50ea47a8c467503dff227c"
+    },
+    {
+      "audit_id": "trace-6279f3cc7cc162985b17628c",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton requested the trainer before the final set. During the medical timeout, De Minaur practiced serves on the opposite baseline. After the timeout ended, Shelton broke serve immediately.",
+        "question": "Was De Minaur practicing serves during Shelton's medical timeout?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe context states that during Shelton's medical timeout, De Minaur practiced serves on the opposite baseline.\n<timeline>\n1. Shelton requested the trainer before the final set.\n2. During the medical timeout, De Minaur practiced serves on the opposite baseline.\n3. After the timeout ended, Shelton broke serve immediately.\n</timeline>\n<reflection>\nThe timeline directly supports that De Minaur was practicing serves during the medical timeout.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "6279f3cc7cc162985b17628c840d321a4c5eb9499c50eb1e1efb576c2f2f1df8"
+    },
+    {
+      "audit_id": "trace-627f48ee786c74697c2a2a6c",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner double-faulted on match point at 5-4 in the third set. The match continued to a tie-break which Sinner lost 8-6. After the match, Sinner refused to shake the umpire's hand.",
+        "question": "What happened after Sinner lost the tie-break?",
+        "gold": "Sinner refused to shake the umpire's hand",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Sinner double-faulted on match point at 5-4 in the third set.\n2. The match continued to a tie-break which Sinner lost 8-6.\n3. Sinner refused to shake the umpire's hand after the match.\n</timeline>\n<reflection>\nRefusing to shake hands is the event succeeding the tie-break loss.\n</reflection>\n</reasoning>\n<answer>Sinner refused to shake the umpire's hand</answer>"
+      },
+      "source_sha256": "627f48ee786c74697c2a2a6ca07ead854e4bb53e7ccb1f75a9317d7aae890463"
+    },
+    {
+      "audit_id": "trace-631bdbc3d0392d802982270e",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas took a lengthy bathroom break after losing the first set. While he was off the court, his opponent stayed warm by hitting practice serves. The crowd began a slow, impatient clap during the wait.",
+        "question": "Did the opponent hit practice serves while Tsitsipas was off the court?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text states that \"While he [Tsitsipas] was off the court, his opponent stayed warm by hitting practice serves.\"\n<timeline>\n1. Tsitsipas was off the court (ongoing).\n2. Opponent hit practice serves (simultaneous).\n</timeline>\n<reflection>\nThe events occurred at the same time.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "631bdbc3d0392d802982270e5fcb24476d12fcc37a7c694c5ca5f5c716d1a9bc"
+    },
+    {
+      "audit_id": "trace-633f1d8ed1bb34f6a44b8a11",
+      "kind": "trace",
+      "payload": {
+        "context": "The path to the title was filled with tough opponents for Djokovic. He first had to get past a resilient De Minaur in the quarterfinal. In the semifinal, he squared off against his long-time rival Nadal, emerging victorious after four hours of play. Djokovic then reached the final, where he defeated Tsitsipas in straight sets to secure his 10th tournament victory.",
+        "question": "Did Djokovic play De Minaur in the semifinal?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe text outlines Djokovic's opponents in each round.\n<timeline>\n1. Quarterfinal: Djokovic played De Minaur\n2. Semifinal: Djokovic played Nadal\n3. Final: Djokovic played Tsitsipas\n</timeline>\n<reflection>\nDjokovic played Nadal in the semifinal, while De Minaur was his quarterfinal opponent.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "633f1d8ed1bb34f6a44b8a113208e027fc640e73acd99128f93a1c63fa23268b"
+    },
+    {
+      "audit_id": "trace-636fc6c2c64df22d0a9d3199",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner held serve to open the match. Medvedev broke Sinner's serve in the fourth game after a long deuce battle. Sinner broke back immediately in the following game.",
+        "question": "Did Medvedev break serve before Sinner broke back?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Sinner held serve to open the match.\n2. Medvedev broke Sinner's serve in the fourth game.\n3. Sinner broke back immediately in the following game.\n</timeline>\n<reflection>\nMedvedev breaking serve occurred in the fourth game, which is before Sinner breaking back in the following game.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "636fc6c2c64df22d0a9d3199d1ed71c9023f248bfe5bcbf6cd8480aae21024a7"
+    },
+    {
+      "audit_id": "trace-63a289814d4c8b10855aebe7",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner defeated Rublev in the quarterfinal on Friday. After the quarterfinal, he beat Zverev in the semifinal on Saturday. On Sunday, Sinner played Alcaraz in the final.",
+        "question": "Did Sinner reach the semifinal before playing the final?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nSinner won the quarterfinal on Friday, then the semifinal on Saturday, and only after that played the final on Sunday.\n<timeline>\n1. Sinner defeated Rublev in the quarterfinal on Friday.\n2. Sinner beat Zverev in the semifinal on Saturday.\n3. Sinner played Alcaraz in the final on Sunday.\n</timeline>\n<reflection>\nThe semifinal occurred before the final, so the timeline supports the answer.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "63a289814d4c8b10855aebe7eda88108a02a30328101ded3106f82dd9ef29f83"
+    }
+  ],
+  "batch_id": "trace-judge_b-4011b807aebf8fc819b8",
+  "batch_sha256": "973f2a2da13fe0548d69637e65c1bd2e8c891ebad216e367eeaf5b7fd9976235"
+}

@@ -1,0 +1,22 @@
+# Pinned for an early-2026 Colab (CUDA 12.8 / Triton 3.x) environment.
+# torch is intentionally NOT pinned here: reinstalling it on Colab fights the
+# preinstalled CUDA build and breaks bitsandbytes. Use Colab's bundled torch;
+# locally install a matching torch separately.
+transformers==4.46.3
+trl==0.12.2
+peft==0.13.2
+# >=0.45.3: older bitsandbytes imports triton.ops (removed in Triton 3.x) and
+# ships no CUDA 12.8 binary, both of which break model loading on current Colab.
+bitsandbytes>=0.45.3
+accelerate==1.1.1
+datasets==3.1.0
+huggingface_hub==0.26.2
+pyyaml==6.0.2
+tqdm==4.67.1
+
+# Optional, GPU-only: vLLM-backed fast generation for the conflict pipeline
+# (config.conflict.memory.engine: vllm). NOT pinned here and NOT installed for the
+# baseline/HF path -- vLLM pulls its own CUDA-matched torch and can clash with the
+# transformers pin above, so install it in a dedicated inference env or use a
+# RunPod vLLM image. Needs a build with Qwen2 + LoRA support (vllm >= 0.6).
+# pip install vllm
