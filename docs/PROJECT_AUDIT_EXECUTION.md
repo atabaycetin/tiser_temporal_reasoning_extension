@@ -2,8 +2,13 @@
 
 This is the execution guide for the complete tennis semantic/trace audit and the
 replacement reflection audit. It uses Codex file batches and makes no API calls.
-The live source of truth is `results/project_audit_v1/progress.json`; partial
+The live source of truth is `results/project_audit_v2/progress.json`; partial
 coverage is never published as a completed rate.
+
+The earlier `project_audit_v1` directory is preserved as an incomplete
+historical attempt. Its accepted records identify 675 judgments as model
+`unknown`, 50 as `gpt-5.5`, and 7 as `codex-gpt-5`. They must not be
+relabeled or imported into the GPT-5.6 Sol audit.
 
 ## Scope
 
@@ -23,8 +28,9 @@ conditions after aggregation.
 ## Prepare and verify packs
 
 ```bash
-python3 scripts/audit.py prepare --output-dir results/project_audit_v1
-python3 scripts/audit.py summarize --output-dir results/project_audit_v1
+python3 scripts/audit.py prepare --output-dir results/project_audit_v2 \
+  --requested-model gpt-5.6-sol
+python3 scripts/audit.py summarize --output-dir results/project_audit_v2
 ```
 
 Preparation freezes the seven input hashes, pseudonymous item payloads, private
@@ -32,18 +38,19 @@ mapping, malformed-row record, exact rubrics, exact task guide, and every batch.
 The private `mapping.json` must never be given to a judge. A judge receives only
 one `INSTRUCTIONS.md` and one assigned batch JSON.
 
-Each A and B batch runs in a fresh isolated Codex task using the available
-GPT-5.5 label with high reasoning effort. The UI label is recorded as observed
-provenance; it does not prove an API snapshot or recover unavailable decoding
-settings. Judges must read each item and may not use regexes, lexical rules,
-scripts, or a blanket default to assign labels. Code may serialize and validate
-decisions already made item by item.
+Each A and B batch runs in a fresh isolated Codex task configured for
+GPT-5.6 Sol with high reasoning effort. The response must record
+`observed_model_label: "gpt-5.6-sol"`; the importer rejects any other value.
+Judges must read each item and may not use regexes, lexical rules, scripts, or
+a blanket default to assign labels. Code may serialize and validate decisions
+already made item by item. A ready-to-paste task prompt is in
+`docs/GPT56_SOL_AUDIT_TASK_PROMPT.md`.
 
 ## Import responses
 
 ```bash
 python3 scripts/audit.py import \
-  --output-dir results/project_audit_v1 \
+  --output-dir results/project_audit_v2 \
   --response /absolute/path/to/BATCH_ID.json \
   --task-id CODEX_TASK_OR_BATCH_RUN_ID
 ```
@@ -65,7 +72,7 @@ attempt is evidence of a failed attempt and contributes no judgments.
 ## Follow-ups and adjudication
 
 ```bash
-python3 scripts/audit.py adjudicate --output-dir results/project_audit_v1
+python3 scripts/audit.py adjudicate --output-dir results/project_audit_v2
 ```
 
 This regenerates `pending_batches.json` from accepted evidence. It exports fresh
@@ -82,8 +89,8 @@ and every required adjudication.
 ## Publish derivatives
 
 ```bash
-python3 scripts/audit.py summarize --output-dir results/project_audit_v1
-python3 scripts/audit.py freeze-views --output-dir results/project_audit_v1
+python3 scripts/audit.py summarize --output-dir results/project_audit_v2
+python3 scripts/audit.py freeze-views --output-dir results/project_audit_v2
 ```
 
 `freeze-views` refuses to run until semantic, trace, and reflection decisions

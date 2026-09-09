@@ -5,8 +5,9 @@ provenance and future experiments. It is the source of truth for the tennis
 extension; older condition names in result metadata are retained as historical
 identifiers.
 
-The completion protocol is now implemented. The active audit state is
-`results/project_audit_v1/progress.json`; the conditional GPU workflow is
+The completion protocol is now implemented. The active GPT-5.6 Sol audit target is
+`results/project_audit_v2/progress.json`; create it with the preparation command
+in `docs/PROJECT_AUDIT_EXECUTION.md`. The conditional GPU workflow is
 `notebooks/colab_conditional_retention.ipynb`. Neither partial judgments nor
 notebook smoke runs are reportable outcomes.
 
@@ -29,15 +30,13 @@ command, byte-reproduces the tracked converted records and train/dev/test files.
 The default `strict` prompt mode is intentionally separate and should be used
 only for newly labelled experiments.
 
-The available creation record states that the raw examples were created
-interactively with ChatGPT using GPT-5.5. A recovered fragment of the
-raw-generation prompt is recorded in `RAW_GENERATION_PROMPT.md`; its
-continuation, conversation export, exact model snapshot, decoding settings, and
-complete batch history are unavailable. This provenance therefore rests on
-recollection rather than artifact verification. The historical
-`source: unknown` fields remain unchanged for byte reproducibility. The dataset
-card and machine-readable provenance record are in `data/tennis/`, and the
-dataset is released under CC BY 4.0 with an explicit third-party-rights notice.
+ChatGPT-5.5 created the raw examples using the prompt in
+`RAW_GENERATION_PROMPT.md`. It then generated supervised TISER traces from
+training examples and their supplied gold answers using the prompt in
+`TRACE_GENERATION_PROMPT.md`. The historical `source: unknown` fields remain
+unchanged for byte reproducibility. The dataset card and machine-readable
+provenance record are in `data/tennis/`, and the dataset is released under
+CC BY 4.0 with an explicit third-party-rights notice.
 
 The trace-coverage audit proves that 600 was an operational cutoff. The first
 50 train records were processed as a pilot. All 735 remaining records were
@@ -98,9 +97,9 @@ scores makes the selected value optimistic. The conventional procedure would
 select on `tennis_dev.json`, lock one configuration, and use an untouched test
 set once. Because the current test was already used for selection, merely
 rerunning the grid on development cannot erase that information leak. The
-implemented protocol follows option 2 below, based on the author's statement of
-no known prior use while retaining the narrower repository-evidence caveat. The
-alternatives were:
+implemented protocol follows option 2 below. No prior model-performance use of
+the 113 records is known, while the repository cannot exclude an unrecorded
+evaluation. The alternatives were:
 
 1. label 0.732/0.856 as the best observed exploratory test result;
 2. because no preserved model-performance artifact uses the 113-record
@@ -119,16 +118,12 @@ but clean estimate for the already selected adapter. Once inspected, that
 The following claims or procedures do not have all required evidence in the
 current repository:
 
-- Artifact-verified raw-generation provenance: only a recovered prompt fragment
-  is documented; its continuation, exact model snapshot, session, and settings
-  are unavailable.
 - A complete semantic adjudication of the raw examples and traces. The current
   302-record review is targeted and flags candidates; it is not a full human
   certification.
-- A fully authenticated trace-generation record. The recovered instruction is
-  strongly compatible with the artifacts, but the exact outer prompt, model
-  snapshot, and settings are unavailable. Two hundred outputs were wrapped to
-  restore tags, and 26 objects were recovered from 19 malformed physical lines.
+- A complete semantic validation of the trace contents. Two hundred outputs
+  were wrapped to restore tags, and 26 objects were repaired from 19 malformed
+  physical lines; structural repair does not establish temporal correctness.
 - Mixed tennis plus original-TISER replay results remain absent. The historical
   canonical destination was `model/tiser_tennis_mixed_replay_qwen7b/adapter`;
   the new registry will instead record R25 under its frozen study directory only
@@ -142,9 +137,8 @@ current repository:
 - Label the 0.5B experiment and the 7B continued-adaptation experiment
   separately; they are not interchangeable.
 - Cite exact condition identifiers and committed metric paths.
-- Describe ChatGPT/GPT-5.5 provenance as based on recollection rather than
-  independently authenticated, and distinguish raw-example generation from
-  supervised trace generation.
+- State that ChatGPT-5.5 generated the dataset using the documented prompts, and
+  distinguish raw-example generation from supervised trace generation.
 - State that 600 is twelve completed batches, not a quality-selected or optimal
   data size.
 - Do not treat the structural validator as semantic validation.

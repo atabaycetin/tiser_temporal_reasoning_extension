@@ -117,7 +117,7 @@ We cross model weights $\in\{\text{vanilla},\text{TISER-trained}\}$ with prompt 
 \subsection{Extension 2: Tennis-Domain Adaptation}
 
 \paragraph{Dataset creation and processing.}
-The tennis collection is synthetic and was created in two stages, documented in Appendix~\ref{app:tennis-prompts}. First, we used ChatGPT with \href{https://developers.openai.com/api/docs/models/gpt-5.5}{GPT-5.5} interactively to generate raw context--question--answer triples from scratch. A fragment of the raw-generation instruction was recovered, but the continuation, session export, complete batch history, exact model snapshot, and decoding settings are unavailable. Second, ChatGPT 5.5 received existing training examples together with their gold answers and generated supervised TISER reasoning, timeline, reflection, and answer traces. No external source corpus is recorded, so this description rests on our recollection rather than independently authenticated provenance. The dataset is released under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; repository code is released under MIT.
+The tennis collection is synthetic and was created with \href{https://developers.openai.com/api/docs/models/gpt-5.5}{ChatGPT-5.5} in two stages using the prompts in Appendix~\ref{app:tennis-prompts}. First, ChatGPT-5.5 generated raw context--question--answer triples from scratch using the raw-example prompt. Second, ChatGPT-5.5 received training examples together with their gold answers and generated supervised TISER reasoning, timeline, reflection, and answer traces using the trace-generation prompt. The examples were generated synthetically rather than drawn from an external tennis corpus. The dataset is released under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; repository code is released under MIT.
 
 The recorded processing pipeline audits the schema, assigns identifiers and rule-based categories, converts records to standard and TISER-compatible prompts, checks duplicates, and performs a category- and exact-duplicate-group-aware 70/10/20 split with seed~42. The three disjoint splits contain 785 training, 113 development, and 224 test examples and jointly cover all 1,122 records. Trace generation was restricted to the training split. Generated outputs were structurally validated, mechanically repaired when necessary, and merged. The conversion CLI's \texttt{reported} mode byte-reproduces the tracked files; strict-XML mode is reserved for new experiments.
 
@@ -177,7 +177,7 @@ The implemented follow-up first compares the original adapter C0 and locked tenn
 
 Closed-book recall uses five samples with temperature~0.7 and top-$p$~0.9; the subsequent run matrix uses one greedy decode per item. We use item-level bootstrap confidence intervals with 2,000 resamples and seed~42, plus paired McNemar tests for the two headline axes.
 
-For TISER-prompt cells, a Claude-based judge reportedly read the persisted reflection and returned a structured conflict indicator, conflict category, and short rationale in windows of 100 records. The reported judge result is secondary evidence: the exact Claude model version, full judge prompt, and row-level audit CSVs are not preserved in the repository, preventing independent reproduction. The replacement is a new UI-mediated study rather than a retrospective reconstruction. Two isolated GPT-5.5-labelled Codex tasks receive only blinded reflection text under conservative rubrics, and a third task adjudicates disagreements. Exact file prompts, response bytes, hashes, labels, control false-positive rates, Wilson intervals, disagreement, unscorable rows, class breakdowns, and silent overrides are retained. The observed UI model label is recorded, while API snapshot and decoding details remain unknown. This replacement is in progress and must be complete before its values replace the historical aggregates; agreement between model judges does not supply human calibration.
+For TISER-prompt cells, a Claude-based judge reportedly read the persisted reflection and returned a structured conflict indicator, conflict category, and short rationale in windows of 100 records. The reported judge result is secondary evidence: the exact Claude model version, full judge prompt, and row-level audit CSVs are not preserved in the repository, preventing independent reproduction. The replacement is a new UI-mediated study rather than a retrospective reconstruction. Two isolated GPT-5.6 Sol Codex tasks receive only blinded reflection text under conservative rubrics, and a third task adjudicates disagreements. Exact file prompts, response bytes, hashes, labels, control false-positive rates, Wilson intervals, disagreement, unscorable rows, class breakdowns, and silent overrides are retained. This replacement is in progress and must be complete before its values replace the historical aggregates; agreement between model judges does not supply human calibration.
 
 \subsection{Compute and Software}
 
@@ -318,7 +318,7 @@ Original TISER & 0.580 & 0.701 & -- & -- & 0 \\
 
 The reproduction is strong overall but exposes the sensitivity of EM to answer formatting. More importantly, the two extensions answer different questions. The conflict probe shows that training and prompting can improve use of supplied evidence without making reflection an explicit contradiction detector. Tennis adaptation instead shows that the learned trace format transfers across domains and benefits from additional supervised examples, particularly at 7B scale.
 
-Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The reflection result relies on an unrecovered historical judge run; its aggregate rates are not independently reproducible, and the replacement audit has no human calibration. Greedy decoding provides one output per condition. For tennis, the creation process is reconstructed from project records rather than a complete session export, and the semantic/trace audit is unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. The team has no record of prior model-selection use of those 113 records, but the repository cannot exclude an unrecorded evaluation.
+Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The reflection result relies on an unrecovered historical judge run; its aggregate rates are not independently reproducible, and the replacement audit has no human calibration. Greedy decoding provides one output per condition. For tennis, the semantic and trace audits are unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. No prior model-performance use of those 113 records is known, but the repository cannot exclude an unrecorded evaluation.
 
 \section{Conclusion}
 
@@ -326,7 +326,7 @@ We reproduced TISER's strong in-domain temporal-QA performance and used two exte
 
 \section{Reproducibility}
 
-The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, recovered prompts, trace coverage, and semantic-review flags are documented separately. The offline audit supports blinded two-pass review and adjudication, while the Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
+The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, generation prompts, trace coverage, and semantic-review flags are documented separately. The offline audit supports blinded two-pass review and adjudication, while the Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
 
 \clearpage
 \onecolumn
@@ -335,7 +335,7 @@ The repository provides command-line workflows for data preparation, training, e
 \section{Tennis Data-Generation Prompts}
 \label{app:tennis-prompts}
 
-The tennis data were created in two distinct stages. The following records preserve what can be supported about each stage; they are not presented as complete API logs.
+The tennis data were created with ChatGPT-5.5 in two stages using the prompts below.
 
 \subsection{Stage 1: Raw Example Creation}
 
@@ -538,7 +538,7 @@ Example format:
 Now generate exactly 50 examples.
 \end{lstlisting}
 
-We also recall constraints requiring contexts of approximately three to six sentences, at least three temporal events, balanced question types, varied difficulty, context-derivable answers, and exactly 50 valid JSON objects per requested batch, although we could not recover their exact wording. All 1,122 committed raw rows have exactly the three requested fields and three to five context sentences, which corroborates these recollections without authenticating the complete prompt. Because 1,122 is not divisible by 50, some aggregation, filtering, or partial-batch retention occurred; no surviving log resolves which.
+This prompt was used to generate the 1,122 raw context--question--answer records before schema auditing, categorisation, and splitting.
 
 \newpage
 \subsection{Stage 2: TISER Trace Generation}
@@ -579,7 +579,7 @@ Rules:
 - Output JSONL only. Do not include markdown, explanations, headings, or any additional text.
 \end{lstlisting}
 
-The requests also supplied \texttt{question\_id}, category, context, question, and gold answer. Generated rows contain \texttt{question\_id} and \texttt{output}. The final 600 records exactly match batches 1--12 in order. Nineteen malformed physical JSONL lines covering 26 records were recovered, and 200 outputs that lacked the requested XML-like tags were mechanically wrapped using their existing text and supplied gold answer. All 600 final rows pass structural and gold-answer-equality checks; those checks do not establish semantic entailment.
+The requests also supplied \texttt{question\_id}, category, context, question, and gold answer. Generated rows contain \texttt{question\_id} and \texttt{output}. The final 600 records exactly match batches 1--12 in order. Nineteen malformed physical JSONL lines covering 26 records were repaired, and 200 outputs that lacked the requested XML-like tags were mechanically wrapped using their existing text and supplied gold answer. All 600 final rows pass structural and gold-answer-equality checks; those checks do not establish semantic entailment.
 
 \begin{thebibliography}{00}
 

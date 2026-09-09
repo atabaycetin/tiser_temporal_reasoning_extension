@@ -50,7 +50,7 @@ DEFAULT_SCORED_FILES = (
     Path("results/context_memory_conflict/scored/tiser__tiser.jsonl"),
 )
 DEFAULT_OUTPUT_DIR = Path("results/context_memory_conflict/scored/audit")
-DEFAULT_MODEL = "gpt-5.5-2026-04-23"
+DEFAULT_MODEL = "gpt-5.6-sol"
 
 
 def main(argv: list[str] | None = None) -> int:

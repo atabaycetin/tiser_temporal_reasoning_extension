@@ -5,6 +5,7 @@ import shutil
 
 import pytest
 
+from scripts.prepare_study_bundle import notebook
 from src.experiment.artifacts import digest, jsonl, read, sha256, source_snapshot, write
 from src.experiment.evaluation import EvaluationStore, apply_tennis_view
 from src.experiment.statistics import MACRO_SPLITS, compare, forgetting_gate, holm, mcnemar, paired_rows, token_gate
@@ -204,3 +205,22 @@ def test_study_artifact_reference_survives_directory_move(tmp_path):
 def test_scoped_reference_rejects_escape(tmp_path):
     with pytest.raises(ValueError, match="escapes"):
         resolve_reference(tmp_path, {"scope": "study", "path": "../outside"})
+
+
+def test_colab_notebook_covers_complete_conditional_workflow():
+    cells = notebook()["cells"]
+    source = "\n".join("".join(cell["source"]) for cell in cells)
+    for required in (
+        "fetch_retention_data.py",
+        "experiment('init')",
+        "experiment('prepare-data')",
+        "training_smoke",
+        "experiment('gate')",
+        "train_if_needed('C1R')",
+        "train_if_needed('R25')",
+        "train_if_needed('R25-T')",
+        "results/project_audit_v2",
+        "experiment('freeze-final'",
+        "experiment('statistics')",
+    ):
+        assert required in source

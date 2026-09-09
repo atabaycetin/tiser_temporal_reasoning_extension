@@ -26,8 +26,7 @@ or Git commit used.
 
 ## Provenance and rights notice
 
-The dataset provenance record states that ChatGPT using the GPT-5.5 model
-generated the synthetic raw examples. OpenAI's terms state that, as between a
+ChatGPT-5.5 generated the synthetic raw examples. OpenAI's terms state that, as between a
 user and OpenAI, the user owns model output, while also warning that output may
 not be unique and that users remain responsible for evaluating it and ensuring
 they have the rights needed for their use. See

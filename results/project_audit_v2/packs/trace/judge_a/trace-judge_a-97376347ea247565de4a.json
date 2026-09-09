@@ -1,0 +1,122 @@
+{
+  "version": "offline-audit-v2",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-4ee27057ae0bce1084a6f19d",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic won the first set with a late break. After the set ended, Alcaraz left the court for a clothing change. When he returned, Djokovic received a time violation warning.",
+        "question": "Did Djokovic receive the time violation warning before Alcaraz left the court?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: After the set ended, Alcaraz left the court. When he returned, Djokovic received a time violation warning. So the warning occurred after Alcaraz left and returned, not before Alcaraz left.\n<timeline>\n- Set ended.\n- Alcaraz left court.\n- Alcaraz returned.\n- Djokovic received warning.\n</timeline>\n<reflection>\nThe warning came after Alcaraz's departure, so it did not happen before. Answer No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "4ee27057ae0bce1084a6f19dec3f0398c69a6e80a8f282c01c2078c9cbfbc79a"
+    },
+    {
+      "audit_id": "trace-4f38c89c4a6cd08c9f1925fb",
+      "kind": "trace",
+      "payload": {
+        "context": "The first set of the final was a grueling affair that lasted 75 minutes. During the changeover after the set, Djokovic took a 4-minute break to change his outfit. The second set began and ended quickly, concluding in just 30 minutes.",
+        "question": "How many minutes did the second set last?",
+        "gold": "30 minutes",
+        "trace": "<reasoning>\nThe text explicitly provides the duration of the second set.\n<timeline>\n1. First set lasted 75 minutes\n2. Djokovic took a 4-minute break\n3. Second set lasted 30 minutes\n</timeline>\n<reflection>\nThe context directly states that the second set concluded in just 30 minutes.\n</reflection>\n</reasoning>\n<answer>30 minutes</answer>"
+      },
+      "source_sha256": "4f38c89c4a6cd08c9f1925fbd5ed0ea07d0b0a94ad7aab8b1cab4532060fa10f"
+    },
+    {
+      "audit_id": "trace-500cd9950c8e05f094d221ac",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic served at 5-4 in the third set. The chair umpire gave him a time violation before his first serve. Djokovic then double-faulted to face break point. He saved break point with a winner and held serve for the match.",
+        "question": "Was the time violation given before Djokovic faced break point?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nThe text details the sequence of the points and umpire interventions in the final game.\n<timeline>\n1. Chair umpire gave a time violation\n2. Djokovic double-faulted\n3. Djokovic faced break point\n4. Djokovic saved break point\n</timeline>\n<reflection>\nThe time violation occurred before the double fault that resulted in Djokovic facing a break point.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "500cd9950c8e05f094d221ac60e91e95ed909869711b7b7c199c1b38d09ebfd1"
+    },
+    {
+      "audit_id": "trace-502681716468be024c4189ed",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic won the semifinal against Zverev in three sets. The final against Sinner started two days later. Before the final, Djokovic withdrew due to a hamstring injury.",
+        "question": "What happened after the semifinal but before the final?",
+        "gold": "Djokovic withdrew due to a hamstring injury",
+        "trace": "<reasoning>\nThe context describes an event that took place in the two-day gap between the matches.\n<timeline>\n1. Djokovic won the semifinal\n2. Djokovic withdrew due to a hamstring injury\n3. The final started\n</timeline>\n<reflection>\nThe withdrawal is strictly ordered after the semifinal and before the final.\n</reflection>\n</reasoning>\n<answer>Djokovic withdrew due to a hamstring injury</answer>"
+      },
+      "source_sha256": "502681716468be024c4189ed4f2ad659a75bd15471c4ec5ba62d5a9b0839aacc"
+    },
+    {
+      "audit_id": "trace-50b37eb0708f3d786f49e798",
+      "kind": "trace",
+      "payload": {
+        "context": "Nadal slipped at 5:18 p.m. during a rally. The trainer arrived at 5:22 p.m. Federer held serve after play resumed later in the set.",
+        "question": "How many minutes after Nadal slipped did the trainer arrive?",
+        "gold": "4 minutes",
+        "trace": "<reasoning>\nNadal slipped at 5:18 p.m. and the trainer arrived at 5:22 p.m., so the trainer arrived 4 minutes after the slip.\n<timeline>\n1. Nadal slipped at 5:18 p.m.\n2. The trainer arrived at 5:22 p.m.\n3. Federer held serve after play resumed later in the set.\n</timeline>\n<reflection>\nThe elapsed time from 5:18 p.m. to 5:22 p.m. is 4 minutes, supporting the gold answer.\n</reflection>\n</reasoning>\n<answer>4 minutes</answer>"
+      },
+      "source_sha256": "50b37eb0708f3d786f49e798cb9fc36a7db24ed960866ff8a0920fc6366f03d5"
+    },
+    {
+      "audit_id": "trace-51861bbcc68faf2cc30dbcac",
+      "kind": "trace",
+      "payload": {
+        "context": "Ruud held serve in the first game. Tsitsipas called for the trainer during the third game. After the medical timeout, Ruud broke serve and later won the set.",
+        "question": "Which happened first: Tsitsipas called for the trainer or Ruud broke serve?",
+        "gold": "Tsitsipas called for the trainer",
+        "trace": "<reasoning>\nTsitsipas called for the trainer during the third game, and Ruud broke serve after the medical timeout.\n<timeline>\n1. Ruud held serve in the first game.\n2. Tsitsipas called for the trainer during the third game.\n3. After the medical timeout, Ruud broke serve.\n4. Ruud later won the set.\n</timeline>\n<reflection>\nTsitsipas calling for the trainer happened before Ruud broke serve.\n</reflection>\n</reasoning>\n<answer>Tsitsipas called for the trainer</answer>"
+      },
+      "source_sha256": "51861bbcc68faf2cc30dbcac6ec3f8c18f19016127d7db2b58f869b0959faa46"
+    },
+    {
+      "audit_id": "trace-51c0adea643bf1d574f38d72",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton challenged a line call at 5-5 in the final set. Minutes later, he saved a match point with a forehand winner. After that, he held serve to force a tie-break.",
+        "question": "Did Shelton challenge the line call after saving match point?",
+        "gold": "No",
+        "trace": "<reasoning>\nShelton challenged the line call at 5-5 before he saved match point. Therefore, the challenge did not happen after the saved match point.\n<timeline>\n1. Shelton challenged a line call at 5-5 in the final set.\n2. Minutes later, Shelton saved a match point with a forehand winner.\n3. After that, Shelton held serve to force a tie-break.\n</timeline>\n<reflection>\nThe timeline places the line-call challenge before the saved match point, so the gold answer is supported.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "51c0adea643bf1d574f38d72e2c132450b7e81e71ffc4d3fb3c6f0999bc55b20"
+    },
+    {
+      "audit_id": "trace-52087fd9d3c1080bdaaa1912",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic saved three break points in the first game. Alcaraz broke serve in the fifth game after a long rally. Later, a rain delay stopped play before Djokovic recovered the break.",
+        "question": "Did Djokovic recover the break before the rain delay?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe context states that a rain delay stopped play before Djokovic recovered the break.\n<timeline>\n1. Game 1: Djokovic saved three break points\n2. Game 5: Alcaraz broke serve\n3. Rain delay stopped play\n4. Djokovic recovered the break (did not happen before the rain delay)\n</timeline>\n<reflection>\nThe timeline confirms the rain delay occurred prior to Djokovic recovering the break.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "52087fd9d3c1080bdaaa191210a19a787df41dad3e177510092167fa427df56a"
+    },
+    {
+      "audit_id": "trace-52e6f8f5ad418d576e75ba0a",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune won the first set after a tie-break. At the first changeover of the second set, Zverev changed rackets. Before Rune called a medical timeout, Zverev broke serve for 3-1. After the timeout, Rune broke back immediately.",
+        "question": "Did Rune call a medical timeout before Zverev broke serve for 3-1?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe context says: \"Before Rune called a medical timeout, Zverev broke serve for 3-1.\" This means Zverev's break occurred before Rune's timeout.\n<timeline>\n- Zverev broke serve for 3-1.\n- Rune called a medical timeout.\n</timeline>\n<reflection>\nSince Zverev broke serve before Rune's timeout, Rune did not call the timeout before the break; therefore answer is No.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "52e6f8f5ad418d576e75ba0a597ab2df5309aa646f2ff8a88df342980fcf930a"
+    },
+    {
+      "audit_id": "trace-5381f33d23c905cc12bdd922",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz began serving at 7:10 p.m. Medvedev broke him at 7:28 p.m. After the break, the chair umpire paused play for a crowd disturbance.",
+        "question": "How many minutes after Alcaraz began serving did Medvedev break him?",
+        "gold": "18 minutes",
+        "trace": "<reasoning>\nAlcaraz began serving at 7:10 p.m. and Medvedev broke him at 7:28 p.m. The difference is 18 minutes.\n<timeline>\n1. 7:10 p.m.: Alcaraz began serving\n2. 7:28 p.m.: Medvedev broke him\n3. After the break: Play paused for crowd disturbance\n</timeline>\n<reflection>\nThe elapsed time from 7:10 p.m. to 7:28 p.m. is exactly 18 minutes.\n</reflection>\n</reasoning>\n<answer>18 minutes</answer>"
+      },
+      "source_sha256": "5381f33d23c905cc12bdd922de10362d39f20360c960a9b47f9f792f1f66fa6c"
+    }
+  ],
+  "requested_model": "gpt-5.6-sol",
+  "batch_id": "trace-judge_a-97376347ea247565de4a",
+  "batch_sha256": "850f76d94c2c0c8ed0643f20a92e0094d5e19f525c0e0ce6a2562a49ffde763b"
+}

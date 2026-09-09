@@ -235,12 +235,11 @@ records and split files. The default `--prompt-version strict` uses the newer
 explicit XML-answer instruction for new experiments. Record the selected mode
 and do not mix prompt versions within an experiment.
 
-The collection is synthetic. The available creation record states that the
-1,122 raw records were generated interactively with ChatGPT using GPT-5.5. A
-fragment of the raw-generation prompt was recovered, but its continuation,
-conversation export, complete batch history, exact model snapshot, and decoding
-settings are not available. This recollection-based provenance and the
-two-stage workflow are recorded in `data/tennis/DATASET_CARD.md`,
+The collection is synthetic. ChatGPT-5.5 generated the 1,122 raw records using
+the raw-example prompt included in the report appendix and
+`RAW_GENERATION_PROMPT.md`. It then generated supervised TISER traces from
+training examples and their supplied gold answers using the trace-generation
+prompt. The two-stage workflow is recorded in `data/tennis/DATASET_CARD.md`,
 `data/tennis/PROVENANCE.json`, and
 `docs/extensions/tennis_domain_adaptation/RAW_GENERATION_PROMPT.md`. The data
 are released under CC BY 4.0; scope, attribution, and third-party-rights caveats
@@ -258,11 +257,10 @@ python scripts/tennis/prepare_tennis_trace_generation.py \
 ```
 
 This command only creates prompts and a manifest; it calls no model or external
-API. The available creation record states that ChatGPT with GPT-5.5 generated
-the traces in a separate supervised step. Every request supplied the context,
-question, and gold answer. The recovered batch instruction is consistent with
-the artifacts but cannot be authenticated as the exact literal prompt; its text,
-forensic analysis, repair history, and a safer prompt for future runs are in
+API. ChatGPT-5.5 generated the traces in a separate supervised step using the
+documented trace-generation prompt. Every request supplied the context,
+question, and gold answer. The prompt, artifact structure, repair history, and
+a stricter prompt for future runs are in
 `docs/extensions/tennis_domain_adaptation/TRACE_GENERATION_PROMPT.md`.
 
 Given the committed generation rows, the 600-record training artifact can be
@@ -427,17 +425,18 @@ and, when justified, training compute-matched replay conditions is in
 ## Complete offline project audit
 
 The active replacement workflow audits all 1,122 tennis records, all 650
-available traces, and all 2,295 unique scorable reflections in blinded Codex
-file batches. It uses independent A/B tasks plus adjudication and makes no API
-calls:
+available traces, and all 2,295 unique scorable reflections in blinded
+GPT-5.6 Sol Codex file batches. It uses independent A/B tasks plus adjudication
+and makes no API calls:
 
 ```bash
-python3 scripts/audit.py prepare --output-dir results/project_audit_v1
-python3 scripts/audit.py import --output-dir results/project_audit_v1 \
+python3 scripts/audit.py prepare --output-dir results/project_audit_v2 \
+  --requested-model gpt-5.6-sol
+python3 scripts/audit.py import --output-dir results/project_audit_v2 \
   --response /absolute/path/to/BATCH_ID.json --task-id TASK_ID
-python3 scripts/audit.py adjudicate --output-dir results/project_audit_v1
-python3 scripts/audit.py summarize --output-dir results/project_audit_v1
-python3 scripts/audit.py freeze-views --output-dir results/project_audit_v1
+python3 scripts/audit.py adjudicate --output-dir results/project_audit_v2
+python3 scripts/audit.py summarize --output-dir results/project_audit_v2
+python3 scripts/audit.py freeze-views --output-dir results/project_audit_v2
 ```
 
 The importer preserves every response, validates the complete batch before
@@ -503,7 +502,7 @@ If `latexmk` is unavailable, run `pdflatex` twice with the same
 
 ## Remaining execution status
 
-- `results/project_audit_v1/progress.json` records accepted primary judgments
+- `results/project_audit_v2/progress.json` records accepted GPT-5.6 Sol primary judgments
   and adjudications. Until it is complete, partial audit coverage is not a
   population estimate and audited scoring views are unavailable.
 - The Colab GPU stages must still produce the C0/C1 retention gate, any

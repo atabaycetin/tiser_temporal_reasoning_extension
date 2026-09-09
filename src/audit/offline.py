@@ -15,7 +15,10 @@ from datetime import datetime
 from src.experiment.artifacts import ROOT, append, digest, freeze, jsonl, now, read, sha256, write
 from src.audit import reflection
 
-VERSION = "offline-audit-v1"
+VERSION = "offline-audit-v2"
+LEGACY_VERSION = "offline-audit-v1"
+DEFAULT_REQUESTED_MODEL = "gpt-5.6-sol"
+LEGACY_REQUESTED_MODEL = "gpt-5.5"
 LIMITS = {"reflection": 50, "semantic": 25, "trace": 10}
 LABELS = {
     "reflection": {"explicit_conflict", "no_explicit_conflict", "unscorable"},
@@ -117,19 +120,25 @@ def collect(root=ROOT):
     return items, mapping, sources, malformed
 
 
-def make_batch(kind, judge, items):
+def audit_version(requested_model):
+    return LEGACY_VERSION if requested_model == LEGACY_REQUESTED_MODEL else VERSION
+
+
+def make_batch(kind, judge, items, requested_model=DEFAULT_REQUESTED_MODEL):
     instructions = rubric(kind, judge)
-    value = {"version": VERSION, "kind": kind, "pass": judge,
+    value = {"version": audit_version(requested_model), "kind": kind, "pass": judge,
              "rubric": instructions, "rubric_sha256": digest(instructions), "items": items}
+    if requested_model != LEGACY_REQUESTED_MODEL:
+        value["requested_model"] = requested_model
     value["batch_id"] = f"{kind}-{judge}-{digest(value)[:20]}"
     value["batch_sha256"] = digest(value)
     return value
 
 
-def export_batches(output, kind, judge, items):
+def export_batches(output, kind, judge, items, requested_model=DEFAULT_REQUESTED_MODEL):
     paths = []
     for i in range(0, len(items), LIMITS[kind]):
-        batch = make_batch(kind, judge, items[i:i + LIMITS[kind]])
+        batch = make_batch(kind, judge, items[i:i + LIMITS[kind]], requested_model)
         path = Path(output) / "packs" / kind / judge / f"{batch['batch_id']}.json"
         freeze(path, batch)
         paths.append(str(path))
@@ -171,49 +180,63 @@ resume remaining batches; do not overwrite existing response files.
 """
 
 
-def task_protocol():
+def judge_guide(requested_model):
+    if requested_model == LEGACY_REQUESTED_MODEL:
+        return JUDGE_GUIDE
+    return (
+        "# Required Codex model\n\n"
+        f"Run this batch in a fresh Codex task configured for {requested_model} "
+        "with high reasoning effort. Record that exact model ID in "
+        "observed_model_label.\n\n"
+        + JUDGE_GUIDE
+    )
+
+
+def task_protocol(requested_model=DEFAULT_REQUESTED_MODEL):
+    guide = judge_guide(requested_model)
     return {
-        "version": VERSION,
+        "version": audit_version(requested_model),
         "execution": "Codex file batches; no API calls",
-        "requested_model": "gpt-5.5",
+        "requested_model": requested_model,
         "requested_reasoning_effort": "high",
         "one_batch_per_fresh_task": True,
-        "guide": JUDGE_GUIDE,
-        "guide_sha256": digest(JUDGE_GUIDE),
+        "guide": guide,
+        "guide_sha256": digest(guide),
     }
 
 
-def write_guide(path):
+def write_guide(path, requested_model=DEFAULT_REQUESTED_MODEL):
     path = Path(path)
-    if path.exists() and path.read_text(encoding="utf-8") != JUDGE_GUIDE:
+    guide = judge_guide(requested_model)
+    if path.exists() and path.read_text(encoding="utf-8") != guide:
         raise ValueError(f"Frozen judge guide differs: {path}")
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
         temporary = path.with_name(path.name + f".{os.getpid()}.tmp")
-        temporary.write_text(JUDGE_GUIDE, encoding="utf-8")
+        temporary.write_text(guide, encoding="utf-8")
         os.replace(temporary, path)
 
 
-def prepare(output, root=ROOT):
+def prepare(output, root=ROOT, requested_model=DEFAULT_REQUESTED_MODEL):
     output = Path(output)
     items, mapping, sources, malformed = collect(root)
-    manifest = {"version": VERSION, "source_files": sources,
+    manifest = {"version": audit_version(requested_model), "source_files": sources,
                 "item_counts": dict(Counter(i["kind"] for i in items.values())),
                 "items_sha256": digest(items), "mapping_sha256": digest(mapping),
-                "malformed_sha256": digest(malformed), "requested_model": "gpt-5.5",
+                "malformed_sha256": digest(malformed), "requested_model": requested_model,
                 "requested_reasoning_effort": "high", "actual_snapshot": None,
                 "human_calibration": False}
     freeze(output / "manifest.json", manifest)
     freeze(output / "items.json", items)
     freeze(output / "mapping.json", mapping)
     freeze(output / "malformed.json", malformed)
-    freeze(output / "task_protocol.json", task_protocol())
+    freeze(output / "task_protocol.json", task_protocol(requested_model))
     paths = []
     for kind in LIMITS:
         group = sorted((i for i in items.values() if i["kind"] == kind), key=lambda i: i["audit_id"])
         for judge in ("judge_a", "judge_b"):
-            paths += export_batches(output, kind, judge, group)
-            write_guide(output / "packs" / kind / judge / "INSTRUCTIONS.md")
+            paths += export_batches(output, kind, judge, group, requested_model)
+            write_guide(output / "packs" / kind / judge / "INSTRUCTIONS.md", requested_model)
     update_progress(output)
     return manifest
 
@@ -224,13 +247,16 @@ def load_state(output):
     items, mapping, malformed = (read(output / f"{name}.json") for name in ("items", "mapping", "malformed"))
     if (digest(items), digest(mapping), digest(malformed)) != (m["items_sha256"], m["mapping_sha256"], m["malformed_sha256"]):
         raise ValueError("Frozen audit inputs changed")
+    requested_model = m.get("requested_model", DEFAULT_REQUESTED_MODEL)
+    expected_protocol = task_protocol(requested_model)
+    expected_guide = judge_guide(requested_model)
     protocol_path = output / "task_protocol.json"
-    if not protocol_path.is_file() or read(protocol_path) != task_protocol():
+    if not protocol_path.is_file() or read(protocol_path) != expected_protocol:
         raise ValueError("Frozen audit task protocol is missing or changed")
     for kind in m["item_counts"]:
         for judge in ("judge_a", "judge_b"):
             guide = output / "packs" / kind / judge / "INSTRUCTIONS.md"
-            if not guide.is_file() or guide.read_text(encoding="utf-8") != JUDGE_GUIDE:
+            if not guide.is_file() or guide.read_text(encoding="utf-8") != expected_guide:
                 raise ValueError("Frozen judge guide is missing or changed")
     return m, items, mapping, malformed
 
@@ -337,6 +363,9 @@ def import_response(output, response, *, task_id="unknown"):
                 raise ValueError(f"Missing provenance: {k}")
         if data["reasoning_effort"] != "high":
             raise ValueError("Judge response must record the requested high reasoning effort")
+        requested_model = read(output / "manifest.json").get("requested_model", DEFAULT_REQUESTED_MODEL)
+        if requested_model != LEGACY_REQUESTED_MODEL and data["observed_model_label"] != requested_model:
+            raise ValueError(f"Judge response must record observed_model_label={requested_model}")
         if datetime.fromisoformat(data["judged_at"].replace("Z", "+00:00")).tzinfo is None:
             raise ValueError("judged_at requires a timezone")
         if not isinstance(data.get("judgments"), list):
@@ -387,7 +416,8 @@ def requires_adjudication(a, b, kind):
 
 
 def adjudicate(output):
-    _, items, _, _ = load_state(output)
+    manifest, items, _, _ = load_state(output)
+    requested_model = manifest.get("requested_model", DEFAULT_REQUESTED_MODEL)
     answers = accepted(output)
     groups = defaultdict(list)
     for aid, item in sorted(items.items()):
@@ -399,8 +429,8 @@ def adjudicate(output):
             groups[(item["kind"], "adjudicator")].append({**item, "decisions": [a, b]})
     paths = []
     for (kind, judge), group in groups.items():
-        paths += export_batches(output, kind, judge, group)
-        write_guide(Path(output) / "packs" / kind / judge / "INSTRUCTIONS.md")
+        paths += export_batches(output, kind, judge, group, requested_model)
+        write_guide(Path(output) / "packs" / kind / judge / "INSTRUCTIONS.md", requested_model)
     write(Path(output) / "pending_batches.json", paths)
     update_progress(output)
     return paths
@@ -448,7 +478,7 @@ def summarize(output):
         else:
             final[aid] = {**j, "decision_source": "adjudicator" if needs else "two_pass_agreement",
                           "judge_a_label": a["label"], "judge_b_label": b["label"]}
-    summary = {"version": VERSION, "status": "complete" if not sum(pending.values()) else "pending",
+    summary = {"version": manifest["version"], "status": "complete" if not sum(pending.values()) else "pending",
                "expected": manifest["item_counts"], "completed": dict(Counter(items[k]["kind"] for k in final)),
                "pending": dict(pending), "two_pass_disagreements_unique_items": dict(disagreements),
                "human_calibration": False, "actual_snapshot": None,
@@ -514,7 +544,7 @@ def freeze_views(output, root=ROOT):
                             "original_gold": r["answer"], "gold": j["corrected_answer"] or r["answer"],
                             "eligible": j["label"] in {"supported", "wrong_gold"},
                             "reason": j["label"], "decision": j})
-        value = {"version": VERSION, "input_sha256": sha256(root / f"data/tennis/tennis_{split}.json"),
+        value = {"version": manifest["version"], "input_sha256": sha256(root / f"data/tennis/tennis_{split}.json"),
                  "role": "final_tennis" if split == "dev" else "selection_tennis",
                  "n_original": len(entries), "n_primary": sum(e["eligible"] for e in entries),
                  "human_validated": False, "prior_performance_use": "no known use; user-attested" if split == "dev" else "historically exposed",
@@ -531,7 +561,12 @@ def freeze_views(output, root=ROOT):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["prepare", "import", "adjudicate", "summarize", "freeze-views"])
-    parser.add_argument("--output-dir", default="results/project_audit_v1")
+    parser.add_argument("--output-dir", default="results/project_audit_v2")
+    parser.add_argument(
+        "--requested-model",
+        default=DEFAULT_REQUESTED_MODEL,
+        help="Codex model required for newly prepared judge batches (prepare only)",
+    )
     parser.add_argument("--response")
     parser.add_argument("--task-id", default="unknown")
     args = parser.parse_args(argv)
@@ -540,7 +575,10 @@ def main(argv=None):
             parser.error("import requires --response")
         result = import_response(args.output_dir, args.response, task_id=args.task_id)
     else:
-        result = {"prepare": prepare, "adjudicate": adjudicate, "summarize": summarize,
-                  "freeze-views": freeze_views}[args.command](args.output_dir)
+        if args.command == "prepare":
+            result = prepare(args.output_dir, requested_model=args.requested_model)
+        else:
+            result = {"adjudicate": adjudicate, "summarize": summarize,
+                      "freeze-views": freeze_views}[args.command](args.output_dir)
     print(json.dumps(result, indent=2))
     return int(args.command == "import" and bool(result["errors"]))

@@ -20,7 +20,8 @@ def setup_audit(tmp_path, kind="semantic", count=2):
         items[aid] = {"audit_id": aid, "kind": kind, "payload": payload, "source_sha256": h}
         mapping[aid] = [{"question_id": f"q{i}", "split": "dev", "category": "temporal"}]
     manifest = {"version": audit.VERSION, "source_files": {}, "item_counts": {kind: count},
-                "items_sha256": digest(items), "mapping_sha256": digest(mapping), "malformed_sha256": digest([])}
+                "items_sha256": digest(items), "mapping_sha256": digest(mapping),
+                "malformed_sha256": digest([]), "requested_model": audit.DEFAULT_REQUESTED_MODEL}
     for name, value in (("manifest", manifest), ("items", items), ("mapping", mapping), ("malformed", [])):
         write(tmp_path / f"{name}.json", value)
     write(tmp_path / "task_protocol.json", audit.task_protocol())
@@ -43,7 +44,8 @@ def response(tmp_path, judge="judge_a", kind="semantic", label=None):
                           "evidence": [{"field": field, "quote": item["payload"][field]}],
                           "rationale": f"The stated event order supports the decision for {item['audit_id']}."})
     return {"batch_id": batch["batch_id"], "batch_sha256": batch["batch_sha256"], "pass": judge,
-            "judged_at": "2026-09-08T10:00:00+00:00", "observed_model_label": "test-fixture",
+            "judged_at": "2026-09-08T10:00:00+00:00",
+            "observed_model_label": audit.DEFAULT_REQUESTED_MODEL,
             "reasoning_effort": "high", "judgments": judgments}
 
 
@@ -99,6 +101,9 @@ def test_response_schema_and_reasoning_effort_are_strict(tmp_path):
     wrong_effort = response(tmp_path)
     wrong_effort["reasoning_effort"] = "medium"
     assert not import_data(tmp_path, wrong_effort, "effort.json")["accepted"]
+    wrong_model = response(tmp_path)
+    wrong_model["observed_model_label"] = "unknown"
+    assert not import_data(tmp_path, wrong_model, "model.json")["accepted"]
 
 
 def test_missing_items_remain_pending_and_reexport(tmp_path):

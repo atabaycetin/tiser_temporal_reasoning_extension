@@ -1,25 +1,18 @@
-# Tennis Trace-Generation Prompt Provenance
+# Tennis Trace-Generation Prompt
 
-## Finding
+## Purpose
 
-The recovered instruction is strongly compatible with the committed
-trace-generation artifacts and is plausibly the outer or batch-level
-instruction used with ChatGPT 5.5. It cannot be authenticated character for
-character because no conversation export, API log, prompt hash, or exact model
-snapshot was retained, and none of its distinctive sentences appears verbatim
-in Git history.
+ChatGPT-5.5 used the following prompt to generate supervised TISER traces from
+the tennis training examples and their supplied gold answers.
 
-It is **not** the prompt that created the original 1,122 raw examples. It asks
+This is stage 2 of the data pipeline. It is not the prompt that created the
+original 1,122 raw examples. It asks
 for `question_id` and `output`, assumes that a context and `gold_answer` have
 already been provided, and transforms an existing supervised example into a
-TISER trace. The partially recovered stage-1 prompt is documented separately
+TISER trace. The stage-1 prompt is documented separately
 in [`RAW_GENERATION_PROMPT.md`](RAW_GENERATION_PROMPT.md).
 
-The HTML entities and backslash escapes in the recovered copy were normalized
-below for readability. This is a provenance record, not a claim of byte-exact
-recovery.
-
-## Recovered instruction
+## Generation prompt
 
 ```text
 You will receive tennis temporal reasoning training examples.

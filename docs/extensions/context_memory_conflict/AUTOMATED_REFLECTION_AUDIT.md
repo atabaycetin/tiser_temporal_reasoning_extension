@@ -1,9 +1,9 @@
 # Fully Automated Reflection-Conflict Audit
 
 > **Legacy API alternative, not the active project audit.** The approved study
-> uses isolated GPT-5.5 Codex file batches with no API calls. Its exact procedure
+> uses isolated GPT-5.6 Sol Codex file batches with no API calls. Its exact procedure
 > is [`docs/PROJECT_AUDIT_EXECUTION.md`](../../PROJECT_AUDIT_EXECUTION.md), and
-> its evidence lives under `results/project_audit_v1/`. Do not combine results
+> its evidence lives under `results/project_audit_v2/`. Do not combine results
 > from this API workflow with that study or use an API snapshot name as evidence
 > for the model behind a Codex UI task.
 
@@ -18,7 +18,7 @@ fully automated, auditable model-as-judge run. It answers one narrow question:
 It does not require team members or manual labels. It also cannot prove that its
 own labels are error-free. Two blinded judge passes and automatic adjudication
 reduce run-to-run instability, but both passes can share model bias. The new
-result must therefore be labelled an automated GPT-5.5 audit, not a reproduction
+result must therefore be labelled an automated GPT-5.6 Sol audit, not a reproduction
 of the missing historical Claude result.
 
 The implementation is
@@ -38,9 +38,9 @@ after judging.
 4. Obtain an OpenAI Platform API key with access to the requested model. The
    script does not use a ChatGPT browser session and never writes the key to an
    artifact.
-5. Keep the snapshot identifier fixed. The default is the documented
-   [GPT-5.5 snapshot](https://developers.openai.com/api/docs/models/gpt-5.5)
-   `gpt-5.5-2026-04-23`; do not silently replace it with a moving alias.
+5. Keep the model identifier fixed. The default is the documented
+   [GPT-5.6 Sol model](https://developers.openai.com/api/docs/models/gpt-5.6-sol)
+   `gpt-5.6-sol`.
 
 ## Exact procedure
 
@@ -73,7 +73,7 @@ notebook, command argument, Git-tracked file, or report.
 
 ```bash
 python3 scripts/conflict/audit_reflections_openai.py \
-  --model gpt-5.5-2026-04-23 \
+  --model gpt-5.6-sol \
   --workers 4 \
   --output-dir results/context_memory_conflict/scored/audit_openai_v1
 ```
@@ -104,7 +104,7 @@ accounting.
 
 ```bash
 python3 scripts/conflict/audit_reflections_openai.py \
-  --model gpt-5.5-2026-04-23 \
+  --model gpt-5.6-sol \
   --workers 4 \
   --resume \
   --output-dir results/context_memory_conflict/scored/audit_openai_v1
@@ -155,7 +155,7 @@ this run; do not average the new GPT value with the historical Claude value.
 
 Suggested wording:
 
-> A blinded GPT-5.5 snapshot judged each persisted reflection twice under two
+> GPT-5.6 Sol judged each persisted reflection twice under two
 > conservative rubrics, with automatic adjudication of disagreements. The judge
 > received no model identity, conflict class, gold answer, or correctness signal.
 > Row-level requests, responses, labels, hashes, and Wilson intervals are retained.

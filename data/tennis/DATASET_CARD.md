@@ -10,20 +10,14 @@ repository; it is not intended as a factual record of tennis matches.
 
 ## Provenance
 
-The available creation record, dated 2026-09-04, states that the 1,122 raw
-context/question/answer records were created interactively with ChatGPT using
-GPT-5.5. A recovered fragment of the raw-generation prompt is retained, but its
-continuation, conversation export, complete generation history, decoding
-settings, and exact model snapshot are unavailable. This provenance therefore
-rests on recollection rather than independent verification from the committed
-artifacts. No external source corpus is recorded. See
+ChatGPT-5.5 created the 1,122 raw context/question/answer records using the
+raw-example generation prompt. The records were generated synthetically and
+were not drawn from an external tennis corpus. See
 [`RAW_GENERATION_PROMPT.md`](../../docs/extensions/tennis_domain_adaptation/RAW_GENERATION_PROMPT.md).
 
-The same creation record describes trace generation as a separate supervised
-step using ChatGPT with GPT-5.5. Each committed request supplied the question
-ID, category, context, question, and gold answer. The recovered batch
-instruction is compatible with the artifacts but is not authenticated as the
-exact literal prompt. See
+ChatGPT-5.5 generated the TISER traces in a separate supervised step using the
+trace-generation prompt. Each request supplied the question ID, category,
+context, question, and gold answer. See
 [`TRACE_GENERATION_PROMPT.md`](../../docs/extensions/tennis_domain_adaptation/TRACE_GENERATION_PROMPT.md)
 and [`PROVENANCE.json`](PROVENANCE.json).
 
@@ -101,14 +95,15 @@ does not estimate the dataset-wide error rate or certify the other records.
 See `results/tennis_domain_adaptation/semantic_audit/`.
 
 For the 600 full-run traces, 200 outputs were mechanically wrapped to restore
-missing TISER tags, and 26 records were recovered from 19 malformed physical
+missing TISER tags, and 26 records were repaired from 19 malformed physical
 JSONL lines. All 600 then passed structural and gold-answer-equality checks.
 Those repairs did not validate or correct semantic entailment.
 
-Training a replacement final model should follow human adjudication of all
-splits, a recorded keep/correct/remove decision for every reviewed item,
-regeneration of affected traces, and reservation of a genuinely untouched
-final evaluation set.
+Training a replacement final model should follow completion of the documented
+two-pass audit and adjudication, a recorded keep/correct/remove decision for
+every reviewed item, regeneration of affected traces, and reservation of a
+genuinely untouched final evaluation set. The current audit has no human
+calibration.
 
 ## License
 

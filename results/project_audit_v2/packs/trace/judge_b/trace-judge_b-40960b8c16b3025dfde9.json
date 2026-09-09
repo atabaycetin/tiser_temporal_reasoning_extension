@@ -1,0 +1,122 @@
+{
+  "version": "offline-audit-v2",
+  "kind": "trace",
+  "pass": "judge_b",
+  "rubric": "Independently try to falsify the claimed temporal entailment before accepting it.\nAudit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "59df9f9f31b91cf40b40dc7f01014e9509862c19eb0a11110e93ab9ff8780e26",
+  "items": [
+    {
+      "audit_id": "trace-85fb9e269e998dd2296b8b85",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner won the first set. Early in the second set, the stadium lights flickered and went out. Play was delayed for twenty minutes while the lights restarted. After the delay, Sinner hit a double fault.",
+        "question": "What happened after the stadium lights restarted?",
+        "gold": "Sinner hit a double fault",
+        "trace": "<reasoning>\nAfter the lights restarted and the delay ended, Sinner hit a double fault.\n<timeline>\n1. Sinner won the first set.\n2. Early in the second set, the stadium lights flickered and went out.\n3. Play was delayed for twenty minutes while the lights restarted.\n4. After the delay, Sinner hit a double fault.\n</timeline>\n<reflection>\nThe event after the lights restarted was Sinner's double fault.\n</reflection>\n</reasoning>\n<answer>Sinner hit a double fault</answer>"
+      },
+      "source_sha256": "85fb9e269e998dd2296b8b850df014537394149e7f2a2189270fe98707112ba0"
+    },
+    {
+      "audit_id": "trace-861d95e79a452cef945156af",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev received a code violation for racquet abuse at 2-2 in the second set. He then broke serve two games later. After breaking serve, Zverev held serve to take the set.",
+        "question": "Which happened first: Zverev broke serve or Zverev held serve to take the set?",
+        "gold": "Zverev broke serve",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Zverev received a code violation for racquet abuse at 2-2.\n2. Zverev broke serve two games later.\n3. Zverev held serve to take the set.\n</timeline>\n<reflection>\nBreaking serve happened before he held serve to win the set.\n</reflection>\n</reasoning>\n<answer>Zverev broke serve</answer>"
+      },
+      "source_sha256": "861d95e79a452cef945156afa6e675e2767f2aebc32805f95f1004a4a9517ca2"
+    },
+    {
+      "audit_id": "trace-86de4e478ebab336d6d849f3",
+      "kind": "trace",
+      "payload": {
+        "context": "Federer won the first set with a drop-shot winner. Nadal called the trainer before the second set began. During the second set, Federer broke serve at 4-3 and later served out the match.",
+        "question": "Which happened last?",
+        "gold": "Federer served out the match",
+        "trace": "<reasoning>\nFederer won the first set, Nadal called the trainer, Federer broke in the second set, and later served out the match.\n<timeline>\n1. Federer won the first set\n2. Nadal called the trainer\n3. Second set begins\n4. Federer broke serve at 4-3\n5. Federer served out the match\n</timeline>\n<reflection>\nThe final event described is Federer serving out the match.\n</reflection>\n</reasoning>\n<answer>Federer served out the match</answer>"
+      },
+      "source_sha256": "86de4e478ebab336d6d849f3a17dbbd3735c8419a83155b64a000a6b26b44004"
+    },
+    {
+      "audit_id": "trace-88072764ca7673cc98e59bdd",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz received a coaching warning early in the first set. De Minaur broke serve after the warning. Later, Fritz broke back before the set moved to a tie-break.",
+        "question": "Which happened first: De Minaur broke serve or Fritz received a coaching warning?",
+        "gold": "Fritz received a coaching warning",
+        "trace": "<reasoning>\nContext: \"Fritz received a coaching warning early in the first set. De Minaur broke serve after the warning.\" The warning occurs early in the set; the break occurs after the warning. So warning is first.\n<timeline>\n- Fritz received a coaching warning.\n- De Minaur broke serve.\n</timeline>\n<reflection>\n\"After the warning\" means the break follows, so the warning happened first.\n</reflection>\n</reasoning>\n<answer>Fritz received a coaching warning</answer>"
+      },
+      "source_sha256": "88072764ca7673cc98e59bdd18c0f03a939e50f2793aeda5b445c898b406314f"
+    },
+    {
+      "audit_id": "trace-88178aa905a76475da326662",
+      "kind": "trace",
+      "payload": {
+        "context": "Fritz and Shelton started the match at noon. A crowd interruption stopped play after 14 minutes. The players resumed six minutes later, and Fritz broke serve immediately after the restart.",
+        "question": "How many minutes after the match started did play resume?",
+        "gold": "20 minutes",
+        "trace": "<reasoning>\nPlay stopped 14 minutes after the match started and resumed six minutes later, so play resumed 20 minutes after the start.\n<timeline>\n1. Fritz and Shelton started the match at noon.\n2. A crowd interruption stopped play after 14 minutes.\n3. The players resumed six minutes later.\n4. Fritz broke serve immediately after the restart.\n</timeline>\n<reflection>\nAdding 14 minutes and 6 minutes gives 20 minutes after the match started.\n</reflection>\n</reasoning>\n<answer>20 minutes</answer>"
+      },
+      "source_sha256": "88178aa905a76475da326662baf2210a777c7fbf0c4aa87d8ff3a4bb0adb2b3f"
+    },
+    {
+      "audit_id": "trace-8869a4163d6dfd70d0927111",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz held serve to reach 5-5 in the first set. A rain delay stopped play before the tie-break began. After the delay, Medvedev won the tie-break.",
+        "question": "What happened after the rain delay?",
+        "gold": "Medvedev won the tie-break",
+        "trace": "<reasoning>\nThe context says the rain delay stopped play before the tie-break, and after the delay Medvedev won the tie-break.\n<timeline>\n1. Alcaraz held serve to reach 5-5.\n2. A rain delay stopped play before the tie-break.\n3. After the delay, Medvedev won the tie-break.\n</timeline>\n<reflection>\nThe event directly after the rain delay is Medvedev winning the tie-break.\n</reflection>\n</reasoning>\n<answer>Medvedev won the tie-break</answer>"
+      },
+      "source_sha256": "8869a4163d6dfd70d09271117fe639e5702b7dd20262d444faa493d685cec23c"
+    },
+    {
+      "audit_id": "trace-886d030c9af432ef16fc79bd",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic double-faulted on break point in the second set. During the next changeover, Tsitsipas called the trainer. Later, Djokovic broke back to 4-4.",
+        "question": "Did Djokovic double-fault before Tsitsipas called the trainer?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nDjokovic double-faulted on break point, and Tsitsipas called the trainer during the next changeover.\n<timeline>\n1. Djokovic double-faulted on break point in the second set.\n2. During the next changeover, Tsitsipas called the trainer.\n3. Later, Djokovic broke back to 4-4.\n</timeline>\n<reflection>\nThe double fault occurred before Tsitsipas called the trainer.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "886d030c9af432ef16fc79bdecd94222544d734f64120c83931f98cd1d49f2a0"
+    },
+    {
+      "audit_id": "trace-8aeae2e1bd895d81c16e2142",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner requested a new racket at 3-3 in the first set. He broke Medvedev's serve in the very next game. Medvedev immediately broke back in the following game. They eventually reached a tie-break, which Medvedev won.",
+        "question": "Did Medvedev break back before Sinner requested a new racket?",
+        "gold": "No",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Sinner requested a new racket at 3-3 in the first set.\n2. Sinner broke Medvedev's serve in the next game.\n3. Medvedev immediately broke back in the following game.\n4. Medvedev won the tie-break.\n</timeline>\n<reflection>\nMedvedev broke back after Sinner requested a new racket.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "8aeae2e1bd895d81c16e2142fae22f9a40e66490e8700d1ab9569e731184a954"
+    },
+    {
+      "audit_id": "trace-8bd9e37a979c5695be9622fe",
+      "kind": "trace",
+      "payload": {
+        "context": "Alcaraz took an early break in the first set. Sinner broke back after a long sixth game. Before Sinner broke back, Alcaraz had already received a warning for slow play.",
+        "question": "Did Sinner break back before Alcaraz received a warning for slow play?",
+        "gold": "No",
+        "trace": "<reasoning>\nThe text states that before Sinner broke back, Alcaraz had already received a warning for slow play.\n<timeline>\n1. Alcaraz took an early break in the first set\n2. Alcaraz received a warning for slow play\n3. Sinner broke back after a long sixth game\n</timeline>\n<reflection>\nSinner broke back after Alcaraz received his warning, not before.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "8bd9e37a979c5695be9622fe6b1bea6ac0bd0a0835884bded6a0ceb990ced0a3"
+    },
+    {
+      "audit_id": "trace-8bf8f4b138a0f89bc474254d",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic held serve to start the match. Alcaraz broke him in the fifth game. Before Alcaraz served for the set, Djokovic called the trainer.",
+        "question": "What happened before Alcaraz served for the set?",
+        "gold": "Djokovic called the trainer",
+        "trace": "<reasoning>\nDjokovic called the trainer before Alcaraz served for the set.\n<timeline>\n1. Djokovic held serve to start the match.\n2. Alcaraz broke him in the fifth game.\n3. Djokovic called the trainer before Alcaraz served for the set.\n4. Alcaraz served for the set.\n</timeline>\n<reflection>\nThe event before Alcaraz served for the set is Djokovic calling the trainer.\n</reflection>\n</reasoning>\n<answer>Djokovic called the trainer</answer>"
+      },
+      "source_sha256": "8bf8f4b138a0f89bc474254d4546982d393c1ecad55922e0e4d10f8b9e467af9"
+    }
+  ],
+  "requested_model": "gpt-5.6-sol",
+  "batch_id": "trace-judge_b-40960b8c16b3025dfde9",
+  "batch_sha256": "ab90644981f7735c4215f8737da89705728b90ded1887dc0082e07c83375564c"
+}

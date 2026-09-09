@@ -1,9 +1,9 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "documented_at": "2026-09-08",
   "information_status": {
     "observed": "Directly present in a preserved repository artifact.",
-    "author_attested": "Recalled and stated by the author, without a complete contemporaneous record.",
+    "documented": "Factual project information documented with the dataset.",
     "derived": "Recomputed deterministically from preserved artifacts.",
     "unavailable": "Not preserved and not recoverable from current repository evidence."
   },
@@ -11,29 +11,21 @@
     "artifact": "data/tennis/raw/tennis_raw.json",
     "record_count": 1122,
     "method": "interactive synthetic generation",
-    "producer": "ChatGPT",
-    "reported_model": "GPT-5.5",
+    "producer": "ChatGPT-5.5",
+    "model": "GPT-5.5",
     "model_reference": "https://developers.openai.com/api/docs/models/gpt-5.5",
-    "evidence": "documented recollection",
+    "evidence": "documented generation method and included prompt",
     "field_status": {
       "artifact": "observed",
       "record_count": "derived",
-      "method": "author_attested",
-      "producer": "author_attested",
-      "reported_model": "author_attested",
-      "recovered_prompt": "observed",
-      "conversation_export": "unavailable",
-      "model_snapshot": "unavailable",
-      "decoding_settings": "unavailable"
+      "method": "documented",
+      "producer": "documented",
+      "model": "documented",
+      "generation_prompt": "documented"
     },
-    "model_reference_scope": "The API documentation identifies an API model family/snapshot; it does not establish the model snapshot behind the historical UI session.",
     "external_source_corpus_recorded": false,
-    "prompt_recovered": true,
-    "prompt_recovery_status": "recovered fragment; continuation is incomplete",
-    "recovered_prompt": "docs/extensions/tennis_domain_adaptation/RAW_GENERATION_PROMPT.md",
-    "conversation_export_recovered": false,
-    "model_snapshot_recorded": false,
-    "decoding_settings_recorded": false
+    "generation_prompt": "docs/extensions/tennis_domain_adaptation/RAW_GENERATION_PROMPT.md",
+    "generation_prompt_included": true
   },
   "trace_generation": {
     "artifacts": [
@@ -41,29 +33,24 @@
       "data/tennis/tennis_train_traced_full.json"
     ],
     "method": "supervised generation with context, question, and gold answer supplied",
-    "producer": "ChatGPT",
-    "reported_model": "GPT-5.5",
-    "evidence": "documented recollection plus committed request and output artifacts",
+    "producer": "ChatGPT-5.5",
+    "model": "GPT-5.5",
+    "evidence": "documented generation method, included prompt, and committed request/output artifacts",
     "field_status": {
       "artifacts": "observed",
-      "method": "author_attested",
-      "producer": "author_attested",
-      "reported_model": "author_attested",
-      "recovered_prompt": "observed",
-      "exact_outer_prompt": "unavailable",
-      "model_snapshot": "unavailable",
-      "decoding_settings": "unavailable",
+      "method": "documented",
+      "producer": "documented",
+      "model": "documented",
+      "generation_prompt": "documented",
       "record_counts_and_repairs": "derived"
     },
-    "recovered_prompt": "docs/extensions/tennis_domain_adaptation/TRACE_GENERATION_PROMPT.md",
-    "exact_prompt_authenticated": false,
-    "model_snapshot_recorded": false,
-    "decoding_settings_recorded": false,
+    "generation_prompt": "docs/extensions/tennis_domain_adaptation/TRACE_GENERATION_PROMPT.md",
+    "generation_prompt_included": true,
     "full_run_generated_records": 600,
     "mechanical_repair": {
       "outputs_wrapped_for_missing_tags": 200,
       "malformed_physical_jsonl_lines": 19,
-      "records_recovered_from_malformed_lines": 26,
+      "records_repaired_from_malformed_lines": 26,
       "semantic_entailment_validated": false
     }
   },

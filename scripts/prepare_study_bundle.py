@@ -143,11 +143,11 @@ else:
     md("""## Complete and freeze the Codex file audits
 Import the individually judged A/B responses locally, prepare and import
 adjudications, and run `scripts/audit.py summarize` followed by `freeze-views`.
-Sync the completed `results/project_audit_v1` folder into this workspace. No
+Sync the completed `results/project_audit_v2` folder into this workspace. No
 predictions are shown to the auditors. This cell deliberately stops while any
 audit is pending; it never substitutes a partial audit for completion.
 """)
-    code("""AUDIT_DIR = PROJECT_ROOT / 'results/project_audit_v1'
+    code("""AUDIT_DIR = PROJECT_ROOT / 'results/project_audit_v2'
 run('scripts/audit.py', 'summarize', '--output-dir', AUDIT_DIR)
 audit = json.loads((AUDIT_DIR / 'summary.json').read_text())
 assert audit['status'] == 'complete', 'Complete all primary judgments and adjudications before final evaluation.'
@@ -201,7 +201,7 @@ def main(argv=None):
         return
     roots = [ROOT / name for name in (
         "src", "scripts", "config", "tests", "docs", "data/tennis",
-        "results/project_audit_v1", C0, C1,
+        "results/project_audit_v2", C0, C1,
     )]
     paths = {p for root in roots for p in root.rglob("*") if p.is_file()
              and "__pycache__" not in p.parts and "quarantine" not in p.parts

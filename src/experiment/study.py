@@ -588,7 +588,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("command", choices=["init", "prepare-data", "evaluate", "gate", "replay-data", "train", "token-gate", "freeze-final", "statistics", "status"])
     p.add_argument("--study-dir", default=str(DEFAULT_STUDY))
-    p.add_argument("--audit-dir", default=str(ROOT / "results/project_audit_v1"))
+    p.add_argument("--audit-dir", default=str(ROOT / "results/project_audit_v2"))
     p.add_argument("--train-file", default=str(ROOT / "data/TISER_train.json"))
     p.add_argument("--test-file", default=str(ROOT / "data/TISER_test.json"))
     p.add_argument("--source-manifest", default=str(ROOT / "data/TISER_source.json"))
