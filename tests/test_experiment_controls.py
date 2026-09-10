@@ -219,7 +219,7 @@ def test_colab_notebook_covers_complete_conditional_workflow():
         "train_if_needed('C1R')",
         "train_if_needed('R25')",
         "train_if_needed('R25-T')",
-        "results/project_audit_v2",
+        "results/tennis_semantic_audit_v2",
         "experiment('freeze-final'",
         "experiment('statistics')",
     ):

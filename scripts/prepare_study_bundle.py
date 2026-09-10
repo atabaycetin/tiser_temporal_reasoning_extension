@@ -140,14 +140,15 @@ if gate['decision'] == 'clear_forgetting':
 else:
     print('Replay stopped under the frozen rule:', gate['decision'])
 """)
-    md("""## Complete and freeze the Codex file audits
-Import the individually judged A/B responses locally, prepare and import
+    md("""## Complete and freeze the tennis semantic audit
+Import the individually judged semantic A/B responses locally, prepare and import
 adjudications, and run `scripts/audit.py summarize` followed by `freeze-views`.
-Sync the completed `results/project_audit_v2` folder into this workspace. No
-predictions are shown to the auditors. This cell deliberately stops while any
-audit is pending; it never substitutes a partial audit for completion.
+Sync the completed `results/tennis_semantic_audit_v2` folder into this workspace.
+The reflection and trace audits are independent and do not block this experiment.
+No predictions are shown to the semantic auditors. This cell deliberately stops
+while that audit is pending; it never substitutes partial coverage for completion.
 """)
-    code("""AUDIT_DIR = PROJECT_ROOT / 'results/project_audit_v2'
+    code("""AUDIT_DIR = PROJECT_ROOT / 'results/tennis_semantic_audit_v2'
 run('scripts/audit.py', 'summarize', '--output-dir', AUDIT_DIR)
 audit = json.loads((AUDIT_DIR / 'summary.json').read_text())
 assert audit['status'] == 'complete', 'Complete all primary judgments and adjudications before final evaluation.'
@@ -201,7 +202,7 @@ def main(argv=None):
         return
     roots = [ROOT / name for name in (
         "src", "scripts", "config", "tests", "docs", "data/tennis",
-        "results/project_audit_v2", C0, C1,
+        "results/tennis_semantic_audit_v2", C0, C1,
     )]
     paths = {p for root in roots for p in root.rglob("*") if p.is_file()
              and "__pycache__" not in p.parts and "quarantine" not in p.parts

@@ -12,7 +12,18 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from datetime import datetime
 
-from src.experiment.artifacts import ROOT, append, digest, freeze, jsonl, now, read, sha256, write
+from src.experiment.artifacts import (
+    ROOT,
+    append,
+    digest,
+    freeze,
+    jsonl,
+    now,
+    read,
+    sha256,
+    source_snapshot,
+    write,
+)
 from src.audit import reflection
 
 VERSION = "offline-audit-v2"
@@ -20,6 +31,11 @@ LEGACY_VERSION = "offline-audit-v1"
 DEFAULT_REQUESTED_MODEL = "gpt-5.6-sol"
 LEGACY_REQUESTED_MODEL = "gpt-5.5"
 LIMITS = {"reflection": 50, "semantic": 25, "trace": 10}
+DEFAULT_OUTPUT_DIRS = {
+    "reflection": "results/reflection_audit",
+    "semantic": "results/tennis_semantic_audit_v2",
+    "trace": "results/tennis_trace_audit_v2",
+}
 LABELS = {
     "reflection": {"explicit_conflict", "no_explicit_conflict", "unscorable"},
     "semantic": {"supported", "wrong_gold", "underdetermined", "inconsistent", "unscorable"},
@@ -68,8 +84,11 @@ def _context(row):
     return text
 
 
-def collect(root=ROOT):
+def collect(root=ROOT, kinds=None):
     root = Path(root)
+    kinds = set(LIMITS if kinds is None else kinds)
+    if not kinds or not kinds <= set(LIMITS):
+        raise ValueError(f"Invalid audit kinds: {sorted(kinds)}")
     items, mapping, sources = {}, {}, {}
     def load(rel, lines=False):
         p = root / rel
@@ -86,37 +105,42 @@ def collect(root=ROOT):
         return aid
 
     splits = {}
-    for split in ("train", "dev", "test"):
-        rows = load(f"data/tennis/tennis_{split}.json")
-        for r in rows:
-            qid = r["question_id"]
-            if qid in splits:
-                raise ValueError("Tennis split overlap")
-            splits[qid] = (split, r)
-    for qid, (split, r) in splits.items():
-        add("semantic", {"context": _context(r), "question": r["question"], "gold": r["answer"]},
-            {"question_id": qid, "split": split, "category": r.get("category", "unknown")})
-    traced = set()
-    for name, subset in (("50", "pilot"), ("full", "reported600")):
-        for r in load(f"data/tennis/tennis_train_traced_{name}.json"):
-            qid = r["question_id"]
-            if qid in traced or qid not in splits or splits[qid][0] != "train":
-                raise ValueError("Trace membership or duplicate error")
-            traced.add(qid)
-            original = splits[qid][1]
-            if (r["question"], r["answer"], _context(r)) != (original["question"], original["answer"], _context(original)):
-                raise ValueError(f"Trace/source mismatch: {qid}")
-            add("trace", {"context": _context(r), "question": r["question"],
-                          "gold": r["answer"], "trace": r["output"]},
-                {"question_id": qid, "split": "train", "subset": subset, "category": r.get("category", "unknown")})
+    if kinds & {"semantic", "trace"}:
+        split_names = ("train", "dev", "test") if "semantic" in kinds else ("train",)
+        for split in split_names:
+            rows = load(f"data/tennis/tennis_{split}.json")
+            for r in rows:
+                qid = r["question_id"]
+                if qid in splits:
+                    raise ValueError("Tennis split overlap")
+                splits[qid] = (split, r)
+    if "semantic" in kinds:
+        for qid, (split, r) in splits.items():
+            add("semantic", {"context": _context(r), "question": r["question"], "gold": r["answer"]},
+                {"question_id": qid, "split": split, "category": r.get("category", "unknown")})
+    if "trace" in kinds:
+        traced = set()
+        for name, subset in (("50", "pilot"), ("full", "reported600")):
+            for r in load(f"data/tennis/tennis_train_traced_{name}.json"):
+                qid = r["question_id"]
+                if qid in traced or qid not in splits or splits[qid][0] != "train":
+                    raise ValueError("Trace membership or duplicate error")
+                traced.add(qid)
+                original = splits[qid][1]
+                if (r["question"], r["answer"], _context(r)) != (original["question"], original["answer"], _context(original)):
+                    raise ValueError(f"Trace/source mismatch: {qid}")
+                add("trace", {"context": _context(r), "question": r["question"],
+                              "gold": r["answer"], "trace": r["output"]},
+                    {"question_id": qid, "split": "train", "subset": subset, "category": r.get("category", "unknown")})
     malformed = []
-    for cell in ("base__tiser", "tiser__tiser"):
-        for r in load(f"results/context_memory_conflict/scored/{cell}.jsonl", lines=True):
-            meta = {"cell": cell, "row": r}
-            if r.get("reflection_malformed") or not str(r.get("reflection_text") or "").strip():
-                malformed.append(meta)
-            else:
-                add("reflection", {"reflection": r["reflection_text"]}, meta)
+    if "reflection" in kinds:
+        for cell in ("base__tiser", "tiser__tiser"):
+            for r in load(f"results/context_memory_conflict/scored/{cell}.jsonl", lines=True):
+                meta = {"cell": cell, "row": r}
+                if r.get("reflection_malformed") or not str(r.get("reflection_text") or "").strip():
+                    malformed.append(meta)
+                else:
+                    add("reflection", {"reflection": r["reflection_text"]}, meta)
     return items, mapping, sources, malformed
 
 
@@ -145,7 +169,7 @@ def export_batches(output, kind, judge, items, requested_model=DEFAULT_REQUESTED
     return paths
 
 
-JUDGE_GUIDE = """# Isolated audit task
+LEGACY_JUDGE_GUIDE = """# Isolated audit task
 
 Read only the assigned batch JSON files and this guide. Do not inspect the parent
 project, other judge passes, audit mappings, previous findings, or performance
@@ -180,29 +204,83 @@ resume remaining batches; do not overwrite existing response files.
 """
 
 
+JUDGE_PROMPT = """Audit the attached JSON bundle as one independent model-judge pass.
+
+Use only the attached bundle as evidence. Do not inspect any repository, mapping,
+other judge pass, previous decision, historical result, or experiment output.
+Read the rubric in each batch and judge every item individually. Do not use
+scripts, regular expressions, keyword rules, lexical heuristics, or a default
+label to make judgments. Code may only assemble and validate JSON after the
+item-specific judgments have been made.
+
+Process every batch in the bundle. For each batch, create one response file named
+BATCH_ID.json in a single new response directory, replacing BATCH_ID with the
+batch_id value. Each response file must contain exactly:
+
+{"batch_id":"...", "batch_sha256":"...", "pass":"judge_a or judge_b or adjudicator",
+ "judged_at":"timezone-bearing ISO 8601 timestamp",
+ "observed_model_label":"REQUESTED_MODEL", "reasoning_effort":"high",
+ "judgments":[
+ {"audit_id":"...", "source_sha256":"...", "label":"...",
+  "corrected_answer":null, "mention_kind":"none",
+  "evidence":[{"field":"context or trace or reflection", "quote":"exact substring"}],
+  "rationale":"brief item-specific explanation"}]}
+
+Copy batch_id, batch_sha256, pass, audit_id, and source_sha256 without alteration.
+Include every item exactly once and use only labels allowed by that batch's rubric.
+Every rationale must explain its own item. Evidence quotes must be exact substrings
+of the named source field.
+
+For a reflection labeled explicit_conflict, provide nonempty reflection evidence
+and set mention_kind to memory_context_mismatch, contradiction_or_inconsistency,
+uncertainty_or_doubt, or other. For no_explicit_conflict or unscorable, use an
+empty evidence list and mention_kind none. For semantic and trace judgments,
+mention_kind is always none and every label except unscorable requires evidence.
+Set corrected_answer to a nonempty replacement only for semantic wrong_gold;
+otherwise set it to null. Do not invent unavailable provenance.
+
+Validate each response file before continuing. Preserve completed valid files if
+execution is interrupted and continue until the response directory contains
+exactly bundle.batch_count files covering every batch in bundle.batch_ids. Then
+report the response directory's absolute filesystem path.
+"""
+
+
 def judge_guide(requested_model):
+    return LEGACY_JUDGE_GUIDE
+
+
+def judge_prompt(requested_model=DEFAULT_REQUESTED_MODEL):
+    return JUDGE_PROMPT.replace("REQUESTED_MODEL", requested_model)
+
+
+def task_protocol(requested_model=DEFAULT_REQUESTED_MODEL, kind=None):
     if requested_model == LEGACY_REQUESTED_MODEL:
-        return JUDGE_GUIDE
-    return (
-        "# Required Codex model\n\n"
-        f"Run this batch in a fresh Codex task configured for {requested_model} "
-        "with high reasoning effort. Record that exact model ID in "
-        "observed_model_label.\n\n"
-        + JUDGE_GUIDE
-    )
-
-
-def task_protocol(requested_model=DEFAULT_REQUESTED_MODEL):
-    guide = judge_guide(requested_model)
-    return {
-        "version": audit_version(requested_model),
-        "execution": "Codex file batches; no API calls",
-        "requested_model": requested_model,
-        "requested_reasoning_effort": "high",
-        "one_batch_per_fresh_task": True,
-        "guide": guide,
-        "guide_sha256": digest(guide),
-    }
+        guide = judge_guide(requested_model)
+        value = {
+            "version": audit_version(requested_model),
+            "execution": "Codex file batches; no API calls",
+            "requested_model": requested_model,
+            "requested_reasoning_effort": "high",
+            "guide": guide,
+            "guide_sha256": digest(guide),
+        }
+        value["one_batch_per_fresh_task"] = True
+    else:
+        prompt = judge_prompt(requested_model)
+        value = {
+            "version": audit_version(requested_model),
+            "execution": "Codex complete-pass bundles; no API calls",
+            "requested_model": requested_model,
+            "requested_reasoning_effort": "high",
+            "judge_prompt": prompt,
+            "judge_prompt_sha256": digest(prompt),
+        }
+        value["one_judge_pass_per_fresh_task"] = True
+        value["one_response_file_per_batch"] = True
+    if kind is not None:
+        value["kind"] = kind
+    return value
 
 
 def write_guide(path, requested_model=DEFAULT_REQUESTED_MODEL):
@@ -217,26 +295,78 @@ def write_guide(path, requested_model=DEFAULT_REQUESTED_MODEL):
         os.replace(temporary, path)
 
 
-def prepare(output, root=ROOT, requested_model=DEFAULT_REQUESTED_MODEL):
+def write_judge_prompt(path, requested_model=DEFAULT_REQUESTED_MODEL):
+    path = Path(path)
+    prompt = judge_prompt(requested_model)
+    if path.exists() and path.read_text(encoding="utf-8") != prompt:
+        raise ValueError(f"Frozen judge prompt differs: {path}")
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_name(path.name + f".{os.getpid()}.tmp")
+        temporary.write_text(prompt, encoding="utf-8")
+        os.replace(temporary, path)
+
+
+def export_task_bundle(output, kind, judge, batch_paths, *, name):
+    """Wrap one judge pass's small validation batches in one attachable file."""
+    batches = [read(path) for path in batch_paths]
+    if not batches or any(b["kind"] != kind or b["pass"] != judge for b in batches):
+        raise ValueError("Task bundle contains the wrong audit kind or judge pass")
+    value = {
+        "version": batches[0]["version"],
+        "kind": kind,
+        "pass": judge,
+        "batch_count": len(batches),
+        "item_count": sum(len(batch["items"]) for batch in batches),
+        "batch_ids": [batch["batch_id"] for batch in batches],
+        "batches": batches,
+    }
+    value["bundle_sha256"] = digest(value)
+    path = Path(output) / "task_bundles" / f"{name}.json"
+    freeze(path, value)
+    return str(path)
+
+
+def audit_source_snapshot():
+    """Record executable audit sources without unrelated result-directory noise."""
+    value = source_snapshot()
+    source_paths = set(value["files"])
+    dirty_lines = []
+    for line in value["dirty_status"].splitlines():
+        changed_path = line[3:].split(" -> ")[-1]
+        if changed_path in source_paths:
+            dirty_lines.append(line)
+    value["dirty_status"] = "\n".join(dirty_lines)
+    return value
+
+
+def prepare(output, root=ROOT, requested_model=DEFAULT_REQUESTED_MODEL, kind=None):
+    if kind not in LIMITS:
+        raise ValueError("prepare requires exactly one kind: reflection, semantic, or trace")
     output = Path(output)
-    items, mapping, sources, malformed = collect(root)
-    manifest = {"version": audit_version(requested_model), "source_files": sources,
+    items, mapping, sources, malformed = collect(root, {kind})
+    manifest = {"version": audit_version(requested_model), "kind": kind, "source_files": sources,
                 "item_counts": dict(Counter(i["kind"] for i in items.values())),
                 "items_sha256": digest(items), "mapping_sha256": digest(mapping),
                 "malformed_sha256": digest(malformed), "requested_model": requested_model,
                 "requested_reasoning_effort": "high", "actual_snapshot": None,
-                "human_calibration": False}
+                "human_calibration": False, "source_snapshot": audit_source_snapshot()}
     freeze(output / "manifest.json", manifest)
     freeze(output / "items.json", items)
     freeze(output / "mapping.json", mapping)
     freeze(output / "malformed.json", malformed)
-    freeze(output / "task_protocol.json", task_protocol(requested_model))
+    freeze(output / "task_protocol.json", task_protocol(requested_model, kind))
     paths = []
-    for kind in LIMITS:
-        group = sorted((i for i in items.values() if i["kind"] == kind), key=lambda i: i["audit_id"])
-        for judge in ("judge_a", "judge_b"):
-            paths += export_batches(output, kind, judge, group, requested_model)
+    group = sorted(items.values(), key=lambda i: i["audit_id"])
+    for judge in ("judge_a", "judge_b"):
+        judge_paths = export_batches(output, kind, judge, group, requested_model)
+        paths += judge_paths
+        if requested_model == LEGACY_REQUESTED_MODEL:
             write_guide(output / "packs" / kind / judge / "INSTRUCTIONS.md", requested_model)
+        else:
+            export_task_bundle(output, kind, judge, judge_paths, name=f"{kind}-{judge}-primary")
+    if requested_model != LEGACY_REQUESTED_MODEL:
+        write_judge_prompt(output / "task_bundles" / "JUDGE_PROMPT.txt", requested_model)
     update_progress(output)
     return manifest
 
@@ -248,16 +378,22 @@ def load_state(output):
     if (digest(items), digest(mapping), digest(malformed)) != (m["items_sha256"], m["mapping_sha256"], m["malformed_sha256"]):
         raise ValueError("Frozen audit inputs changed")
     requested_model = m.get("requested_model", DEFAULT_REQUESTED_MODEL)
-    expected_protocol = task_protocol(requested_model)
-    expected_guide = judge_guide(requested_model)
+    kind = m.get("kind")
+    expected_protocol = task_protocol(requested_model, kind)
     protocol_path = output / "task_protocol.json"
     if not protocol_path.is_file() or read(protocol_path) != expected_protocol:
         raise ValueError("Frozen audit task protocol is missing or changed")
-    for kind in m["item_counts"]:
-        for judge in ("judge_a", "judge_b"):
-            guide = output / "packs" / kind / judge / "INSTRUCTIONS.md"
-            if not guide.is_file() or guide.read_text(encoding="utf-8") != expected_guide:
-                raise ValueError("Frozen judge guide is missing or changed")
+    if requested_model == LEGACY_REQUESTED_MODEL:
+        expected_guide = judge_guide(requested_model)
+        for kind in m["item_counts"]:
+            for judge in ("judge_a", "judge_b"):
+                guide = output / "packs" / kind / judge / "INSTRUCTIONS.md"
+                if not guide.is_file() or guide.read_text(encoding="utf-8") != expected_guide:
+                    raise ValueError("Frozen judge guide is missing or changed")
+    else:
+        prompt = output / "task_bundles" / "JUDGE_PROMPT.txt"
+        if not prompt.is_file() or prompt.read_text(encoding="utf-8") != judge_prompt(requested_model):
+            raise ValueError("Frozen judge prompt is missing or changed")
     return m, items, mapping, malformed
 
 
@@ -290,6 +426,10 @@ def validate_judgment(j, item):
                                       "evidence_quote": quote, "rationale": j["rationale"]}, payload["reflection"])
         if j["label"] != "explicit_conflict" and j["evidence"]:
             raise ValueError("Negative reflection labels require empty evidence")
+        if j["label"] == "explicit_conflict" and j["mention_kind"] == "none":
+            raise ValueError("Positive reflection labels require a conflict mention_kind")
+        if j["label"] != "explicit_conflict" and j["mention_kind"] != "none":
+            raise ValueError("Negative reflection labels require mention_kind none")
     elif j["mention_kind"] != "none" or (j["label"] != "unscorable" and not j["evidence"]):
         raise ValueError("Semantic/trace decisions require evidence and mention_kind none")
 
@@ -411,6 +551,37 @@ def import_response(output, response, *, task_id="unknown"):
     return result
 
 
+def import_responses(output, response, *, task_id="unknown"):
+    """Import one response file or every response JSON in a task output directory."""
+    response = Path(response)
+    if response.is_file():
+        return import_response(output, response, task_id=task_id)
+    if not response.is_dir():
+        return {"accepted": 0, "errors": [{"error": f"Response path does not exist: {response}"}]}
+    files = sorted(path for path in response.rglob("*.json") if path.is_file())
+    if not files:
+        return {"response_dir": str(response), "files": 0, "accepted": 0,
+                "errors": [{"error": "Response directory contains no JSON files"}], "results": []}
+    try:
+        passes = {read(path).get("pass") for path in files}
+    except (ValueError, TypeError, json.JSONDecodeError) as e:
+        return {"response_dir": str(response), "files": len(files), "accepted": 0,
+                "errors": [{"error": f"Could not read every response JSON: {e}"}], "results": []}
+    if len(passes) != 1 or None in passes:
+        return {"response_dir": str(response), "files": len(files), "accepted": 0,
+                "errors": [{"error": "A response directory must contain exactly one judge pass"}],
+                "results": []}
+    results = []
+    errors = []
+    for path in files:
+        result = import_response(output, path, task_id=task_id)
+        results.append({"path": str(path), **result})
+        errors.extend({"path": str(path), **error} for error in result["errors"])
+    return {"response_dir": str(response), "files": len(files),
+            "accepted": sum(result["accepted"] for result in results),
+            "errors": errors, "results": results}
+
+
 def requires_adjudication(a, b, kind):
     return a["label"] != b["label"] or (kind == "semantic" and (a["label"] == "wrong_gold" or b["label"] == "wrong_gold"))
 
@@ -429,8 +600,13 @@ def adjudicate(output):
             groups[(item["kind"], "adjudicator")].append({**item, "decisions": [a, b]})
     paths = []
     for (kind, judge), group in groups.items():
-        paths += export_batches(output, kind, judge, group, requested_model)
-        write_guide(Path(output) / "packs" / kind / judge / "INSTRUCTIONS.md", requested_model)
+        group_paths = export_batches(output, kind, judge, group, requested_model)
+        paths += group_paths
+        if requested_model == LEGACY_REQUESTED_MODEL:
+            write_guide(Path(output) / "packs" / kind / judge / "INSTRUCTIONS.md", requested_model)
+        else:
+            bundle_name = f"{kind}-{judge}-pending-{digest([read(p)['batch_id'] for p in group_paths])[:12]}"
+            export_task_bundle(output, kind, judge, group_paths, name=bundle_name)
     write(Path(output) / "pending_batches.json", paths)
     update_progress(output)
     return paths
@@ -491,7 +667,7 @@ def summarize(output):
                 coverage[group][j["label"]] += 1
     summary["coverage"] = {k: dict(v) for k, v in sorted(coverage.items())}
     # Do not publish partial rates as completed estimates.
-    if summary["status"] == "complete":
+    if summary["status"] == "complete" and "reflection" in manifest["item_counts"]:
         cells = defaultdict(list)
         for aid, item in items.items():
             if item["kind"] != "reflection":
@@ -520,12 +696,14 @@ def freeze_views(output, root=ROOT):
     """Gold/eligibility sidecars; generation always uses untouched original inputs."""
     output, root = Path(output), Path(root)
     manifest, items, mapping, _ = load_state(output)
+    if set(manifest["item_counts"]) != {"semantic"}:
+        raise ValueError("freeze-views requires a completed semantic audit")
     for rel, expected in manifest["source_files"].items():
         if sha256(root / rel) != expected:
             raise ValueError(f"Source changed since audit preparation: {rel}")
     summary = summarize(output)
     if summary["status"] != "complete":
-        raise ValueError("All semantic, trace, and reflection audits must be complete before views are frozen")
+        raise ValueError("The semantic audit must be complete before views are frozen")
     decisions = read(output / "decisions.json")
     by_id = {}
     for aid, item in items.items():
@@ -561,22 +739,35 @@ def freeze_views(output, root=ROOT):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["prepare", "import", "adjudicate", "summarize", "freeze-views"])
-    parser.add_argument("--output-dir", default="results/project_audit_v2")
+    parser.add_argument("--output-dir")
+    parser.add_argument("--kind", choices=sorted(LIMITS), help="Single audit kind to prepare")
     parser.add_argument(
         "--requested-model",
         default=DEFAULT_REQUESTED_MODEL,
         help="Codex model required for newly prepared judge batches (prepare only)",
     )
-    parser.add_argument("--response")
-    parser.add_argument("--task-id", default="unknown")
+    parser.add_argument("--response", help="One response JSON or a directory of response JSON files")
+    parser.add_argument(
+        "--task-id",
+        default="unknown",
+        help="Codex task ID or stable unique operator-assigned task label (import only)",
+    )
     args = parser.parse_args(argv)
+    if args.command == "prepare" and args.kind is None:
+        parser.error("prepare requires --kind reflection, --kind semantic, or --kind trace")
+    if args.output_dir is None:
+        if args.kind is None:
+            parser.error("--output-dir is required for this command")
+        args.output_dir = DEFAULT_OUTPUT_DIRS[args.kind]
     if args.command == "import":
         if not args.response:
             parser.error("import requires --response")
-        result = import_response(args.output_dir, args.response, task_id=args.task_id)
+        if args.task_id == "unknown":
+            parser.error("import requires a Codex task ID or unique task label through --task-id")
+        result = import_responses(args.output_dir, args.response, task_id=args.task_id)
     else:
         if args.command == "prepare":
-            result = prepare(args.output_dir, requested_model=args.requested_model)
+            result = prepare(args.output_dir, requested_model=args.requested_model, kind=args.kind)
         else:
             result = {"adjudicate": adjudicate, "summarize": summarize,
                       "freeze-views": freeze_views}[args.command](args.output_dir)

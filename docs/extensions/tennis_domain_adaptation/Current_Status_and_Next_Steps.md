@@ -5,8 +5,9 @@ provenance and future experiments. It is the source of truth for the tennis
 extension; older condition names in result metadata are retained as historical
 identifiers.
 
-The completion protocol is now implemented. The active GPT-5.6 Sol audit target is
-`results/project_audit_v2/progress.json`; create it with the preparation command
+The completion protocol is now implemented. Tennis semantics and training traces
+use separate GPT-5.6 Sol audits under `results/tennis_semantic_audit_v2` and
+`results/tennis_trace_audit_v2`; create either one with the corresponding command
 in `docs/PROJECT_AUDIT_EXECUTION.md`. The conditional GPU workflow is
 `notebooks/colab_conditional_retention.ipynb`. Neither partial judgments nor
 notebook smoke runs are reportable outcomes.

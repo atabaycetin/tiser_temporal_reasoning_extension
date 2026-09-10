@@ -87,11 +87,14 @@ def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
     faithful = [row for row in genuine if float(row.get("faithful_em") or 0) == 1.0]
     silent = sum(row["final_label"] != "explicit_conflict" for row in faithful)
+    independently_judged = [
+        row for row in rows if row.get("judge_a_label") and row.get("judge_b_label")
+    ]
     disagreement = sum(
         bool(row["judge_a_label"])
         and bool(row["judge_b_label"])
         and row["judge_a_label"] != row["judge_b_label"]
-        for row in scorable
+        for row in independently_judged
     )
     per_class = {}
     for conflict_type in sorted({row["conflict_type"] for row in scorable}):
@@ -102,7 +105,7 @@ def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "unscorable": len(rows) - len(scorable),
         "genuine_conflicts": _rate_record(positives(genuine), len(genuine)),
         "controls_false_positive": _rate_record(positives(controls), len(controls)),
-        "two_pass_disagreement": _rate_record(disagreement, len(scorable)),
+        "two_pass_disagreement": _rate_record(disagreement, len(independently_judged)),
         "silent_override_among_faithful": _rate_record(silent, len(faithful)),
         "per_class": per_class,
         "lexical_vs_judge": _lexical_confusion(scorable),

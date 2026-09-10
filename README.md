@@ -28,7 +28,7 @@ answer for exact-match (EM) and token-F1 scoring.
 | `config/config_tennis_7b_reported_best.yaml` | Portable settings for the best reported 7B continued-adaptation result |
 | `src/` | Data, model, training, inference, evaluation, conflict, and tennis modules |
 | `scripts/` | Command-line entry points; every command supports `--help` |
-| `scripts/audit.py` | Offline two-pass semantic, trace, and reflection audit coordinator |
+| `scripts/audit.py` | Offline coordinator for separate two-pass semantic, trace, or reflection audits |
 | `scripts/experiment.py` | Frozen conditional retention/replay and final-campaign coordinator |
 | `notebooks/colab_conditional_retention.ipynb` | Resumable single-GPU Colab execution notebook |
 | `data/tennis/` | Tennis data, dataset card, provenance record, and CC BY 4.0 licence |
@@ -397,8 +397,9 @@ again. The practical choices are documented in
 
 The team has no record of using `tennis_dev.json` for model selection, although
 the repository cannot rule out an unrecorded earlier evaluation. The final
-campaign therefore requires the semantic, trace, and reflection audits to be
-complete, fixes the adapter and scoring view, and evaluates the 113 inputs once.
+campaign therefore requires the semantic audit to be complete, fixes the adapter
+and scoring view, and evaluates the 113 inputs once. Reflection and trace audits
+have separate outputs and do not block this evaluation.
 Do not run this holdout through an ad hoc evaluator command.
 
 Regenerate a comparison table directly from the committed result artifacts:
@@ -422,28 +423,29 @@ The rigorous new-contribution protocol for measuring original-TISER retention
 and, when justified, training compute-matched replay conditions is in
 `docs/extensions/tennis_domain_adaptation/FORGETTING_MIXED_REPLAY_PLAN.md`.
 
-## Complete offline project audit
+## Separate offline audits
 
-The active replacement workflow audits all 1,122 tennis records, all 650
-available traces, and all 2,295 unique scorable reflections in blinded
-GPT-5.6 Sol Codex file batches. It uses independent A/B tasks plus adjudication
-and makes no API calls:
+The reflection, tennis semantic, and tennis trace audits are separate GPT-5.6
+Sol file-batch studies. Prepare only the study you intend to run:
 
 ```bash
-python3 scripts/audit.py prepare --output-dir results/project_audit_v2 \
-  --requested-model gpt-5.6-sol
-python3 scripts/audit.py import --output-dir results/project_audit_v2 \
-  --response /absolute/path/to/BATCH_ID.json --task-id TASK_ID
-python3 scripts/audit.py adjudicate --output-dir results/project_audit_v2
-python3 scripts/audit.py summarize --output-dir results/project_audit_v2
-python3 scripts/audit.py freeze-views --output-dir results/project_audit_v2
+python3 scripts/audit.py prepare --kind reflection \
+  --output-dir results/reflection_audit --requested-model gpt-5.6-sol
+python3 scripts/audit.py prepare --kind semantic \
+  --output-dir results/tennis_semantic_audit_v2 --requested-model gpt-5.6-sol
+python3 scripts/audit.py prepare --kind trace \
+  --output-dir results/tennis_trace_audit_v2 --requested-model gpt-5.6-sol
 ```
 
-The importer preserves every response, validates the complete batch before
-accepting it, and blocks scoring-view creation until all required decisions are
-complete. Batch instructions, validation rules, aggregation outputs, and the
-absence of human calibration are documented in
-`docs/PROJECT_AUDIT_EXECUTION.md`. The optional API and file-batch interfaces
+The reflection study alone replaces the unavailable Claude aggregate. The
+semantic study creates audited tennis scoring views. The trace study documents
+training-data quality. Each has its own import, adjudication, summary, and
+progress artifacts; one study never blocks another. Batch instructions,
+validation rules, commands, and the absence of human calibration are documented
+in `docs/PROJECT_AUDIT_EXECUTION.md`. One Codex task processes the complete Judge
+A bundle and a separate task processes the complete Judge B bundle; each pass is
+bulk-imported with one command. A literal operator runbook for the Claude
+replacement is in `docs/REFLECTION_AUDIT_RUNBOOK.md`. The optional API and file-batch interfaces
 share the same reflection rubric and validation code; results from one study are
 never silently substituted for the other.
 
@@ -455,8 +457,8 @@ clear forgetting. A non-inferior or inconclusive gate performs no new training.
 When triggered, C1R and R25 share the current environment and 74-update schedule;
 R25-T runs only when supervised-token exposure differs by more than 10%.
 
-Create the notebook and portable Colab bundle after importing the latest audit
-responses:
+Create the notebook and portable Colab bundle after completing and importing the
+tennis semantic audit:
 
 ```bash
 python3 scripts/prepare_study_bundle.py
@@ -465,8 +467,8 @@ python3 scripts/prepare_study_bundle.py
 Place `output/tiser_study_workspace.zip` in Drive and run
 `notebooks/colab_conditional_retention.ipynb` in order on one CUDA GPU. The
 workflow resumes predictions and checkpoints, preserves token counts and random
-state, and blocks final evaluation until the audits and selection diagnostics
-are complete. The exact gate, conditions, statistics, recovery commands, and
+state, and blocks final evaluation until the semantic audit and selection
+diagnostics are complete. The exact gate, conditions, statistics, recovery commands, and
 Drive refresh procedure are in
 `docs/extensions/tennis_domain_adaptation/FORGETTING_MIXED_REPLAY_PLAN.md`.
 
@@ -502,9 +504,11 @@ If `latexmk` is unavailable, run `pdflatex` twice with the same
 
 ## Remaining execution status
 
-- `results/project_audit_v2/progress.json` records accepted GPT-5.6 Sol primary judgments
-  and adjudications. Until it is complete, partial audit coverage is not a
-  population estimate and audited scoring views are unavailable.
+- `results/reflection_audit/progress.json`,
+  `results/tennis_semantic_audit_v2/progress.json`, and
+  `results/tennis_trace_audit_v2/progress.json` independently record accepted
+  GPT-5.6 Sol judgments and adjudications. Partial coverage is not a population
+  estimate. Audited scoring views depend only on the semantic audit.
 - The Colab GPU stages must still produce the C0/C1 retention gate, any
   conditionally required C1R/R25/R25-T adapters, and the frozen final campaign.
 - Human calibration is unavailable and is reported as a limitation. Historical

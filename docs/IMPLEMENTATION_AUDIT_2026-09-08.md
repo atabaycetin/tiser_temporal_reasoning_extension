@@ -2,8 +2,8 @@
 
 > Historical checkpoint: the coverage below describes the incomplete
 > `project_audit_v1` attempt. Its model provenance does not satisfy the current
-> GPT-5.6 Sol requirement. The active procedure starts a separate
-> `results/project_audit_v2` audit and does not relabel or reuse v1 judgments.
+> GPT-5.6 Sol requirement. The active procedures use independent reflection,
+> semantic, and trace audit directories and do not relabel or reuse v1 judgments.
 
 ## Status
 

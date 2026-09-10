@@ -143,7 +143,7 @@ Structural validity does not establish that a gold answer is uniquely entailed b
 
 The historical adaptations remain valid as exploratory comparisons on a fixed, documented artifact: all compared adapters use the same training and evaluation definitions, and a small amount of label noise does not by itself invalidate training. However, the models must not be described as trained on a clean or fully validated dataset, and the effect of the flagged examples cannot be quantified without a corrected-data retraining or ablation. The development and test labels also lack exhaustive semantic adjudication, so reported metrics inherit that limitation. Historical files are kept immutable; any corrections should create a versioned dataset, regenerate affected traces, and produce new model results.
 
-A complete replacement audit has been prepared as blinded file batches. Two independent passes review all 1,122 context--question--gold rows and all 650 available traces; disagreements and proposed corrections receive a third adjudication. Imports require exact source evidence, and completed decisions will produce versioned scoring views without altering the historical inputs. The audit is still in progress, so no partial rate or corrected score is reported. The model label observed in the UI does not identify a verifiable API snapshot, and human calibration is unavailable.
+Separate semantic and trace audits have been implemented as blinded file-batch studies. Two independent passes review all 1,122 context--question--gold rows and all 650 available traces; disagreements and proposed corrections receive adjudication. Imports require exact source evidence, and completed semantic decisions will produce versioned scoring views without altering the historical inputs. Neither study has been executed, so no partial rate or corrected score is reported. The model label observed in the UI does not identify a verifiable API snapshot, and human calibration is unavailable.
 
 \subsection{Models, Training, and Decoding}
 
@@ -171,13 +171,15 @@ Continued 7B & 600 & 2 & $2{\times}10^{-4}$ & 16 & 16/32 & .05 \\
 
 The reported continued-adaptation result is the highest-scoring condition in a grid over one to three epochs, learning rates $\{5{\times}10^{-5},1{\times}10^{-4},2{\times}10^{-4}\}$, and gradient accumulation $\{4,8\}$ with per-device batch size~4. All 22 distinct candidates were evaluated on the identical 224 examples, which makes their pairwise comparison fair. It does not make the winning score independent: once those outcomes are inspected and the maximum is selected, the set functions as validation data even though it never enters a gradient update. The winning condition leads two runners-up by one correct answer. The 0.732/0.856 result is therefore an exploratory selected estimate. With no preserved evidence of development-set model evaluation, the lowest-cost correction is to freeze this adapter and evaluate it once on the 113 records, without switching adapters afterward.
 
-The implemented follow-up first compares the original adapter C0 and locked tennis winner C1 on a frozen seed-42 sample of up to 100 items per original-TISER split. A 10,000-resample paired interval for the five-split macro-EM difference triggers fresh C1R and R25 training only when its upper bound is below $-0.02$; a lower bound above $-0.02$ stops as non-inferior, and other intervals stop as inconclusive. If triggered, C1R and R25 both start from C0 and run for 74 updates under the same current environment; R25 adds 200 validated original-TISER training rows. A token-matched R25-T sensitivity run occurs only when R25 supervised-token exposure differs from C1R by more than 10\%. Final freezing requires the complete data and reflection audits. It then fixes all applicable adapters, prompts, parsers, metrics, populations, and hashes before one evaluation on the 113 tennis inputs and original-TISER complement. No outcome from those populations may reopen training or adapter selection.
+The implemented follow-up first compares the original adapter C0 and locked tennis winner C1 on a frozen seed-42 sample of up to 100 items per original-TISER split. A 10,000-resample paired interval for the five-split macro-EM difference triggers fresh C1R and R25 training only when its upper bound is below $-0.02$; a lower bound above $-0.02$ stops as non-inferior, and other intervals stop as inconclusive. If triggered, C1R and R25 both start from C0 and run for 74 updates under the same current environment; R25 adds 200 validated original-TISER training rows. A token-matched R25-T sensitivity run occurs only when R25 supervised-token exposure differs from C1R by more than 10\%. Final freezing requires the complete semantic audit that defines the tennis scoring view. It then fixes all applicable adapters, prompts, parsers, metrics, populations, and hashes before one evaluation on the 113 tennis inputs and original-TISER complement. The separate reflection and trace audits do not block this campaign. No outcome from those populations may reopen training or adapter selection.
 
 \subsection{Conflict Sampling and Reflection Audit}
 
 Closed-book recall uses five samples with temperature~0.7 and top-$p$~0.9; the subsequent run matrix uses one greedy decode per item. We use item-level bootstrap confidence intervals with 2,000 resamples and seed~42, plus paired McNemar tests for the two headline axes.
 
-For TISER-prompt cells, a Claude-based judge reportedly read the persisted reflection and returned a structured conflict indicator, conflict category, and short rationale in windows of 100 records. The reported judge result is secondary evidence: the exact Claude model version, full judge prompt, and row-level audit CSVs are not preserved in the repository, preventing independent reproduction. The replacement is a new UI-mediated study rather than a retrospective reconstruction. Two isolated GPT-5.6 Sol Codex tasks receive only blinded reflection text under conservative rubrics, and a third task adjudicates disagreements. Exact file prompts, response bytes, hashes, labels, control false-positive rates, Wilson intervals, disagreement, unscorable rows, class breakdowns, and silent overrides are retained. This replacement is in progress and must be complete before its values replace the historical aggregates; agreement between model judges does not supply human calibration.
+The original Claude aggregate cannot be reproduced because its exact model version, complete prompt, and row-level decisions were not preserved. We therefore replace it with a completed UI-mediated audit of the persisted outputs. The audit deduplicates the two 1,176-row TISER-prompt cells into 2,295 non-empty reflections, which map back to 2,348 source rows; four malformed source rows are retained as unscorable. Judge A and Judge B ran in separate projectless Codex tasks with the observed model label \texttt{gpt-5.6-sol} and high reasoning effort. Each task received only its blinded reflection bundle and a conservative pass-specific rubric, without model condition, conflict class, answer correctness, performance, or the other pass's decisions. Responses required an item-specific rationale and an exact source substring for every positive label. Batch, item, source, response, and prompt hashes bind the resulting evidence; the exact judge prompt is reproduced in Appendix~\ref{app:reflection-audit}.
+
+The primary decision is one of three labels: \emph{explicit conflict}, \emph{no explicit conflict}, or \emph{unscorable}. A positive label requires the reflection itself to acknowledge tension between supplied context and prior knowledge, memory, expectation, or an alternative factual answer; routine timeline checking is negative. The two passes disagreed on 66 of 2,295 reflections. A third projectless GPT-5.6 Sol task, also using high reasoning, adjudicated those items from the source reflection and both primary decisions under the same conservative rule. All 66 adjudications passed the frozen schema and exact-evidence checks. The UI label does not identify a verifiable backend snapshot, and decoding details unavailable in the UI remain unknown. Both passes and adjudication use the same model family, and no human calibration is available.
 
 \subsection{Compute and Software}
 
@@ -273,17 +275,35 @@ Table~\ref{tab:perclass} isolates the three genuine conflict types for the stron
 \textbf{Class} & \textbf{$n$} & \textbf{Faith-EM} & \textbf{Mem-EM} & \textbf{Refl.} \\
 \midrule
 C1 date shift      & 203 & 0.936 & 0.010 & 0.020 \\
-C2 entity swap     & 520 & 0.971 & 0.002 & 0.008 \\
+C2 entity swap     & 520 & 0.971 & 0.002 & 0.006 \\
 \rowcolor{gray!18}
-C3 order reversal  & 333 & 0.366 & 0.477 & 0.111 \\
+C3 order reversal  & 333 & 0.366 & 0.477 & 0.087 \\
 \midrule
-\textbf{All conflicts} & 1{,}056 & \textbf{0.774} & \textbf{0.153} & \textbf{0.043} \\
+\textbf{All conflicts} & 1{,}056 & \textbf{0.774} & \textbf{0.153} & \textbf{0.034} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-The historical aggregate says that the reflection names the conflict in only 45/1,056 genuine conflicts (4.3\%) even though the final answer follows the edited context in 77.4\%. The corresponding control count is 4/120 (3.3\%). Their Wilson 95\% intervals are 3.2--5.7\% and 1.3--8.3\%, respectively, and a two-sided Fisher test gives $p\approx0.81$. Thus the preserved aggregates support the narrower conclusion that explicit flags were rare and concentrated in C3; they do not show discrimination above the control false-positive rate. The separate control arm reaches faithful-EM 0.900 in the strongest condition; because its answer equals memory by construction, it measures preservation of answerability rather than conflict resolution. A faithful answer without an explicit flag remains a descriptive silent override, not proof of an internal conflict-resolution mechanism.
+\begin{table}[t]
+\centering
+\caption{Completed GPT-5.6 Sol reflection audit. Conflict and control columns report explicit flags; disagreement compares the two primary passes; silent counts faithful genuine-conflict answers without a flag.}
+\label{tab:reflection-audit}
+\setlength{\tabcolsep}{2.4pt}
+{\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Condition} & \textbf{Conflict} & \textbf{Control} & \textbf{Disagree} & \textbf{Silent} \\
+\midrule
+Base + TISER & 87/1{,}053 & 3/120 & 41/1{,}173 & 543/554 \\
+\rowcolor{gray!18}
+TISER + TISER & 36/1{,}056 & 3/119 & 25/1{,}175 & 810/817 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+The replacement audit finds explicit conflict recognition in 87/1,053 scorable genuine conflicts for the vanilla model with the TISER prompt (8.26\%, Wilson 95\% CI 6.75--10.08\%) and 36/1,056 for the TISER-trained model with the TISER prompt (3.41\%, 2.47--4.68\%). Control false-positive rates are 3/120 (2.50\%, 0.85--7.09\%) and 3/119 (2.52\%, 0.86--7.15\%), respectively. In the strongest answer-faithfulness condition, conflict flags remain concentrated in C3: 4/203 C1 items (1.97\%), 3/520 C2 items (0.58\%), and 29/333 C3 items (8.71\%). Among its 817 faithful genuine-conflict answers, 810 have no explicit flag, yielding a 99.14\% silent-override rate (98.24--99.58\%). The corresponding rate for the vanilla model with the TISER prompt is 543/554, or 98.01\% (96.48--98.89\%). The 3.41\% genuine-conflict rate is descriptively close to the 2.52\% control rate, so these results support rarity and C3 concentration but do not establish reliable discrimination between genuine conflicts and controls. The separate control arm reaches faithful-EM 0.900 in the strongest condition; because its answer equals memory by construction, it measures preservation of answerability rather than conflict resolution. A silent override remains a behavioural description, not proof of an internal conflict-resolution mechanism.
 
 \subsection{Tennis-Domain Adaptation}
 
@@ -318,7 +338,7 @@ Original TISER & 0.580 & 0.701 & -- & -- & 0 \\
 
 The reproduction is strong overall but exposes the sensitivity of EM to answer formatting. More importantly, the two extensions answer different questions. The conflict probe shows that training and prompting can improve use of supplied evidence without making reflection an explicit contradiction detector. Tennis adaptation instead shows that the learned trace format transfers across domains and benefits from additional supervised examples, particularly at 7B scale.
 
-Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The reflection result relies on an unrecovered historical judge run; its aggregate rates are not independently reproducible, and the replacement audit has no human calibration. Greedy decoding provides one output per condition. For tennis, the semantic and trace audits are unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. No prior model-performance use of those 113 records is known, but the repository cannot exclude an unrecorded evaluation.
+Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The replacement reflection audit preserves two complete passes and adjudication, but all judgments use the same UI-selected model family. The exact backend snapshot and decoding settings are unavailable, and no human calibration establishes judge accuracy or shared-bias rates. Greedy decoding provides one subject-model output per condition. For tennis, the semantic and trace audits are unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. No prior model-performance use of those 113 records is known, but the repository cannot exclude an unrecorded evaluation.
 
 \section{Conclusion}
 
@@ -326,7 +346,7 @@ We reproduced TISER's strong in-domain temporal-QA performance and used two exte
 
 \section{Reproducibility}
 
-The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, generation prompts, trace coverage, and semantic-review flags are documented separately. The offline audit supports blinded two-pass review and adjudication, while the Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
+The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, generation prompts, trace coverage, and semantic-review flags are documented separately. The completed reflection audit under \texttt{results/reflection\_audit} preserves its frozen prompt and rubrics, 94 original response files, content-addressed archival copies, 4,590 primary judgments, 66 adjudications, final row-level CSVs, and aggregate summary. The Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
 
 \clearpage
 \onecolumn
@@ -580,6 +600,71 @@ Rules:
 \end{lstlisting}
 
 The requests also supplied \texttt{question\_id}, category, context, question, and gold answer. Generated rows contain \texttt{question\_id} and \texttt{output}. The final 600 records exactly match batches 1--12 in order. Nineteen malformed physical JSONL lines covering 26 records were repaired, and 200 outputs that lacked the requested XML-like tags were mechanically wrapped using their existing text and supplied gold answer. All 600 final rows pass structural and gold-answer-equality checks; those checks do not establish semantic entailment.
+
+\newpage
+\section{Reflection-Audit Judge Prompt and Adjudication}
+\label{app:reflection-audit}
+
+The following prompt was pasted unchanged into the separate Judge A, Judge B,
+and adjudicator Codex tasks. Each task also received only its assigned frozen
+JSON bundle, which carried the pass-specific rubric and blinded items.
+
+\begin{lstlisting}[style=prompt]
+Audit the attached JSON bundle as one independent model-judge pass.
+
+Use only the attached bundle as evidence. Do not inspect any repository, mapping,
+other judge pass, previous decision, historical result, or experiment output.
+Read the rubric in each batch and judge every item individually. Do not use
+scripts, regular expressions, keyword rules, lexical heuristics, or a default
+label to make judgments. Code may only assemble and validate JSON after the
+item-specific judgments have been made.
+
+Process every batch in the bundle. For each batch, create one response file named
+BATCH_ID.json in a single new response directory, replacing BATCH_ID with the
+batch_id value. Each response file must contain exactly:
+
+{"batch_id":"...", "batch_sha256":"...", "pass":"judge_a or judge_b or adjudicator",
+ "judged_at":"timezone-bearing ISO 8601 timestamp",
+ "observed_model_label":"gpt-5.6-sol", "reasoning_effort":"high",
+ "judgments":[
+ {"audit_id":"...", "source_sha256":"...", "label":"...",
+  "corrected_answer":null, "mention_kind":"none",
+  "evidence":[{"field":"context or trace or reflection", "quote":"exact substring"}],
+  "rationale":"brief item-specific explanation"}]}
+
+Copy batch_id, batch_sha256, pass, audit_id, and source_sha256 without alteration.
+Include every item exactly once and use only labels allowed by that batch's rubric.
+Every rationale must explain its own item. Evidence quotes must be exact substrings
+of the named source field.
+
+For a reflection labeled explicit_conflict, provide nonempty reflection evidence
+and set mention_kind to memory_context_mismatch, contradiction_or_inconsistency,
+uncertainty_or_doubt, or other. For no_explicit_conflict or unscorable, use an
+empty evidence list and mention_kind none. For semantic and trace judgments,
+mention_kind is always none and every label except unscorable requires evidence.
+Set corrected_answer to a nonempty replacement only for semantic wrong_gold;
+otherwise set it to null. Do not invent unavailable provenance.
+
+Validate each response file before continuing. Preserve completed valid files if
+execution is interrupted and continue until the response directory contains
+exactly bundle.batch_count files covering every batch in bundle.batch_ids. Then
+report the response directory's absolute filesystem path.
+\end{lstlisting}
+
+\subsection{Adjudication}
+
+The coordinator compared the two primary labels for each unique reflection and
+created adjudicator inputs only when they differed. Each input contained the
+original blinded reflection and the complete Judge A and Judge B decisions. A
+third projectless task, configured with the observed model label
+\texttt{gpt-5.6-sol} and high reasoning effort, applied the same conservative
+criterion: an explicit conflict required a textual acknowledgement of tension
+between supplied context and prior knowledge, memory, expectation, or an
+alternative answer. It did not use majority voting. It selected the best final
+label from the reflection evidence, with an exact quotation required for a
+positive decision. The two primary passes disagreed on 66 of 2,295 unique
+reflections; all 66 adjudications were validated and accepted, leaving no pending
+items.
 
 \begin{thebibliography}{00}
 

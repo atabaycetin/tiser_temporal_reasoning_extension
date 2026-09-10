@@ -1,110 +1,101 @@
-# Offline Project Audit Execution
+# Separate Offline Audit Workflows
 
-This is the execution guide for the complete tennis semantic/trace audit and the
-replacement reflection audit. It uses Codex file batches and makes no API calls.
-The live source of truth is `results/project_audit_v2/progress.json`; partial
-coverage is never published as a completed rate.
+The reflection, tennis semantic, and tennis trace audits are independent studies.
+Each has its own frozen inputs, batches, accepted-response ledger, progress file,
+adjudications, and summary. They use Codex file batches and make no API calls.
+The exact click-by-click and command-by-command procedure for the reflection
+study is in `docs/REFLECTION_AUDIT_RUNBOOK.md`; the reusable text pasted into
+each Codex task is the entire contents of `docs/GPT56_SOL_AUDIT_TASK_PROMPT.md`.
 
-The earlier `project_audit_v1` directory is preserved as an incomplete
-historical attempt. Its accepted records identify 675 judgments as model
-`unknown`, 50 as `gpt-5.5`, and 7 as `codex-gpt-5`. They must not be
-relabeled or imported into the GPT-5.6 Sol audit.
+The incomplete historical attempt under `results/project_audit_v1` remains
+separate. Its judgments must not be relabelled or imported into these GPT-5.6 Sol
+audits.
 
-## Scope
+## 1. Reflection audit: replacement for the Claude aggregate
 
-The frozen audit contains:
-
-| Kind | Unique judged items | Mapped source rows | Batch size |
-| --- | ---: | ---: | ---: |
-| Semantic context/question/gold | 1,121 | 1,122 | 25 |
-| Training traces | 650 | 650 | 10 |
-| Scorable reflections | 2,295 | 2,348 source-cell rows | 50 |
-
-The two identical semantic training records share one blinded judgment and map
-back to both source IDs. Four malformed/empty reflection rows bypass model
-judgment and map to `unscorable`, yielding 1,176 rows in each of the two model
-conditions after aggregation.
-
-## Prepare and verify packs
+This is the only audit that replaces the unreproducible historical Claude
+reflection result. It covers 2,295 unique scorable reflections, maps them back to
+2,348 source rows, and adds four structurally unscorable rows to recover both
+1,176-row model conditions.
 
 ```bash
-python3 scripts/audit.py prepare --output-dir results/project_audit_v2 \
+python3 scripts/audit.py prepare --kind reflection \
+  --output-dir results/reflection_audit \
   --requested-model gpt-5.6-sol
-python3 scripts/audit.py summarize --output-dir results/project_audit_v2
 ```
 
-Preparation freezes the seven input hashes, pseudonymous item payloads, private
-mapping, malformed-row record, exact rubrics, exact task guide, and every batch.
-The private `mapping.json` must never be given to a judge. A judge receives only
-one `INSTRUCTIONS.md` and one assigned batch JSON.
-
-Each A and B batch runs in a fresh isolated Codex task configured for
-GPT-5.6 Sol with high reasoning effort. The response must record
-`observed_model_label: "gpt-5.6-sol"`; the importer rejects any other value.
-Judges must read each item and may not use regexes, lexical rules, scripts, or
-a blanket default to assign labels. Code may serialize and validate decisions
-already made item by item. A ready-to-paste task prompt is in
-`docs/GPT56_SOL_AUDIT_TASK_PROMPT.md`.
-
-## Import responses
+Run and import both passes, then adjudicate and summarize:
 
 ```bash
-python3 scripts/audit.py import \
-  --output-dir results/project_audit_v2 \
-  --response /absolute/path/to/BATCH_ID.json \
-  --task-id CODEX_TASK_OR_BATCH_RUN_ID
+python3 scripts/audit.py import --output-dir results/reflection_audit \
+  --response /absolute/path/to/BATCH_ID.json --task-id CODEX_TASK_ID
+python3 scripts/audit.py adjudicate --output-dir results/reflection_audit
+python3 scripts/audit.py summarize --output-dir results/reflection_audit
 ```
 
-The importer archives the original bytes by SHA-256 before validation. It then
-checks the exact response schema, timezone-bearing timestamp, recorded high
-reasoning effort, batch and rubric hashes, pass identity, complete/unique item
-IDs, source hashes, allowed labels, correction rules, item-specific rationale,
-and exact evidence substrings. A response is accepted only when every assigned
-item is present and valid. The import is response-atomic: one missing or invalid
-item leaves the entire batch pending, while the first judgment from a fully
-valid response for each `(pass, audit_id)` is retained. All attempts remain in
-`raw_responses/` and `import_log.jsonl`.
+Completion of this directory produces the replacement reflection rates and the
+two 1,176-row audit CSV files. It does not wait for either tennis audit.
 
-Known protocol violations belong in `quarantine.json`. Quarantined response
-hashes can never enter the accepted journal. The preserved rejected regex-based
-attempt is evidence of a failed attempt and contributes no judgments.
+## 2. Tennis semantic audit: evaluation labels
 
-## Follow-ups and adjudication
+This study checks all 1,122 context/question/gold rows. There are 1,121 unique
+payloads because `tennis_000406` and `tennis_000823` are identical; their shared
+judgment maps back to both source IDs.
 
 ```bash
-python3 scripts/audit.py adjudicate --output-dir results/project_audit_v2
+python3 scripts/audit.py prepare --kind semantic \
+  --output-dir results/tennis_semantic_audit_v2 \
+  --requested-model gpt-5.6-sol
+python3 scripts/audit.py import --output-dir results/tennis_semantic_audit_v2 \
+  --response /absolute/path/to/BATCH_ID.json --task-id CODEX_TASK_ID
+python3 scripts/audit.py adjudicate --output-dir results/tennis_semantic_audit_v2
+python3 scripts/audit.py summarize --output-dir results/tennis_semantic_audit_v2
+python3 scripts/audit.py freeze-views --output-dir results/tennis_semantic_audit_v2
 ```
 
-This regenerates `pending_batches.json` from accepted evidence. It exports fresh
-A/B batches for missing or invalid items and adjudicator batches for every label
-disagreement. Every semantic `wrong_gold` proposal is adjudicated even when A
-and B agree, because a corrected evaluation label must have a separately
-verified unique answer. Adjudicators receive only the source payload and the two
-accepted decisions.
+Only this audit creates the corrected 224-record selection and 113-record final
+tennis scoring views used by the Colab experiment.
 
-Import follow-up and adjudicator files through the same command, then rerun
-`adjudicate` and `summarize`. Completion requires all 8,132 primary judgments
-and every required adjudication.
+## 3. Tennis trace audit: training-data quality
 
-## Publish derivatives
+This study checks the 50 pilot traces and 600 reported training traces. It
+documents data quality and does not create evaluation labels or block the other
+two audits.
 
 ```bash
-python3 scripts/audit.py summarize --output-dir results/project_audit_v2
-python3 scripts/audit.py freeze-views --output-dir results/project_audit_v2
+python3 scripts/audit.py prepare --kind trace \
+  --output-dir results/tennis_trace_audit_v2 \
+  --requested-model gpt-5.6-sol
+python3 scripts/audit.py import --output-dir results/tennis_trace_audit_v2 \
+  --response /absolute/path/to/BATCH_ID.json --task-id CODEX_TASK_ID
+python3 scripts/audit.py adjudicate --output-dir results/tennis_trace_audit_v2
+python3 scripts/audit.py summarize --output-dir results/tennis_trace_audit_v2
 ```
 
-`freeze-views` refuses to run until semantic, trace, and reflection decisions
-are all complete. It rechecks the original source hashes and produces immutable
-sidecars for the 224-record selection set and 113-record final set. Supported
-items and adjudicated unique corrections enter the primary scoring view;
-underdetermined, inconsistent, and unscorable items remain in the original
-input but are excluded from the primary denominator. Original gold labels are
-retained for secondary historical scoring.
+## Running one complete judge pass
 
-On completion, `summary.json` reports coverage by split/subset/category,
-two-pass disagreement, reflection conflict rates, control false-positive rates,
-Wilson intervals, unscorable counts, class breakdowns, lexical-proxy confusion,
-and silent overrides. The two 1,176-row audit CSV files map final judgments back
-to every original reflection row. The historical Claude aggregate remains a
-separate historical claim. No human calibration exists, so shared model-judge
-bias remains an explicit limitation.
+Judge A and Judge B must be separate fresh GPT-5.6 Sol tasks using high reasoning.
+For strict blinding, use a projectless task and attach only that pass's combined
+task-bundle JSON. Paste the complete frozen judge prompt from
+`results/<audit-directory>/task_bundles/JUDGE_PROMPT.txt`. Do not give the task
+access to the repository, mapping, other judge pass, prior decisions, or experiment results.
+The task writes one response JSON per internal validation batch. Save those files
+in one directory outside the audit directory and pass that directory to
+`--response` to import the complete pass with one command.
+
+The importer checks the response schema, timestamp, recorded model and reasoning
+setting, batch and rubric hashes, pass identity, complete item coverage, source
+hashes, labels, correction rules, rationales, and exact evidence substrings. A
+response is accepted only when every item is valid. Original response bytes are
+archived by hash, and the first valid judgment for each pass and item is retained.
+The Codex UI model label remains operator-observed rather than independently
+verified by the local script; preserve a unique task identifier with every import.
+
+Run `adjudicate` after both passes. It produces batches for disagreements and for
+every semantic `wrong_gold` proposal, even when the primary labels agree. Import
+those responses and rerun `adjudicate` until no pending batch remains.
+
+Each preparation records the relevant input hashes, frozen rubric and judge prompt,
+requested model, and Git/source snapshot. Partial results are marked pending and
+must not be reported as complete population estimates. No human calibration is
+available, so shared model-judge bias remains a limitation.

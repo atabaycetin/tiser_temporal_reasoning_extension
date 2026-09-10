@@ -7,8 +7,9 @@ the original TISER tasks, and trains replay conditions only if the fixed gate
 detects forgetting. If training is triggered, it adds a contemporary
 tennis-only control and measures supervised-token exposure so the replay
 comparison is not explained by a larger training budget. Historical settings
-that cannot be recovered remain explicitly unknown. The semantic, trace, and
-reflection audits must finish before final evaluation.
+that cannot be recovered remain explicitly unknown. The semantic audit must
+finish before the final tennis evaluation; trace and reflection audits are
+reported separately and do not block the experiment.
 
 The registered conditions are C0, C1, conditional C1R and R25, and conditional
 R25-T. Additional replay ratios and a corrected-data ablation are not part of
@@ -91,8 +92,8 @@ attempt can be moved intact to `failed_attempts/` with `--restart-incomplete`.
 
 ## Final campaign
 
-Final freezing requires complete two-pass/adjudicated semantic, trace, and
-reflection audits plus all applicable selection diagnostics. It freezes every
+Final freezing requires the complete two-pass/adjudicated semantic audit plus
+all applicable selection diagnostics. It freezes every
 condition, input, audited scoring view, prompt/parser/metric source snapshot,
 model revision, and selection prediction.
 

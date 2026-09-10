@@ -1,0 +1,188 @@
+{
+  "version": "offline-audit-v2",
+  "status": "complete",
+  "expected": {
+    "reflection": 2295
+  },
+  "completed": {
+    "reflection": 2295
+  },
+  "pending": {},
+  "two_pass_disagreements_unique_items": {
+    "reflection": 66
+  },
+  "human_calibration": false,
+  "actual_snapshot": null,
+  "interpretation": "UI-mediated model judgments; shared judge bias and accuracy remain uncalibrated.",
+  "coverage": {},
+  "reflection_cells": {
+    "base__tiser": {
+      "all_rows": 1176,
+      "unscorable": 3,
+      "genuine_conflicts": {
+        "count": 87,
+        "n": 1053,
+        "rate": 0.08262108262108261,
+        "wilson_95": [
+          0.06747072668283591,
+          0.10080565700402613
+        ]
+      },
+      "controls_false_positive": {
+        "count": 3,
+        "n": 120,
+        "rate": 0.025,
+        "wilson_95": [
+          0.008538174769902228,
+          0.0709300333278661
+        ]
+      },
+      "two_pass_disagreement": {
+        "count": 41,
+        "n": 1173,
+        "rate": 0.03495311167945439,
+        "wilson_95": [
+          0.025868729848606595,
+          0.0470735158356297
+        ]
+      },
+      "silent_override_among_faithful": {
+        "count": 543,
+        "n": 554,
+        "rate": 0.98014440433213,
+        "wilson_95": [
+          0.9647985171319324,
+          0.9888774630016985
+        ]
+      },
+      "per_class": {
+        "C1": {
+          "count": 7,
+          "n": 203,
+          "rate": 0.034482758620689655,
+          "wilson_95": [
+            0.01680199569823165,
+            0.06945469056968168
+          ]
+        },
+        "C2": {
+          "count": 46,
+          "n": 519,
+          "rate": 0.08863198458574181,
+          "wilson_95": [
+            0.067106077082597,
+            0.11620275813653677
+          ]
+        },
+        "C3": {
+          "count": 34,
+          "n": 331,
+          "rate": 0.1027190332326284,
+          "wilson_95": [
+            0.07444138541077555,
+            0.14011226954497133
+          ]
+        },
+        "control": {
+          "count": 3,
+          "n": 120,
+          "rate": 0.025,
+          "wilson_95": [
+            0.008538174769902228,
+            0.0709300333278661
+          ]
+        }
+      },
+      "lexical_vs_judge": {
+        "true_positive": 52,
+        "false_positive": 89,
+        "false_negative": 38,
+        "true_negative": 994
+      }
+    },
+    "tiser__tiser": {
+      "all_rows": 1176,
+      "unscorable": 1,
+      "genuine_conflicts": {
+        "count": 36,
+        "n": 1056,
+        "rate": 0.03409090909090909,
+        "wilson_95": [
+          0.024725038414801462,
+          0.04683421055540242
+        ]
+      },
+      "controls_false_positive": {
+        "count": 3,
+        "n": 119,
+        "rate": 0.025210084033613446,
+        "wilson_95": [
+          0.008610231289265309,
+          0.07150489364635793
+        ]
+      },
+      "two_pass_disagreement": {
+        "count": 25,
+        "n": 1175,
+        "rate": 0.02127659574468085,
+        "wilson_95": [
+          0.014452572463314117,
+          0.031220625079769238
+        ]
+      },
+      "silent_override_among_faithful": {
+        "count": 810,
+        "n": 817,
+        "rate": 0.9914320685434517,
+        "wilson_95": [
+          0.9824208150141343,
+          0.9958436127520667
+        ]
+      },
+      "per_class": {
+        "C1": {
+          "count": 4,
+          "n": 203,
+          "rate": 0.019704433497536946,
+          "wilson_95": [
+            0.007688696710442183,
+            0.04956026531200808
+          ]
+        },
+        "C2": {
+          "count": 3,
+          "n": 520,
+          "rate": 0.0057692307692307696,
+          "wilson_95": [
+            0.0019639587282406484,
+            0.016823135448783555
+          ]
+        },
+        "C3": {
+          "count": 29,
+          "n": 333,
+          "rate": 0.08708708708708708,
+          "wilson_95": [
+            0.06131898312817073,
+            0.12227320008230898
+          ]
+        },
+        "control": {
+          "count": 3,
+          "n": 119,
+          "rate": 0.025210084033613446,
+          "wilson_95": [
+            0.008610231289265309,
+            0.07150489364635793
+          ]
+        }
+      },
+      "lexical_vs_judge": {
+        "true_positive": 27,
+        "false_positive": 18,
+        "false_negative": 12,
+        "true_negative": 1118
+      }
+    }
+  }
+}

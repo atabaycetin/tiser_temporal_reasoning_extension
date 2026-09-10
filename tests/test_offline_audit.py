@@ -18,16 +18,22 @@ def setup_audit(tmp_path, kind="semantic", count=2):
         h = digest({"kind": kind, "payload": payload})
         aid = f"{kind}-{h[:24]}"
         items[aid] = {"audit_id": aid, "kind": kind, "payload": payload, "source_sha256": h}
-        mapping[aid] = [{"question_id": f"q{i}", "split": "dev", "category": "temporal"}]
-    manifest = {"version": audit.VERSION, "source_files": {}, "item_counts": {kind: count},
+        if kind == "reflection":
+            mapping[aid] = [{"cell": "base__tiser", "row": {
+                "reflection_text": payload["reflection"], "conflict_type": "object",
+                "faithful_em": 1, "reflection_mentions_conflict": True,
+            }}]
+        else:
+            mapping[aid] = [{"question_id": f"q{i}", "split": "dev", "category": "temporal"}]
+    manifest = {"version": audit.VERSION, "kind": kind, "source_files": {}, "item_counts": {kind: count},
                 "items_sha256": digest(items), "mapping_sha256": digest(mapping),
                 "malformed_sha256": digest([]), "requested_model": audit.DEFAULT_REQUESTED_MODEL}
     for name, value in (("manifest", manifest), ("items", items), ("mapping", mapping), ("malformed", [])):
         write(tmp_path / f"{name}.json", value)
-    write(tmp_path / "task_protocol.json", audit.task_protocol())
+    write(tmp_path / "task_protocol.json", audit.task_protocol(kind=kind))
     for judge in ("judge_a", "judge_b"):
         audit.export_batches(tmp_path, kind, judge, list(items.values()))
-        audit.write_guide(tmp_path / "packs" / kind / judge / "INSTRUCTIONS.md")
+    audit.write_judge_prompt(tmp_path / "task_bundles/JUDGE_PROMPT.txt")
     return items
 
 
@@ -162,19 +168,97 @@ def test_frozen_item_tampering_is_rejected(tmp_path):
         audit.summarize(tmp_path)
 
 
-def test_progress_is_resumable_and_guide_is_frozen(tmp_path):
+def test_progress_is_resumable_and_judge_prompt_is_frozen(tmp_path):
     setup_audit(tmp_path)
     assert import_data(tmp_path, response(tmp_path))["accepted"] == 2
     progress = audit.update_progress(tmp_path)
     assert progress["primary_completed"] == 2
     assert progress["primary_judgments"] == 4
-    guide = tmp_path / "packs/semantic/judge_a/INSTRUCTIONS.md"
-    guide.write_text("changed")
-    with pytest.raises(ValueError, match="guide"):
+    prompt = tmp_path / "task_bundles/JUDGE_PROMPT.txt"
+    prompt.write_text("changed")
+    with pytest.raises(ValueError, match="prompt"):
         audit.load_state(tmp_path)
 
 
-def test_views_require_every_audit_kind_to_be_complete(tmp_path):
+def test_views_require_semantic_audit_to_be_complete(tmp_path):
     setup_audit(tmp_path)
-    with pytest.raises(ValueError, match="All semantic, trace, and reflection"):
+    with pytest.raises(ValueError, match="semantic audit must be complete"):
         audit.freeze_views(tmp_path, tmp_path)
+
+
+def test_reflection_summary_does_not_wait_for_other_audit_kinds(tmp_path):
+    setup_audit(tmp_path, kind="reflection")
+    for judge in ("judge_a", "judge_b"):
+        assert not import_data(tmp_path, response(tmp_path, judge, kind="reflection"), judge + ".json")["errors"]
+    summary = audit.summarize(tmp_path)
+    assert summary["status"] == "complete"
+    assert summary["completed"] == {"reflection": 2}
+    assert summary["reflection_cells"]["base__tiser"]["all_rows"] == 2
+
+
+def test_reflection_mention_kind_must_match_label(tmp_path):
+    setup_audit(tmp_path, kind="reflection")
+    positive = response(tmp_path, kind="reflection")
+    positive["judgments"][0]["mention_kind"] = "none"
+    assert not import_data(tmp_path, positive, "positive-none.json")["accepted"]
+
+    negative = response(tmp_path, kind="reflection")
+    for judgment in negative["judgments"]:
+        judgment["label"] = "no_explicit_conflict"
+        judgment["mention_kind"] = "other"
+        judgment["evidence"] = []
+    assert not import_data(tmp_path, negative, "negative-other.json")["accepted"]
+
+
+def test_disagreement_denominator_includes_adjudicated_unscorable_rows():
+    rows = [
+        {"final_label": "explicit_conflict", "conflict_type": "object", "faithful_em": 0,
+         "judge_a_label": "explicit_conflict", "judge_b_label": "explicit_conflict",
+         "reflection_mentions_conflict": True},
+        {"final_label": "unscorable", "conflict_type": "object", "faithful_em": 0,
+         "judge_a_label": "explicit_conflict", "judge_b_label": "unscorable",
+         "reflection_mentions_conflict": False},
+    ]
+    result = audit.reflection.summarize_rows(rows)["two_pass_disagreement"]
+    assert result["count"] == 1 and result["n"] == 2
+
+
+def test_prepare_requires_one_kind(tmp_path):
+    with pytest.raises(ValueError, match="exactly one kind"):
+        audit.prepare(tmp_path)
+
+
+def test_complete_pass_bundle_preserves_internal_batches(tmp_path):
+    items = setup_audit(tmp_path, kind="reflection", count=51)
+    paths = sorted((tmp_path / "packs/reflection/judge_a").glob("*.json"))
+    bundle_path = audit.export_task_bundle(
+        tmp_path, "reflection", "judge_a", paths, name="reflection-judge_a-primary"
+    )
+    bundle = read(bundle_path)
+    assert bundle["batch_count"] == 2
+    assert bundle["item_count"] == len(items) == 51
+    assert bundle["batch_ids"] == [batch["batch_id"] for batch in bundle["batches"]]
+    assert bundle["bundle_sha256"] == audit.digest({k: v for k, v in bundle.items() if k != "bundle_sha256"})
+
+
+def test_directory_import_accepts_one_complete_pass(tmp_path):
+    setup_audit(tmp_path, count=2)
+    response_dir = tmp_path / "judge_a_responses"
+    response_dir.mkdir()
+    write(response_dir / "batch.json", response(tmp_path, judge="judge_a"))
+    result = audit.import_responses(tmp_path, response_dir, task_id="judge-a-task")
+    assert result["files"] == 1
+    assert result["accepted"] == 2
+    assert result["errors"] == []
+
+
+def test_directory_import_rejects_mixed_judge_passes(tmp_path):
+    setup_audit(tmp_path, count=2)
+    response_dir = tmp_path / "mixed_responses"
+    response_dir.mkdir()
+    write(response_dir / "a.json", response(tmp_path, judge="judge_a"))
+    write(response_dir / "b.json", response(tmp_path, judge="judge_b"))
+    result = audit.import_responses(tmp_path, response_dir, task_id="mixed-task")
+    assert result["accepted"] == 0
+    assert "exactly one judge pass" in result["errors"][0]["error"]
+    assert audit.accepted(tmp_path) == {}

@@ -2,8 +2,8 @@
 
 > **Legacy API alternative, not the active project audit.** The approved study
 > uses isolated GPT-5.6 Sol Codex file batches with no API calls. Its exact procedure
-> is [`docs/PROJECT_AUDIT_EXECUTION.md`](../../PROJECT_AUDIT_EXECUTION.md), and
-> its evidence lives under `results/project_audit_v2/`. Do not combine results
+> is [`docs/REFLECTION_AUDIT_RUNBOOK.md`](../../REFLECTION_AUDIT_RUNBOOK.md), and
+> its evidence lives under `results/reflection_audit/`. Do not combine results
 > from this API workflow with that study or use an API snapshot name as evidence
 > for the model behind a Codex UI task.
 
