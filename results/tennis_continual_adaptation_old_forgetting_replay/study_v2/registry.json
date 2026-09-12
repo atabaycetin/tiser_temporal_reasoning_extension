@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "created_at": "2026-09-10T15:55:46.220436+00:00",
+  "protocol_sha256": "125aad3ba4d9a10cae71d67c1436a388447fddb11c2bdf881d07d8cc0f090e12",
+  "source_sha256": "c5f37f650d4ff388d42ca62ce854969b88470ee6d3fa74b70de962791e22206a",
+  "conditions": {
+    "C0": {
+      "adapter": {
+        "scope": "workspace",
+        "path": "model/tiser_qwen7b_full/adapter"
+      },
+      "sha256": "5e35aa65eec27b7e65a7b64f0e5ecedd014459a11cd056a1a1fa55cf01ea612f"
+    },
+    "C1": {
+      "adapter": {
+        "scope": "workspace",
+        "path": "model/tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011/adapter"
+      },
+      "sha256": "4d1ec1b8f6711b3f935e4f49a6d4635b76fc05ee979ba76d443ae7483342cafe"
+    }
+  },
+  "artifacts": {
+    "retention_selection": {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_selection.json"
+      },
+      "sha256": "11bdb8d205d30a8004e0c8d3c679d73d6f31dfb4b806cc8791487b8a9c09f972"
+    },
+    "retention_final": {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_final.json"
+      },
+      "sha256": "26771d81fcfe76827a9f888bee6ca456ab95b3feee736c89b2093ec301f24396"
+    },
+    "original_test_canonical": {
+      "reference": {
+        "scope": "study",
+        "path": "data/original_test_canonical.json"
+      },
+      "sha256": "2e7eeb22f3a008463acbd8369d3470a54b073c31134b23cee297f78988bce2b9"
+    },
+    "original_data_source": {
+      "reference": {
+        "scope": "study",
+        "path": "data/source.json"
+      },
+      "sha256": "99887939acf2529510b4207f7d3ee3dc9782f293184e2d997d811db63d3ac48f"
+    },
+    "model_revision": {
+      "reference": {
+        "scope": "study",
+        "path": "model_revision.json"
+      },
+      "sha256": "41b20692c95427439add75cd38e64775794355663c7831ebcb191c5c59c12650"
+    }
+  },
+  "status": "prepared; inference and training pending"
+}

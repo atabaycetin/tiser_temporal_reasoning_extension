@@ -1,0 +1,39 @@
+Audit the attached JSON bundle as one independent model-judge pass.
+
+Use only the attached bundle as evidence. Do not inspect any repository, mapping,
+other judge pass, previous decision, historical result, or experiment output.
+Read the rubric in each batch and judge every item individually. Do not use
+scripts, regular expressions, keyword rules, lexical heuristics, or a default
+label to make judgments. Code may only assemble and validate JSON after the
+item-specific judgments have been made.
+
+Process every batch in the bundle. For each batch, create one response file named
+BATCH_ID.json in a single new response directory, replacing BATCH_ID with the
+batch_id value. Each response file must contain exactly:
+
+{"batch_id":"...", "batch_sha256":"...", "pass":"judge_a or judge_b or adjudicator",
+ "judged_at":"timezone-bearing ISO 8601 timestamp",
+ "observed_model_label":"gpt-5.6-sol", "reasoning_effort":"high",
+ "judgments":[
+ {"audit_id":"...", "source_sha256":"...", "label":"...",
+  "corrected_answer":null, "mention_kind":"none",
+  "evidence":[{"field":"context or trace or reflection", "quote":"exact substring"}],
+  "rationale":"brief item-specific explanation"}]}
+
+Copy batch_id, batch_sha256, pass, audit_id, and source_sha256 without alteration.
+Include every item exactly once and use only labels allowed by that batch's rubric.
+Every rationale must explain its own item. Evidence quotes must be exact substrings
+of the named source field.
+
+For a reflection labeled explicit_conflict, provide nonempty reflection evidence
+and set mention_kind to memory_context_mismatch, contradiction_or_inconsistency,
+uncertainty_or_doubt, or other. For no_explicit_conflict or unscorable, use an
+empty evidence list and mention_kind none. For semantic and trace judgments,
+mention_kind is always none and every label except unscorable requires evidence.
+Set corrected_answer to a nonempty replacement only for semantic wrong_gold;
+otherwise set it to null. Do not invent unavailable provenance.
+
+Validate each response file before continuing. Preserve completed valid files if
+execution is interrupted and continue until the response directory contains
+exactly bundle.batch_count files covering every batch in bundle.batch_ids. Then
+report the response directory's absolute filesystem path.

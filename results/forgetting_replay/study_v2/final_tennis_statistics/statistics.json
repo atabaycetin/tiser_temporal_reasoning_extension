@@ -1,0 +1,92 @@
+{
+  "spec_sha256": "2ee200133dbc309cb939a91c9852442a2ea1bcb7701db523b7b7b3f75d12ea1b",
+  "spec": {
+    "seed": 42,
+    "replicates": 10000,
+    "comparisons": [
+      {
+        "id": "C1-C0_tennis",
+        "domain": "tennis",
+        "baseline": "/Users/atabay/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/final/tennis/C0/primary_predictions.jsonl",
+        "candidate": "/Users/atabay/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/final/tennis/C1/primary_predictions.jsonl"
+      }
+    ]
+  },
+  "comparisons": {
+    "C1-C0_tennis": {
+      "domain": "tennis",
+      "seed": 42,
+      "replicates": 10000,
+      "macro_splits": [
+        "tennis_temporal"
+      ],
+      "n": 113,
+      "per_split": {
+        "tennis_temporal": {
+          "n": 113,
+          "baseline": {
+            "em": 0.5752212389380531,
+            "f1": 0.6769554928846965
+          },
+          "candidate": {
+            "em": 0.7345132743362832,
+            "f1": 0.8335239244531278
+          }
+        }
+      },
+      "mcnemar": {
+        "tennis_temporal": {
+          "both_correct": 62,
+          "baseline_only": 3,
+          "candidate_only": 21,
+          "both_wrong": 27,
+          "p_exact_two_sided": 0.00027716159820556695,
+          "p_holm": 0.00027716159820556695
+        }
+      },
+      "excluded_ood_splits": [],
+      "em": {
+        "baseline": 0.5752212389380531,
+        "candidate": 0.7345132743362832,
+        "delta": 0.15929203539823011,
+        "ci95": [
+          0.07964601769911504,
+          0.23893805309734514
+        ],
+        "retention_ratio": 1.276923076923077
+      },
+      "f1": {
+        "baseline": 0.6769554928846965,
+        "candidate": 0.8335239244531278,
+        "delta": 0.15656843156843137,
+        "ci95": [
+          0.0818294426812126,
+          0.23233692438338457
+        ],
+        "retention_ratio": 1.2312831983994244
+      },
+      "decision": {
+        "non_inferior": true,
+        "margin": 0.02
+      },
+      "inputs": {
+        "baseline": {
+          "path": "/Users/atabay/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/final/tennis/C0/primary_predictions.jsonl",
+          "sha256": "9577386c25639e63ae5686ea362a29719bf04d04ef1e32b74e524c4c4bdd8a06"
+        },
+        "candidate": {
+          "path": "/Users/atabay/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/final/tennis/C1/primary_predictions.jsonl",
+          "sha256": "37fb67880ecc2d2da4bfd806bd5ebf0ec695db28d3c70978b418650a64fce05a"
+        }
+      }
+    }
+  },
+  "holm_family": [
+    {
+      "comparison": "C1-C0_tennis",
+      "split": "tennis_temporal"
+    }
+  ],
+  "training_seeds": 1,
+  "training_variability_measured": false
+}

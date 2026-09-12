@@ -1,0 +1,95 @@
+{
+  "conditions": [
+    "C0",
+    "C1"
+  ],
+  "source_sha256": "c5f37f650d4ff388d42ca62ce854969b88470ee6d3fa74b70de962791e22206a",
+  "protocol_sha256": "125aad3ba4d9a10cae71d67c1436a388447fddb11c2bdf881d07d8cc0f090e12",
+  "artifact_hashes": [
+    {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_final.json"
+      },
+      "sha256": "26771d81fcfe76827a9f888bee6ca456ab95b3feee736c89b2093ec301f24396"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_selection.json"
+      },
+      "sha256": "11bdb8d205d30a8004e0c8d3c679d73d6f31dfb4b806cc8791487b8a9c09f972"
+    },
+    {
+      "reference": {
+        "scope": "workspace",
+        "path": "results/tennis_semantic_audit_v2/summary.json"
+      },
+      "sha256": "bc01a0e9a6b815c3243534e6acd7eb86b7883bcefd850a8da4e65efda3d03813"
+    },
+    {
+      "reference": {
+        "scope": "workspace",
+        "path": "results/tennis_semantic_audit_v2/decisions.json"
+      },
+      "sha256": "ff54475f11f82a84cbac9a7d1c314b93226c510ec8290054310ac70b3c25db9a"
+    },
+    {
+      "reference": {
+        "scope": "workspace",
+        "path": "results/tennis_semantic_audit_v2/views/tennis_dev.json"
+      },
+      "sha256": "0fc1216a77b61d9604171f1ffef1697bebb35ae2cd12e23bee71145926644507"
+    },
+    {
+      "reference": {
+        "scope": "workspace",
+        "path": "results/tennis_semantic_audit_v2/views/tennis_test.json"
+      },
+      "sha256": "5934f487ec50e0c545343d77121ac38306b64c01f25ac8196015d9e1c8e31121"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "model_revision.json"
+      },
+      "sha256": "41b20692c95427439add75cd38e64775794355663c7831ebcb191c5c59c12650"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C0/primary_predictions.jsonl"
+      },
+      "sha256": "cb0b5305f56f8724d16f950ab5582a041b13fe40de754d846a125aba680adf54"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tiser/C0/predictions.jsonl"
+      },
+      "sha256": "f3c647d8981055b8469443a672e5dbe1ce8078db36d1b88bbe030cb859d9877f"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C1/primary_predictions.jsonl"
+      },
+      "sha256": "00f82ad125165f8c39a231aa244ef27d426c4b40241fb534542af4911da977f3"
+    },
+    {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tiser/C1/predictions.jsonl"
+      },
+      "sha256": "faa5d62af21f9ad146bef52a99790418d68758f3b599bb4d4e58f9e549e86cfb"
+    }
+  ],
+  "tennis_input_sha256": "785522444827673bbe15a7df5b6b4a1224efd20df660f3606af3c54a4303089f",
+  "tennis_original_n": 113,
+  "allow_selection_after_freeze": false,
+  "prior_113_use": {
+    "team_record": "no known prior model-performance use",
+    "repository_evidence": "No preserved repository evidence indicates prior model-performance use.",
+    "independence_verified": false
+  }
+}

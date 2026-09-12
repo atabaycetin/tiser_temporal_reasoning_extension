@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tiser-baseline"
+version = "0.1.0"
+description = "Faithful baseline TISER (Bazaga et al., ACL 2025) reproduction with context-memory conflict and tennis domain-adaptation extensions"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+[tool.setuptools.packages.find]
+include = ["src*"]

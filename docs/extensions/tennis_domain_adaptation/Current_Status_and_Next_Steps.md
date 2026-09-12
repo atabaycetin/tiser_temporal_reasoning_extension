@@ -5,12 +5,12 @@ provenance and future experiments. It is the source of truth for the tennis
 extension; older condition names in result metadata are retained as historical
 identifiers.
 
-The completion protocol is now implemented. Tennis semantics and training traces
-use separate GPT-5.6 Sol audits under `results/tennis_semantic_audit_v2` and
-`results/tennis_trace_audit_v2`; create either one with the corresponding command
-in `docs/PROJECT_AUDIT_EXECUTION.md`. The conditional GPU workflow is
-`notebooks/colab_conditional_retention.ipynb`. Neither partial judgments nor
-notebook smoke runs are reportable outcomes.
+The semantic, trace, and reflection audits are complete. Tennis semantics and
+training traces use separate GPT-5.6 Sol audits under
+`results/tennis_semantic_audit_v2` and `results/tennis_trace_audit_v2`. The
+completed conditional GPU workflow is recorded by
+`notebooks/colab_conditional_retention.ipynb` and
+`results/forgetting_replay/study_v2`.
 
 ## Dataset State
 
@@ -85,53 +85,30 @@ current tree.
 | Condition | Model and prompt | n | EM | F1 | Malformed |
 | --- | --- | ---: | ---: | ---: | ---: |
 | `original_tiser_qwen7b_test224` | Qwen2.5-7B + original TISER LoRA, TISER | 224 | 0.580 | 0.701 | 0 |
-| `tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011` | Qwen2.5-7B + continued tennis LoRA, TISER | 224 | 0.732 | 0.856 | 0 |
+| `tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011` | Qwen2.5-7B + continued tennis LoRA, TISER | 224 | 0.728 | 0.852 | 0 |
 
-The second row improves on the first by 0.152 EM and 0.155 F1 on the same
-224-example test set. The canonical portable settings are in
+The second row improves on the first by 0.147 EM and 0.151 F1 on the same
+224-example selection set. The canonical portable settings are in
 `config/config_tennis_7b_reported_best.yaml`; the training command must also
 pass `--base-adapter model/tiser_qwen7b_full/adapter`.
 
-However, the winning condition was selected by ranking 22 distinct candidate
-adapters on that test split. Choosing the maximum of several noisy test
-scores makes the selected value optimistic. The conventional procedure would
-select on `tennis_dev.json`, lock one configuration, and use an untouched test
-set once. Because the current test was already used for selection, merely
-rerunning the grid on development cannot erase that information leak. The
-implemented protocol follows option 2 below. No prior model-performance use of
-the 113 records is known, while the repository cannot exclude an unrecorded
-evaluation. The alternatives were:
+All 22 candidates were evaluated on the same 224-record selection split,
+enabling direct comparison. Continued adaptation achieved the highest
+selection-set score. The selected adapter was then kept unchanged and evaluated
+once on the separate 113-record holdout, where C0 reaches 0.575 EM / 0.677 F1
+and C1 reaches 0.735 EM / 0.834 F1.
 
-1. label 0.732/0.856 as the best observed exploratory test result;
-2. because no preserved model-performance artifact uses the 113-record
-   development split, freeze this adapter and evaluate it there once,
-   relabelling that split as the final holdout (subject to the possibility of
-   an unlogged manual run); or
-3. after cleaning the data, select a new run on development and evaluate once
-   on a newly reserved final holdout.
+## Remaining limitations
 
-Option 2 does not require rerunning hyperparameter search. It gives a smaller
-but clean estimate for the already selected adapter. Once inspected, that
-113-record split must not be used to choose a different configuration.
-
-## Not Yet Supported
-
-The following claims or procedures do not have all required evidence in the
-current repository:
-
-- A complete semantic adjudication of the raw examples and traces. The current
-  302-record review is targeted and flags candidates; it is not a full human
-  certification.
-- A complete semantic validation of the trace contents. Two hundred outputs
-  were wrapped to restore tags, and 26 objects were repaired from 19 malformed
-  physical lines; structural repair does not establish temporal correctness.
-- Mixed tennis plus original-TISER replay results remain absent. The historical
-  canonical destination was `model/tiser_tennis_mixed_replay_qwen7b/adapter`;
-  the new registry will instead record R25 under its frozen study directory only
-  if the forgetting gate shows clear forgetting. R25-T remains absent unless its
-  token gate fires.
-- Forgetting or preservation results on an original TISER evaluation sample.
-- A final performance estimate from data untouched by hyperparameter selection.
+- The model-judge audits have no human calibration, and the displayed GPT-5.6
+  Sol label does not expose the backend snapshot or decoding settings.
+- The retention interval establishes neither clear forgetting nor
+  non-inferiority under the predefined margin.
+- The inconclusive gate did not authorize C1R, R25, or R25-T training, so the
+  study provides no replay-effectiveness comparison.
+- The 21 training records flagged across the semantic and trace audits were
+  present in the reported training data; their causal effect was not measured.
+- Each trained adapter represents one seed, so training variability is unknown.
 
 ## Reporting Rules
 
@@ -143,30 +120,21 @@ current repository:
 - State that 600 is twelve completed batches, not a quality-selected or optimal
   data size.
 - Do not treat the structural validator as semantic validation.
-- Call the selected 7B test score exploratory unless it is confirmed on a new
-  untouched holdout.
-- Treat mixed replay and forgetting as future work unless new artifacts are
-  added and audited.
+- Distinguish the 224-record selection result from the 113-record final-holdout
+  result.
+- State that replay was not run because the predefined retention gate was
+  inconclusive; do not present replay as unfinished work.
 
 The execution-grade continual-learning protocol is in
 `FORGETTING_MIXED_REPLAY_PLAN.md`. The fully automated replacement for the
 missing reflection judge is in
 `../context_memory_conflict/AUTOMATED_REFLECTION_AUDIT.md`.
 
-## Active Remaining Execution
+## Completed conditional study
 
-1. Complete both blinded passes over all 1,121 unique semantic items, 650
-   traces, and 2,295 scorable reflections; adjudicate every disagreement and
-   every proposed gold correction.
-2. Freeze versioned tennis evaluation sidecars. Unresolved or underdetermined
-   records stay in the original files and are excluded only from the primary
-   scoring denominator.
-3. Run C0 and C1 on the frozen original-TISER selection population. Train C1R
-   and R25 only if the preregistered interval shows clear forgetting, and run
-   R25-T only if supervised-token exposure differs by more than 10%.
-4. Freeze the applicable conditions and run one final campaign on the 113
-   original tennis inputs and the exact original-TISER complement. Preserve
-   original-label tennis scores as the secondary historical view.
-5. Update result tables only from completed, hash-validated artifacts. Continue
-   to state that the model-judge audit has no human calibration and that
-   historical UI snapshot/decoding settings are unavailable.
+The seed-42 retention sample contains 100 records from each of six
+original-TISER splits. The primary five-split macro uses 500 in-domain records:
+C0 reaches 0.880 EM / 0.946 F1 and C1 reaches 0.876 EM / 0.936 F1. The paired EM
+difference is -0.004 with a 95% interval of [-0.028, 0.020]. The gate is
+inconclusive, so no replay condition is trained. The final campaign evaluates
+the unchanged C0 and C1 adapters on all 113 audited tennis-holdout records.

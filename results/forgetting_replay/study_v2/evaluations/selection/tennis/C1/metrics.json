@@ -1,0 +1,159 @@
+{
+  "adapter_dir": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/model/tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011/adapter",
+  "answer_type_confusion": {
+    "duration_minutes": {
+      "duration_minutes": 25,
+      "span": 4
+    },
+    "span": {
+      "span": 91
+    },
+    "tournament_round": {
+      "span": 1,
+      "tournament_round": 2
+    },
+    "yes_no": {
+      "yes_no": 101
+    }
+  },
+  "batch_size": 4,
+  "category_answer_type_confusion": {
+    "duration_minutes": {
+      "duration_minutes": {
+        "duration_minutes": 25,
+        "span": 4
+      }
+    },
+    "immediate_before_after": {
+      "span": {
+        "span": 39
+      }
+    },
+    "other_temporal": {
+      "span": {
+        "span": 2
+      },
+      "tournament_round": {
+        "span": 1
+      }
+    },
+    "overlap_while_during": {
+      "span": {
+        "span": 1
+      },
+      "yes_no": {
+        "yes_no": 22
+      }
+    },
+    "tennis_injury_or_medical": {
+      "span": {
+        "span": 1
+      }
+    },
+    "tournament_round_sequence": {
+      "span": {
+        "span": 1
+      },
+      "tournament_round": {
+        "tournament_round": 2
+      },
+      "yes_no": {
+        "yes_no": 1
+      }
+    },
+    "which_first_last": {
+      "span": {
+        "span": 47
+      }
+    },
+    "yes_no_before_after": {
+      "yes_no": {
+        "yes_no": 78
+      }
+    }
+  },
+  "condition": "C1",
+  "limit": null,
+  "malformed_examples": [],
+  "max_new_tokens": 256,
+  "model_name": "Qwen/Qwen2.5-7B-Instruct",
+  "no_adapter": false,
+  "normalization": {
+    "function": "src.tennis.normalize.normalize_tennis_answer",
+    "notes": [
+      "lowercase with NFKC Unicode normalization",
+      "normalize curly apostrophes and dash variants",
+      "normalize No. 1 / no 1 / #1 / number 1 ranking answers to 1",
+      "normalize numeric minute/minutes durations to singular minute",
+      "normalize duration_minutes whole-answer numbers/minute units to bare numbers",
+      "remove punctuation and English articles, then collapse whitespace"
+    ]
+  },
+  "overall": {
+    "em": 0.7276785714285714,
+    "f1": 0.8521543843609998,
+    "malformed_count": 0,
+    "malformed_rate": 0.0,
+    "n": 224
+  },
+  "per_category": {
+    "duration_minutes": {
+      "em": 0.6206896551724138,
+      "f1": 0.6727969348659004,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 29
+    },
+    "immediate_before_after": {
+      "em": 0.3076923076923077,
+      "f1": 0.7488929364386254,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 39
+    },
+    "other_temporal": {
+      "em": 0.0,
+      "f1": 0.3606060606060606,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 3
+    },
+    "overlap_while_during": {
+      "em": 1.0,
+      "f1": 1.0,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 23
+    },
+    "tennis_injury_or_medical": {
+      "em": 0.0,
+      "f1": 0.3333333333333333,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 1
+    },
+    "tournament_round_sequence": {
+      "em": 1.0,
+      "f1": 1.0,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 4
+    },
+    "which_first_last": {
+      "em": 0.6808510638297872,
+      "f1": 0.8457339350956373,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 47
+    },
+    "yes_no_before_after": {
+      "em": 0.9487179487179487,
+      "f1": 0.9487179487179487,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 78
+    }
+  },
+  "prompt_style": "tiser",
+  "test_file": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/data/tennis/tennis_test.json"
+}

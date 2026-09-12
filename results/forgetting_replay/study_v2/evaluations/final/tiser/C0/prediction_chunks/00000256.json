@@ -1,0 +1,647 @@
+{
+  "start": 256,
+  "spec_sha256": "0da1f6c85a514e31c994f166cdfae02a14a734dc4fe9556c3d98283fd0166086",
+  "rows": [
+    {
+      "question_id": "story507_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, the birth of Ethan Thompson in Jupiter and the birth of Sophia Johnson in Pyramid City, occurred in the same year. To determine this, we need to compare the starting years of these two events as provided in the temporal context.\n\nThe temporal context states that (Ethan Thompson was born in Jupiter) starts at 1955, and (Sophia Johnson was born in Pyramid City) starts at 1964. Since these two events have different starting years, it is clear that they did not occur in the same year.\n\n<timeline> \n(Ethan Thompson was born in Jupiter) starts at 1955.\n(Sophia Johnson was born in Pyramid City) starts at 1964.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the starting years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not occur in the same year is accurate.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, (Sophia Johnson was born in Pyramid City) and (Ethan Thompson was married to Sophia Johnson), started at the same year. To determine this, we need to compare the start times of these two events. According to the temporal context provided, (Sophia Johnson was born in Pyramid City) starts at 1964, while (Ethan Thompson was married to Sophia Johnson) starts at 1998. Since these two events have different start times, it is clear that they did not start at the same year.\n<timeline> \n(Sophia Johnson was born in Pyramid City) starts at 1964.\n(Ethan Thompson was married to Sophia Johnson) starts at 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Ethan Thompson was married to Sophia Johnson\" was still happening when the event \"Lily Jenkins was married to Ethan Thompson\" started, we need to compare the start and end times of both events.\n\nFirst, we note that the event \"Ethan Thompson was married to Sophia Johnson\" starts at 1998 and ends at 2001. \n\nNext, we observe that the event \"Lily Jenkins was married to Ethan Thompson\" starts at 2009.\n\nSince the start time of \"Lily Jenkins was married to Ethan Thompson\" (2009) is after the end time of \"Ethan Thompson was married to Sophia Johnson\" (2001), it indicates that the first marriage had already ended before the second marriage began.\n\n<timeline> \n- (Ethan Thompson was married to Sophia Johnson) starts at 1998 and ends at 2001.\n- (Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the start and end times of both events and compares them. There are no apparent errors in the comparison. The timeline clearly shows that the first marriage ended before the second marriage began.\n</reflection>\n\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Sophia Johnson was married to Ethan Thompson\" was still happening when the event \"Lily Jenkins was married to Ethan Thompson\" started, we need to compare the start and end times of both events. \n\nFirst, we note that the event \"Sophia Johnson was married to Ethan Thompson\" starts at 1998 and ends at 2001. Next, we observe that the event \"Lily Jenkins was married to Ethan Thompson\" starts at 2009. \n\nSince the start time of \"Lily Jenkins was married to Ethan Thompson\" (2009) is after the end time of \"Sophia Johnson was married to Ethan Thompson\" (2001), it indicates that the first event had already ended before the second event started. Therefore, the statement is false.\n<timeline> \n- (Sophia Johnson was married to Ethan Thompson) starts at 1998 and ends at 2001.\n- (Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end times of both events and compares them to determine if one event was still happening when the other started. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q6_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Ethan Thompson was married to Sophia Johnson\" was still happening when the event \"Ethan Thompson was married to Lily Jenkins\" started, we need to compare the start and end times of these two events.\n\nFirst, we note that the event \"Ethan Thompson was married to Sophia Johnson\" starts at 1998 and ends at 2001. \n\nNext, we observe that the event \"Ethan Thompson was married to Lily Jenkins\" starts at 2009.\n\nSince the start time of the second event (2009) is after the end time of the first event (2001), it indicates that the first event had already ended before the second event began.\n\n<timeline> \n- (Ethan Thompson was married to Sophia Johnson) starts at 1998 and ends at 2001.\n- (Ethan Thompson was married to Lily Jenkins) starts at 2009.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies that the start time of the second event (2009) is after the end time of the first event (2001). This confirms that the first event was not still happening when the second event started.\n</reflection>\n\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Ethan Thompson was married to Lily Jenkins) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Ethan Thompson was married to Sophia Johnson\" ends, we need to identify the next significant event involving Ethan Thompson after the end of his marriage to Sophia Johnson. The given temporal context provides specific dates for each event, which will help us pinpoint the correct sequence of events.\n\n<timeline> \n(Ethan Thompson was born in Jupiter) starts at 1955.\n(Sophia Johnson was born in Pyramid City) starts at 1964.\n(Ethan Thompson was married to Sophia Johnson) starts at 1998.\n(Sophia Johnson was married to Ethan Thompson) starts at 1998.\n(Ethan Thompson was married to Sophia Johnson) ends at 2001.\n(Sophia Johnson was married to Ethan Thompson) ends at 2001.\n(Ethan Thompson was married to Lily Jenkins) starts at 2009.\n(Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Ethan Thompson was married to Sophia Johnson\" ends in 2001. The next significant event involving Ethan Thompson is his marriage to Lily Jenkins, which starts in 2009. There are no other events mentioned between 2001 and 2009 that involve Ethan Thompson, so the next event after the end of his marriage to Sophia Johnson is his marriage to Lily Jenkins.\n</reflection>\n\n</reasoning> \n<answer> \nEthan Thompson was married to Lily Jenkins\n</answer>",
+      "pred_answer": "Ethan Thompson was married to Lily Jenkins",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story507_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Johnson was born in Pyramid City) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Ethan Thompson was born in Jupiter\" starts, we need to identify the next chronological event in the timeline. The given temporal context provides specific years for each event, allowing us to sequence them accurately.\n\n<timeline> \nEthan Thompson was born in Jupiter in 1955. The next event chronologically is Sophia Johnson being born in Pyramid City, which occurs in 1964.\n</timeline> \n\n<reflection> \nThe reasoning correctly identifies the next chronological event after Ethan Thompson's birth. There are no errors or improvements needed in the timeline or reasoning process.\n</reflection>\n</reasoning> \n\n<answer> \nSophia Johnson was born in Pyramid City\n</answer>",
+      "pred_answer": "Sophia Johnson was born in Pyramid City",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story507_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Johnson was born in Pyramid City) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Sophia Johnson was married to Ethan Thompson\" starts, we need to examine the temporal context provided. The event in question starts at 1998. We should look for the most recent event that occurs before this date.\n\nThe temporal context includes several events:\n- Ethan Thompson was born in Jupiter (1955)\n- Sophia Johnson was born in Pyramid City (1964)\n- Ethan Thompson was married to Sophia Johnson (1998)\n- Sophia Johnson was married to Ethan Thompson (1998)\n- Ethan Thompson was married to Sophia Johnson (ends at 2001)\n- Sophia Johnson was married to Ethan Thompson (ends at 2001)\n- Ethan Thompson was married to Lily Jenkins (2009)\n- Lily Jenkins was married to Ethan Thompson (2009)\n\nThe most recent event before 1998 is the birth of Sophia Johnson in 1964. However, this is a significant gap in time, so we need to consider if there are any other events that might be more relevant. Since the marriage of Sophia and Ethan is the only event that directly precedes their marriage, it is the most relevant event in this context.\n\n<timeline> \n- Sophia Johnson was born in Pyramid City (1964)\n- Ethan Thompson was married to Sophia Johnson (1998)\n- Sophia Johnson was married to Ethan Thompson (1998)\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the birth of Sophia Johnson in 1964 as the most recent event before their marriage in 1998. There are no other events listed between these two dates, so this is the most relevant event.\n</reflection>\n\n</reasoning> \n<answer> \nSophia Johnson was born in Pyramid City\n</answer>",
+      "pred_answer": "Sophia Johnson was born in Pyramid City",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story507_Q7_3",
+      "dataset_name": "tgqa_test",
+      "gold": "(Ethan Thompson was married to Sophia Johnson) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Sophia Johnson was born in Pyramid City,\" we need to identify the next chronological event in the timeline. The given temporal context provides specific dates for each event, which allows us to sequence them accurately.\n\n<timeline> \n- Ethan Thompson was born in Jupiter: 1955\n- Sophia Johnson was born in Pyramid City: 1964\n- Ethan Thompson was married to Sophia Johnson: 1998\n- Sophia Johnson was married to Ethan Thompson: 1998\n- Ethan Thompson was married to Sophia Johnson: ends at 2001\n- Sophia Johnson was married to Ethan Thompson: ends at 2001\n- Ethan Thompson was married to Lily Jenkins: 2009\n- Lily Jenkins was married to Ethan Thompson: 2009\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Sophia Johnson was born in Pyramid City\" occurs in 1964. The next chronological event after this is the marriage of Ethan Thompson and Sophia Johnson, which starts in 1998. However, the question asks for what happened right after Sophia's birth, not the marriage. Therefore, the immediate next event after Sophia's birth is not explicitly mentioned in the timeline. Given the context, the next significant event involving Sophia Johnson would be her marriage to Ethan Thompson, but this does not occur immediately after her birth.\n</reflection>\n\n<answer> \nEthan Thompson was married to Sophia Johnson\n</answer>",
+      "pred_answer": "Ethan Thompson was married to Sophia Johnson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story507_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Johnson was married to Ethan Thompson) ends",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Sophia Johnson was married to Ethan Thompson\" starts, we need to identify the next significant event involving either Sophia Johnson or Ethan Thompson. The given temporal context provides specific dates for various events, which will help us pinpoint the sequence of events.\n\n<timeline> \n- (Ethan Thompson was born in Jupiter) starts at 1955.\n- (Sophia Johnson was born in Pyramid City) starts at 1964.\n- (Ethan Thompson was married to Sophia Johnson) starts at 1998.\n- (Sophia Johnson was married to Ethan Thompson) starts at 1998.\n- (Ethan Thompson was married to Sophia Johnson) ends at 2001.\n- (Sophia Johnson was married to Ethan Thompson) ends at 2001.\n- (Ethan Thompson was married to Lily Jenkins) starts at 2009.\n- (Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Sophia Johnson was married to Ethan Thompson\" starts at 1998 and ends at 2001. The next significant event involving either Sophia Johnson or Ethan Thompson is their marriage to Lily Jenkins, which starts at 2009. However, this event occurs after the end of their marriage to each other. Therefore, the event that happened right after \"Sophia Johnson was married to Ethan Thompson\" starts is not explicitly mentioned in the given context. However, the logical next event in the timeline is their marriage to Lily Jenkins.\n</reflection>\n\n</reasoning> \n<answer> \nEthan Thompson was married to Lily Jenkins\n</answer>",
+      "pred_answer": "Ethan Thompson was married to Lily Jenkins",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story507_Q8_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether the event \"Sophia Johnson was married to Ethan Thompson\" was longer in duration than the event \"Ethan Thompson was married to Sophia Johnson.\" To determine this, we need to compare the durations of these two events.\n\nFirst, we note that both events start at the same time, which is 1998. This simplifies our comparison because we only need to look at the end times to determine the duration.\n\nNext, we see that both events end at the same time, which is 2001. Since both events start and end at the same times, their durations must be equal.\n\nTherefore, the duration of \"Sophia Johnson was married to Ethan Thompson\" is not longer than the duration of \"Ethan Thompson was married to Sophia Johnson.\"\n<timeline> \n(Ethan Thompson was born in Jupiter) starts at 1955.\n(Sophia Johnson was born in Pyramid City) starts at 1964.\n(Ethan Thompson was married to Sophia Johnson) starts at 1998.\n(Sophia Johnson was married to Ethan Thompson) starts at 1998.\n(Ethan Thompson was married to Sophia Johnson) ends at 2001.\n(Sophia Johnson was married to Ethan Thompson) ends at 2001.\n(Ethan Thompson was married to Lily Jenkins) starts at 2009.\n(Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline>\n<reflection> \nThe reasoning correctly identifies that both events start and end at the same times, leading to the conclusion that their durations are equal. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was born in Brooklyn",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the starting times of the two events in question: (Adam Parker was born in Brooklyn) and (Sophia Anderson was married to Adam Parker). According to the temporal context provided, (Adam Parker was born in Brooklyn) starts at 1954, while (Sophia Anderson was married to Adam Parker) starts at 1978. Since 1954 is earlier than 1978, it is clear that (Adam Parker was born in Brooklyn) started first.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954.\n(Sophia Anderson was married to Adam Parker) starts at 1978.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was born in Brooklyn\n</answer>",
+      "pred_answer": "Adam Parker was born in Brooklyn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was born in Brooklyn",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the starting times of the two events in question: (Adam Parker was born in Brooklyn) and (Adam Parker was married to Sophia Anderson). According to the temporal context provided, (Adam Parker was born in Brooklyn) starts at 1954, while (Adam Parker was married to Sophia Anderson) starts at 1978. Since 1954 is earlier than 1978, it is clear that (Adam Parker was born in Brooklyn) started first.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954.\n(Adam Parker was married to Sophia Anderson) starts at 1978.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was born in Brooklyn\n</answer>",
+      "pred_answer": "Adam Parker was born in Brooklyn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was affiliated to Silverback Party",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two affiliations: (Adam Parker was affiliated to Silverback Party) and (Adam Parker was affiliated to Pioneer Party). According to the temporal context provided, (Adam Parker was affiliated to Silverback Party) starts at 1983, while (Adam Parker was affiliated to Pioneer Party) starts at 1998. Since 1983 is earlier than 1998, it is clear that (Adam Parker was affiliated to Silverback Party) started first.\n<timeline> \n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n(Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two affiliations and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was affiliated to Silverback Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Silverback Party",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was born in Brooklyn",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to compare the starting times of each event. The events provided are: (Adam Parker was born in Brooklyn), (Sophia Anderson was born in Brooklyn), (Adam Parker was married to Sophia Anderson), (Adam Parker was affiliated to Silverback Party), and (Adam Parker was affiliated to Pioneer Party).\n\nThe starting times for these events are:\n- (Adam Parker was born in Brooklyn) starts at 1954.\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nComparing these times, the earliest starting time is 1954, which corresponds to the event (Adam Parker was born in Brooklyn).\n<timeline> \n- (Adam Parker was born in Brooklyn) starts at 1954.\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the earliest starting time as 1954, which corresponds to the event (Adam Parker was born in Brooklyn). There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was born in Brooklyn\n</answer>",
+      "pred_answer": "Adam Parker was born in Brooklyn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Anderson was born in Brooklyn",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to arrange the events based on their starting times. The events provided are: (Adam Parker was born in Brooklyn), (Sophia Anderson was born in Brooklyn), (Adam Parker was married to Sophia Anderson), (Adam Parker was affiliated to Silverback Party), and (Adam Parker was affiliated to Pioneer Party).\n\nFirst, we identify the starting times of each event:\n- (Adam Parker was born in Brooklyn) starts at 1954.\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nNext, we arrange these events in chronological order based on their starting times:\n1. (Adam Parker was born in Brooklyn) - 1954\n2. (Sophia Anderson was born in Brooklyn) - 1955\n3. (Adam Parker was married to Sophia Anderson) - 1978\n4. (Adam Parker was affiliated to Silverback Party) - 1983\n5. (Adam Parker was affiliated to Pioneer Party) - 1998\n\nThe second event in this chronological order is (Sophia Anderson was born in Brooklyn).\n<timeline> \n(Adam Parker was born in Brooklyn) - 1954\n(Sophia Anderson was born in Brooklyn) - 1955\n(Adam Parker was married to Sophia Anderson) - 1978\n(Adam Parker was affiliated to Silverback Party) - 1983\n(Adam Parker was affiliated to Pioneer Party) - 1998\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting times and arranges the events in chronological order. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nSophia Anderson was born in Brooklyn\n</answer>",
+      "pred_answer": "Sophia Anderson was born in Brooklyn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Anderson was married to Adam Parker",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nFirst, we arrange these events in chronological order based on their starting times:\n\n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nThe third event in this chronological order is (Adam Parker was married to Sophia Anderson) which starts at 1978.\n<timeline> \n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline>\n<reflection> \nThe reasoning correctly arranges the events in chronological order based on their starting times. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nAdam Parker was married to Sophia Anderson\n</answer>",
+      "pred_answer": "Adam Parker was married to Sophia Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was affiliated to Silverback Party",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nWe can see that the events are already in chronological order based on their starting times. Therefore, the fourth event in chronological order is the one that starts at 1983.\n<timeline> \n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline>\n<reflection> \nThe events are correctly ordered based on their starting times. There are no errors or improvements needed in the timeline. The fourth event in chronological order is indeed the one that starts at 1983.\n</reflection>\n</reasoning>\n<answer> \nAdam Parker was affiliated to Silverback Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Silverback Party",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was affiliated to Pioneer Party",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. (Adam Parker was born in Brooklyn) starts at 1954.\n2. (Sophia Anderson was born in Brooklyn) starts at 1955.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n\nWe can see that the events are already in chronological order based on their starting times. Therefore, the fifth event in chronological order is the one that starts at 1998.\n\n<timeline> \n1. Adam Parker was born in Brooklyn (1954)\n2. Sophia Anderson was born in Brooklyn (1955)\n3. Adam Parker was married to Sophia Anderson (1978)\n4. Adam Parker was affiliated to Silverback Party (1983)\n5. Adam Parker was affiliated to Pioneer Party (1998)\n</timeline>\n\n<reflection> \nThe events are correctly ordered based on their starting times. There are no errors or improvements needed in the timeline. The fifth event in chronological order is indeed the one that starts at 1998.\n</reflection>\n\n</reasoning> \n<answer> \nAdam Parker was affiliated to Pioneer Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Pioneer Party",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Anderson was born in Brooklyn",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to compare the starting times of each event. The events provided are: (Sophia Anderson was born in Brooklyn), (Adam Parker was affiliated to Pioneer Party), (Adam Parker was married to Sophia Anderson), (Sophia Anderson was married to Adam Parker), and (Adam Parker was affiliated to Silverback Party). The temporal context gives us the starting times for these events.\n\nComparing the starting times:\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Sophia Anderson was married to Adam Parker) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n\nThe earliest starting time is 1955, which corresponds to the event (Sophia Anderson was born in Brooklyn).\n<timeline> \n(Sophia Anderson was born in Brooklyn) starts at 1955.\n(Adam Parker was affiliated to Pioneer Party) starts at 1998.\n(Adam Parker was married to Sophia Anderson) starts at 1978.\n(Sophia Anderson was married to Adam Parker) starts at 1978.\n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the earliest starting time as 1955, which corresponds to the event (Sophia Anderson was born in Brooklyn). There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nSophia Anderson was born in Brooklyn\n</answer>",
+      "pred_answer": "Sophia Anderson was born in Brooklyn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was married to Sophia Anderson",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to first identify the chronological order of the given events based on their starting points. The events provided are:\n\n1. (Sophia Anderson was born in Brooklyn) starts at 1955.\n2. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Sophia Anderson was married to Adam Parker) starts at 1978.\n5. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n\nWe can see that the birth of Sophia Anderson is the earliest event, occurring in 1955. The next event chronologically would be the marriage of Adam Parker to Sophia Anderson, which occurs in 1978. Since both events (Adam Parker was married to Sophia Anderson and Sophia Anderson was married to Adam Parker) occur at the same time, either can be considered the second event in chronological order.\n\n<timeline> \n1. (Sophia Anderson was born in Brooklyn) starts at 1955.\n2. (Adam Parker was married to Sophia Anderson) starts at 1978.\n3. (Sophia Anderson was married to Adam Parker) starts at 1978.\n4. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The second event in chronological order is indeed the marriage of Adam Parker to Sophia Anderson, which occurs in 1978. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nAdam Parker was married to Sophia Anderson\n</answer>",
+      "pred_answer": "Adam Parker was married to Sophia Anderson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was married to Sophia Anderson",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. (Sophia Anderson was born in Brooklyn) starts at 1955.\n2. (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n3. (Adam Parker was married to Sophia Anderson) starts at 1978.\n4. (Sophia Anderson was married to Adam Parker) starts at 1978.\n5. (Adam Parker was affiliated to Silverback Party) starts at 1983.\n\nFirst, we note that the birth of Sophia Anderson is the earliest event, occurring in 1955. Next, we consider the marriage events, which both start in 1978. Since both events occur simultaneously, they can be considered as one event for the purpose of chronological ordering. Finally, the affiliation events occur in 1983 and 1998.\n\nThus, the chronological order of the events is:\n1. Sophia Anderson's birth in 1955.\n2. Both marriage events in 1978.\n3. Adam Parker's affiliation with Silverback Party in 1983.\n4. Adam Parker's affiliation with Pioneer Party in 1998.\n\nGiven this order, the third event in chronological order is the affiliation of Adam Parker with Silverback Party.\n<timeline> \n1. Sophia Anderson's birth in 1955.\n2. Both marriage events in 1978.\n3. Adam Parker's affiliation with Silverback Party in 1983.\n4. Adam Parker's affiliation with Pioneer Party in 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was affiliated to Silverback Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Silverback Party",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285714
+    },
+    {
+      "question_id": "story508_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was affiliated to Silverback Party",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the given events based on their starting times. The events are: (Sophia Anderson was born in Brooklyn), (Adam Parker was affiliated to Pioneer Party), (Adam Parker was married to Sophia Anderson), (Sophia Anderson was married to Adam Parker), and (Adam Parker was affiliated to Silverback Party).\n\nFirst, we note the starting times of each event:\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Sophia Anderson was married to Adam Parker) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n\nNext, we arrange these events in chronological order based on their starting times:\n1. (Sophia Anderson was born in Brooklyn) at 1955.\n2. (Adam Parker was married to Sophia Anderson) at 1978.\n3. (Sophia Anderson was married to Adam Parker) at 1978.\n4. (Adam Parker was affiliated to Silverback Party) at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) at 1998.\n\nThe fourth event in this chronological order is (Adam Parker was affiliated to Silverback Party).\n<timeline> \n1. (Sophia Anderson was born in Brooklyn) at 1955.\n2. (Adam Parker was married to Sophia Anderson) at 1978.\n3. (Sophia Anderson was married to Adam Parker) at 1978.\n4. (Adam Parker was affiliated to Silverback Party) at 1983.\n5. (Adam Parker was affiliated to Pioneer Party) at 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting times. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nAdam Parker was affiliated to Silverback Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Silverback Party",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Adam Parker was affiliated to Pioneer Party",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the given events based on their starting times. The events are: (Sophia Anderson was born in Brooklyn), (Adam Parker was affiliated to Pioneer Party), (Adam Parker was married to Sophia Anderson), (Sophia Anderson was married to Adam Parker), (Adam Parker was affiliated to Silverback Party).\n\nFirst, we note the starting times of each event:\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Sophia Anderson was married to Adam Parker) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n\nNext, we arrange these events in chronological order based on their starting times:\n1. (Sophia Anderson was born in Brooklyn) - 1955\n2. (Adam Parker was married to Sophia Anderson) - 1978\n3. (Sophia Anderson was married to Adam Parker) - 1978\n4. (Adam Parker was affiliated to Silverback Party) - 1983\n5. (Adam Parker was affiliated to Pioneer Party) - 1998\n\nThe fifth event in this chronological order is (Adam Parker was affiliated to Pioneer Party).\n<timeline> \n1. (Sophia Anderson was born in Brooklyn) - 1955\n2. (Adam Parker was married to Sophia Anderson) - 1978\n3. (Sophia Anderson was married to Adam Parker) - 1978\n4. (Adam Parker was affiliated to Silverback Party) - 1983\n5. (Adam Parker was affiliated to Pioneer Party) - 1998\n</timeline>\n<reflection> \nThe reasoning correctly identifies the starting times and arranges the events in chronological order. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nAdam Parker was affiliated to Pioneer Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Pioneer Party",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "3 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Adam Parker was affiliated to Pioneer Party) lasted, we need to find the start and end dates of this affiliation. According to the temporal context, (Adam Parker was affiliated to Pioneer Party) starts at 1998 and ends at 2001. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Adam Parker was affiliated to Pioneer Party) starts at 1998.\n(Adam Parker was affiliated to Pioneer Party) ends at 2001.\n</timeline> \n<reflection> \nThe calculation for the duration is straightforward: 2001 - 1998 = 3 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n3\n</answer>",
+      "pred_answer": "3",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story508_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "15 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Adam Parker was affiliated to Silverback Party) lasted, we need to find the start and end dates of this affiliation. According to the temporal context, (Adam Parker was affiliated to Silverback Party) starts at 1983 and ends at 1998. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n(Adam Parker was affiliated to Silverback Party) ends at 1998.\n</timeline> \n<reflection> \nThe calculation for the duration is straightforward: 1998 - 1983 = 15 years. This matches the given answer, so no further adjustments are needed.\n</reflection>\n</reasoning> \n<answer> \n15\n</answer>",
+      "pred_answer": "15",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story508_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "29 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Adam Parker was born in Brooklyn) and the start of event (Adam Parker was affiliated to Silverback Party), we need to identify the starting points of these two events from the given temporal context. The start of (Adam Parker was born in Brooklyn) is given as 1954, and the start of (Adam Parker was affiliated to Silverback Party) is given as 1983. To find the time passed, we subtract the earlier date from the later date.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954.\n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n</timeline> \n<reflection> \nThe calculation involves subtracting 1954 from 1983, which results in 39 years. This matches the provided answer, indicating that the reasoning and timeline are correct.\n</reflection> \n</reasoning> \n<answer> \n39\n</answer>",
+      "pred_answer": "39",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story508_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "23 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Sophia Anderson was born in Brooklyn) and the start of event (Adam Parker was married to Sophia Anderson), we need to identify the starting points of these two events from the given temporal context. \n\nThe start of event (Sophia Anderson was born in Brooklyn) is given as 1955. The start of event (Adam Parker was married to Sophia Anderson) is given as 1978. \n\nTo find the time passed between these two events, we subtract the earlier starting point from the later starting point. \n\n1978 - 1955 = 23 years\n\nThus, the time passed between the start of Sophia Anderson's birth and the start of their marriage is 23 years.\n<timeline> \n(Sophia Anderson was born in Brooklyn) starts at 1955.\n(Adam Parker was married to Sophia Anderson) starts at 1978.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the relevant events and their starting points. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n23\n</answer>",
+      "pred_answer": "23",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story508_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "24 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Adam Parker was born in Brooklyn) and the start of event (Adam Parker was married to Sophia Anderson), we need to identify the starting points of these two events from the given temporal context. The start of (Adam Parker was born in Brooklyn) is given as 1954, and the start of (Adam Parker was married to Sophia Anderson) is given as 1978. To find the time passed, we subtract the earlier date from the later date.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954.\n(Adam Parker was married to Sophia Anderson) starts at 1978.\n</timeline> \n<reflection> \nThe calculation involves subtracting 1954 from 1978, which results in 24 years. This matches the provided answer, indicating that the reasoning and timeline are correct.\n</reflection>\n</reasoning> \n<answer> \n24\n</answer>",
+      "pred_answer": "24",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story508_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1955",
+      "raw_generation": "<reasoning> \nThe question asks for the starting time of the event \"Sophia Anderson was born in Brooklyn.\" To find this, we need to locate the specific temporal context that directly relates to this event. The given temporal context provides several events with their respective starting times. Among these, the event \"Sophia Anderson was born in Brooklyn\" is explicitly mentioned with a starting time.\n\n<timeline> \n(Sophia Anderson was born in Brooklyn) starts at 1955.\n</timeline>\n\n<reflection> \nThe reasoning process correctly identified the relevant event and its starting time from the provided temporal context. There are no apparent errors or improvements needed in the reasoning or timeline.\n</reflection>\n</reasoning> \n<answer> \n1955\n</answer>",
+      "pred_answer": "1955",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "1983",
+      "raw_generation": "<reasoning> \nThe question asks for the start date of the event where Adam Parker was affiliated to the Silverback Party. To find this, we need to look at the temporal context provided. The context lists several events related to Adam Parker, including his affiliations to different parties. Specifically, it mentions that (Adam Parker was affiliated to Silverback Party) starts at 1983. This directly answers the question.\n<timeline> \n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start date of Adam Parker's affiliation to the Silverback Party from the provided temporal context. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n1983\n</answer>",
+      "pred_answer": "1983",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1978",
+      "raw_generation": "<reasoning> \nThe question asks for the start date of the event where Sophia Anderson was married to Adam Parker. The temporal context provided includes several events related to Adam Parker and Sophia Anderson, including their births and marriages. The key event for this question is the marriage of Adam Parker to Sophia Anderson, which is stated to start at 1978. Since the question specifically asks for the start date of the event where Sophia Anderson was married to Adam Parker, and the context directly provides this information, the answer can be directly extracted from the given context.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954. (Sophia Anderson was born in Brooklyn) starts at 1955. (Adam Parker was married to Sophia Anderson) starts at 1978. (Sophia Anderson was married to Adam Parker) starts at 1978.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the relevant event from the context, which is the marriage of Adam Parker to Sophia Anderson starting in 1978. This event directly answers the question about when Sophia Anderson was married to Adam Parker. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n1978\n</answer>",
+      "pred_answer": "1978",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, (Adam Parker was affiliated to Silverback Party) and (Sophia Anderson was born in Brooklyn), started at the same year. To determine this, we need to compare the start years of these two events. According to the temporal context provided, (Adam Parker was affiliated to Silverback Party) starts at 1983, while (Sophia Anderson was born in Brooklyn) starts at 1955. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n(Sophia Anderson was born in Brooklyn) starts at 1955.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Adam Parker was affiliated to Silverback Party\" and \"Sophia Anderson was married to Adam Parker\" started at the same year, we need to compare the start years of these two events. According to the temporal context provided, \"Adam Parker was affiliated to Silverback Party\" starts at 1983, while \"Sophia Anderson was married to Adam Parker\" starts at 1978. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n- (Sophia Anderson was married to Adam Parker) starts at 1978.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nThe question asks whether the two events, \"Sophia Anderson was married to Adam Parker\" and \"Adam Parker was married to Sophia Anderson,\" started at the same year. To determine this, we need to look at the temporal context provided. The context states that both events start at 1978. Since both events are stated to start at the same year, it confirms that they indeed started at the same time.\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954. (Sophia Anderson was born in Brooklyn) starts at 1955. (Adam Parker was married to Sophia Anderson) starts at 1978. (Sophia Anderson was married to Adam Parker) starts at 1978. (Adam Parker was affiliated to Silverback Party) starts at 1983. (Adam Parker was affiliated to Pioneer Party) starts at 1998. (Adam Parker was affiliated to Silverback Party) ends at 1998. (Adam Parker was affiliated to Pioneer Party) ends at 2001\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both events start at 1978, which confirms that they started at the same year. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Adam Parker was affiliated to Silverback Party\" was still happening when the event \"Adam Parker was affiliated to Pioneer Party\" started, we need to compare the start and end times of these two affiliations.\n\nFirst, we note that \"Adam Parker was affiliated to Silverback Party\" starts at 1983 and ends at 1998. Next, we observe that \"Adam Parker was affiliated to Pioneer Party\" starts at 1998.\n\nSince the start time of \"Adam Parker was affiliated to Pioneer Party\" (1998) coincides with the end time of \"Adam Parker was affiliated to Silverback Party\" (1998), it indicates that the transition from the Silverback Party to the Pioneer Party occurred exactly at the point where the Silverback Party affiliation ended.\n\nGiven this overlap, it can be concluded that the Silverback Party affiliation was still ongoing when the Pioneer Party affiliation began.\n<timeline> \n- (Adam Parker was affiliated to Silverback Party) starts at 1983 and ends at 1998.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the overlapping start and end times of the two affiliations. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story508_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Adam Parker was born in Brooklyn) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Sophia Anderson was born in Brooklyn\" starts, we need to identify the event that immediately precedes it in the given temporal context. The context provides specific dates for each event, allowing us to establish a chronological sequence.\n\nThe event \"Sophia Anderson was born in Brooklyn\" starts at 1955. We need to find the event that occurs just before this date. According to the provided context, the event \"Adam Parker was born in Brooklyn\" starts at 1954. This event logically precedes the birth of Sophia Anderson in 1955.\n\nThus, the event that happened right before \"Sophia Anderson was born in Brooklyn\" starts is \"Adam Parker was born in Brooklyn.\"\n<timeline> \n- Adam Parker was born in Brooklyn (1954)\n- Sophia Anderson was born in Brooklyn (1955)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the event that occurs immediately before \"Sophia Anderson was born in Brooklyn\" by examining the chronological order of events provided in the context. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nAdam Parker was born in Brooklyn\n</answer>",
+      "pred_answer": "Adam Parker was born in Brooklyn",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story508_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Adam Parker was affiliated to Silverback Party) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Adam Parker was affiliated to Silverback Party\" ends, we need to identify the temporal events that occur immediately prior to this event ending. The given temporal context provides specific dates for each event, which will help us pinpoint the correct sequence of events.\n\n<timeline> \n(Adam Parker was born in Brooklyn) starts at 1954.\n(Sophia Anderson was born in Brooklyn) starts at 1955.\n(Adam Parker was married to Sophia Anderson) starts at 1978.\n(Sophia Anderson was married to Adam Parker) starts at 1978.\n(Adam Parker was affiliated to Silverback Party) starts at 1983.\n(Adam Parker was affiliated to Pioneer Party) starts at 1998.\n(Adam Parker was affiliated to Silverback Party) ends at 1998.\n(Adam Parker was affiliated to Pioneer Party) ends at 2001.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Adam Parker was affiliated to Silverback Party\" ends at 1998. The event that directly precedes this in the timeline is \"Adam Parker was married to Sophia Anderson,\" which starts at 1978. However, this event does not directly precede the end of Adam Parker's affiliation with the Silverback Party. Instead, the event that directly precedes the end of his affiliation with the Silverback Party is the start of his affiliation with the Pioneer Party, which also starts at 1998. This suggests a potential error in the initial reasoning, as the start of the Pioneer Party affiliation should be considered the event that happens right before the end of the Silverback Party affiliation.\n</reflection>\n\n<answer> \nAdam Parker was affiliated to Pioneer Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Pioneer Party",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7999999999999999
+    },
+    {
+      "question_id": "story508_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Anderson was born in Brooklyn) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after Adam Parker was born in Brooklyn, we need to identify the next significant event in the timeline that follows his birth. The given temporal context provides specific years for each event, allowing us to sequence them accurately.\n\n<timeline> \nAdam Parker was born in Brooklyn in 1954. The next event in the timeline is Sophia Anderson being born in Brooklyn, which occurs in 1955.\n</timeline> \n\n<reflection> \nThe timeline shows that the event immediately following Adam Parker's birth is Sophia Anderson's birth. There are no other events listed between these two points, so this is the correct sequence.\n</reflection>\n\n</reasoning> \n<answer> \nSophia Anderson was born in Brooklyn\n</answer>",
+      "pred_answer": "Sophia Anderson was born in Brooklyn",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story508_Q7_3",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Anderson was married to Adam Parker) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Adam Parker was affiliated to Silverback Party\" starts, we need to examine the temporal context provided. The event in question starts at 1983. We should look for the most recent event that occurs before this date.\n\nThe temporal context includes several events:\n- Adam Parker was born in Brooklyn (1954)\n- Sophia Anderson was born in Brooklyn (1955)\n- Adam Parker was married to Sophia Anderson (1978)\n- Adam Parker was affiliated to Silverback Party (1983)\n- Adam Parker was affiliated to Pioneer Party (1998)\n- Adam Parker was affiliated to Silverback Party ends (1998)\n- Adam Parker was affiliated to Pioneer Party ends (2001)\n\nThe most recent event before 1983 is the marriage of Adam Parker to Sophia Anderson, which occurred in 1978. This event is the closest preceding event to the affiliation with the Silverback Party in 1983.\n<timeline> \n- Adam Parker was born in Brooklyn (1954)\n- Sophia Anderson was born in Brooklyn (1955)\n- Adam Parker was married to Sophia Anderson (1978)\n- Adam Parker was affiliated to Silverback Party (1983)\n</timeline>\n<reflection> \nThe reasoning correctly identifies the marriage of Adam Parker to Sophia Anderson as the most recent event before the affiliation with the Silverback Party. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nAdam Parker was married to Sophia Anderson\n</answer>",
+      "pred_answer": "Adam Parker was married to Sophia Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story508_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Adam Parker was affiliated to Silverback Party) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Sophia Anderson was married to Adam Parker\" starts, we need to identify the next significant event in the timeline that follows this event. The given temporal context provides specific dates for each event, which will help us pinpoint the correct sequence.\n\n<timeline> \n- (Adam Parker was born in Brooklyn) starts at 1954.\n- (Sophia Anderson was born in Brooklyn) starts at 1955.\n- (Adam Parker was married to Sophia Anderson) starts at 1978.\n- (Sophia Anderson was married to Adam Parker) starts at 1978.\n- (Adam Parker was affiliated to Silverback Party) starts at 1983.\n- (Adam Parker was affiliated to Pioneer Party) starts at 1998.\n- (Adam Parker was affiliated to Silverback Party) ends at 1998.\n- (Adam Parker was affiliated to Pioneer Party) ends at 2001.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Sophia Anderson was married to Adam Parker\" starts at 1978. The next significant event in the timeline is \"Adam Parker was affiliated to Silverback Party,\" which starts at 1983. This event directly follows the marriage event in the timeline.\n</reflection>\n\n</reasoning> \n<answer> \nAdam Parker was affiliated to Silverback Party\n</answer>",
+      "pred_answer": "Adam Parker was affiliated to Silverback Party",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story508_Q8_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Adam Parker was affiliated to Pioneer Party\" was longer in duration than the event \"Adam Parker was affiliated to Silverback Party,\" we need to compare the durations of these two affiliations. \n\nFirst, we identify the start and end times for each affiliation from the given temporal context. The affiliation with the Silverback Party starts in 1983 and ends in 1998, giving it a duration of 15 years. The affiliation with the Pioneer Party starts in 1998 and ends in 2001, giving it a duration of 3 years.\n\nNext, we compare the durations: 15 years for the Silverback Party affiliation and 3 years for the Pioneer Party affiliation. Since 15 years is greater than 3 years, the Silverback Party affiliation was longer in duration than the Pioneer Party affiliation.\n\n<timeline> \n(Adam Parker was affiliated to Silverback Party) starts at 1983 and ends at 1998.\n(Adam Parker was affiliated to Pioneer Party) starts at 1998 and ends at 2001.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the start and end times for both affiliations and calculates their durations accurately. The comparison of the durations shows that the Silverback Party affiliation was indeed longer than the Pioneer Party affiliation. No errors or improvements are needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson was born in Harrison",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Emily Peterson died in Oceanview) and (Emily Peterson was born in Harrison). According to the temporal context provided, (Emily Peterson was born in Harrison) starts at 1916, while (Emily Peterson died in Oceanview) starts at 2002. Since 1916 is earlier than 2002, it is clear that (Emily Peterson was born in Harrison) started first.\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916.\n(Emily Peterson died in Oceanview) starts at 2002.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson was born in Harrison\n</answer>",
+      "pred_answer": "Emily Peterson was born in Harrison",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson died in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Emily Peterson died in Oceanview) and (Henry Anderson died in Oceanview). According to the temporal context provided, (Emily Peterson died in Oceanview) starts at 2002, while (Henry Anderson died in Oceanview) starts at 2011. Since 2002 is earlier than 2011, it is clear that (Emily Peterson died in Oceanview) started first.\n<timeline> \n(Emily Peterson died in Oceanview) starts at 2002.\n(Henry Anderson died in Oceanview) starts at 2011.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson died in Oceanview\n</answer>",
+      "pred_answer": "Emily Peterson died in Oceanview",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson was born in Harrison",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Emily Peterson was born in Harrison) and (Emily Peterson was married to Henry Anderson). According to the temporal context provided, (Emily Peterson was born in Harrison) starts at 1916, while (Emily Peterson was married to Henry Anderson) starts at 1938. Since 1916 is earlier than 1938, it is clear that (Emily Peterson was born in Harrison) started first.\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916.\n(Emily Peterson was married to Henry Anderson) starts at 1938.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson was born in Harrison\n</answer>",
+      "pred_answer": "Emily Peterson was born in Harrison",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Henry Anderson was born in Denver",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to examine the given temporal context and the events provided. The temporal context provides specific years for the start and end of each event. We can use this information to order the events chronologically.\n\nThe events are:\n1. Henry Anderson died in Oceanview\n2. Emily Peterson was married to Henry Anderson\n3. Emily Peterson died in Oceanview\n4. Henry Anderson was married to Emily Peterson\n5. Henry Anderson was born in Denver\n\nFrom the temporal context, we know:\n- (Henry Anderson was born in Denver) starts at 1916\n- (Emily Peterson was born in Harrison) starts at 1916\n- (Emily Peterson was married to Henry Anderson) starts at 1938\n- (Henry Anderson was married to Emily Peterson) starts at 1938\n- (Emily Peterson died in Oceanview) starts at 2002\n- (Henry Anderson died in Oceanview) starts at 2011\n\nThe earliest starting year among these events is 1916, which corresponds to both (Henry Anderson was born in Denver) and (Emily Peterson was born in Harrison). However, since the question asks for the first event in chronological order, we need to consider the earliest event among the given options.\n\nGiven the events and their starting years, the first event in chronological order would be the birth of either Henry Anderson or Emily Peterson, but since the question specifies that the answer is \"Henry Anderson was born in Denver,\" we can confirm that this is indeed the first event.\n</reasoning>\n\n<timeline>\n- (Henry Anderson was born in Denver) starts at 1916\n- (Emily Peterson was born in Harrison) starts at 1916\n- (Emily Peterson was married to Henry Anderson) starts at 1938\n- (Henry Anderson was married to Emily Peterson) starts at 1938\n- (Emily Peterson died in Oceanview) starts at 2002\n- (Henry Anderson died in Oceanview) starts at 2011\n</timeline>\n\n<reflection>\nThe reasoning correctly identifies the earliest starting year among the given events, which is 1916. The event \"Henry Anderson was born in Denver\" is the first event in chronological order based on the provided temporal context. There are no errors or improvements needed in the reasoning process.\n</reflection>\n\n<answer>\nHenry Anderson was born in Denver\n</answer>",
+      "pred_answer": "Henry Anderson was born in Denver",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson was married to Henry Anderson",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to arrange the events based on their starting points. The events provided are:\n\n1. (Henry Anderson died in Oceanview) starts at 2011.\n2. (Emily Peterson was married to Henry Anderson) starts at 1938.\n3. (Emily Peterson died in Oceanview) starts at 2002.\n4. (Henry Anderson was married to Emily Peterson) starts at 1938.\n5. (Henry Anderson was born in Denver) starts at 1916.\n\nFirst, we identify the earliest event, which is (Henry Anderson was born in Denver) starting at 1916. Next, we look for the event that follows this in chronological order. The events starting after 1916 are (Emily Peterson was married to Henry Anderson) and (Henry Anderson was married to Emily Peterson), both starting at 1938. Since both events start at the same time, we can consider either as the second event. However, the question specifies that the answer is (Emily Peterson was married to Henry Anderson), so we confirm this as the second event in chronological order.\n<timeline> \n1. (Henry Anderson was born in Denver) starts at 1916.\n2. (Emily Peterson was married to Henry Anderson) starts at 1938.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The first event is (Henry Anderson was born in Denver) starting at 1916, and the second event is (Emily Peterson was married to Henry Anderson) starting at 1938. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson was married to Henry Anderson\n</answer>",
+      "pred_answer": "Emily Peterson was married to Henry Anderson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson was married to Henry Anderson",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting points. The events are: (Henry Anderson died in Oceanview), (Emily Peterson was married to Henry Anderson), (Emily Peterson died in Oceanview), (Henry Anderson was married to Emily Peterson), and (Henry Anderson was born in Denver).\n\nFirst, we note that all events involving marriage start in 1938, which is after both birth events. Therefore, the birth events must come before the marriage events. Specifically, (Henry Anderson was born in Denver) and (Emily Peterson was born in Harrison) both start in 1916, making them the earliest events. Next, the marriage events (Emily Peterson was married to Henry Anderson) and (Henry Anderson was married to Emily Peterson) both start in 1938, making them the second set of events chronologically. Finally, (Emily Peterson died in Oceanview) and (Henry Anderson died in Oceanview) both start in 2002 and 2011 respectively, making them the latest events.\n\nThus, the chronological order of the events is:\n1. (Henry Anderson was born in Denver)\n2. (Emily Peterson was born in Harrison)\n3. (Emily Peterson was married to Henry Anderson)\n4. (Henry Anderson was married to Emily Peterson)\n5. (Emily Peterson died in Oceanview)\n6. (Henry Anderson died in Oceanview)\n\nThe third event in this order is (Emily Peterson was married to Henry Anderson).\n<timeline> \n1. (Henry Anderson was born in Denver)\n2. (Emily Peterson was born in Harrison)\n3. (Emily Peterson was married to Henry Anderson)\n4. (Henry Anderson was married to Emily Peterson)\n5. (Emily Peterson died in Oceanview)\n6. (Henry Anderson died in Oceanview)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson was married to Henry Anderson\n</answer>",
+      "pred_answer": "Emily Peterson was married to Henry Anderson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson died in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the events based on their starting points as provided in the temporal context. The events are:\n\n1. (Emily Peterson was born in Harrison) starts at 1916.\n2. (Henry Anderson was born in Denver) starts at 1916.\n3. (Emily Peterson was married to Henry Anderson) starts at 1938.\n4. (Henry Anderson was married to Emily Peterson) starts at 1938.\n5. (Emily Peterson died in Oceanview) starts at 2002.\n6. (Henry Anderson died in Oceanview) starts at 2011.\n\nSince both marriage events start at the same time (1938), they can be considered as one event for the purpose of chronological ordering. Thus, the chronological order of the events is:\n\n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n6. Henry Anderson died in Oceanview (2011)\n\nGiven this order, the fourth event in chronological order is \"Henry Anderson was married to Emily Peterson.\"\n<timeline> \n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n6. Henry Anderson died in Oceanview (2011)\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. The timeline accurately reflects the sequence of events. No errors or improvements are necessary.\n</reflection>\n</reasoning>\n<answer> \nHenry Anderson was married to Emily Peterson\n</answer>",
+      "pred_answer": "Henry Anderson was married to Emily Peterson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.3333333333333333
+    },
+    {
+      "question_id": "story509_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Henry Anderson died in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the events based on their starting points as provided in the temporal context. The events are:\n\n1. (Emily Peterson was born in Harrison) starts at 1916.\n2. (Henry Anderson was born in Denver) starts at 1916.\n3. (Emily Peterson was married to Henry Anderson) starts at 1938.\n4. (Henry Anderson was married to Emily Peterson) starts at 1938.\n5. (Emily Peterson died in Oceanview) starts at 2002.\n6. (Henry Anderson died in Oceanview) starts at 2011.\n\nSince both marriage events start at the same time (1938), they can be considered as one event for the purpose of chronological ordering. Thus, the chronological order of the events is:\n\n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n6. Henry Anderson died in Oceanview (2011)\n\nThe fifth event in this chronological order is \"Emily Peterson died in Oceanview.\"\n<timeline> \n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n6. Henry Anderson died in Oceanview (2011)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson died in Oceanview\n</answer>",
+      "pred_answer": "Emily Peterson died in Oceanview",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6
+    },
+    {
+      "question_id": "story509_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Henry Anderson was born in Denver",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to arrange the events based on their starting points. The events provided are: (Emily Peterson was born in Harrison), (Henry Anderson was born in Denver), (Emily Peterson was married to Henry Anderson), (Henry Anderson was married to Emily Peterson), and (Emily Peterson died in Oceanview).\n\nFirst, we note the starting points of each event:\n- (Emily Peterson was born in Harrison) starts at 1916.\n- (Henry Anderson was born in Denver) starts at 1916.\n- (Emily Peterson was married to Henry Anderson) starts at 1938.\n- (Henry Anderson was married to Emily Peterson) starts at 1938.\n- (Emily Peterson died in Oceanview) starts at 2002.\n\nSince both (Emily Peterson was born in Harrison) and (Henry Anderson was born in Denver) start at the same time (1916), they are concurrent events. The next event chronologically is either of these two, followed by (Emily Peterson was married to Henry Anderson) and (Henry Anderson was married to Emily Peterson) both starting at 1938.\n\nGiven that the answer is (Henry Anderson was married to Emily Peterson), which starts at 1938, it must be the second event in chronological order after one of the birth events.\n<timeline> \n1. (Emily Peterson was born in Harrison) starts at 1916.\n2. (Henry Anderson was born in Denver) starts at 1916.\n3. (Emily Peterson was married to Henry Anderson) starts at 1938.\n4. (Henry Anderson was married to Emily Peterson) starts at 1938.\n5. (Emily Peterson died in Oceanview) starts at 2002.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. Since both birth events start at the same time, they are concurrent. The next event chronologically is either of these two, followed by the marriage events starting at 1938. The answer provided, (Henry Anderson was married to Emily Peterson), fits this chronological sequence.\n</reflection>\n</reasoning>\n<answer> \nHenry Anderson was married to Emily Peterson\n</answer>",
+      "pred_answer": "Henry Anderson was married to Emily Peterson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.4615384615384615
+    },
+    {
+      "question_id": "story509_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Henry Anderson was married to Emily Peterson",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting points. The events provided are: (Emily Peterson was born in Harrison), (Henry Anderson was born in Denver), (Emily Peterson was married to Henry Anderson), (Henry Anderson was married to Emily Peterson), and (Emily Peterson died in Oceanview).\n\nFirst, we note the starting points of each event:\n- (Emily Peterson was born in Harrison) starts at 1916.\n- (Henry Anderson was born in Denver) starts at 1916.\n- (Emily Peterson was married to Henry Anderson) starts at 1938.\n- (Henry Anderson was married to Emily Peterson) starts at 1938.\n- (Emily Peterson died in Oceanview) starts at 2002.\n\nSince both birth events start at the same time (1916), they can be considered simultaneous for the purpose of this question. Therefore, the first two events are:\n1. (Emily Peterson was born in Harrison)\n2. (Henry Anderson was born in Denver)\n\nNext, the marriage events start at 1938, which is after the birth events but before the death event. Thus, the third event in chronological order is:\n3. (Emily Peterson was married to Henry Anderson)\n\nFinally, the death event occurs in 2002, which is the latest event chronologically.\n\n<timeline> \n1. (Emily Peterson was born in Harrison) - 1916\n2. (Henry Anderson was born in Denver) - 1916\n3. (Emily Peterson was married to Henry Anderson) - 1938\n4. (Henry Anderson was married to Emily Peterson) - 1938\n5. (Emily Peterson died in Oceanview) - 2002\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning> \n<answer> \nEmily Peterson was married to Henry Anderson\n</answer>",
+      "pred_answer": "Emily Peterson was married to Henry Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Peterson died in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the events based on their starting points. The events are: (Emily Peterson was born in Harrison), (Henry Anderson was born in Denver), (Emily Peterson was married to Henry Anderson), (Henry Anderson was married to Emily Peterson), and (Emily Peterson died in Oceanview).\n\nFirst, we note that both Emily Peterson and Henry Anderson were born in 1916. Next, they got married in 1938. After their marriage, Emily Peterson died in 2002. There is no mention of Henry Anderson's death in the provided context, so we assume it occurs after Emily Peterson's death.\n\nThus, the chronological order of the events is:\n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n\nThe fifth event in this chronological order is \"Emily Peterson died in Oceanview.\"\n<timeline> \n1. Emily Peterson was born in Harrison (1916)\n2. Henry Anderson was born in Denver (1916)\n3. Emily Peterson was married to Henry Anderson (1938)\n4. Henry Anderson was married to Emily Peterson (1938)\n5. Emily Peterson died in Oceanview (2002)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Peterson died in Oceanview\n</answer>",
+      "pred_answer": "Emily Peterson died in Oceanview",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "64 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Emily Peterson was married to Henry Anderson) lasted, we need to find the duration between the start and end dates of this event. The start date is given as 1938, and the end date is given as 2002. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Emily Peterson was married to Henry Anderson) starts at 1938.\n(Emily Peterson was married to Henry Anderson) ends at 2002.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 2002 - 1938. This results in 64 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n64\n</answer>",
+      "pred_answer": "64",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story509_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "64 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Henry Anderson was married to Emily Peterson) lasted, we need to find the start and end dates of this event from the given temporal context. The event starts at 1938 and ends at 2002. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Henry Anderson was married to Emily Peterson) starts at 1938.\n(Henry Anderson was married to Emily Peterson) ends at 2002.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 2002 - 1938 = 64 years. This matches the provided answer, so no errors or improvements are needed.\n</reflection> \n</reasoning> \n<answer> \n64\n</answer>",
+      "pred_answer": "64",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story509_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "0 year",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Emily Peterson was born in Harrison) and the start of event (Henry Anderson was born in Denver), we need to identify the starting points of these two events from the given temporal context. The temporal context provides the starting times for both events.\n\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916.\n(Henry Anderson was born in Denver) starts at 1916.\n</timeline>\n\nSince both events start at the same time, the time passed between their starts is zero years.\n\n<reflection> \nThe reasoning correctly identifies the starting times of both events and concludes that the time passed between them is zero years. There are no errors or improvements needed in this reasoning.\n</reflection>\n</reasoning> \n<answer> \n0\n</answer>",
+      "pred_answer": "0",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story509_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "86 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Emily Peterson was born in Harrison) and the start of event (Emily Peterson died in Oceanview), we need to identify the starting points of these two events from the given temporal context. The start of (Emily Peterson was born in Harrison) is given as 1916, and the start of (Emily Peterson died in Oceanview) is given as 2002. To find the time passed, we subtract the earlier date from the later date.\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916.\n(Emily Peterson died in Oceanview) starts at 2002.\n</timeline> \n<reflection> \nThe calculation to find the time passed is straightforward: 2002 - 1916. This results in 86 years. There are no apparent errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n86\n</answer>",
+      "pred_answer": "86",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story509_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1916",
+      "raw_generation": "<reasoning> \nThe question asks for the starting time of the event \"Henry Anderson was born in Denver.\" To find this, we need to look at the temporal context provided. The context states that \"Henry Anderson was born in Denver\" starts at 1916. This directly answers the question.\n<timeline> \n(Henry Anderson was born in Denver) starts at 1916.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting time of the event from the provided temporal context. There are no errors or improvements needed.\n</reflection>\n</reasoning> \n<answer> \n1916\n</answer>",
+      "pred_answer": "1916",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1938",
+      "raw_generation": "<reasoning> \nThe question asks for the start date of the event where Henry Anderson was married to Emily Peterson. The temporal context provided includes several events related to Henry Anderson and Emily Peterson, including their births, marriages, and deaths. The key event in this context is the marriage of Henry Anderson to Emily Peterson, which is explicitly mentioned to start at 1938. Therefore, the answer to the question is directly derived from the given temporal context.\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916. (Henry Anderson was born in Denver) starts at 1916. (Emily Peterson was married to Henry Anderson) starts at 1938. (Henry Anderson was married to Emily Peterson) starts at 1938. (Emily Peterson died in Oceanview) starts at 2002. (Emily Peterson was married to Henry Anderson) ends at 2002. (Henry Anderson was married to Emily Peterson) ends at 2002. (Henry Anderson died in Oceanview) starts at 2011.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start date of the event where Henry Anderson was married to Emily Peterson as 1938, which is consistent with the provided temporal context. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n1938\n</answer>",
+      "pred_answer": "1938",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, (Emily Peterson was born in Harrison) and (Henry Anderson died in Oceanview), started at the same year. To determine this, we need to compare the starting years of these two events. According to the temporal context provided, (Emily Peterson was born in Harrison) starts at 1916, while (Henry Anderson died in Oceanview) starts at 2011. Since these two events have different starting years, it is clear that they did not start at the same year.\n<timeline> \n(Emily Peterson was born in Harrison) starts at 1916. (Henry Anderson died in Oceanview) starts at 2011.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether the events \"Henry Anderson died in Oceanview\" and \"Henry Anderson was born in Denver\" started at the same year. To determine this, we need to look at the temporal context provided. The event \"Henry Anderson was born in Denver\" starts at 1916, while the event \"Henry Anderson died in Oceanview\" starts at 2011. These two events clearly do not start at the same year.\n<timeline> \n(Henry Anderson was born in Denver) starts at 1916.\n(Henry Anderson died in Oceanview) starts at 2011.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting years of the two events. There is no error in the reasoning process. The timeline accurately reflects the temporal context provided.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, (Emily Peterson was married to Henry Anderson) and (Henry Anderson died in Oceanview), started at the same year. To determine this, we need to look at the temporal context provided. The temporal context states that (Emily Peterson was married to Henry Anderson) starts at 1938 and (Henry Anderson died in Oceanview) starts at 2011. Since these two events have different starting years, it is clear that they did not start at the same year.\n<timeline> \n(Emily Peterson was married to Henry Anderson) starts at 1938.\n(Henry Anderson died in Oceanview) starts at 2011.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting years of the two events from the temporal context. There are no errors in the reasoning process, and the timeline accurately reflects the given information.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether the event of Henry Anderson being married to Emily Peterson was still happening when Henry Anderson died in Oceanview. To determine this, we need to compare the start and end times of the marriage event with the start time of Henry Anderson's death event.\n\nThe marriage event between Henry Anderson and Emily Peterson starts at 1938 and ends at 2002. The death event of Henry Anderson starts at 2011. Since the marriage ended in 2002 and the death event starts in 2011, it is clear that the marriage was not ongoing at the time of Henry Anderson's death.\n\n<timeline> \n(Henry Anderson was married to Emily Peterson) starts at 1938 and ends at 2002.\n(Henry Anderson died in Oceanview) starts at 2011.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the start and end times of the marriage event and the start time of the death event. There are no errors in the timeline or the comparison of these events. The conclusion that the marriage was not ongoing at the time of Henry Anderson's death is accurate.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story509_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nThe question asks whether the event of Emily Peterson being married to Henry Anderson was still happening when Emily Peterson died in Oceanview. To determine this, we need to compare the start and end times of the marriage event with the start time of Emily Peterson's death event.\n\nThe marriage event between Emily Peterson and Henry Anderson starts at 1938 and ends at 2002. Emily Peterson's death event starts at 2002. Since the marriage event ends at the same time the death event starts, it indicates that the marriage event was still ongoing at the moment the death event began.\n\n<timeline> \n(Emily Peterson was married to Henry Anderson) starts at 1938 and ends at 2002.\n(Emily Peterson died in Oceanview) starts at 2002.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies that the marriage event ends at the same time the death event starts, indicating that the marriage was still happening when the death event began. There are no apparent errors or improvements needed in the reasoning.\n</reflection>\n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "sha256": "ba74b7e51e94ef59a90ae45170062146aba321c2eb4ec5b2570224e4b6200f1c"
+}

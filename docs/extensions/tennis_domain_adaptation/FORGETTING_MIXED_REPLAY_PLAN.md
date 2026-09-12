@@ -26,8 +26,8 @@ this study.
   release at Git revision `7bdac51ea363a71b1805972b1d2c025f5cd173a4`.
 - `notebooks/colab_conditional_retention.ipynb` invokes those interfaces in
   resumable stages and writes checkpoints/results to Drive.
-- `scripts/prepare_study_bundle.py` creates the notebook and a portable bundle
-  containing source, tests, historical adapters, tennis data, and audit state.
+- `scripts/prepare_study_bundle.py` regenerates and syntax-checks the notebook.
+  The notebook uses the project already synchronized to Google Drive.
 
 The coordinator records source/config hashes, dirty Git state, historical data,
 adapter trees, input populations, prompt/config manifests, predictions, and
@@ -60,7 +60,7 @@ token-matched sensitivity run.
 ## Frozen populations and forgetting gate
 
 `prepare-data` deterministically creates a seed-42 sample of up to 100 rows from
-each upstream test split and its exact complement. Invalid repeated identifiers
+each upstream test split. Invalid repeated identifiers
 in the ToT-semantic OOD split receive derived, source-row-addressed identifiers;
 the upstream file remains unchanged. The five in-domain benchmark splits define
 the retention macro, while ToT-semantic remains separate OOD evidence.
@@ -101,12 +101,12 @@ model revision, and selection prediction.
 - With clear forgetting, final conditions are C0, C1, C1R, and R25, plus R25-T
   when the token gate requires it.
 
-Each condition is generated once, with resumable immutable chunks, on the 113
-original tennis inputs and the original-TISER complement. The audited tennis
-gold/eligibility view is primary; the original labels remain a secondary
-historical view. The campaign records that the team has no record of prior use,
-while noting that repository evidence alone cannot establish this. Final
-outcomes cannot trigger adapter switching, tuning, or new training.
+Each applicable condition is generated once, with resumable immutable chunks,
+on the 113 original tennis inputs. Original-domain retention is reported from
+the predefined seed-42 sample rather than a second full-population evaluation.
+The audited tennis gold/eligibility view is primary; the original labels remain
+a secondary historical view. Final outcomes cannot trigger adapter switching,
+tuning, or new training.
 
 Paired output validation requires identical ordered IDs, gold versions, and
 scoring-view hashes. Results include EM/F1 differences, paired bootstrap
@@ -121,25 +121,25 @@ most the uncommitted tail of 63 rows.
 
 ## Colab execution
 
-Generate the handoff after local tests and audit imports:
+Regenerate the notebook after editing its generator:
 
 ```bash
 python3 scripts/prepare_study_bundle.py
 ```
 
-Place `output/tiser_study_workspace.zip` in Drive, open
-`notebooks/colab_conditional_retention.ipynb`, select one CUDA GPU, and run cells
-in order. The notebook stops before final freezing while any audit item is
-pending. Re-running a cell resumes only validated prediction chunks or complete
-training checkpoints.
+Open `notebooks/colab_conditional_retention.ipynb` from the synchronized project,
+select one CUDA GPU, and run cells in order. The setup cell mounts Drive and uses
+`/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension`
+as the project root. Persistent checkpoints, predictions, manifests, and results
+are written to `results/forgetting_replay/study_v2` under that root.
+The notebook stops before final freezing while any semantic-audit item is pending.
+Re-running a cell resumes only validated prediction chunks or complete training
+checkpoints.
 
-The extracted `/content` workspace is ephemeral. After replacing the Drive zip
-with a bundle containing additional completed audit responses, start a fresh
-runtime or delete only `/content/tiser_temporal_reasoning_extension` and rerun
-the setup cell. Preserve `/content/drive/MyDrive/tiser_conditional_study_v2` so
-validated predictions and checkpoints remain available. The setup cell detects
-a changed bundle and stops instead of silently mixing source snapshots.
+## Completed outcome
 
-No retention, replay, or final-holdout outcome exists until the corresponding
-frozen artifacts are produced. Documentation and the report must not substitute
-partial audit coverage or smoke results for those outcomes.
+C0 and C1 were evaluated on the 600-record retention sample. The primary
+five-split macro uses 500 in-domain records and gives a C1$-$C0 EM difference of
+-0.004 with a paired 95% interval of [-0.028, 0.020]. The gate is inconclusive,
+so C1R, R25, and R25-T were not trained. On the 113-record tennis holdout, C0
+reaches 0.575 EM / 0.677 F1 and C1 reaches 0.735 EM / 0.834 F1.

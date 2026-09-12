@@ -19,7 +19,7 @@ C0 = "model/tiser_qwen7b_full/adapter"
 C1 = "model/tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011/adapter"
 EXPECTED_WEIGHTS = {"C0": "718cbd0a81a330073e64c59adcef88a1a92ec2922403cba641005fc23ca5d0fe",
                     "C1": "e1c28d374a61b5fa2c835e1c65a5c8537b3b286cd2d95b988341c05e1b0d6652"}
-DEFAULT_STUDY = ROOT / "results/tennis_continual_adaptation/study_v2"
+DEFAULT_STUDY = ROOT / "results/forgetting_replay/study_v2"
 PINNED_DATA_REVISION = "7bdac51ea363a71b1805972b1d2c025f5cd173a4"
 
 
@@ -81,8 +81,9 @@ def initialize(study):
                 "token_mismatch_threshold": 0.10, "macro_splits": list(MACRO_SPLITS),
                 "study_design": "conditional_minimum", "optimizer_steps": 74,
                 "replay_count": 200, "tennis_count": 600, "training_seeds": [42],
-                "final_comparisons": ["C1-C0/tiser", "C1-C0/tennis", "C1R-C0/tiser", "R25-C1R/tiser", "R25-C1R/tennis"],
-                "sensitivity_comparisons": ["R25-T-C1R/tiser", "R25-T-C1R/tennis"],
+                "retention_comparisons": ["C1-C0/tiser-selection"],
+                "final_comparisons": ["C1-C0/tennis", "R25-C1R/tennis"],
+                "sensitivity_comparisons": ["R25-T-C1R/tennis"],
                 "gate": "upper95<-0.02 triggers C1R+R25; lower95>-0.02 stops; otherwise inconclusive and stops",
                 "prior_113_use": {"team_record": "no known prior model-performance use",
                                    "repository_evidence": "No preserved repository evidence indicates prior model-performance use.",
@@ -287,6 +288,11 @@ def eval_condition(study, condition, domain, stage, *, audit_dir, resume=False):
         campaign = read(artifact(study, "final_campaign"))
         if condition not in campaign["conditions"]:
             raise ValueError("Condition was not preregistered for the final campaign")
+        if domain not in campaign.get("final_domains", ["tennis"]):
+            raise ValueError(
+                "The bounded final campaign evaluates only the tennis holdout; "
+                "original-TISER retention is reported from the predefined selection sample"
+            )
         for entry in campaign["artifact_hashes"]:
             if sha256(resolve_reference(study, entry["reference"])) != entry["sha256"]:
                 raise ValueError("Final campaign artifact changed")
@@ -535,7 +541,7 @@ def freeze_final(study, audit_dir):
                              ROOT / f"data/tennis/tennis_{split}.json", gold_key="answer")
     if len(read(ROOT / "data/tennis/tennis_dev.json")) != 113:
         raise ValueError("Frozen final tennis population is not the expected 113 records")
-    paths = [artifact(study, "retention_final"), artifact(study, "retention_selection"),
+    paths = [artifact(study, "retention_selection"),
              audit_dir / "summary.json", audit_dir / "decisions.json",
              audit_dir / "views/tennis_dev.json", audit_dir / "views/tennis_test.json", artifact(study, "model_revision")]
     for condition in expected:
@@ -544,6 +550,7 @@ def freeze_final(study, audit_dir):
     value = {"conditions": expected, "source_sha256": registry["source_sha256"],
              "protocol_sha256": registry["protocol_sha256"],
              "artifact_hashes": [{"reference": path_reference(study, p), "sha256": sha256(p)} for p in paths],
+             "final_domains": ["tennis"],
              "tennis_input_sha256": sha256(ROOT / "data/tennis/tennis_dev.json"),
              "tennis_original_n": 113, "allow_selection_after_freeze": False,
              "prior_113_use": read(study / "protocol.json")["prior_113_use"]}
@@ -558,26 +565,26 @@ def final_statistics(study):
     campaign = read(artifact(study, "final_campaign"))
     conditions = campaign["conditions"]
     comparisons = []
-    pairs = [("C0", "C1", "tiser"), ("C0", "C1", "tennis")]
+    pairs = [("C0", "C1", "tennis")]
     if "R25" in conditions:
-        pairs += [("C0", "C1R", "tiser"), ("C1R", "R25", "tiser"), ("C1R", "R25", "tennis")]
+        pairs += [("C1R", "R25", "tennis")]
     if "R25-T" in conditions:
-        pairs += [("C1R", "R25-T", "tiser"), ("C1R", "R25-T", "tennis")]
+        pairs += [("C1R", "R25-T", "tennis")]
     for a, b, domain in pairs:
         suffix = "primary" if domain == "tennis" else "predictions"
         comparisons.append({"id": f"{b}-{a}_{domain}", "domain": domain,
                             "baseline": str(artifact(study, f"final/{domain}/{a}/{suffix}")),
                             "candidate": str(artifact(study, f"final/{domain}/{b}/{suffix}"))})
-    path = study / "final_statistics_spec.json"
+    path = study / "final_tennis_statistics_spec.json"
     freeze(path, {"seed": 42, "replicates": 10000, "comparisons": comparisons})
-    result_path = study / "final_statistics/statistics.json"
+    result_path = study / "final_tennis_statistics/statistics.json"
     if result_path.exists():
         result = read(result_path)
         if result.get("spec_sha256") != sha256(path):
             raise ValueError("Existing final statistics do not match the frozen specification")
     else:
-        result = analyze_spec(path, study / "final_statistics")
-    register(study, "final_statistics", study / "final_statistics/statistics.json")
+        result = analyze_spec(path, study / "final_tennis_statistics")
+    register(study, "final_tennis_statistics", result_path)
     registry = read(study / "registry.json")
     registry["status"] = "complete"
     write(study / "registry.json", registry)

@@ -1,5 +1,12 @@
 # Implementation audit - 2026-09-08
 
+> **Superseded status record.** This file preserves the state observed on
+> 2026-09-08 and is not a list of pending work. Current completed results are
+> documented in
+> `docs/extensions/tennis_domain_adaptation/Current_Status_and_Next_Steps.md`.
+> The original-TISER complement evaluation described below is not part of the
+> completed workflow and will not be run.
+
 > Historical checkpoint: the coverage below describes the incomplete
 > `project_audit_v1` attempt. Its model provenance does not satisfy the current
 > GPT-5.6 Sol requirement. The active procedures use independent reflection,
@@ -72,9 +79,8 @@ is not reported as a population estimate.
 - `notebooks/colab_conditional_retention.ipynb` separates preparation,
   selection evaluation, the forgetting decision, conditional training, audit
   freeze, final evaluation, and statistics. Persistent outputs live in Drive.
-- `scripts/prepare_study_bundle.py` validates notebook code, excludes transient
-  files, writes the portable workspace bundle atomically, and records its source
-  snapshot.
+- `scripts/prepare_study_bundle.py` regenerates the direct-Drive notebook and
+  validates every code cell before writing it.
 
 ## Corrections made during interruption recovery
 

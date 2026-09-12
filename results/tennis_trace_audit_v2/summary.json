@@ -1,0 +1,65 @@
+{
+  "version": "offline-audit-v2",
+  "status": "complete",
+  "expected": {
+    "trace": 650
+  },
+  "completed": {
+    "trace": 650
+  },
+  "pending": {},
+  "two_pass_disagreements_unique_items": {
+    "trace": 12
+  },
+  "human_calibration": false,
+  "actual_snapshot": null,
+  "interpretation": "UI-mediated model judgments; shared judge bias and accuracy remain uncalibrated.",
+  "coverage": {
+    "trace/train/pilot/duration_minutes": {
+      "supported": 6
+    },
+    "trace/train/pilot/immediate_before_after": {
+      "supported": 5
+    },
+    "trace/train/pilot/overlap_while_during": {
+      "supported": 3
+    },
+    "trace/train/pilot/which_first_last": {
+      "supported": 11
+    },
+    "trace/train/pilot/yes_no_before_after": {
+      "supported": 25
+    },
+    "trace/train/reported600/duration_minutes": {
+      "supported": 79,
+      "unsupported_reasoning": 4
+    },
+    "trace/train/reported600/immediate_before_after": {
+      "supported": 104,
+      "unsupported_reasoning": 3
+    },
+    "trace/train/reported600/other_temporal": {
+      "supported": 7
+    },
+    "trace/train/reported600/overlap_while_during": {
+      "supported": 57,
+      "contradictory": 2,
+      "unsupported_reasoning": 1
+    },
+    "trace/train/reported600/tennis_injury_or_medical": {
+      "supported": 1
+    },
+    "trace/train/reported600/tournament_round_sequence": {
+      "supported": 11
+    },
+    "trace/train/reported600/which_first_last": {
+      "supported": 121,
+      "unsupported_reasoning": 2
+    },
+    "trace/train/reported600/yes_no_before_after": {
+      "supported": 202,
+      "unsupported_reasoning": 4,
+      "contradictory": 2
+    }
+  }
+}

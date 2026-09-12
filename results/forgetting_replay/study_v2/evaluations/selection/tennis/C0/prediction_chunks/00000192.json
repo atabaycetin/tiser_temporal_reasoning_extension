@@ -1,0 +1,527 @@
+{
+  "start": 192,
+  "spec_sha256": "e199d77611c721edfd32cfca598c5ca01733aea12f3ba59cb103564014f322b6",
+  "rows": [
+    {
+      "question_id": "tennis_000986",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDe Minaur saved three break points in the first set. Shelton won the next two games after that escape. Before the tie-break began, Shelton called for new shoes.\n\nQuestion:\nDid Shelton call for new shoes before De Minaur saved three break points?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "No",
+      "raw_generation": "<answer>No</answer>",
+      "pred_answer": "No",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_000988",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nSinner saved a break point in the first game. Alcaraz broke serve two games later. The set ended with Sinner winning a tie-break.\n\nQuestion:\nWhich happened first: Alcaraz broke serve or Sinner saved a break point?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Sinner saved a break point",
+      "raw_generation": "<answer>Sinner saved a break point in the first game.</answer>",
+      "pred_answer": "Sinner saved a break point in the first game",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.7272727272727273,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_000992",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nNadal broke Ruud in the second game of the first set. Ruud broke back before the first changeover after that game. Nadal then won four straight games to take the set.\n\nQuestion:\nWhich happened first: Ruud broke back or Nadal broke Ruud?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Nadal broke Ruud",
+      "raw_generation": "<answer>Ruud broke back</answer>",
+      "pred_answer": "Ruud broke back",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.6666666666666666,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_000995",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nMedvedev broke Fritz at 2-2 in the opening set. Fritz complained about the ball change during the next changeover. Medvedev served out the set after saving a break point.\n\nQuestion:\nWhich happened last?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Medvedev served out the set",
+      "raw_generation": "<answer>Medvedev served out the set after saving a break point</answer>",
+      "pred_answer": "Medvedev served out the set after saving a break point",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.6666666666666666,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_000997",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nRuud held serve to start the final set. Zverev broke serve after a twelve-shot rally. Minutes later, Ruud requested the trainer during the changeover.\n\nQuestion:\nWhich event happened last?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Ruud requested the trainer",
+      "raw_generation": "<answer>Ruud requested the trainer during the changeover</answer>",
+      "pred_answer": "Ruud requested the trainer during the changeover",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.7499999999999999,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001008",
+      "dataset_name": "tennis_temporal",
+      "category": "duration_minutes",
+      "tags": [
+        "duration_minutes",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic took a medical timeout at 3:20 p.m. Medvedev resumed serving at 3:27 p.m. Ten minutes later, Djokovic broke serve.\n\nQuestion:\nHow many minutes after the medical timeout did Medvedev resume serving?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "7 minutes",
+      "raw_generation": "<answer>7</answer>",
+      "pred_answer": "7",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001009",
+      "dataset_name": "tennis_temporal",
+      "category": "duration_minutes",
+      "tags": [
+        "duration_minutes"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nZverev won the first set at 1:05 p.m. Rune left the court for a bathroom break at 1:08 p.m. The second set began at 1:15 p.m.\n\nQuestion:\nHow many minutes after Zverev won the first set did the second set begin?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "10 minutes",
+      "raw_generation": "<answer>7</answer>",
+      "pred_answer": "7",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001014",
+      "dataset_name": "tennis_temporal",
+      "category": "overlap_while_during",
+      "tags": [
+        "overlap_while_during",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nAlcaraz was receiving treatment on his ankle during the changeover. At the same time, Medvedev spoke with the umpire about the court speed. After the treatment ended, Alcaraz held serve.\n\nQuestion:\nWas Medvedev speaking with the umpire while Alcaraz was receiving treatment?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001019",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nAlcaraz defeated Fritz in the quarterfinal. Before the semifinal, Djokovic withdrew from the tournament. After Djokovic withdrew, Alcaraz advanced directly to the final.\n\nQuestion:\nWhat happened after Djokovic withdrew from the tournament?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Alcaraz advanced directly to the final",
+      "raw_generation": "<answer>Alcaraz advanced directly to the final</answer>",
+      "pred_answer": "Alcaraz advanced directly to the final",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001024",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nThe quarterfinal match began at noon under clear skies. Alcaraz secured a crucial break of serve immediately after saving three match points. Rain suspended play ten minutes after Alcaraz secured the break.\n\nQuestion:\nDid Alcaraz save match points before securing the crucial break of serve?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001026",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nMedvedev dropped the first set due to unforced errors. Before the second set began, he changed his racquet and requested a bathroom break. He then rallied to win the second set and ultimately the match.\n\nQuestion:\nDid Medvedev change his racquet before rallying to win the second set?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001032",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic complained to the umpire about the court conditions before the start of the third set. After a swift inspection, the match resumed, and Djokovic held his serve. Later, he took a five-minute bathroom break just before the deciding tie-break.\n\nQuestion:\nDid Djokovic complain to the umpire before holding his serve in the third set?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001035",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nAlcaraz dropped his serve in the very first game of the match. He then went on a tear, winning six straight games to claim the first set. Early in the second set, a ball kid slipped, causing a brief pause in play.\n\nQuestion:\nDid Alcaraz win six straight games before a ball kid slipped?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001038",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nNadal won the coin toss and elected to receive. Federer held his serve comfortably in the opening game. Nadal then struggled, saving a break point before finally holding his own serve.\n\nQuestion:\nWhich happened first: Nadal elected to receive or Federer held his serve?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Nadal elected to receive",
+      "raw_generation": "<answer>Nadal elected to receive</answer>",
+      "pred_answer": "Nadal elected to receive",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001042",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nZverev received a time violation warning in the second set. He subsequently double-faulted, losing the game. At the changeover, he argued with the chair umpire before throwing his towel in frustration.\n\nQuestion:\nWhich happened first: Zverev argued with the umpire or Zverev double-faulted?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Zverev double-faulted",
+      "raw_generation": "<answer>Zverev double-faulted</answer>",
+      "pred_answer": "Zverev double-faulted",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001049",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic received a warning for exceeding the serve clock. Before the warning, he had bounced the ball over fifteen times. After the warning, he rushed his motion and hit a serve straight into the net.\n\nQuestion:\nWhat happened before Djokovic received the warning?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "He bounced the ball over fifteen times",
+      "raw_generation": "<answer>the exact answer span</answer>",
+      "pred_answer": "the exact answer span",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001054",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nShelton celebrated his semifinal victory by pointing to the sky. Before this celebration, he had just hit a cross-court forehand to convert match point. Later in the press conference, he dedicated the win to his former coach.\n\nQuestion:\nWhat happened before Shelton pointed to the sky?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "He hit a cross-court forehand to convert match point",
+      "raw_generation": "<answer>Before this celebration, he had just hit a cross-court forehand to convert match point.</answer>",
+      "pred_answer": "Before this celebration, he had just hit a cross-court forehand to convert match point",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.782608695652174,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001058",
+      "dataset_name": "tennis_temporal",
+      "category": "other_temporal",
+      "tags": [
+        "other_temporal"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nPlay was halted due to rain at 4-4 in the first set. The players remained in the locker room for two hours before the rain stopped. It took an additional 30 minutes for the court to be dried before they resumed the match.\n\nQuestion:\nHow many hours did the players remain in the locker room?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "2 hours",
+      "raw_generation": "<answer>the exact answer span</answer>",
+      "pred_answer": "the exact answer span",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001059",
+      "dataset_name": "tennis_temporal",
+      "category": "duration_minutes",
+      "tags": [
+        "duration_minutes"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic won the grueling first set in 70 minutes. The second set was much faster, ending in just 35 minutes. After a 10-minute break between sets, he completed the match by winning the third set in 45 minutes.\n\nQuestion:\nHow long did the second set last?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "35 minutes",
+      "raw_generation": "<answer>the exact answer span</answer>",
+      "pred_answer": "the exact answer span",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001061",
+      "dataset_name": "tennis_temporal",
+      "category": "duration_minutes",
+      "tags": [
+        "duration_minutes"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nThe roof took 12 minutes to close fully after the umpire suspended play. The air conditioning system required another 8 minutes to stabilize the indoor climate. Once stabilized, the players warmed up for 5 minutes before resuming play.\n\nQuestion:\nHow many minutes did the roof take to close fully?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "12 minutes",
+      "raw_generation": "<answer>12</answer>",
+      "pred_answer": "12",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001063",
+      "dataset_name": "tennis_temporal",
+      "category": "overlap_while_during",
+      "tags": [
+        "overlap_while_during"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nSinner sat on his bench eating a banana during the changeover. While he was eating, his opponent complained to the umpire about the line calling. The changeover ended with both players rushing back to the baseline.\n\nQuestion:\nWas Sinner eating a banana while his opponent complained to the umpire?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001076",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nRublev won the first set 7-6. Before the second set started, the roof was closed due to light rain. Rublev broke serve in the second game of the second set. Fritz called a coaching violation at the changeover after the third game.\n\nQuestion:\nWhat happened before the roof was closed?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Rublev won the first set",
+      "raw_generation": "<answer>Rublev won the first set 7-6.</answer>",
+      "pred_answer": "Rublev won the first set 7-6",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.8,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001080",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after",
+        "tournament_round_sequence",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nSinner defeated Rune in the quarterfinals on Thursday. On Friday, Alcaraz beat Medvedev in the other quarterfinal. The semifinals were scheduled for Saturday. Sinner won his semifinal in straight sets. Alcaraz withdrew before his semifinal due to injury.\n\nQuestion:\nDid Alcaraz reach the semifinal before withdrawing?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001083",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic served for the first set at 5-4. He double-faulted twice to get broken. Alcaraz then held serve and won the set 7-5 on a second serve ace. During the set break, Alcaraz took a bathroom break lasting four minutes. Djokovic complained to the umpire.\n\nQuestion:\nWhich event happened last?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Djokovic complained to the umpire",
+      "raw_generation": "<answer>Alcaraz won the set 7-5 on a second serve ace.</answer>",
+      "pred_answer": "Alcaraz won the set 7-5 on a second serve ace",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001092",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nFritz double-faulted on break point in the fifth game of the first set. After that break, Rublev held serve and then broke Fritz again in the seventh game. Rublev served out the first set 6-2. A ten-minute rain delay then started.\n\nQuestion:\nWhat happened before the rain delay?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Rublev served out the first set",
+      "raw_generation": "<answer>Fritz double-faulted on break point in the fifth game of the first set. After that break, Rublev held serve and then broke Fritz again in the seventh game. Rublev served out the first set 6-2.</answer>",
+      "pred_answer": "Fritz double-faulted on break point in the fifth game of the first set. After that break, Rublev held serve and then broke Fritz again in the seventh game. Rublev served out the first set 6-2",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.2631578947368421,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001097",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nRune broke serve in the opening game of the match. He then held for a 2-0 lead. Zverev broke back in the fourth game after a deuce. Rune broke again in the fifth game immediately after. Rune then held to lead 4-2.\n\nQuestion:\nDid Zverev break back before Rune broke again in the fifth game?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>No</answer>",
+      "pred_answer": "No",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001101",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nMedvedev lost his serve at 2-3 in the second set. After that break, he called a medical timeout for his wrist. The timeout lasted five minutes. Medvedev then lost his next service game as well to go down 2-5. He eventually lost the set 2-6.\n\nQuestion:\nWhat happened after Medvedev called the medical timeout?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "He lost his next service game",
+      "raw_generation": "<answer>he lost his next service game</answer>",
+      "pred_answer": "he lost his next service game",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001106",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDe Minaur saved two match points at 4-5 in the third set. He then won the game to make it 5-5. In the tie-break, De Minaur lost the first three points. He then won five points in a row to win the tie-break 7-3 and the match.\n\nQuestion:\nWhich happened first: De Minaur saved match points or he lost the first three points of the tie-break?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "De Minaur saved match points",
+      "raw_generation": "<answer>De Minaur saved two match points at 4-5 in the third set.</answer>",
+      "pred_answer": "De Minaur saved two match points at 4-5 in the third set",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.5882352941176471,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001110",
+      "dataset_name": "tennis_temporal",
+      "category": "duration_minutes",
+      "tags": [
+        "duration_minutes"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nThe first set lasted 48 minutes. A rain delay started immediately after the first set ended. The rain delay lasted 17 minutes. After the delay, the players warmed up for 5 minutes. The second set began 22 minutes after the first set ended.\n\nQuestion:\nHow many minutes after the rain delay ended did the second set begin?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "5 minutes",
+      "raw_generation": "<answer>17</answer>",
+      "pred_answer": "17",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001115",
+      "dataset_name": "tennis_temporal",
+      "category": "which_first_last",
+      "tags": [
+        "which_first_last",
+        "tennis_injury_or_medical"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nMedvedev won the first set 6-4. He then lost the second set 1-6 after a medical timeout for his opponent. In the third set, Medvedev broke serve at 2-2. He then held serve for a 3-2 lead. A crowd interruption then delayed play for eight minutes.\n\nQuestion:\nWhich event happened last?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "A crowd interruption delayed play",
+      "raw_generation": "<answer>the exact answer span</answer>",
+      "pred_answer": "the exact answer span",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001117",
+      "dataset_name": "tennis_temporal",
+      "category": "immediate_before_after",
+      "tags": [
+        "immediate_before_after"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nDjokovic double-faulted on break point in the third game of the second set. After that break, Djokovic smashed his racquet and received a code violation. He then held serve at 1-3. Tsitsipas held serve to lead 4-1 and then broke again.\n\nQuestion:\nWhat happened after Djokovic smashed his racquet?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "He received a code violation",
+      "raw_generation": "<answer>Djokovic held serve at 1-3.</answer>",
+      "pred_answer": "Djokovic held serve at 1-3",
+      "malformed": false,
+      "em": 0,
+      "f1": 0.0,
+      "condition": "C0"
+    },
+    {
+      "question_id": "tennis_001120",
+      "dataset_name": "tennis_temporal",
+      "category": "yes_no_before_after",
+      "tags": [
+        "yes_no_before_after",
+        "tournament_round_sequence"
+      ],
+      "prompt": "You are given a temporal context from the tennis domain and a question.\nReason only over the events explicitly stated in the context.\nUse the temporal order, durations, overlaps, or tournament sequence when needed.\n\nTemporal context:\nRune won his first-round match on Monday. On Tuesday, Sinner won his first-round match. In the second round on Wednesday, Rune defeated Shelton. Sinner played his second-round match on Thursday and lost to Fritz in straight sets.\n\nQuestion:\nDid Rune reach the third round before Sinner lost in the second round?\n\nReturn only the final answer inside XML answer tags.\nFor yes/no questions:\n<answer>Yes</answer>\nor\n<answer>No</answer>\n\nFor span questions:\n<answer>the exact answer span</answer>\n\nDo not output the words \"FINAL_ANSWER\".\nDo not write anything after </answer>.",
+      "gold": "Yes",
+      "raw_generation": "<answer>Yes</answer>",
+      "pred_answer": "Yes",
+      "malformed": false,
+      "em": 1,
+      "f1": 1.0,
+      "condition": "C0"
+    }
+  ],
+  "sha256": "447aaf1282391bc550bcaef6f6c09c694e0897bfdb8324730238d6e790e58532"
+}

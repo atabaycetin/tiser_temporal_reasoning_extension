@@ -1,0 +1,247 @@
+{
+  "start": 576,
+  "spec_sha256": "a64dcd8d604e9ffd5dc6204c96bfe09f834e5558c5f93710fee8071704402c7f",
+  "rows": [
+    {
+      "question_id": "tot_semantic_row_021486_3fe19389007736ab",
+      "dataset_name": "tot_semantic_test",
+      "gold": "0",
+      "raw_generation": "<reasoning> \nThe question asks how many unique entities were the R88 of E24 between 1952 to 1953. We need to focus on the period from 1952 to 1953 and identify the entities that held the R88 designation during this time frame. The context provides information about various entities and their relationships over different periods. We need to extract the relevant information for the specified years.\n\n<timeline> \n- E69 was the R88 of E24 from 1955 to 1962.\n- E69 was the R88 of E11 from 1967 to 1977.\n- E69 was the R88 of E11 from 1976 to 1981.\n- E69 was the R88 of E24 from 1955 to 1962.\n</timeline>\n\n<reflection> \nReviewing the timeline, we see that E69 was the R88 of E24 from 1955 to 1962, which includes the period from 1952 to 1953. There are no other entities mentioned as R88 of E24 during this time frame. Therefore, the unique entity during this period is E69.\n</reflection>\n\n</reasoning> \n<answer> E69 </answer>",
+      "pred_answer": "E69",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019742_adad7c0a3ff60a1a",
+      "dataset_name": "tot_semantic_test",
+      "gold": "1959",
+      "raw_generation": "<reasoning> \nThe question asks for the end time when E69 was the R11 of E17. The relevant information is that E69 was the R11 of E17 from 1958 to 1959. The end time is explicitly mentioned as 1959.\n<timeline> \nE69 was the R11 of E17 from 1958 to 1959.\n</timeline> \n<reflection> \nThe timeline directly provides the end time as 1959, which matches the given answer. No further adjustments are needed.\n</reflection> \n</reasoning> \n<answer> 1959 </answer>",
+      "pred_answer": "1959",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_020645_d08acc42297f11b8",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E83",
+      "raw_generation": "<reasoning> \n<timeline>\n- E57 was the R20 of E59 from 1924 to 1927.\n- E83 was the R20 of E27 from 1924 to 1925.\n- E83 was the R82 of E27 from 1924 to 1930.\n- E60 was the R82 of E59 from 1925 to 1930.\n- E27 was the R82 of E27 from 1926 to 1927.\n</timeline>\n<reflection>\n- The timeline shows that E57 was the R20 of E59 during the period when E83 was the R82 of E27.\n- No other entities are mentioned as being the R82 of E27 during this time.\n- Therefore, E83 is the correct answer.\n</reflection>\n</reasoning>\n<answer> E83 </answer>",
+      "pred_answer": "E83",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021955_fead86643b5efc13",
+      "dataset_name": "tot_semantic_test",
+      "gold": "0",
+      "raw_generation": "<reasoning> \n<timeline>\nE59 was the R16 of E21 from 1943 to 1943.\n</timeline>\n<reflection>\nThe timeline shows that E59 was the R16 of E21 only once, in 1943.\n</reflection>\n</reasoning>\n<answer> 1 year </answer>",
+      "pred_answer": "1 year",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_021804_8e5ac98d52cfdb61",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E22",
+      "raw_generation": "<reasoning> \nThe question asks which entity has been the last R11 of E76. The context provides a series of entities that were the R11 of E76 during specific years. To find the last R11, we need to identify the most recent year mentioned for E76's R11.\n\n<timeline> \nE82 was the R11 of E76 from 1975 to 1975.\nE95 was the R11 of E76 from 1976 to 1976.\nE97 was the R11 of E76 from 1983 to 1983.\nE67 was the R11 of E76 from 1983 to 1983.\nE33 was the R11 of E76 from 1983 to 1983.\nE17 was the R11 of E76 from 1984 to 1984.\nE75 was the R11 of E76 from 1986 to 1986.\nE11 was the R11 of E76 from 2002 to 2002.\nE9 was the R11 of E76 from 2017 to 2017.\nE28 was the R11 of E76 from 2020 to 2020.\nE22 was the R11 of E76 from 2021 to 2021.\n</timeline> \n\n<reflection> \nReviewing the timeline, the most recent year for E76's R11 is 2021, where E22 was the R11. This aligns with the provided answer.\n</reflection>\n\n</reasoning> \n<answer> E22 </answer>",
+      "pred_answer": "E22",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021032_943d677ffc59f539",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E82",
+      "raw_generation": "<reasoning> \nThe question asks for the entity that was the R20 of E60 at the start time of E63 being the R82 of E43. The start time of E63 being the R82 of E43 is from 1974 to 1978. The relevant R20 relationships during this period are: E59 was the R20 of E60 from 1974 to 1976, E36 was the R20 of E60 from 1974 to 1978, and E60 was the R20 of E95 from 1974 to 1980. Since the start time is from 1974 to 1978, the relevant R20 relationship is E36 being the R20 of E60 from 1974 to 1978.\n<timeline> \n- E63 was the R82 of E43 from 1974 to 1982.\n- E36 was the R20 of E60 from 1974 to 1978.\n</timeline> \n<reflection> \nThe timeline shows that E36 was the R20 of E60 during the period when E63 was the R82 of E43. There are no conflicting relationships during this time, so the answer should be E36.\n</reflection> \n</reasoning> \n<answer> E36 </answer>",
+      "pred_answer": "E36",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_020849_0885f0a11c4601d2",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E11",
+      "raw_generation": "<reasoning>\nThe question asks which entity was the R11 of the entity E45 immediately after E82. We need to find the timeline where E82 is followed by another R11 of E45.\n\n<timeline>\n- E82 was the R11 of E45 from 1983 to 1984.\n- E43 was the R11 of E45 from 1983 to 1988.\n</timeline>\n\n<reflection>\nThe timeline shows that E43 was the R11 of E45 immediately after E82.\n</reflection>\n</reasoning>\n<answer>43</answer>",
+      "pred_answer": "43",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_021748_970ca27cc0137598",
+      "dataset_name": "tot_semantic_test",
+      "gold": "1855",
+      "raw_generation": "<reasoning> \nThe question asks for the start time of E82 being the R71 of E16. The relevant temporal context is \"E82 was the R71 of E16 from 1855 to 1875.\" This directly provides the start time of this relationship.\n<timeline> \nE82 was the R71 of E16 from 1855 to 1875.\n</timeline> \n<reflection> \nThe timeline clearly indicates the start time of E82 being the R71 of E16 is 1855. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> 1855 </answer>",
+      "pred_answer": "1855",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021771_3285316d3aa1a30d",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E38",
+      "raw_generation": "<reasoning> \nThe question asks for the entity that was the last R11 of entity E76. The context provides multiple instances where E76 is the R17 of other entities, but only one instance where E76 is the R11 of another entity. This instance is E38 from 2005 to 2005. Since the question specifies \"last R11,\" and this is the only R11 relationship provided, it must be the correct answer.\n<timeline> \nE76 was the R11 of E38 from 2005 to 2005.\n</timeline> \n<reflection> \nThere is no other R11 relationship provided for E76, so this is the only relevant event. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> E38 </answer>",
+      "pred_answer": "E38",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_020626_f64aa2d4d165d417",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E92",
+      "raw_generation": "<reasoning> \n<timeline>\n- E92 was the R90 of E11 from 1946 to 1950.\n- E69 was the R88 of E92 from 1950 to 1953.\n- E42 was the R88 of E69 from 1943 to 1944.\n</timeline>\n<reflection>\nThe timeline shows that E42 was the R88 of E69 during the period when E69 was the R88 of E92, which aligns with the given answer.\n</reflection>\n</reasoning>\n<answer> E42 </answer>",
+      "pred_answer": "E42",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_020166_b561329484c60746",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E33",
+      "raw_generation": "<reasoning> \n<timeline>\nE33 was the R53 of E17 from 1984 to 1987.\nE33 was the R53 of E24 from 1997 to 2000.\nE33 was the R53 of E22 from 2003 to 2007.\n</timeline>\n<reflection>\nThe timeline shows that E33 was the R53 of E17 from 1984 to 1987, which is the earliest period mentioned for E33 being the R53 of E17.\n</reflection>\n</reasoning>\n<answer>E33</answer>",
+      "pred_answer": "E33",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021942_64467085dc737f69",
+      "dataset_name": "tot_semantic_test",
+      "gold": "0",
+      "raw_generation": "<reasoning> \nThe question asks for the duration of E30 being the R59 of E71, specifically the 4th time it happened. The context provides multiple instances of E30 being the R59 of different entities over various years. To find the 4th instance of E30 being the R59 of E71, we need to locate the fourth occurrence of this relationship in the timeline.\n<timeline> \nE30 was the R59 of E71 from 2007 to 2007.\nE30 was the R59 of E71 from 2018 to 2018.\nE30 was the R59 of E71 from 2020 to 2020.\nE30 was the R59 of E71 from 2022 to 2022.\n</timeline> \n<reflection> \nThe timeline shows four occurrences of E30 being the R59 of E71, each lasting one year. The question specifies the 4th time, which corresponds to the last entry in the timeline.\n</reflection> \n</reasoning> \n<answer> 2022 </answer>",
+      "pred_answer": "2022",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019882_fbe6861ba24d1789",
+      "dataset_name": "tot_semantic_test",
+      "gold": "3",
+      "raw_generation": "<reasoning> \n<timeline>\n- E92 was the R17 of E42 from 1985 to 1995.\n- E24 was the R17 of E42 from 1985 to 1992.\n- E59 was the R17 of E69 from 1988 to 1994.\n- E69 was the R17 of E42 from 1991 to 2001.\n- E22 was the R17 of E92 from 1991 to 1996.\n- E24 was the R17 of E33 from 1994 to 2001.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the R17 of E11 from 1985 to 1991.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the R17 of E17 from 1985 to 1991.\n- E33 was the R17 of E69 from 1985 to 1991.\n- E33 was the R17 of E24 from 1985 to 1992.\n- E33 was the R17 of E11 from 1985 to 1991.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the R17 of E17 from 1985 to 1991.\n- E33 was the R17 of E69 from 1985 to 1991.\n- E33 was the R17 of E24 from 1985 to 1992.\n- E33 was the R17 of E11 from 1985 to 1991.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the R17 of E17 from 1985 to 1991.\n- E33 was the R17 of E69 from 1985 to 1991.\n- E33 was the R17 of E24 from 1985 to 1992.\n- E33 was the R17 of E11 from 1985 to 1991.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the R17 of E17 from 1985 to 1991.\n- E33 was the R17 of E69 from 1985 to 1991.\n- E33 was the R17 of E24 from 1985 to 1992.\n- E33 was the R17 of E11 from 1985 to 1991.\n- E33 was the R17 of E42 from 1985 to 1988.\n- E33 was the",
+      "pred_answer": "",
+      "malformed": true,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019582_3d6c28a93e1a09bb",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E74,E41,E9",
+      "raw_generation": "<reasoning> \n<timeline>\nE74 was the R53 of E22 from 1947 to 1954.\nE59 was the R53 of E94 from 1949 to 1957.\nE94 was the R53 of E42 from 1951 to 1953.\nE41 was the R53 of E22 from 1951 to 1958.\nE25 was the R53 of E41 from 1955 to 1964.\nE30 was the R53 of E17 from 1956 to 1961.\nE74 was the R53 of E59 from 1956 to 1961.\nE22 was the R53 of E33 from 1956 to 1957.\nE94 was the R53 of E37 from 1957 to 1959.\nE24 was the R53 of E16 from 1957 to 1960.\nE17 was the R53 of E42 from 1958 to 1961.\nE75 was the R53 of E41 from 1958 to 1964.\nE9 was the R53 of E16 from 1960 to 1965.\nE30 was the R53 of E16 from 1962 to 1963.\nE22 was the R53 of E30 from 1962 to 1970.\nE11 was the R53 of E94 from 1963 to 1964.\nE16 was the R53 of E94 from 1964 to 1972.\nE24 was the R53 of E94 from 1965 to 1968.\nE17 was the R53 of E59 from 1966 to 1969.\nE94 was the R53 of E24 from 1966 to 1975.\nE75 was the R53 of E25 from 1966 to 1972.\nE59 was the R53 of E69 from 1966 to 1975.\nE92 was the R53 of E69 from 1967 to 1976.\nE74 was the R53 of E11 from 1973 to 1976.\nE24 was the R53 of E92 from 1974 to 1977.\nE37 was the R53 of E33 from 1974 to 1977.\nE33 was the R53 of E22 from 1975 to 1972.\nE22 was the R53 of E37 from 1975 to 1972.\nE92 was the R53 of E74 from 1975 to 1977.\nE94 was the R53 of E59 from 1973 to 1977.\nE69 was the R53 of E1",
+      "pred_answer": "",
+      "malformed": true,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_020186_d5cf8892229002de",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E42",
+      "raw_generation": "<reasoning> \n<timeline>\nE30 was the R53 of E16 from 1927 to 1931.\nE16 was the R53 of E17 from 1927 to 1933.\nE17 was the R53 of E92 from 1936 to 1940.\nE92 was the R53 of E24 from 1937 to 1940.\nE24 was the R53 of E92 from 1937 to 1940.\nE22 was the R53 of E30 from 1932 to 1936.\nE22 was the R53 of E92 from 1924 to 1926.\nE22 was the R53 of E37 from 1912 to 1915.\nE22 was the R53 of E59 from 1926 to 1932.\nE22 was the R53 of E33 from 1916 to 1922.\nE22 was the R53 of E11 from 1911 to 1919.\nE22 was the R53 of E69 from 1915 to 1917.\nE22 was the R53 of E74 from 1917 to 1922.\nE22 was the R53 of E30 from 1932 to 1936.\nE22 was the R53 of E17 from 1912 to 1915.\nE22 was the R53 of E9 from 1911 to 1920.\nE22 was the R53 of E42 from 1916 to 1925.\nE22 was the R53 of E37 from 1911 to 1915.\nE22 was the R53 of E59 from 1926 to 1932.\nE22 was the R53 of E33 from 1916 to 1922.\nE22 was the R53 of E11 from 1911 to 1919.\nE22 was the R53 of E69 from 1915 to 1917.\nE22 was the R53 of E74 from 1917 to 1922.\nE22 was the R53 of E30 from 1932 to 1936.\nE22 was the R53 of E17 from 1912 to 1915.\nE22 was the R53 of E9 from 1911 to 1920.\nE22 was the R53 of E42 from 1916 to 1925.\nE22 was the R53 of E37 from 1911 to 1915.\nE22 was the R53 of E59 from 1926 to 1932.\nE22 was the R53 of E33 from 1916 to 1922.\nE22 was the R53 of E11",
+      "pred_answer": "",
+      "malformed": true,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019476_c036a353b40a7b2b",
+      "dataset_name": "tot_semantic_test",
+      "gold": "0",
+      "raw_generation": "<reasoning> \n<timeline>\n- E17 was the R90 of E92 from 1949 to 1953.\n- E11 was the R90 of E24 from 1945 to 1948.\n- E69 was the R17 of E42 from 1933 to 1941.\n- E17 was the R17 of E92 from 1929 to 1932.\n- E22 was the R17 of E11 from 1937 to 1939.\n- E33 was the R17 of E42 from 1944 to 1950.\n- E33 was the R90 of E11 from 1943 to 1949.\n- E59 was the R17 of E11 from 1940 to 1948.\n- E42 was the R90 of E33 from 1930 to 1934.\n- E11 was the R17 of E59 from 1951 to 1956.\n- E42 was the R17 of E33 from 1933 to 1937.\n</timeline>\n<reflection>\nThe timeline shows that E17 was the R17 of E17 from 1933 to 1937, which overlaps with the period from 1931 to 1932. Therefore, E17 is one of the unique entities during this time.\n</reflection>\n</reasoning>\n<answer>1</answer>",
+      "pred_answer": "1",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019533_dd49b0b7abd9fd0e",
+      "dataset_name": "tot_semantic_test",
+      "gold": "2",
+      "raw_generation": "<reasoning> \n<timeline>\nE24 was the R88 of E69 from 1988 to 1990.\nE69 was the R63 of E59 from 1986 to 1988.\nE11 was the R17 of E69 from 1990 to 1992.\n</timeline>\n<reflection>\nThe timeline shows that E11 was the R17 of E69 from 1990 to 1992, which is the first time this relation occurred. The duration is calculated by subtracting the start year (1990) from the end year (1992), resulting in 2 years.\n</reflection>\n</reasoning>\n<answer>2</answer>",
+      "pred_answer": "2",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021256_6b48df4de309201d",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E74",
+      "raw_generation": "<reasoning> \n<timeline>\nE59 was the R35 of E57 from 1911 to 1917.\nE63 was the R11 of E59 from 1912 to 1918.\nE63 was the R35 of E59 from 1925 to 1927.\n</timeline>\n<reflection>\nThe timeline shows that E63 was the R35 of E59 from 1925 to 1927, which is immediately after E63 was the R11 of E59 from 1912 to 1918.\n</reflection>\n</reasoning> \n<answer> E63 </answer>",
+      "pred_answer": "E63",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_020868_0d57f80e9cd1817f",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E24",
+      "raw_generation": "<reasoning> \n<timeline>\nE42 was the R88 of E33 from 1981 to 1980.\nE42 was the R88 of E33 from 1987 to 2002.\nE42 was the R88 of E33 from 1997 to 2000.\nE42 was the R88 of E33 from 2004 to 2009.\n</timeline>\n<reflection>\nThe timeline shows that E42 was the R88 of E33 multiple times, but only the last entry (2004-2009) falls within the year 2003.\n</reflection>\n</reasoning>\n<answer> E33 </answer>",
+      "pred_answer": "E33",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_021620_8852881e982b2bc7",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E82",
+      "raw_generation": "<reasoning> \nThe question asks which entity was the R71 of E24 immediately after E11. The context provides specific years for each entity being the R71 of E24. E11 was the R71 of E24 from 2010 to 2010. The next entry in the timeline after this period is E82, which was the R71 of E24 from 2022 to 2022.\n<timeline> \nE11 was the R71 of E24 from 2010 to 2010.\nE82 was the R71 of E24 from 2022 to 2022.\n</timeline> \n<reflection> \nThe timeline shows that E82 is the next R71 of E24 after E11, which aligns with the provided answer. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> E82 </answer>",
+      "pred_answer": "E82",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "tot_semantic_row_021286_707ab559c48ee648",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E92",
+      "raw_generation": "<reasoning> \n<timeline>\nE69 was the R90 of E59 from 1983 to 1991.\n</timeline>\n<reflection>\nThe timeline shows that E69 was the R90 of E59 during the period including 1982.\n</reflection>\n</reasoning>\n<answer> E59 </answer>",
+      "pred_answer": "E59",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_020295_cb92b6c4db309e08",
+      "dataset_name": "tot_semantic_test",
+      "gold": "2",
+      "raw_generation": "<reasoning>\nThe question asks for the number of unique entities that were the R35 of E63 between 1921 to 1926. We need to identify all entities that held the R35 relationship with E63 during this period. The context provides multiple relationships over different years, so we must focus on the years 1921 to 1926.\n\n<timeline>\n- E63 was the R35 of E83 from 1919 to 1929.\n- E63 was the R35 of E83 from 1921 to 1926.\n- E63 was the R35 of E83 from 1922 to 1927.\n- E63 was the R35 of E83 from 1923 to 1928.\n- E63 was the R35 of E83 from 1924 to 1929.\n- E63 was the R35 of E83 from 1925 to 1929.\n- E63 was the R35 of E83 from 1926 to 1929.\n</timeline>\n\n<reflection>\nThe timeline shows that E63 was the R35 of E83 from 1921 to 1926. There are no other entities mentioned as holding the R35 relationship with E63 during this period. Thus, the unique entity is E83.\n</reflection>\n\n</reasoning>\n\n<answer>E83</answer>",
+      "pred_answer": "E83",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "tot_semantic_row_019925_09a1db8346f9df58",
+      "dataset_name": "tot_semantic_test",
+      "gold": "5",
+      "raw_generation": "<reasoning> \n<timeline>\nE78 was the R76 of E94 from 1959 to 1964.\n</timeline>\n<reflection>\nThe timeline shows that E78 was the R76 of E94 from 1959 to 1964. The duration is calculated by subtracting the start year (1959) from the end year (1964), which equals 5 years.\n</reflection>\n</reasoning>\n<answer>5 years</answer>",
+      "pred_answer": "5 years",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "tot_semantic_row_020476_fb36fc8f47373058",
+      "dataset_name": "tot_semantic_test",
+      "gold": "E59",
+      "raw_generation": "<reasoning> \n<timeline>\nE59 was the R14 of E59 from 1934 to 1940.\nE26 was the R14 of E59 from 1931 to 1938.\n</timeline>\n<reflection>\nThe timeline shows that E59 was the R14 of E59 from 1934 to 1940, and E26 was the R14 of E59 from 1931 to 1938. Since the question asks for the R14 of E59 in 1934, E26 fits this criteria.\n</reflection>\n</reasoning> \n<answer> E59 </answer>",
+      "pred_answer": "E59",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "sha256": "2a3f291396bcb21e328b34af3ddc075c7f59630fbc46232c76905cd3cb7d903d"
+}

@@ -1,0 +1,52 @@
+# Smoke-test config: validates the data -> train -> adapter -> eval -> metrics
+# pipeline end-to-end on a free Colab T4 in a few minutes. NOT for accuracy.
+# Goal is plumbing only: small model, tiny subset, 1 epoch, sampled eval.
+run_name: tiser_smoke
+
+seed: 42
+
+paths:
+  data_dir: data
+  train_file: data/TISER_train.json
+  test_file: data/TISER_test.json
+  model_dir: model
+  output_dir: outputs
+  local_source_dir: "local_data"    # optional repo-relative directory containing real TISER_*.json
+  hf_dataset_id: AmazonScience/TISER
+
+model:
+  name: Qwen/Qwen2.5-1.5B-Instruct       # tiny stand-in for the 7B; same code path
+  load_in_4bit: true                     # keep 4-bit to exercise the actual QLoRA path
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  # compute dtype is auto: bf16 if supported (A100) else fp16 (T4)
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  bias: none
+
+train:
+  subset_size: 300             # first 300 records (unshuffled -> likely all one split; fine for plumbing)
+  max_seq_len: 2048            # keep full so the length filter does not drop everything
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 4   # small enough to expose several optimizer steps quickly
+  num_epochs: 1
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  gradient_checkpointing: true
+  logging_steps: 5
+  save_strategy: epoch
+
+eval:
+  max_samples_per_split: 20    # 20 per split -> ~100 generations total
+  batch_size: 2                # T4-safe with greedy generation
+  max_new_tokens: 256
+  do_sample: false             # greedy / deterministic
+
+splits: [tgqa_test, tempreason_l2_test, tempreason_l3_test, timeqa_easy_test, timeqa_hard_test]

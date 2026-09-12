@@ -80,7 +80,7 @@ def compare(baseline, candidate, *, domain, replicates=10000, seed=42):
         a = np.array([[baseline[i][m] for m in ("em", "f1")] for i in indices], dtype=float)
         b = np.array([[candidate[i][m] for m in ("em", "f1")] for i in indices], dtype=float)
         difference = b - a
-        # Bounded memory on the full original-TISER complement.
+        # Bound memory use for large paired populations.
         for start in range(0, replicates, 100):
             count = min(100, replicates - start)
             draws = rng.integers(0, len(indices), size=(count, len(indices)))

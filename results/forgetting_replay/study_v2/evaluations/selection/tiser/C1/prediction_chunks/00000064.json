@@ -1,0 +1,647 @@
+{
+  "start": 64,
+  "spec_sha256": "a64dcd8d604e9ffd5dc6204c96bfe09f834e5558c5f93710fee8071704402c7f",
+  "rows": [
+    {
+      "question_id": "L2_Q72972_P108_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "University of Halle-Wittenberg",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to determine which university Paul Stu00e4ckel worked for in October 1892. The context provides specific employment periods for each university. We can identify the relevant period by comparing the given date with the provided timelines.\n<timeline> \nPaul Stu00e4ckel works for University of Halle-Wittenberg from Jan, 1891 to Jan, 1895.\n</timeline> \n<reflection> \nOctober 1892 falls within the period from January 1891 to January 1895, which corresponds to his employment at the University of Halle-Wittenberg. There are no conflicting or overlapping periods in the timeline.\n</reflection> \n</reasoning> \n<answer> University of Halle-Wittenberg </answer>",
+      "pred_answer": "University of Halle-Wittenberg",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q6131331_P39_1",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 24th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nJames Christopher Flynn held different positions over various time periods. To determine his position in Mar, 1890, we need to identify the time period that includes Mar, 1890. The relevant time periods are from Nov, 1885 to Jun, 1886, from Jul, 1886 to Jun, 1892, from Jul, 1892 to Jul, 1895, from Jul, 1895 to Sep, 1900, from Oct, 1900 to Jan, 1906, and from Jan, 1906 to Jan, 1910. Mar, 1890 falls within the period from Jul, 1886 to Jun, 1892.\n<timeline> \n- Nov, 1885 to Jun, 1886: Member of the 23rd Parliament of the United Kingdom\n- Jul, 1886 to Jun, 1892: Member of the 24th Parliament of the United Kingdom\n- Jul, 1892 to Jul, 1895: Member of the 25th Parliament of the United Kingdom\n- Jul, 1895 to Sep, 1900: Member of the 26th Parliament of the United Kingdom\n- Oct, 1900 to Jan, 1906: Member of the 27th Parliament of the United Kingdom\n- Jan, 1906 to Jan, 1910: Member of the 28th Parliament of the United Kingdom\n</timeline> \n<reflection> \nMar, 1890 is within the period from Jul, 1886 to Jun, 1892, which corresponds to the position of Member of the 24th Parliament of the United Kingdom. The timeline confirms this.\n</reflection> \n</reasoning> \n<answer> Member of the 24th Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 24th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q4709819_P54_1",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Southampton F.C.",
+      "raw_generation": "<reasoning> \nAlbert Brown's career timeline shows that he played for Aston Villa F.C. until January 1901, then moved to Southampton F.C. from January 1901 to January 1902. The question asks about his team in October 1901, which falls within the period he played for Southampton F.C.\n<timeline> \n- Albert Brown plays for Aston Villa F.C. from Jan, 1898 to Jan, 1901.\n- Albert Brown plays for Southampton F.C. from Jan, 1901 to Jan, 1902.\n</timeline> \n<reflection> \nThe timeline clearly indicates that Albert Brown was playing for Southampton F.C. during October 1901, so the answer is consistent with the given information.\n</reflection> \n</reasoning> \n<answer>Southampton F.C.</answer>",
+      "pred_answer": "Southampton F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q470362_P69_1",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "School of Oriental and African Studies, University of London",
+      "raw_generation": "<reasoning> \nMette-Marit's educational timeline shows she attended the University of Oslo until January 2002, after which she attended the School of Oriental and African Studies at the University of London from January 2002 to January 2003. The question asks where she was educated in July 2002, which falls within her attendance at the University of London.\n<timeline> \n- Mette-Marit attended University of Oslo until January 2002.\n- Mette-Marit attended School of Oriental and African Studies, University of London from January 2002 to January 2003.\n</timeline> \n<reflection> \nThe timeline clearly indicates that in July 2002, she was attending the School of Oriental and African Studies at the University of London.\n</reflection> \n</reasoning> \n<answer> School of Oriental and African Studies,University of London </answer>",
+      "pred_answer": "School of Oriental and African Studies,University of London",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.823529411764706
+    },
+    {
+      "question_id": "L2_Q5723083_P39_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 25th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nHenry Hobhouse's positions are given in a chronological order, each specifying a time period during which he held a particular position. To determine his position in September 1892, we need to identify the time period that includes this month. The relevant time periods are listed as follows: Member of the 23rd Parliament from November 1885 to June 1886, Member of the 24th Parliament from July 1886 to June 1892, Member of the 25th Parliament from July 1892 to July 1895, Member of the 26th Parliament from July 1895 to September 1900, and Member of the 27th Parliament from October 1900 to January 1906. September 1892 falls within the period from July 1892 to July 1895, which corresponds to the position of Member of the 25th Parliament of the United Kingdom.\n<timeline> \n- Henry Hobhouse holds the position of Member of the 25th Parliament of the United Kingdom from July 1892 to July 1895.\n</timeline> \n<reflection> \nThe timeline clearly indicates that September 1892 is within the period when Henry Hobhouse was a Member of the 25th Parliament of the United Kingdom. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> Member of the 25th Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 25th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q22707_P286_4",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Andru00e9 Breitenreiter",
+      "raw_generation": "<reasoning> \nThe question asks for the head coach of TSG 1899 Hoffenheim in September 2022. The temporal context provides specific dates for each head coach's tenure. The relevant period for the question is from July 2022 to December 2022, which is covered by Andru00e9 Breitenreiter.\n<timeline> \n- Julian Nagelsmann: Feb 2016 to Jun 2019\n- Alfred Schreuder: Jul 2019 to Jun 2020\n- Matthias Kaltenbach: Jun 2020 to Jul 2020\n- Sebastian Hoeneu00df: Jul 2020 to Jun 2022\n- Andru00e9 Breitenreiter: Jul 2022 to Dec 2022\n</timeline> \n<reflection> \nThe timeline shows that Andru00e9 Breitenreiter was the head coach during the month of September 2022. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> Andru00e9 Breitenreiter </answer>",
+      "pred_answer": "Andru00e9 Breitenreiter",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q2637561_P54_8",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Blackburn Rovers F.C.",
+      "raw_generation": "<reasoning> \n<timeline>\n- Luke Varney plays for Quorn F.C. from Jan, 2000 to Jan, 2003.\n- Luke Varney plays for Crewe Alexandra F.C. from Jan, 2003 to Jan, 2007.\n- Luke Varney plays for Charlton Athletic F.C. from Jan, 2007 to Jan, 2009.\n- Luke Varney plays for Sheffield Wednesday F.C. from Jan, 2009 to Jan, 2010.\n- Luke Varney plays for Derby County F.C. from Jan, 2009 to Jan, 2011.\n- Luke Varney plays for Blackpool F.C. from Jan, 2010 to Jan, 2011.\n- Luke Varney plays for Portsmouth F.C. from Jan, 2011 to Jan, 2012.\n- Luke Varney plays for Leeds United F.C. from Jan, 2012 to Jan, 2014.\n- Luke Varney plays for Blackburn Rovers F.C. from Jan, 2014 to Jan, 2015.\n- Luke Varney plays for Ipswich Town F.C. from Jan, 2015 to Jan, 2016.\n</timeline>\n<reflection>\n<timeline>\n- Luke Varney plays for Leeds United F.C. from Jan, 2012 to Jan, 2014.\n- Luke Varney plays for Blackburn Rovers F.C. from Jan, 2014 to Jan, 2015.\n</timeline>\n<reflection>\nThe timeline shows that Luke Varney played for Blackburn Rovers F.C. from Jan, 2014 to Jan, 2015, which includes February 2014.\n</reflection>\n</reflection>\n</reflection>\n</reasoning>\n<answer>Blackburn Rovers F.C.</answer>",
+      "pred_answer": "Blackburn Rovers F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q1450705_P286_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Nicolae Sotir",
+      "raw_generation": "<reasoning> \n<timeline> \n- Renu00e9 Verdier: Jan, 1946 to Jan, 1947\n- Marcel Mathoru00e9: Jan, 1947 to Jan, 1965\n- Nicolae Sotir: Jan, 1965 to Jan, 1968\n- Georges Derose: Jan, 1968 to Jan, 1970\n- Georges Komatov: Jan, 1983 to Sep, 1983\n- Jean-Marc Buchel: Jan, 1984 to Jan, 1985\n- u00c9ric Daniel: Jan, 1985 to Jan, 1988\n- Jean-Marie Fabiani: Jan, 1993 to Jan, 1994\n- Jean-Michel Roche: Jan, 1994 to Jan, 1995\n- Gu00e9rard Castan: Jan, 1995 to Jan, 1995\n- Vladimir Kondra: Jan, 1995 to Jan, 1999\n- Philippe Blain: Jan, 2001 to Jan, 2012\n- Laurent Tillie: Jan, 2012 to Dec, 2022\n</timeline> \n<reflection> \nThe timeline shows that Nicolae Sotir was the head coach from Jan, 1965 to Jan, 1968, which includes November 1965. There are no gaps or overlaps in the coaching tenures provided.\n</reflection> \n</reasoning> \n<answer> Nicolae Sotir </answer>",
+      "pred_answer": "Nicolae Sotir",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5709847_P108_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Aarhus University",
+      "raw_generation": "<reasoning> \nHelmuth Nyborg's employment history shows that he worked at Aarhus University from January 1968 to January 2007. The question asks for his employer in May 1997. Since May 1997 falls within the period of his employment at Aarhus University, it is clear that he was working there during that time.\n<timeline> \n- Helmuth Nyborg works for Aarhus University from January 1968 to January 2007.\n- May 1997 falls within this period.\n</timeline> \n<reflection> \nThe timeline confirms that May 1997 is within the period of employment at Aarhus University. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Aarhus University </answer>",
+      "pred_answer": "Aarhus University",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q337895_P39_1",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 48th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nPeter Griffiths held different positions over various time periods. To determine his position in Mar, 1983, we need to identify which of these periods includes Mar, 1983. The relevant periods are from May, 1979 to May, 1983 and from Jun, 1983 to May, 1987. Mar, 1983 falls within the first period, so he would have been holding the position during that time.\n<timeline> \n- Peter Griffiths holds the position of Member of the 48th Parliament of the United Kingdom from May, 1979 to May, 1983.\n- Peter Griffiths holds the position of Member of the 49th Parliament of the United Kingdom from Jun, 1983 to May, 1987.\n</timeline> \n<reflection> \nMar, 1983 is within the period from May, 1979 to May, 1983, so the correct position is Member of the 48th Parliament of the United Kingdom. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Member of the 48th Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 48th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q472272_P108_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Harvard University",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to determine which employer Simon Schama worked for in January 1985. The context provides specific employment periods for different institutions. We can identify the relevant period by checking which employment period includes January 1985.\n<timeline> \n- Simon Schama works for Christ's College from Jan, 1966 to Jan, 1976.\n- Simon Schama works for University of Oxford from Jan, 1976 to Jan, 1980.\n- Simon Schama works for Harvard University from Jan, 1980 to Jan, 1993.\n- Simon Schama works for Columbia University from Jan, 1994 to Jan, 1994.\n</timeline> \n<reflection> \nThe timeline shows that Simon Schama worked for Harvard University from January 1980 to January 1993. Since January 1985 falls within this period, it confirms that he worked for Harvard University at that time.\n</reflection> \n</reasoning> \n<answer>Harvard University</answer>",
+      "pred_answer": "Harvard University",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q26213077_P39_5",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 7th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \n<timeline>\nDugdale Dugdale holds the position of Member of the 7th Parliament of the United Kingdom from Mar, 1820 to Jun, 1826.\n</timeline>\n<reflection>\nThe timeline shows that Dugdale Dugdale held the position of Member of the 7th Parliament of the United Kingdom during the period that includes January 1821.\n</reflection>\n</reasoning>\n<answer>Member of the 7th Parliament of the United Kingdom</answer>",
+      "pred_answer": "Member of the 7th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q913643_P286_3",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Kjell Svensson",
+      "raw_generation": "<reasoning> \nThe question asks for the head coach of the Sweden men's national ice hockey team in April 1973. The provided temporal context lists the head coaches and their respective tenures. The relevant period for the question is from January 1972 to January 1974, which is the tenure of Kjell Svensson.\n<timeline> \nKjell Svensson is the head coach from Jan, 1972 to Jan, 1974.\n</timeline> \n<reflection> \nThe timeline confirms that Kjell Svensson was the head coach during the period including April 1973. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Kjell Svensson </answer>",
+      "pred_answer": "Kjell Svensson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q1447685_P39_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Substitute member of the Parliamentary Assembly of the Council of Europe",
+      "raw_generation": "<reasoning> \nFranz Karasek's positions are provided with specific time frames. The question asks for his position in May, 1971. The relevant time frame is from Jul, 1970 to Jun, 1972, during which he held the position of Substitute member of the Parliamentary Assembly of the Council of Europe. Since May, 1971 falls within this period, the position he held at that time is the one specified for this period.\n<timeline> \n- Jul, 1970 to Jun, 1972: Substitute member of the Parliamentary Assembly of the Council of Europe.\n</timeline> \n<reflection> \nThe timeline confirms that May, 1971 is within the period when Franz Karasek was the Substitute member of the Parliamentary Assembly of the Council of Europe. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Substitute member of the Parliamentary Assembly of the Council of Europe </answer>",
+      "pred_answer": "Substitute member of the Parliamentary Assembly of the Council of Europe",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q862998_P54_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "FC Energie Cottbus",
+      "raw_generation": "<reasoning> \nJules Reimerink's career timeline shows that he played for FC Energie Cottbus from January 2010 to January 2012. September 2011 falls within this period, so it is reasonable to conclude that he was playing for FC Energie Cottbus at that time.\n<timeline> \nJules Reimerink plays for FC Energie Cottbus from Jan, 2010 to Jan, 2012.\n</timeline> \n<reflection> \nThe timeline clearly indicates that Jules Reimerink was with FC Energie Cottbus during September 2011. There are no contradictions or gaps in the information provided.\n</reflection> \n</reasoning> \n<answer> FC Energie Cottbus </answer>",
+      "pred_answer": "FC Energie Cottbus",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q120730_P6_17",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Sukenari Yokoyama",
+      "raw_generation": "<reasoning> \n<timeline> \nSukenari Yokoyama is the head of the government of Kyu014dto Prefecture from Dec, 1931 to Jun, 1932.\n</timeline> \n<reflection> \nThe timeline shows that Sukenari Yokoyama held the position during the specified period.\n</reflection> \n</reasoning> \n<answer> Sukenari Yokoyama </answer>",
+      "pred_answer": "Sukenari Yokoyama",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5362024_P54_1",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "FC Barcelona Femenu00ed",
+      "raw_generation": "<reasoning> \nElixabete Sarasola's career timeline shows she played for the Spain women's national under-19 football team until January 2009, after which she moved to FC Barcelona Femenu00ed from January 2009 to January 2012. The question asks for her team in June 2009, which falls within the period she was playing for FC Barcelona Femenu00ed.\n<timeline> \n- Elixabete Sarasola plays for Spain women's national under-19 football team until Jan, 2009.\n- Elixabete Sarasola plays for FC Barcelona Femenu00ed from Jan, 2009 to Jan, 2012.\n</timeline> \n<reflection> \nThe timeline clearly indicates that in June 2009, Elixabete Sarasola was playing for FC Barcelona Femenu00ed. There are no contradictions or gaps in the timeline that would suggest otherwise.\n</reflection> \n</reasoning> \n<answer> FC Barcelona Femenu00ed </answer>",
+      "pred_answer": "FC Barcelona Femenu00ed",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q18729_P286_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Mark Bowen",
+      "raw_generation": "<reasoning> \nThe question asks for the head coach of Reading F.C. in February 2020. The relevant information is the timeline of head coaches provided in the context. Mark Bowen is listed as the head coach from October 2019 to August 2020, which includes February 2020.\n<timeline> \n- Jaap Stam: Jan 2016 to Jan 2018\n- Josu00e9 Manuel Gomes: Dec 2018 to Oct 2019\n- Mark Bowen: Oct 2019 to Aug 2020\n- Paul Ince: Feb 2022 to Dec 2022\n</timeline> \n<reflection> \nMark Bowen's tenure covers the period of February 2020, so he is the correct answer. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Mark Bowen </answer>",
+      "pred_answer": "Mark Bowen",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q15995796_P69_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Trinity College",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to determine where George Kemp, 1st Baron Rochdale was educated in February 1887. The context provides specific time frames for his education at different institutions. We know he attended Mill Hill School until January 1881, Shrewsbury School until January 1884, and Trinity College from May 1884 to January 1888. Since February 1887 falls within the period he attended Trinity College, it is reasonable to conclude that he was educated there during that month.\n<timeline> \n- George Kemp attended Mill Hill School until January 1881.\n- George Kemp attended Shrewsbury School until January 1884.\n- George Kemp attended Trinity College from May 1884 to January 1888.\n</timeline> \n<reflection> \nThe timeline clearly shows that February 1887 is within the period George Kemp attended Trinity College. There are no contradictions or gaps in the information provided, so the conclusion is straightforward.\n</reflection> \n</reasoning> \n<answer>Trinity College</answer>",
+      "pred_answer": "Trinity College",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q129916_P69_3",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Princeton University",
+      "raw_generation": "<reasoning> \nHarold Scott MacDonald Coxeter's educational timeline shows he attended Marlborough College until January 1925, then Trinity College until January 1928, followed by the University of Cambridge until January 1931. After this, he attended Princeton University from January 1931 to January 1933. The question asks where he was educated in April 1931, which falls within his time at Princeton University.\n<timeline> \n- Jan 1923 to Jan 1925: Marlborough College\n- Jan 1926 to Jan 1928: Trinity College\n- Jan 1928 to Jan 1931: University of Cambridge\n- Jan 1931 to Jan 1933: Princeton University\n</timeline> \n<reflection> \nThe timeline clearly indicates that April 1931 falls during his attendance at Princeton University. There are no contradictions or gaps in the timeline that would suggest otherwise.\n</reflection> \n</reasoning> \n<answer>Princeton University</answer>",
+      "pred_answer": "Princeton University",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q20017767_P108_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Bryn Mawr College",
+      "raw_generation": "<reasoning> \nGiven the temporal context, Phoebe S. Leboy's employment periods are clearly defined. The question asks for her employer in September 1962. The relevant period is from January 1962 to January 1963, during which she worked for Bryn Mawr College. Since September 1962 falls within this period, the answer should be Bryn Mawr College.\n<timeline> \n- Phoebe S. Leboy works for Bryn Mawr College from January 1962 to January 1963.\n- Phoebe S. Leboy works for Perelman School of Medicine at the University of Pennsylvania from January 1963 to January 1966.\n- Phoebe S. Leboy works for Weizmann Institute of Science from January 1966 to January 1967.\n</timeline> \n<reflection> \nThe timeline confirms that September 1962 is within the period of employment at Bryn Mawr College. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Bryn Mawr College </answer>",
+      "pred_answer": "Bryn Mawr College",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5541150_P39_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 31st Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to determine which position George Jones held in September 1919. The context provides specific time frames for each position he held. We can identify the relevant time frame by comparing the given date with the provided dates.\n\n<timeline> \nGeorge Jones holds the position of Member of the 31st Parliament of the United Kingdom from December 1918 to October 1922.\n</timeline> \n\n<reflection> \nSeptember 1919 falls within the period from December 1918 to October 1922, which corresponds to the position of Member of the 31st Parliament of the United Kingdom. There are no conflicting or overlapping positions during this time.\n</reflection> \n\n</reasoning> \n<answer> Member of the 31st Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 31st Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q55065540_P108_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Pennsylvania State University",
+      "raw_generation": "<reasoning> \nArnold Mallis worked for University of Delaware from January 1944 to January 1945, then for Gulf Oil from January 1945 to January 1968, and finally for Pennsylvania State University from January 1968 to January 1975. The question asks for his employer in August 1969, which falls within the period he worked for Pennsylvania State University.\n<timeline> \n- Arnold Mallis works for University of Delaware: Jan 1944 to Jan 1945.\n- Arnold Mallis works for Gulf Oil: Jan 1945 to Jan 1968.\n- Arnold Mallis works for Pennsylvania State University: Jan 1968 to Jan 1975.\n</timeline> \n<reflection> \nThe timeline shows that August 1969 is within the period Arnold Mallis worked for Pennsylvania State University. The reasoning aligns with the given answer.\n</reflection> \n</reasoning> \n<answer> Pennsylvania State University </answer>",
+      "pred_answer": "Pennsylvania State University",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5235801_P108_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Washington University in St.u00a0Louis",
+      "raw_generation": "<reasoning> \nDavid K. Levine's employment history shows that he worked at the University of Minnesota from September 1987 to June 1988, then at the University of California, Los Angeles from July 1988 to June 2006, followed by Washington University in St. Louis from July 2006 to June 2016. Additionally, he worked at the European University Institute from September 2013 to December 2022. The question asks for his employer in December 2013, which falls within the period he worked at the European University Institute.\n<timeline> \n- David K. Levine works for University of Minnesota: Sep 1987 to Jun 1988.\n- David K. Levine works for University of California, Los Angeles: Jul 1988 to Jun 2006.\n- David K. Levine works for Washington University in St. Louis: Jul 2006 to Jun 2016.\n- David K. Levine works for European University Institute: Sep 2013 to Dec 2022.\n</timeline> \n<reflection> \nThe timeline clearly indicates that David K. Levine was employed at the European University Institute during December 2013, which aligns with the given answer.\n</reflection> \n</reasoning> \n<answer>European University Institute</answer>",
+      "pred_answer": "European University Institute",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.28571428571428575
+    },
+    {
+      "question_id": "L2_Q2636806_P54_4",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Xerez C.D.",
+      "raw_generation": "<reasoning> \nBruno Perone's career timeline shows that he played for multiple teams during different periods. To determine which team he played for in August 2010, we need to identify the period that includes August 2010. The relevant periods are from January 2010 to January 2011, where he played for Xerez C.D., and from January 2010 to January 2010, where he played for Mirassol Futebol Clube. Since August 2010 falls within the period from January 2010 to January 2011, it indicates that he played for Xerez C.D. during that time.\n<timeline> \n- Bruno Perone plays for Mirassol Futebol Clube from Jan, 2010 to Jan, 2010.\n- Bruno Perone plays for Xerez C.D. from Jan, 2010 to Jan, 2011.\n</timeline> \n<reflection> \nThe timeline shows that August 2010 falls within the period Bruno Perone played for Xerez C.D., confirming that this is the correct team for that month. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Xerez C.D. </answer>",
+      "pred_answer": "Xerez C.D.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5541280_P54_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Cardiff City F.C.",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to identify the team George Kelly played for in January 1958. The context provides specific time frames for each team he played for. We can see that George Kelly played for Stoke City F.C. until January 1958 and then moved to Cardiff City F.C. starting from January 1958. Therefore, in January 1958, he would be playing for Cardiff City F.C.\n<timeline> \n- George Kelly plays for Stoke City F.C. until Jan, 1958.\n- George Kelly plays for Cardiff City F.C. from Jan, 1958 to Jan, 1959.\n</timeline> \n<reflection> \nThe timeline clearly shows that George Kelly transitioned from Stoke City F.C. to Cardiff City F.C. in January 1958. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer>Cardiff City F.C.</answer>",
+      "pred_answer": "Cardiff City F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q5056185_P102_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Communist Party of Great Britain",
+      "raw_generation": "<reasoning> \nCecil L'Estrange Malone's political affiliations are provided in the context, each with a specific time frame. The question asks for his party affiliation in August 1921. The relevant time frame for this query is from January 1920 to January 1922, during which he was a member of the Communist Party of Great Britain.\n<timeline> \n- Cecil L'Estrange Malone is a member of the Communist Party of Great Britain from Jan, 1920 to Jan, 1922.\n</timeline> \n<reflection> \nThe timeline clearly indicates that August 1921 falls within the period when Cecil L'Estrange Malone was a member of the Communist Party of Great Britain. There are no contradictions or gaps in the information provided.\n</reflection> \n</reasoning> \n<answer> Communist Party of Great Britain </answer>",
+      "pred_answer": "Communist Party of Great Britain",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q11936769_P54_4",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Elche CF",
+      "raw_generation": "<reasoning> \nMikel Antu00eda Mendiaraz's career timeline shows that he played for various teams during different periods. The question asks for the team he played for in July 2001. The relevant information from the timeline is that Mikel Antu00eda Mendiaraz played for Real Racing Club from January 2001 to January 2001, and then for Elche CF from January 2001 to January 2002. Since July 2001 falls within the period from January 2001 to January 2002, it indicates that he was playing for Elche CF during that time.\n<timeline> \n- Mikel Antu00eda Mendiaraz plays for Real Racing Club from Jan, 2001 to Jan, 2001.\n- Mikel Antu00eda Mendiaraz plays for Elche CF from Jan, 2001 to Jan, 2002.\n</timeline> \n<reflection> \nThe timeline clearly shows that Mikel Antu00eda Mendiaraz moved from Real Racing Club to Elche CF in January 2001, and stayed with Elche CF until January 2002. Therefore, his team in July 2001 would be Elche CF. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Elche CF </answer>",
+      "pred_answer": "Elche CF",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q4719574_P39_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Member of the 23rd Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nAlexander McArthur's positions are given in chronological order, each with a specific time range. To determine his position in December 1885, we need to identify which of these ranges includes December 1885. The first position ends in March 1880, so it does not include December 1885. The second position starts in March 1880 and ends in November 1885, so it also does not include December 1885. The third position starts in November 1885 and ends in June 1886, which includes December 1885. The fourth position starts after December 1885, so it is not relevant.\n<timeline> \n- Alexander McArthur holds the position of Member of the 21st Parliament of the United Kingdom from Jan, 1874 to Mar, 1880.\n- Alexander McArthur holds the position of Member of the 22nd Parliament of the United Kingdom from Mar, 1880 to Nov, 1885.\n- Alexander McArthur holds the position of Member of the 23rd Parliament of the United Kingdom from Nov, 1885 to Jun, 1886.\n- Alexander McArthur holds the position of Member of the 24th Parliament of the United Kingdom from Jul, 1886 to Jun, 1892.\n</timeline> \n<reflection> \nThe timeline shows that Alexander McArthur held the position of Member of the 23rd Parliament of the United Kingdom during December 1885, as this period includes the month in question. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Member of the 23rd Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 23rd Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q6867098_P488_5",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Sergey Burenkov",
+      "raw_generation": "<reasoning> \n<timeline> \n- George Miterev: Mar, 1946 to Feb, 1947\n- Yefim Smirnov: Feb, 1947 to Dec, 1952\n- Mariya Kovrigina: Mar, 1954 to Jan, 1959\n- Sergei Kurashov: Jan, 1959 to Aug, 1965\n- Boris Petrovsky: Sep, 1965 to Dec, 1980\n- Sergey Burenkov: Dec, 1980 to Dec, 1986\n- Yevgeniy Chazov: Feb, 1987 to Mar, 1990\n- Igor Denisov: Apr, 1990 to Nov, 1991\n</timeline> \n<reflection> \nThe timeline shows that Sergey Burenkov was the chair of the USSR Ministry of Health from December 1980 to December 1986. The question asks for the chair in December 1982, which falls within this period.\n</reflection> \n</reasoning> \n<answer> Sergey Burenkov </answer>",
+      "pred_answer": "Sergey Burenkov",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q1459111_P54_2",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Sportfreunde Siegen",
+      "raw_generation": "<reasoning> \nRafael Mea Vitali's career timeline shows that he played for different teams during specific periods. The question asks for the team he played for in January 2003. The timeline indicates that he played for SV Waldhof Mannheim from January 2002 to January 2003, and then for Sportfreunde Siegen from January 2003 to January 2004. Since January 2003 falls within the period he played for Sportfreunde Siegen, this is the relevant team for that month.\n<timeline> \n- Rafael Mea Vitali plays for SV Waldhof Mannheim from Jan, 2002 to Jan, 2003.\n- Rafael Mea Vitali plays for Sportfreunde Siegen from Jan, 2003 to Jan, 2004.\n</timeline> \n<reflection> \nThe timeline clearly shows that January 2003 is within the period he played for Sportfreunde Siegen. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> Sportfreunde Siegen </answer>",
+      "pred_answer": "Sportfreunde Siegen",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q6313447_P54_4",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Jaguares de Cu00f3rdoba",
+      "raw_generation": "<reasoning> \nJunior Sandoval's career timeline shows that he played for various teams during different periods. The question asks for the team he played for in January 2015. The timeline indicates that he played for Jaguares de Cu00f3rdoba from January 2015 to January 2015, which directly answers the question.\n<timeline> \n- Junior Sandoval plays for Jaguares de Cu00f3rdoba from Jan, 2015 to Jan, 2015.\n</timeline> \n<reflection> \nThe timeline clearly shows that Junior Sandoval played for Jaguares de Cu00f3rdoba in January 2015, which matches the provided answer. No further adjustments are needed.\n</reflection> \n</reasoning> \n<answer> Jaguares de Cu00f3rdoba </answer>",
+      "pred_answer": "Jaguares de Cu00f3rdoba",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q46940_P6_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Arsenio Lope Huerta",
+      "raw_generation": "<reasoning> \nThe question asks who was the head of Alcalu00e1 de Henares in June, 1984. The relevant information is the time period during which Arsenio Lope Huerta served as the head of the government of Alcalu00e1 de Henares, which is from May, 1983 to Feb, 1987. Since June, 1984 falls within this period, it is clear that Arsenio Lope Huerta was the head during that time.\n<timeline> \nArsenio Lope Huerta's term as head of Alcalu00e1 de Henares: May, 1983 to Feb, 1987.\n</timeline> \n<reflection> \nThe timeline confirms that Arsenio Lope Huerta was the head during the specified month and year. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> Arsenio Lope Huerta </answer>",
+      "pred_answer": "Arsenio Lope Huerta",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q148_P6_3",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Li Peng",
+      "raw_generation": "<reasoning> \nGiven the temporal context, we need to identify the leader of the People's Republic of China in May 1990. The context provides specific time frames for each leader. We can see that Li Peng's term spans from November 1987 to March 1998. Since May 1990 falls within this period, Li Peng would be the head of the government during that time.\n<timeline> \n- Zhou Enlai: Oct 1949 - Jan 1976\n- Hua Guofeng: Feb 1976 - Sep 1980\n- Zhao Ziyang: Sep 1980 - Nov 1987\n- Li Peng: Nov 1987 - Mar 1998\n- Zhu Rongji: Mar 1998 - Mar 2003\n- Wen Jiabao: Mar 2003 - Mar 2013\n- Li Keqiang: Mar 2013 - Dec 2022\n</timeline> \n<reflection> \nThe timeline confirms that Li Peng's term includes May 1990. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> Li Peng </answer>",
+      "pred_answer": "Li Peng",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L2_Q348896_P39_4",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Minister of the Interior of the Czech Republic",
+      "raw_generation": "<reasoning> \n<timeline>\n- Jun, 1992 to Dec, 1992: Member of the Czech National Council\n- Jun, 1998 to Apr, 2000: Chairperson\n- Apr, 2000 to Aug, 2004: Minister of the Interior of the Czech Republic\n- Jun, 2002 to Aug, 2004: Deputy Prime Minister of the Czech Republic\n- Jun, 2002 to Sep, 2004: Member of the Chamber of Deputies of the Parliament of the Czech Republic\n- Aug, 2004 to Apr, 2005: Prime Minister of the Czech Republic\n- Mar, 2005 to Sep, 2005: Party leader\n</timeline>\n<reflection>\nThe timeline shows that Stanislav Gross held multiple positions concurrently in June 2002. The question asks for the position he held in July 2002, which falls within the period he was both Deputy Prime Minister and Member of the Chamber of Deputies.\n</reflection>\n</reasoning>\n<answer>Member of the Chamber of Deputies of the Parliament of the Czech Republic</answer>",
+      "pred_answer": "Member of the Chamber of Deputies of the Parliament of the Czech Republic",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "L2_Q435411_P108_0",
+      "dataset_name": "tempreason_l2_test",
+      "gold": "Australian National University",
+      "raw_generation": "<reasoning> \nMarilyn Strathern's employment history is provided with specific dates for each institution. The question asks for her employer in November 1975. The relevant time period is from January 1970 to January 1976, during which she worked for Australian National University. Since November 1975 falls within this period, the answer should be Australian National University.\n<timeline> \n- Marilyn Strathern works for Australian National University from January 1970 to January 1976.\n- Marilyn Strathern works for University of Manchester from January 1985 to January 1993.\n- Marilyn Strathern works for University of Cambridge from January 1993 to January 2008.\n- Marilyn Strathern works for Girton College from January 1998 to January 2009.\n</timeline> \n<reflection> \nThe timeline confirms that November 1975 is within the period Marilyn Strathern worked for Australian National University. There are no contradictions or errors in the reasoning.\n</reflection> \n</reasoning> \n<answer> Australian National University </answer>",
+      "pred_answer": "Australian National University",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q218_P6_94",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Dacian Ciolou0219",
+      "raw_generation": "<reasoning> \n<timeline> \nSorin Grindeanu's term as head of the government of Romania is from Jan, 2017 to Jun, 2017. The head of the government immediately before him would be the one whose term ended in Jan, 2017.\n</timeline> \n<reflection> \nThe timeline shows that Dacian Ciolou0219's term ends in Jan, 2017, which matches the given answer.\n</reflection> \n</reasoning> \n<answer> Dacian Ciolou0219 </answer>",
+      "pred_answer": "Dacian Ciolou0219",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q262040_P39_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Member of the 1st Northern Ireland Assembly",
+      "raw_generation": "<reasoning> \nSammy Wilson held the position of Member of the 2nd Northern Ireland Assembly from Nov, 2003 to Jan, 2007. The question asks which position he held before this. The context shows he was Member of the 1st Northern Ireland Assembly from Jun, 1998 to Apr, 2003. This is the position immediately preceding his role in the 2nd Assembly.\n<timeline> \n- Sammy Wilson holds the position of Member of the 1st Northern Ireland Assembly from Jun, 1998 to Apr, 2003.\n- Sammy Wilson holds the position of Member of the 2nd Northern Ireland Assembly from Nov, 2003 to Jan, 2007.\n</timeline> \n<reflection> \nThe timeline confirms that the position held before Member of the 2nd Northern Ireland Assembly is Member of the 1st Northern Ireland Assembly. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Member of the 1st Northern Ireland Assembly </answer>",
+      "pred_answer": "Member of the 1st Northern Ireland Assembly",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q6757587_P54_0",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "FC Luzern",
+      "raw_generation": "<reasoning> \nMarco Kottmann's career timeline shows that he played for FC Luzern before SC Kriens. The transition from FC Luzern to SC Kriens occurred in January 2003, which is the relevant temporal event for this question.\n<timeline> \nMarco Kottmann plays for FC Luzern from Jan, 1999 to Jan, 2003. Marco Kottmann plays for SC Kriens from Jan, 2003 to Jan, 2005.\n</timeline> \n<reflection> \nThe timeline clearly indicates that FC Luzern was the team Marco Kottmann played for immediately before SC Kriens. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> FC Luzern </answer>",
+      "pred_answer": "FC Luzern",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q620027_P488_1",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Tullia Zevi",
+      "raw_generation": "<reasoning> \nPietro Blayer's tenure as chair ends in January 1978. The next chair listed is Tullia Zevi, whose term begins in January 1983. There is a gap between Blayer's departure and Zevi's appointment, but Zevi is the next known chair after Blayer.\n<timeline> \n- Pietro Blayer: Jan, 1976 to Jan, 1978.\n- Tullia Zevi: Jan, 1983 to Jan, 1998.\n</timeline> \n<reflection> \nThe timeline shows a gap after Blayer's term, but Zevi is the next chair listed chronologically. The question asks who was the chair after Blayer, and Zevi fits this criterion.\n</reflection> \n</reasoning> \n<answer> Tullia Zevi </answer>",
+      "pred_answer": "Tullia Zevi",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1053876_P39_5",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "member of the Chamber of Deputies of the Italian Republic",
+      "raw_generation": "<reasoning> \nRandolfo Pacciardi held the position of Italian Minister of Defence from July 1951 to July 1953. After this period, he held the position of member of the Chamber of Deputies of the Italian Republic from May 1963 to June 1968. The timeline shows that his next position after Minister of Defence was member of the Chamber of Deputies.\n<timeline> \n- Randolfo Pacciardi holds the position of Italian Minister of Defence from Jul, 1951 to Jul, 1953.\n- Randolfo Pacciardi holds the position of member of the Chamber of Deputies of the Italian Republic from May, 1963 to Jun, 1968.\n</timeline> \n<reflection> \nThe timeline clearly indicates that after his term as Minister of Defence, Randolfo Pacciardi became a member of the Chamber of Deputies. There are no gaps or overlaps in the positions held, so the reasoning is straightforward.\n</reflection> \n</reasoning> \n<answer> member of the Chamber of Deputies of the Italian Republic </answer>",
+      "pred_answer": "member of the Chamber of Deputies of the Italian Republic",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q6757662_P54_7",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "S.S.D. Lucchese 1905",
+      "raw_generation": "<reasoning> \nMarco Piccinni's career timeline shows that he played for F.B. Brindisi 1912 from January 2009 to January 2010. The next team he played for after this period is S.S.D. Lucchese 1905, which is from January 2010 to January 2011.\n<timeline> \n- Marco Piccinni plays for F.B. Brindisi 1912 from Jan, 2009 to Jan, 2010.\n- Marco Piccinni plays for S.S.D. Lucchese 1905 from Jan, 2010 to Jan, 2011.\n</timeline> \n<reflection> \nThe timeline clearly indicates that S.S.D. Lucchese 1905 is the team Marco Piccinni played for immediately after F.B. Brindisi 1912.\n</reflection> \n</reasoning> \n<answer> S.S.D. Lucchese 1905 </answer>",
+      "pred_answer": "S.S.D. Lucchese 1905",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q789915_P488_16",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "James Baker",
+      "raw_generation": "<reasoning> \nTo determine who was the chair of the United States Department of State before Lawrence Eagleburger, I need to identify the chronological order of chairs and find the one immediately preceding Eagleburger. The context provides a list of chairs with their respective tenures. I will locate Lawrence Eagleburger's tenure and then identify the chair who served immediately before him.\n\n<timeline> \n- Lawrence Eagleburger: Dec, 1992 to Jan, 1993.\n- James Baker: Jan, 1989 to Aug, 1992.\n</timeline>\n\n<reflection> \nReviewing the timeline, I see that James Baker's tenure ends in August 1992, which is before Lawrence Eagleburger's tenure begins in December 1992. This confirms that James Baker was the chair before Lawrence Eagleburger.\n</reflection>\n</reasoning> \n<answer>James Baker</answer>",
+      "pred_answer": "James Baker",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1741_P6_5",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Jakob Reumann",
+      "raw_generation": "<reasoning> \nThe question asks who was the head of Vienna after Richard Weiskirchner. The timeline shows that Richard Weiskirchner held the position from December 1912 to May 1919. The next entry in the timeline is for Jakob Reumann, who held the position from May 1919 to November 1923. Therefore, Jakob Reumann succeeded Richard Weiskirchner.\n<timeline> \nRichard Weiskirchner: Dec 1912 - May 1919.\nJakob Reumann: May 1919 - Nov 1923.\n</timeline> \n<reflection> \nThe timeline directly indicates that Jakob Reumann followed Richard Weiskirchner, so the reasoning aligns with the provided answer.\n</reflection> \n</reasoning> \n<answer> Jakob Reumann </answer>",
+      "pred_answer": "Jakob Reumann",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1172065_P54_5",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Associazione Calcio Milan",
+      "raw_generation": "<reasoning> \nCinzio Scagliotti's career progression is provided in the temporal context. The question asks which team he played for after Juventus FC. The timeline shows that he played for Juventus FC from January 1936 to January 1937. The next entry in the timeline indicates his subsequent team.\n<timeline> \nCinzio Scagliotti plays for Juventus FC from Jan, 1936 to Jan, 1937. Cinzio Scagliotti plays for Associazione Calcio Milan from Jan, 1937 to Jan, 1939.\n</timeline> \n<reflection> \nThe timeline clearly shows that after playing for Juventus FC, Cinzio Scagliotti moved to Associazione Calcio Milan. There are no gaps or ambiguities in the sequence of events.\n</reflection> \n</reasoning> \n<answer> Associazione Calcio Milan </answer>",
+      "pred_answer": "Associazione Calcio Milan",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1782948_P488_3",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Andrew P. Torrence",
+      "raw_generation": "<reasoning> \n<timeline> \nWalter S. Davis is the chair of Tennessee State University from Jan, 1943 to Jan, 1968. Andrew P. Torrence is the chair of Tennessee State University from Jan, 1968 to Jan, 1974.\n</timeline> \n<reflection> \nThe timeline shows that Walter S. Davis' tenure ends in Jan, 1968, and Andrew P. Torrence's tenure begins in Jan, 1968, making him the immediate successor.\n</reflection> \n</reasoning> \n<answer> Andrew P. Torrence </answer>",
+      "pred_answer": "Andrew P. Torrence",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q3701942_P54_14",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "ACF Fiorentina",
+      "raw_generation": "<reasoning> \nDaniele Delli Carri's career timeline shows his movements between teams over the years. The question asks for the team he played for immediately before Delfino Pescara 1936. According to the timeline, Delfino Pescara 1936 is listed after ACF Fiorentina. Therefore, the team before Delfino Pescara 1936 is ACF Fiorentina.\n<timeline> \nDaniele Delli Carri plays for ACF Fiorentina from Jan, 2004 to Jan, 2005. Daniele Delli Carri plays for Delfino Pescara 1936 from Jan, 2005 to Jan, 2007.\n</timeline> \n<reflection> \nThe timeline clearly indicates that ACF Fiorentina is the team Daniele Delli Carri played for immediately before Delfino Pescara 1936. There are no gaps or inconsistencies in the timeline that would require further reasoning.\n</reflection> \n</reasoning> \n<answer> ACF Fiorentina </answer>",
+      "pred_answer": "ACF Fiorentina",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1814393_P6_5",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Hans Christian Nielsen",
+      "raw_generation": "<reasoning> \n<timeline> \n- Svend Aage Troelsen: Apr, 1970 to Jan, 1974\n- Johannes Lyshjelm: Jan, 1974 to Jan, 1986\n- Su00f8ren Clausen: Jan, 1986 to Jan, 1994\n- Hans Christian Nielsen: Jan, 1994 to Jan, 2002\n- Hans Ole Drost: Jan, 2002 to Dec, 2006\n</timeline> \n<reflection> \nThe timeline shows that Su00f8ren Clausen's term ends in Jan, 1994, and Hans Christian Nielsen's term starts in Jan, 1994. This indicates that Hans Christian Nielsen succeeded Su00f8ren Clausen as the head of Sku00e6lsku00f8r Municipality.\n</reflection> \n</reasoning> \n<answer> Hans Christian Nielsen </answer>",
+      "pred_answer": "Hans Christian Nielsen",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q19518_P286_8",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Patrice Garande",
+      "raw_generation": "<reasoning> \nThe question asks who was the head coach of Toulouse FC before Philippe Montanier. The timeline shows that Philippe Montanier's tenure began in June 2021. The previous head coach listed before him is Patrice Garande, whose tenure ended in June 2021.\n<timeline> \nPatrice Garande is the head coach of Toulouse FC from Jun, 2020 to Jun, 2021. Philippe Montanier is the head coach of Toulouse FC from Jun, 2021 to Dec, 2022.\n</timeline> \n<reflection> \nThe timeline directly indicates that Patrice Garande was the head coach immediately before Philippe Montanier. There are no gaps or overlaps in the provided timeline that would require further reasoning.\n</reflection> \n</reasoning> \n<answer> Patrice Garande </answer>",
+      "pred_answer": "Patrice Garande",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q5083446_P39_11",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Member of the 9th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \n<timeline>\nCharles Wentworth-Fitzwilliam, 5th Earl Fitzwilliam holds the position of Member of the 8th Parliament of the United Kingdom from Jun, 1826 to Jul, 1830. After this period, he holds the position of Member of the 9th Parliament of the United Kingdom from Jul, 1830 to Nov, 1830.\n</timeline>\n<reflection>\nThe timeline shows that after holding the position of Member of the 8th Parliament of the United Kingdom, Charles Wentworth-Fitzwilliam, 5th Earl Fitzwilliam held the position of Member of the 9th Parliament of the United Kingdom.\n</reflection>\n</reasoning>\n<answer>Member of the 9th Parliament of the United Kingdom</answer>",
+      "pred_answer": "Member of the 9th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q1541172_P54_3",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Juventus FC",
+      "raw_generation": "<reasoning> \nPietro Carmignani's career progression is given in the temporal context. The question asks which team he played for after Varese Calcio. The timeline shows that he played for Varese Calcio from January 1967 to January 1971. The next entry in the timeline indicates his subsequent team.\n<timeline> \nPietro Carmignani plays for Varese Calcio from Jan, 1967 to Jan, 1971.\nPietro Carmignani plays for Juventus FC from Jan, 1971 to Jan, 1972.\n</timeline> \n<reflection> \nThe timeline clearly shows that after Varese Calcio, Pietro Carmignani played for Juventus FC. There are no gaps or ambiguities in the sequence of events provided.\n</reflection> \n</reasoning> \n<answer> Juventus FC </answer>",
+      "pred_answer": "Juventus FC",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q56223549_P69_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "University of Canterbury",
+      "raw_generation": "<reasoning> \nNicola Shadbolt attended University of Nottingham before University of Canterbury, which occurred before INSEAD. The timeline shows University of Nottingham first, then University of Canterbury, followed by INSEAD.\n<timeline> \n- University of Nottingham: Jan, 1975 to Jan, 1978\n- University of Canterbury: Jan, 1980 to Jan, 1982\n- INSEAD: Jan, 2017 to Jan, 2018\n</timeline> \n<reflection> \nThe timeline confirms University of Canterbury preceded INSEAD, so it is the correct answer.\n</reflection> \n</reasoning> \n<answer> University of Canterbury </answer>",
+      "pred_answer": "University of Canterbury",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q7412920_P39_17",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Member of the 25th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \nSamuel Whitbread held the position of Member of the 24th Parliament of the United Kingdom from July 1886 to June 1892. The question asks which position he held after this period. According to the temporal context, Samuel Whitbread held the position of Member of the 25th Parliament of the United Kingdom from July 1892 to July 1895. Therefore, the position he held immediately after Member of the 24th Parliament of the United Kingdom is Member of the 25th Parliament of the United Kingdom.\n<timeline> \n- Samuel Whitbread holds the position of Member of the 24th Parliament of the United Kingdom from Jul, 1886 to Jun, 1892.\n- Samuel Whitbread holds the position of Member of the 25th Parliament of the United Kingdom from Jul, 1892 to Jul, 1895.\n</timeline> \n<reflection> \nThe timeline shows that Samuel Whitbread transitioned directly from Member of the 24th Parliament of the United Kingdom to Member of the 25th Parliament of the United Kingdom. There are no gaps or other positions mentioned between these two periods, so the answer is straightforward.\n</reflection> \n</reasoning> \n<answer> Member of the 25th Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 25th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q891_P6_9",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Ivan Karnilin",
+      "raw_generation": "<reasoning> \n<timeline> \nOleg Kondrashov was the head of the government of Nizhny Novgorod from Dec, 2010 to Jul, 2015. Ivan Karnilin succeeded him and became the head of the government of Nizhny Novgorod from Oct, 2015 to May, 2017.\n</timeline> \n<reflection> \nThe timeline shows that Ivan Karnilin was the head of Nizhny Novgorod immediately after Oleg Kondrashov.\n</reflection> \n</reasoning> \n<answer> Ivan Karnilin </answer>",
+      "pred_answer": "Ivan Karnilin",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q40_P35_7",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Adolf Schu00e4rf",
+      "raw_generation": "<reasoning> \n<timeline> \nTheodor Ku00f6rner's term as head of state ends in January 1957. Adolf Schu00e4rf's term begins in May 1957.\n</timeline> \n<reflection> \nThe timeline shows that Adolf Schu00e4rf succeeded Theodor Ku00f6rner as head of state.\n</reflection> \n</reasoning> \n<answer> Adolf Schu00e4rf </answer>",
+      "pred_answer": "Adolf Schu00e4rf",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q653176_P6_3",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Viorel Buzea",
+      "raw_generation": "<reasoning> \nNicolae Nedelcu's term ends in Jan, 2016, and Nicolaie Nedelcu's term starts in Jan, 2016. So Nicolaie Nedelcu is the head of Ziduri after Nicolae Nedelcu.\n<timeline> \n- Nicolae Nedelcu: Jan, 2014 to Jan, 2016.\n- Nicolaie Nedelcu: Jan, 2016 to Oct, 2020.\n</timeline> \n<reflection> \nThe timeline shows that Nicolaie Nedelcu immediately follows Nicolae Nedelcu as the head of Ziduri. No errors found.\n</reflection> \n</reasoning> \n<answer> Nicolaie Nedelcu </answer>",
+      "pred_answer": "Nicolaie Nedelcu",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "L3_Q3017537_P54_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "France national rugby union team",
+      "raw_generation": "<reasoning> \nDavid Bory's career timeline shows that he played for ASM Clermont Auvergne before Castres Olympique. The context indicates that his tenure at ASM Clermont Auvergne ended in January 2004, which precedes his time at Castres Olympique starting in January 2004.\n<timeline> \n- David Bory plays for ASM Clermont Auvergne from Jan, 1994 to Jan, 2004.\n- David Bory plays for Castres Olympique from Jan, 2004 to Jan, 2005.\n</timeline> \n<reflection> \nThe timeline clearly places ASM Clermont Auvergne before Castres Olympique, confirming the answer.\n</reflection> \n</reasoning> \n<answer> ASM Clermont Auvergne </answer>",
+      "pred_answer": "ASM Clermont Auvergne",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "L3_Q249870_P6_7",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Yang Cheng-wu",
+      "raw_generation": "<reasoning> \nChen Fu-hai's term as head of the government of Kinmen ended in Dec, 2018. The next head of the government of Kinmen after Chen Fu-hai is Yang Cheng-wu, who took office in Dec, 2018.\n<timeline> \n- Chen Fu-hai: Dec, 2014 to Dec, 2018.\n- Yang Cheng-wu: Dec, 2018 to Dec, 2022.\n</timeline> \n<reflection> \nThe timeline shows that Yang Cheng-wu succeeded Chen Fu-hai as the head of the government of Kinmen. The reasoning aligns with the provided answer.\n</reflection> \n</reasoning> \n<answer> Yang Cheng-wu </answer>",
+      "pred_answer": "Yang Cheng-wu",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q950211_P108_7",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Kryvyi Rih National University",
+      "raw_generation": "<reasoning> \nMark Krein worked for the National Academy of Sciences of Ukraine from January 1944 to January 1952. After this period, he worked for Odessa National Maritime Academy from January 1944 to January 1954. However, since the question asks for the employer after the National Academy of Sciences of Ukraine, the correct answer should be the next immediate employer after his tenure at the National Academy of Sciences of Ukraine.\n<timeline> \n- Mark Krein works for National Academy of Sciences of Ukraine from Jan, 1944 to Jan, 1952.\n- Mark Krein works for Odessa National Maritime Academy from Jan, 1944 to Jan, 1954.\n</timeline> \n<reflection> \nThe timeline shows that Odessa National Maritime Academy is the next employer after the National Academy of Sciences of Ukraine. The reasoning aligns with the provided answer.\n</reflection> \n</reasoning> \n<answer>Odessa National Maritime Academy</answer>",
+      "pred_answer": "Odessa National Maritime Academy",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.25
+    },
+    {
+      "question_id": "L3_Q247545_P108_3",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "University of Bucharest",
+      "raw_generation": "<reasoning> \nGheorghe Vru0103nceanu worked at Chernivtsi University from January 1929 to January 1939. After this period, he worked at the University of Bucharest from January 1939 to January 1970. Therefore, the employer after Chernivtsi University is the University of Bucharest.\n<timeline> \n- Gheorghe Vru0103nceanu works for Chernivtsi University from Jan, 1929 to Jan, 1939.\n- Gheorghe Vru0103nceanu works for University of Bucharest from Jan, 1939 to Jan, 1970.\n</timeline> \n<reflection> \nThe timeline shows that after working at Chernivtsi University until January 1939, Gheorghe Vru0103nceanu immediately started working at the University of Bucharest in the same month. This confirms that the University of Bucharest is the correct answer.\n</reflection> \n</reasoning> \n<answer> University of Bucharest </answer>",
+      "pred_answer": "University of Bucharest",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q24635892_P39_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Member of the 4th Parliament of the 4th Republic of Ghana",
+      "raw_generation": "<reasoning> \nAbukari Sumani held the position of Member of the 3rd Parliament of the 4th Republic of Ghana before becoming a Member of the 4th Parliament. The timeline shows that he held the 3rd Parliament position from January 2001 to January 2005, and then the 4th Parliament position from January 2005 to January 2009. Therefore, the position he held immediately before becoming a Member of the 5th Parliament would be the one he held during the period just prior to that.\n<timeline> \n- Abukari Sumani holds the position of Member of the 3rd Parliament of the 4th Republic of Ghana from Jan, 2001 to Jan, 2005.\n- Abukari Sumani holds the position of Member of the 4th Parliament of the 4th Republic of Ghana from Jan, 2005 to Jan, 2009.\n- Abukari Sumani holds the position of Member of the 5th Parliament of the 4th Republic of Ghana from Jan, 2009 to Jan, 2013.\n</timeline> \n<reflection> \nThe timeline clearly indicates that the position held immediately before the 5th Parliament was the 4th Parliament. There are no gaps or inconsistencies in the timeline that would suggest another position was held in between.\n</reflection> \n</reasoning> \n<answer> Member of the 4th Parliament of the 4th Republic of Ghana </answer>",
+      "pred_answer": "Member of the 4th Parliament of the 4th Republic of Ghana",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q2939953_P69_5",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "School of the Air",
+      "raw_generation": "<reasoning> \nCaroline Aigle's educational timeline shows she attended u00c9cole polytechnique from January 1994 to January 1997. After this period, the next educational institution she attended was School of the Air from January 1997 to January 1998.\n<timeline> \n- Caroline Aigle attended u00c9cole polytechnique from Jan, 1994 to Jan, 1997.\n- Caroline Aigle attended School of the Air from Jan, 1997 to Jan, 1998.\n</timeline> \n<reflection> \nThe timeline clearly indicates that after u00c9cole polytechnique, Caroline Aigle attended School of the Air. There are no gaps or overlaps in the timeline that would suggest another institution was attended in between.\n</reflection> \n</reasoning> \n<answer> School of the Air </answer>",
+      "pred_answer": "School of the Air",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q6237389_P39_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Member of the 16th Parliament of the United Kingdom",
+      "raw_generation": "<reasoning> \n<timeline>\n- Richard Bethell, 1st Baron Westbury holds the position of Member of the 15th Parliament of the United Kingdom from Apr, 1851 to Jul, 1852.\n- Richard Bethell, 1st Baron Westbury holds the position of Member of the 16th Parliament of the United Kingdom from Jul, 1852 to Mar, 1857.\n- Richard Bethell, 1st Baron Westbury holds the position of Member of the 17th Parliament of the United Kingdom from Mar, 1857 to Apr, 1859.\n</timeline>\n<reflection>\nThe timeline shows that Richard Bethell, 1st Baron Westbury held the position of Member of the 16th Parliament of the United Kingdom immediately before he became a Member of the 17th Parliament of the United Kingdom.\n</reflection>\n</reasoning>\n<answer>Member of the 16th Parliament of the United Kingdom</answer>",
+      "pred_answer": "Member of the 16th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q332562_P39_8",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Chancellor of the Duchy of Lancaster",
+      "raw_generation": "<reasoning> \nJohn Hutton, Baron Hutton of Furness held several positions over time. The question asks for the position he held before becoming Secretary of State for Business, Energy and Industrial Strategy. The timeline shows he was Secretary of State for Business, Energy and Industrial Strategy from June 2007 to October 2008. Before this, he was Member of the 54th Parliament of the United Kingdom from May 2005 to April 2010. However, the position immediately preceding his role as Secretary of State was Chancellor of the Duchy of Lancaster, which he held from May 2005 to November 2005.\n<timeline> \n- John Hutton, Baron Hutton of Furness holds the position of Chancellor of the Duchy of Lancaster from May, 2005 to Nov, 2005.\n- John Hutton, Baron Hutton of Furness holds the position of Secretary of State for Business, Energy and Industrial Strategy from Jun, 2007 to Oct, 2008.\n</timeline> \n<reflection> \nThe timeline indicates that Chancellor of the Duchy of Lancaster was the position held immediately before Secretary of State for Business, Energy and Industrial Strategy. There are no gaps or overlaps in the timeline that would suggest another position was held in between.\n</reflection> \n</reasoning> \n<answer> Chancellor of the Duchy of Lancaster </answer>",
+      "pred_answer": "Chancellor of the Duchy of Lancaster",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "sha256": "9f95ce16c12445839c7bada60cffb0b66a749433fc385fc4a0678cf07a47b871"
+}

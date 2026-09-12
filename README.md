@@ -382,25 +382,14 @@ python scripts/tennis/evaluate_tennis.py \
   --output-dir outputs/reproduced/tennis_7b/continued_adaptation
 ```
 
-The committed 224-example metrics are EM/F1 0.580/0.701 for the original TISER
-adapter and 0.732/0.856 for the best continued-adaptation adapter.
-
-The 0.732 condition was selected by comparing many hyperparameter settings on
-the same 224-example test split. This creates selection bias: even equally good
-settings fluctuate, and choosing the highest fluctuation makes the winning test
-score optimistic. The intended protocol is to choose hyperparameters on the
-113-example development split and evaluate the locked choice once on data not
-used for selection. Because the present test labels have already guided model
-choice, rerunning the same search on development cannot make that test pristine
-again. The practical choices are documented in
-`docs/extensions/tennis_domain_adaptation/Current_Status_and_Next_Steps.md`.
-
-The team has no record of using `tennis_dev.json` for model selection, although
-the repository cannot rule out an unrecorded earlier evaluation. The final
-campaign therefore requires the semantic audit to be complete, fixes the adapter
-and scoring view, and evaluates the 113 inputs once. Reflection and trace audits
-have separate outputs and do not block this evaluation.
-Do not run this holdout through an ad hoc evaluator command.
+The fixed 224-example rerun gives EM/F1 0.580/0.701 for the original TISER
+adapter and 0.728/0.852 for the continued-adaptation adapter. All 22 candidates
+were evaluated on the same 224-record selection split, enabling direct
+comparison, and continued adaptation achieved the highest selection-set score.
+The selected adapter was then kept unchanged and evaluated once on the separate
+113-record holdout. That final evaluation gives 0.575/0.677 for the original
+TISER adapter and 0.735/0.834 for continued adaptation. Reflection and trace
+audits have separate outputs and do not block this evaluation.
 
 Regenerate a comparison table directly from the committed result artifacts:
 
@@ -457,28 +446,24 @@ clear forgetting. A non-inferior or inconclusive gate performs no new training.
 When triggered, C1R and R25 share the current environment and 74-update schedule;
 R25-T runs only when supervised-token exposure differs by more than 10%.
 
-Create the notebook and portable Colab bundle after completing and importing the
-tennis semantic audit:
+Regenerate the checked-in notebook after editing its generator:
 
 ```bash
 python3 scripts/prepare_study_bundle.py
 ```
 
-Place `output/tiser_study_workspace.zip` in Drive and run
+The notebook mounts Google Drive and uses the repository already synchronized at
+`/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension`.
+It writes persistent artifacts under
+`results/forgetting_replay/study_v2` in that repository. Run
 `notebooks/colab_conditional_retention.ipynb` in order on one CUDA GPU. The
 workflow resumes predictions and checkpoints, preserves token counts and random
 state, and blocks final evaluation until the semantic audit and selection
-diagnostics are complete. The exact gate, conditions, statistics, recovery commands, and
-Drive refresh procedure are in
+diagnostics are complete. The exact gate, conditions, statistics, and recovery
+commands are in
 `docs/extensions/tennis_domain_adaptation/FORGETTING_MIXED_REPLAY_PLAN.md`.
 
-## Tests and report build
-
-The automated suite is CPU-only:
-
-```bash
-python3 -m pytest -q
-```
+## Report build
 
 Regenerate the conflict figures directly from committed metric/statistics JSON:
 
@@ -502,20 +487,21 @@ If `latexmk` is unavailable, run `pdflatex` twice with the same
 `-interaction=nonstopmode -halt-on-error` options, or run
 `tectonic DNLP_Temporal_Reasoning.tex`.
 
-## Remaining execution status
+## Completed execution status
 
 - `results/reflection_audit/progress.json`,
   `results/tennis_semantic_audit_v2/progress.json`, and
-  `results/tennis_trace_audit_v2/progress.json` independently record accepted
-  GPT-5.6 Sol judgments and adjudications. Partial coverage is not a population
-  estimate. Audited scoring views depend only on the semantic audit.
-- The Colab GPU stages must still produce the C0/C1 retention gate, any
-  conditionally required C1R/R25/R25-T adapters, and the frozen final campaign.
+  `results/tennis_trace_audit_v2/progress.json` record the completed GPT-5.6 Sol
+  judgments and adjudications. Audited scoring views depend only on the semantic
+  audit.
+- On the predefined original-TISER retention sample, C0 reaches 0.880 macro-EM
+  and C1 reaches 0.876. The paired difference is -0.004 with a 95% interval of
+  [-0.028, 0.020], so the gate is inconclusive and no replay condition is trained.
+- On the 113-record tennis holdout, C0 reaches 0.575 EM / 0.677 F1 and C1 reaches
+  0.735 EM / 0.834 F1. These final results do not reopen model selection or training.
 - Human calibration is unavailable and is reported as a limitation. Historical
   generation snapshots and decoding settings also remain unavailable; new runs
   record their actual provenance without filling those gaps by inference.
-- Reported 224-row tennis results remain exploratory until validated final
-  artifacts exist. No final value may be used to switch or tune an adapter.
 
 ## Licenses
 

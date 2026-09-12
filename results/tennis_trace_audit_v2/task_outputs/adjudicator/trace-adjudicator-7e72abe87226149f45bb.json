@@ -1,0 +1,178 @@
+{
+  "batch_id": "trace-adjudicator-7e72abe87226149f45bb",
+  "batch_sha256": "ed8ada6743463c2cb402b2eaa36bf851a555f6012239ac6d4fe10d3a5abc6c9e",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-11T00:17:48+02:00",
+  "observed_model_label": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-42d979ca7884b09f8efa144c",
+      "source_sha256": "42d979ca7884b09f8efa144c4be6d6244a5b09e74971e204ff36f6a12ac613f6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "In the third set, Sinner led 4-1 when rain stopped play for thirty minutes."
+        }
+      ],
+      "rationale": "The context uses “when” to place the rain stoppage at the time Sinner led 4-1, supporting the trace’s zero-minute conclusion."
+    },
+    {
+      "audit_id": "trace-63e7e56ce1a0c4a83689403b",
+      "source_sha256": "63e7e56ce1a0c4a83689403b042d503f301e23e888def431990f234f44e7238d",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton then called a coaching violation."
+        },
+        {
+          "field": "trace",
+          "quote": "Shelton called/received a coaching violation"
+        }
+      ],
+      "rationale": "The context says Shelton called a violation, but the trace changes this into Shelton receiving one; that participant-role change is not supported."
+    },
+    {
+      "audit_id": "trace-b1dda83e36cb32579e210aee",
+      "source_sha256": "b1dda83e36cb32579e210aeec5fbe8694cba48255fc719fc4d94c2108fae4d3f",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton then called a coaching violation for receiving signals from his box."
+        },
+        {
+          "field": "trace",
+          "quote": "Shelton received the coaching violation warning"
+        }
+      ],
+      "rationale": "The trace treats Shelton as the recipient of the violation, while the context states that Shelton called it; the asserted event is therefore unsupported."
+    },
+    {
+      "audit_id": "trace-b938f124c66bc4bf07e9f521",
+      "source_sha256": "b938f124c66bc4bf07e9f521a9151a11e0aeb1d41a80c8c633f812151bc57555",
+      "label": "contradictory",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the same game, he saved a third break point with a forehand winner. Alcaraz then held serve"
+        },
+        {
+          "field": "trace",
+          "quote": "making the events overlapping."
+        }
+      ],
+      "rationale": "The context orders the break-point save before Alcaraz then held serve, whereas the trace says the events overlap merely because they occurred in the same game."
+    },
+    {
+      "audit_id": "trace-bbdbd9fdb965e0206ff528b1",
+      "source_sha256": "bbdbd9fdb965e0206ff528b11775d30fd43cf54f9d0b1d75c1eebad4d34afa47",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton hit a return winner to reach break point. De Minaur double-faulted on the next point."
+        }
+      ],
+      "rationale": "The return winner occurred on the point immediately preceding De Minaur’s double fault, so the trace’s answer and sequence are supported."
+    },
+    {
+      "audit_id": "trace-bdddef66453956e4fec81f41",
+      "source_sha256": "bdddef66453956e4fec81f41204931bfce9e2012b85b473543a1ffef912bd675",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Before the second set, Shelton left the court for a bathroom break. After returning, Shelton broke serve immediately."
+        }
+      ],
+      "rationale": "Shelton returned from the bathroom break before breaking serve, exactly matching the trace’s order and answer."
+    },
+    {
+      "audit_id": "trace-bf1f10bd0f1919d3cd694d11",
+      "source_sha256": "bf1f10bd0f1919d3cd694d11363bee633e2912e7021b37e379faf46ec2649107",
+      "label": "contradictory",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "he played Alcaraz in a highly anticipated semifinal. Sinner won the match and successfully advanced to the tournament final."
+        },
+        {
+          "field": "trace",
+          "quote": "On Sunday, Sinner played Alcaraz in final."
+        }
+      ],
+      "rationale": "The trace moves Alcaraz from the stated semifinal into the final and invents a Sunday final appearance, contradicting the supplied match placement."
+    },
+    {
+      "audit_id": "trace-c14e8486157edc4a376591c9",
+      "source_sha256": "c14e8486157edc4a376591c9c8a01c64195671efaaec7d519b67224edd438b40",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After the set, Shelton changed shoes at the bench. Before the second set began, the umpire inspected a loose net strap."
+        },
+        {
+          "field": "trace",
+          "quote": "Both events happen between sets, but the context implies shoe change occurs first"
+        }
+      ],
+      "rationale": "Both events are placed between sets, but the context does not state their order relative to each other; the trace assumes the shoe change came first."
+    },
+    {
+      "audit_id": "trace-cc8fb4f805710e2c77387530",
+      "source_sha256": "cc8fb4f805710e2c7738753057fcc5ce1ac117160f30c5d252ac07f55a69e9bc",
+      "label": "contradictory",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz challenged the call on the third serve. Hawk-Eye showed the ball was clearly out."
+        },
+        {
+          "field": "trace",
+          "quote": "Fritz's challenge came after Shelton hit the three aces."
+        }
+      ],
+      "rationale": "The review establishes that the challenged third serve was out, so the trace’s claim that three aces had been completed before the challenge conflicts with the result."
+    },
+    {
+      "audit_id": "trace-e1bad081e0aa80d692c9d368",
+      "source_sha256": "e1bad081e0aa80d692c9d3688a09510ced891bb14ef964b86479ff645f59a644",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "After Fritz held for 1-2, rain delayed the match for thirty minutes."
+        },
+        {
+          "field": "trace",
+          "quote": "the hold occurred immediately before the rain delay."
+        }
+      ],
+      "rationale": "The context supports that Fritz held before the delay, but it does not support the trace’s stronger claim that the hold was immediately before it."
+    }
+  ]
+}

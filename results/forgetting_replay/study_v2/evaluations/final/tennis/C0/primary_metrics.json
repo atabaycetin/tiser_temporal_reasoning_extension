@@ -1,0 +1,151 @@
+{
+  "answer_type_confusion": {
+    "duration_minutes": {
+      "duration_minutes": 4,
+      "number": 10,
+      "span": 1
+    },
+    "number": {
+      "span": 1
+    },
+    "span": {
+      "span": 43,
+      "yes_no": 2
+    },
+    "tournament_round": {
+      "span": 1,
+      "tournament_round": 1
+    },
+    "yes_no": {
+      "yes_no": 50
+    }
+  },
+  "category_answer_type_confusion": {
+    "duration_minutes": {
+      "duration_minutes": {
+        "duration_minutes": 4,
+        "number": 10,
+        "span": 1
+      }
+    },
+    "immediate_before_after": {
+      "span": {
+        "span": 20
+      }
+    },
+    "other_temporal": {
+      "number": {
+        "span": 1
+      },
+      "tournament_round": {
+        "tournament_round": 1
+      }
+    },
+    "overlap_while_during": {
+      "yes_no": {
+        "yes_no": 11
+      }
+    },
+    "tennis_injury_or_medical": {
+      "span": {
+        "span": 1
+      }
+    },
+    "tournament_round_sequence": {
+      "span": {
+        "span": 1
+      },
+      "tournament_round": {
+        "span": 1
+      }
+    },
+    "which_first_last": {
+      "span": {
+        "span": 21,
+        "yes_no": 2
+      }
+    },
+    "yes_no_before_after": {
+      "yes_no": {
+        "yes_no": 39
+      }
+    }
+  },
+  "malformed_examples": [],
+  "normalization": {
+    "function": "src.tennis.normalize.normalize_tennis_answer",
+    "notes": [
+      "lowercase with NFKC Unicode normalization",
+      "normalize curly apostrophes and dash variants",
+      "normalize No. 1 / no 1 / #1 / number 1 ranking answers to 1",
+      "normalize numeric minute/minutes durations to singular minute",
+      "normalize duration_minutes whole-answer numbers/minute units to bare numbers",
+      "remove punctuation and English articles, then collapse whitespace"
+    ]
+  },
+  "overall": {
+    "em": 0.5752212389380531,
+    "f1": 0.6769554928846965,
+    "malformed_count": 0,
+    "malformed_rate": 0.0,
+    "n": 113
+  },
+  "per_category": {
+    "duration_minutes": {
+      "em": 0.4666666666666667,
+      "f1": 0.4666666666666667,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 15
+    },
+    "immediate_before_after": {
+      "em": 0.25,
+      "f1": 0.6255777555777555,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 20
+    },
+    "other_temporal": {
+      "em": 0.5,
+      "f1": 0.5,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 2
+    },
+    "overlap_while_during": {
+      "em": 0.9090909090909091,
+      "f1": 0.9090909090909091,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 11
+    },
+    "tennis_injury_or_medical": {
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 1
+    },
+    "tournament_round_sequence": {
+      "em": 0.5,
+      "f1": 0.5,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 2
+    },
+    "which_first_last": {
+      "em": 0.391304347826087,
+      "f1": 0.5355543007716921,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 23
+    },
+    "yes_no_before_after": {
+      "em": 0.8205128205128205,
+      "f1": 0.8205128205128205,
+      "malformed_count": 0,
+      "malformed_rate": 0.0,
+      "n": 39
+    }
+  }
+}

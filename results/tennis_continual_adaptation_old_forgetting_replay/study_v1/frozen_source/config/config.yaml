@@ -1,0 +1,58 @@
+run_name: tiser_qwen7b_full
+
+seed: 42
+
+paths:
+  data_dir: data
+  train_file: data/TISER_train.json
+  test_file: data/TISER_test.json
+  model_dir: model
+  output_dir: outputs
+  local_source_dir: "local_data"    # optional: dir with real TISER_*.json to copy instead of downloading
+  hf_dataset_id: AmazonScience/TISER
+
+model:
+  name: Qwen/Qwen2.5-7B-Instruct        # swap to -3B-Instruct / -1.5B-Instruct, no code change
+  load_in_4bit: false                    # false = bf16 base LoRA (what the reported full run used;
+                                         #   fits 80GB). true = QLoRA for smaller GPUs
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  # compute dtype is auto: bf16 if supported (A100) else fp16 (T4)
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  bias: none
+
+train:
+  subset_size: null            # null = full ~60k (default). set e.g. 2000 for a T4 smoke run
+  max_seq_len: 2048
+  per_device_batch_size: 8     # H100-80GB; effective batch = 8 x 2 = 16 (unchanged from smoke)
+  gradient_accumulation_steps: 2
+  num_epochs: 3
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  # Safe default; `false` is ~20-30% faster on H100 when memory permits.
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_strategy: epoch
+
+eval:
+  engine: hf                   # hf | vllm. hf keeps the frozen-baseline repro byte-identical;
+                               #   vllm reuses the validated conflict engine (~10-50x faster) for full eval
+  gpu_memory_utilization: 0.90 # vllm only: KV-cache budget (fraction of VRAM)
+  max_model_len: null          # vllm only: context cap; null = model default
+  max_samples_per_split: null  # null = full test split. set e.g. 200 for a T4 sampled eval
+  batch_size: 32               # H100-80GB; drop to 16 if KV-cache OOM, or to 1-2 on T4 (hf path)
+  max_new_tokens: 768          # headroom for long TempReason_L3 timelines (EOS stops early, so ~free)
+  do_sample: false             # greedy / deterministic
+
+# In-domain splits used for the macro average. Must match dataset_name in the
+# released test file (lowercase, _test suffix). The file also ships an OOD split
+# (tot_semantic_test); leaving it out here keeps it out of the macro.
+splits: [tgqa_test, tempreason_l2_test, tempreason_l3_test, timeqa_easy_test, timeqa_hard_test]

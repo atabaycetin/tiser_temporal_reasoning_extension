@@ -1,0 +1,187 @@
+{
+  "spec_sha256": "de2e694912b731b1f4ea2dbbd57a99364e42d7679b42e76ad19cb84c1abbd25f",
+  "spec": {
+    "seed": 42,
+    "replicates": 10000,
+    "comparisons": [
+      {
+        "id": "C1-C0",
+        "domain": "tiser",
+        "baseline": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/selection/tiser/C0/predictions.jsonl",
+        "candidate": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/selection/tiser/C1/predictions.jsonl"
+      }
+    ]
+  },
+  "comparisons": {
+    "C1-C0": {
+      "domain": "tiser",
+      "seed": 42,
+      "replicates": 10000,
+      "macro_splits": [
+        "tgqa_test",
+        "tempreason_l2_test",
+        "tempreason_l3_test",
+        "timeqa_easy_test",
+        "timeqa_hard_test"
+      ],
+      "n": 500,
+      "per_split": {
+        "tgqa_test": {
+          "n": 100,
+          "baseline": {
+            "em": 0.56,
+            "f1": 0.8375405438215036
+          },
+          "candidate": {
+            "em": 0.62,
+            "f1": 0.8529201788923149
+          }
+        },
+        "tempreason_l2_test": {
+          "n": 100,
+          "baseline": {
+            "em": 0.92,
+            "f1": 0.9482975651799183
+          },
+          "candidate": {
+            "em": 0.93,
+            "f1": 0.9566308985132516
+          }
+        },
+        "tempreason_l3_test": {
+          "n": 100,
+          "baseline": {
+            "em": 0.95,
+            "f1": 0.9639285714285714
+          },
+          "candidate": {
+            "em": 0.9,
+            "f1": 0.9139285714285714
+          }
+        },
+        "timeqa_easy_test": {
+          "n": 100,
+          "baseline": {
+            "em": 1.0,
+            "f1": 1.0
+          },
+          "candidate": {
+            "em": 0.99,
+            "f1": 0.9988888888888888
+          }
+        },
+        "timeqa_hard_test": {
+          "n": 100,
+          "baseline": {
+            "em": 0.97,
+            "f1": 0.9819780219780221
+          },
+          "candidate": {
+            "em": 0.94,
+            "f1": 0.958952380952381
+          }
+        }
+      },
+      "mcnemar": {
+        "tgqa_test": {
+          "both_correct": 48,
+          "baseline_only": 8,
+          "candidate_only": 14,
+          "both_wrong": 30,
+          "p_exact_two_sided": 0.2862787246704091,
+          "p_holm": 1.0
+        },
+        "tempreason_l2_test": {
+          "both_correct": 90,
+          "baseline_only": 2,
+          "candidate_only": 3,
+          "both_wrong": 5,
+          "p_exact_two_sided": 1.0,
+          "p_holm": 1.0
+        },
+        "tempreason_l3_test": {
+          "both_correct": 90,
+          "baseline_only": 5,
+          "candidate_only": 0,
+          "both_wrong": 5,
+          "p_exact_two_sided": 0.0625,
+          "p_holm": 0.3125
+        },
+        "timeqa_easy_test": {
+          "both_correct": 99,
+          "baseline_only": 1,
+          "candidate_only": 0,
+          "both_wrong": 0,
+          "p_exact_two_sided": 1.0,
+          "p_holm": 1.0
+        },
+        "timeqa_hard_test": {
+          "both_correct": 94,
+          "baseline_only": 3,
+          "candidate_only": 0,
+          "both_wrong": 3,
+          "p_exact_two_sided": 0.25000000000000006,
+          "p_holm": 1.0
+        }
+      },
+      "excluded_ood_splits": [
+        "tot_semantic_test"
+      ],
+      "em": {
+        "baseline": 0.8800000000000001,
+        "candidate": 0.876,
+        "delta": -0.004000000000000115,
+        "ci95": [
+          -0.028,
+          0.019999999999999997
+        ],
+        "retention_ratio": 0.9954545454545454
+      },
+      "f1": {
+        "baseline": 0.946348940481603,
+        "candidate": 0.9362641837350815,
+        "delta": -0.01008475674652154,
+        "ci95": [
+          -0.02812498777366424,
+          0.007003326599870711
+        ],
+        "retention_ratio": 0.9893435113464708
+      },
+      "decision": "inconclusive",
+      "inputs": {
+        "baseline": {
+          "path": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/selection/tiser/C0/predictions.jsonl",
+          "sha256": "f3c647d8981055b8469443a672e5dbe1ce8078db36d1b88bbe030cb859d9877f"
+        },
+        "candidate": {
+          "path": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/evaluations/selection/tiser/C1/predictions.jsonl",
+          "sha256": "faa5d62af21f9ad146bef52a99790418d68758f3b599bb4d4e58f9e549e86cfb"
+        }
+      }
+    }
+  },
+  "holm_family": [
+    {
+      "comparison": "C1-C0",
+      "split": "tgqa_test"
+    },
+    {
+      "comparison": "C1-C0",
+      "split": "tempreason_l2_test"
+    },
+    {
+      "comparison": "C1-C0",
+      "split": "tempreason_l3_test"
+    },
+    {
+      "comparison": "C1-C0",
+      "split": "timeqa_easy_test"
+    },
+    {
+      "comparison": "C1-C0",
+      "split": "timeqa_hard_test"
+    }
+  ],
+  "training_seeds": 1,
+  "training_variability_measured": false
+}

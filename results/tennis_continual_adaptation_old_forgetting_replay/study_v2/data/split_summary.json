@@ -1,0 +1,48 @@
+{
+  "n_input": 22014,
+  "n_output": 600,
+  "sampling_mode": "per_split",
+  "split_summary": {
+    "tempreason_l2_test": {
+      "available": 5397,
+      "sampled": 100
+    },
+    "tempreason_l3_test": {
+      "available": 4426,
+      "sampled": 100
+    },
+    "tgqa_test": {
+      "available": 3316,
+      "sampled": 100
+    },
+    "timeqa_easy_test": {
+      "available": 2997,
+      "sampled": 100
+    },
+    "timeqa_hard_test": {
+      "available": 3078,
+      "sampled": 100
+    },
+    "tot_semantic_test": {
+      "available": 2800,
+      "sampled": 100
+    }
+  },
+  "dataset_name_counts": {
+    "tempreason_l2_test": 100,
+    "tempreason_l3_test": 100,
+    "tgqa_test": 100,
+    "timeqa_easy_test": 100,
+    "timeqa_hard_test": 100,
+    "tot_semantic_test": 100
+  },
+  "warnings": [],
+  "fields": [
+    "prompt",
+    "question",
+    "answer",
+    "dataset_name",
+    "question_id"
+  ],
+  "ood_ids_namespaced": 2800
+}

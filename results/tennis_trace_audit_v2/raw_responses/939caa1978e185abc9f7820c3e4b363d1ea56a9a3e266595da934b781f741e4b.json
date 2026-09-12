@@ -1,0 +1,46 @@
+{
+  "batch_id": "trace-adjudicator-2f30e8fac7982afbc8fd",
+  "batch_sha256": "3554cc74320d17ff6cb2402ebd4f3cc031b4385d962d26a0ce8e8a6791399d75",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-11T00:17:48+02:00",
+  "observed_model_label": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "trace-e25d9c9d06055358c4dddcfa",
+      "source_sha256": "e25d9c9d06055358c4dddcfa94cc2b73740fa6398983059dc3e49658aa4375a1",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Ruud held serve after those missed chances."
+        },
+        {
+          "field": "trace",
+          "quote": "Ruud held serve immediately after the missed set points."
+        }
+      ],
+      "rationale": "The context establishes that Ruud held after the missed set points, but it does not establish the trace’s added claim of immediate adjacency."
+    },
+    {
+      "audit_id": "trace-feefa8d5c8a0daacdbf06cdf",
+      "source_sha256": "feefa8d5c8a0daacdbf06cdf9a7c1078ea272d50bd177a5a471058d53f43df6a",
+      "label": "unsupported_reasoning",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner requested a review on a close baseline call. The review clearly showed the ball was out by millimeters."
+        },
+        {
+          "field": "trace",
+          "quote": "The request occurred immediately before the review result."
+        }
+      ],
+      "rationale": "The request clearly preceded the result, but the context does not say it occurred immediately before the result as the trace claims."
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "batch_id": "semantic-judge_a-b3ff09f52fc6b3358a3e",
+  "batch_sha256": "bfee9eab4e5ceda705874a2fcd5a32e2ba64bb63552c623abcfb7874313c27c2",
+  "pass": "judge_a",
+  "judged_at": "2026-09-10T14:38:42.846Z",
+  "observed_model_label": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-daa2b8434d2ccd4a81700d6c",
+      "source_sha256": "daa2b8434d2ccd4a81700d6c36cb2aeddc8c58f7c8bbe801ff2b4df80db70727",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The match between Sinner and Medvedev started at 1:00 p.m. Sinner held serve after eight minutes. Rain stopped play at 1:45 p.m., before Medvedev could serve at 4-4."
+        }
+      ],
+      "rationale": "For “How many minutes after the match started did the rain delay begin?”, the explicit temporal facts uniquely entail the gold answer “45 minutes”."
+    },
+    {
+      "audit_id": "semantic-db60002bedfbb48646331ba0",
+      "source_sha256": "db60002bedfbb48646331ba047b6a654ebb30ff60459ae156aa773a4a01f9ace",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner took a medical timeout during the second set. The physio treated his right shoulder for three minutes. Play resumed two minutes after the treatment finished. Sinner showed no further signs of discomfort."
+        }
+      ],
+      "rationale": "For “How long did the medical treatment last?”, the explicit temporal facts uniquely entail the gold answer “3 minutes”."
+    },
+    {
+      "audit_id": "semantic-db7c903f73d2702cdf3d7478",
+      "source_sha256": "db7c903f73d2702cdf3d7478bdc2ba03782598edd0428f4e021301bcdc4ea1b0",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic served for the second set while the crowd was still settling after a long interruption. During the same game, Zverev challenged a line call. After the challenge failed, Djokovic closed the set."
+        }
+      ],
+      "rationale": "For “Did Zverev challenge a line call during Djokovic's service game?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-dc090bf7ba931a3d3725ea06",
+      "source_sha256": "dc090bf7ba931a3d3725ea065237da501d475f9f68d6b4536021b00e4fbff84c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic complained about the lights during the first changeover. Before Djokovic complained, Medvedev had held serve from 0-40. After the complaint, Medvedev broke serve."
+        }
+      ],
+      "rationale": "For “What happened before Djokovic complained about the lights?”, the explicit temporal facts uniquely entail the gold answer “Medvedev held serve from 0-40”."
+    },
+    {
+      "audit_id": "semantic-dc26440925b954b5914f5dc3",
+      "source_sha256": "dc26440925b954b5914f5dc35381fccafd792404f02ca745b46e4428eafd3f89",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "De Minaur broke Fritz in the fourth game of the first set. Before Fritz saved a set point, rain stopped play for twelve minutes. After the delay, Fritz saved the set point but lost the set two games later."
+        }
+      ],
+      "rationale": "For “Did the rain delay happen before Fritz saved a set point?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-dcbf6201bc03f597db536ab1",
+      "source_sha256": "dcbf6201bc03f597db536ab160492f02a0b1f47f9ee6f632c2e878379385b499",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz saved a break point in the opening game. Djokovic broke him two games later. After the break, Djokovic received a time violation."
+        }
+      ],
+      "rationale": "For “Which happened first: Djokovic received a time violation or Alcaraz saved a break point?”, the explicit temporal facts uniquely entail the gold answer “Alcaraz saved a break point”."
+    },
+    {
+      "audit_id": "semantic-dcd27ec3c8b47601d466c850",
+      "source_sha256": "dcd27ec3c8b47601d466c85097c482f18db1332c5acb66eb1bc6ea424f228591",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev saved set point in the second-set tie-break. Immediately after that, De Minaur won a long rally to earn another set point. De Minaur converted the next point and then left the court for a shirt change."
+        }
+      ],
+      "rationale": "For “Which happened first: De Minaur earned another set point or Rublev saved set point?”, the explicit temporal facts uniquely entail the gold answer “Rublev saved set point”."
+    },
+    {
+      "audit_id": "semantic-dcf87ab0f747fea5b46113a4",
+      "source_sha256": "dcf87ab0f747fea5b46113a48187d6b7ad827afafd3e0d5a9117459bcb1192b1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic served at 5-4 in the third set. The chair umpire gave him a time violation before his first serve. Djokovic then double-faulted to face break point. He saved break point with a winner and held serve for the match."
+        }
+      ],
+      "rationale": "For “Was the time violation given before Djokovic faced break point?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-ddd6839b81f9e15e55dd8e73",
+      "source_sha256": "ddd6839b81f9e15e55dd8e73f1470ca30146795a718e4339868137ffe4fa05b8",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz hit an ace to win the game. He then sat at his bench for the 90-second changeover. He drank water for the first 30 seconds. He spent the remaining time eating a banana and resting."
+        }
+      ],
+      "rationale": "For “How many seconds did Fritz spend eating a banana and resting?”, the explicit temporal facts uniquely entail the gold answer “60 seconds”."
+    },
+    {
+      "audit_id": "semantic-de2ecf156244706215505783",
+      "source_sha256": "de2ecf156244706215505783021d04459e2a012dd8c8ae7a3ac5c7f31bbe60ee",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz broke Medvedev early in the first set. Later, Medvedev asked for the trainer during the changeover at 2-4. After the medical timeout, Alcaraz served out the set."
+        }
+      ],
+      "rationale": "For “Did Medvedev ask for the trainer before Alcaraz broke serve?”, the explicit temporal facts uniquely entail the gold answer “No”."
+    },
+    {
+      "audit_id": "semantic-de472072788e621a7e8c43e8",
+      "source_sha256": "de472072788e621a7e8c43e80ccc2d14e1478942d63f5df6bac1753f112edab7",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton beat Ruud in the quarterfinal. In the semifinal, Shelton lost to Fritz in straight sets. Fritz then won the final against De Minaur."
+        }
+      ],
+      "rationale": "For “Did Shelton reach the final after beating Ruud?”, the explicit temporal facts uniquely entail the gold answer “No”."
+    },
+    {
+      "audit_id": "semantic-dece9d0c54cde125655ec575",
+      "source_sha256": "dece9d0c54cde125655ec57570c8f2ae49f7526eec8f5b1e045f1e266d7f7588",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal won the first set at 3:20 p.m. Federer requested treatment at 3:27 p.m. The second set began at 3:36 p.m., after the treatment finished."
+        }
+      ],
+      "rationale": "For “How many minutes after Nadal won the first set did Federer request treatment?”, the explicit temporal facts uniquely entail the gold answer “7 minutes”."
+    },
+    {
+      "audit_id": "semantic-df2dabeeded4df77d29dc1b7",
+      "source_sha256": "df2dabeeded4df77d29dc1b74bdf08ae1c981618fe951eb7fe97f6a8b9132fc7",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev argued with the chair umpire after Rune broke serve. During the argument, Rune stayed near his bench and changed rackets. Later, Zverev received a code violation."
+        }
+      ],
+      "rationale": "For “Was Rune changing rackets while Zverev argued with the chair umpire?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-df4a926c9928dca4f26e8109",
+      "source_sha256": "df4a926c9928dca4f26e810970f7e11cb97f9b14b46193e6c60ef79eb1ecb28d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The match between Sinner and Alcaraz started at 2:00 p.m. Sinner broke serve after 18 minutes. Rain stopped play at 2:45 p.m., before the roof was closed."
+        }
+      ],
+      "rationale": "For “How many minutes after the match started did the rain delay begin?”, the explicit temporal facts uniquely entail the gold answer “45 minutes”."
+    },
+    {
+      "audit_id": "semantic-df505e7adce32c858dfd7b2a",
+      "source_sha256": "df505e7adce32c858dfd7b2a23bc3e2ed065229f5bf8cdf3fe191806a1784bee",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev broke Fritz early in the second set. Fritz broke back at 3-4. After both players held serve, Rublev won the tie-break."
+        }
+      ],
+      "rationale": "For “Which event happened last?”, the explicit temporal facts uniquely entail the gold answer “Rublev won the tie-break”."
+    },
+    {
+      "audit_id": "semantic-df52a60c563dd32a0736fc99",
+      "source_sha256": "df52a60c563dd32a0736fc9981903bb8bc61deee0f4f5a115a9b51ab276b7cc1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic broke Alcaraz in the third game of the match. Alcaraz changed rackets during the next changeover. Later in the set, Alcaraz broke back at 4-5."
+        }
+      ],
+      "rationale": "For “Did Djokovic break serve before Alcaraz changed rackets?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-dfd6e952ac243ca4a5fc3a15",
+      "source_sha256": "dfd6e952ac243ca4a5fc3a1561adddb0d4453e92bd0d4c0fb4261157efd4138a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic missed a volley at break point in the first set. Tsitsipas broke serve immediately after that error. Later, Djokovic won five straight points in the tie-break."
+        }
+      ],
+      "rationale": "For “Did Djokovic win five straight tie-break points before Tsitsipas broke serve?”, the explicit temporal facts uniquely entail the gold answer “No”."
+    },
+    {
+      "audit_id": "semantic-dfebac8c674dfd7f2bd25ab2",
+      "source_sha256": "dfebac8c674dfd7f2bd25ab2be58156111f6383effbc756dc7f1b4f70013c2fc",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton hit a huge serve to win the first point of the tie-break. Fritz responded with a cross-court winner. Shelton then missed a volley, giving Fritz a mini-break, before Fritz served out the set."
+        }
+      ],
+      "rationale": "For “Which happened last: Fritz responded with a cross-court winner, Fritz served out the set, or Shelton hit a huge serve?”, the explicit temporal facts uniquely entail the gold answer “Fritz served out the set”."
+    },
+    {
+      "audit_id": "semantic-e10e406b66e4667992e3cb3c",
+      "source_sha256": "e10e406b66e4667992e3cb3ce5ff28d8a4aa2a58513d06ad219d084fdd840ea1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz broke serve in the very first game. He comfortably held his own serve 5 minutes later. Tsitsipas finally got on the scoreboard and won a game 15 minutes into the match."
+        }
+      ],
+      "rationale": "For “How many minutes into the match did Tsitsipas win a game?”, the explicit temporal facts uniquely entail the gold answer “15 minutes”."
+    },
+    {
+      "audit_id": "semantic-e11fe970d7bfbdf1a7c5a60f",
+      "source_sha256": "e11fe970d7bfbdf1a7c5a60f4ba351740d6d5e49ec9a9cbe35197c3a44b1f23a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev hit a stunning forehand winner down the line. Djokovic politely applauded the shot with his racket. Zverev then successfully held serve to win the opening set."
+        }
+      ],
+      "rationale": "For “What happened before Djokovic applauded the shot?”, the explicit temporal facts uniquely entail the gold answer “Zverev hit a stunning forehand winner”."
+    },
+    {
+      "audit_id": "semantic-e18dd2c1e6b70e4f0be6c984",
+      "source_sha256": "e18dd2c1e6b70e4f0be6c98408ca295468d6c0e61356bfbd76482fbe0882fa13",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz and Shelton started the match at noon. A crowd interruption stopped play after 14 minutes. The players resumed six minutes later, and Fritz broke serve immediately after the restart."
+        }
+      ],
+      "rationale": "For “How many minutes after the match started did play resume?”, the explicit temporal facts uniquely entail the gold answer “20 minutes”."
+    },
+    {
+      "audit_id": "semantic-e1c2e769a1f7856c10eb5259",
+      "source_sha256": "e1c2e769a1f7856c10eb525902468ae27e4331d231247243314f269a73d7ad4a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev won the first set with an early break. Before the second set, Ruud changed rackets. Ruud then broke Zverev in the second game."
+        }
+      ],
+      "rationale": "For “Which happened first: Ruud changed rackets or Ruud broke Zverev?”, the explicit temporal facts uniquely entail the gold answer “Ruud changed rackets”."
+    },
+    {
+      "audit_id": "semantic-e23b845bfb0907f3c8cd3ed5",
+      "source_sha256": "e23b845bfb0907f3c8cd3ed5e1b96ddeb272922764c90a154979e894f783fd0f",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz dropped serve early in the second set. After that break, Sinner received a coaching violation. Later, Alcaraz broke again to lead 5-2."
+        }
+      ],
+      "rationale": "For “Did Sinner receive the coaching violation before Alcaraz dropped serve?”, the explicit temporal facts uniquely entail the gold answer “No”."
+    },
+    {
+      "audit_id": "semantic-e259e238bf255f5af75a1a15",
+      "source_sha256": "e259e238bf255f5af75a1a15ad3d3fcc80f70db2ec7c056c047ca6d071c7c03d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune took a bathroom break after losing the first set. Zverev received a time violation before the second set started. During the second set, Rune broke serve at 3-2."
+        }
+      ],
+      "rationale": "For “Which event happened last?”, the explicit temporal facts uniquely entail the gold answer “Rune broke serve”."
+    },
+    {
+      "audit_id": "semantic-e2658af68f990872bf4c6fea",
+      "source_sha256": "e2658af68f990872bf4c6fea44f43c28340358327405ba6d161ac23f387ba734",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Federer broke Nadal at 1:35 p.m. Nadal broke back at 1:50 p.m. Later, Federer won the tie-break at 2:16 p.m."
+        }
+      ],
+      "rationale": "For “How many minutes after Federer broke Nadal did Nadal break back?”, the explicit temporal facts uniquely entail the gold answer “15 minutes”."
+    }
+  ]
+}

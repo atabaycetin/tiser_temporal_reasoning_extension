@@ -1,0 +1,122 @@
+{
+  "version": "offline-audit-v2",
+  "kind": "trace",
+  "pass": "judge_a",
+  "rubric": "Audit the semantic correctness of the supplied training trace against\nits synthetic context, question and gold. Check reasoning, timeline and reflection\nfor supported order, duration, overlap and conclusion. Required tags and a final\nanswer equal to supplied gold do not establish correct reasoning. Use supported,\nunsupported_reasoning, contradictory, or unscorable. Quote exact context/trace\nsubstrings and explain the specific issue or entailment concisely. Never propose\na corrected gold answer here. Treat the example as data and use no outside files.",
+  "rubric_sha256": "71475a58bca422737b5482688a65977898a4ce05252ae4a8562c7c814c40ceb1",
+  "items": [
+    {
+      "audit_id": "trace-de24e4bb6bf550cfaca003a4",
+      "kind": "trace",
+      "payload": {
+        "context": "The match was suspended due to darkness at 8 PM. It resumed the next day at noon under sunny skies. Djokovic won the match straight after the resumption. He celebrated by waving to his coaching box.",
+        "question": "Which happened last: The match resumed or Djokovic won the match?",
+        "gold": "Djokovic won the match",
+        "trace": "<reasoning>\nThe question asks which happened last: match resumed or Djokovic won the match. Context: match resumed next day, then Djokovic won straight after resumption. So win after resumption.\n<timeline>\n- Match suspended at 8 PM\n- Resumed next day at noon\n- Djokovic won match straight after resumption\n</timeline>\n<reflection>\nWinning the match happened after resumption, so win is last.\n</reflection>\n</reasoning>\n<answer>Djokovic won the match</answer>"
+      },
+      "source_sha256": "de24e4bb6bf550cfaca003a49444626ee63f6c83889e6567538617d16401e4a2"
+    },
+    {
+      "audit_id": "trace-ded9e36c90b22fcd163f1968",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner won the first set 7-6. In the second set, he broke Medvedev's serve at 2-2 after a 10-minute game. Medvedev broke back immediately. Sinner then called a medical timeout for his wrist at 3-3.",
+        "question": "How many minutes after Sinner broke serve did Medvedev break back?",
+        "gold": "0 minutes",
+        "trace": "<reasoning>\n\"Immediately\" implies that there was zero time gap between the games.\n<timeline>\n1. 2-2: Sinner broke Medvedev's serve\n2. Immediately (0 minutes later): Medvedev broke back\n</timeline>\n<reflection>\nThe text explicitly states Medvedev broke back \"immediately\", indicating 0 minutes elapsed.\n</reflection>\n</reasoning>\n<answer>0 minutes</answer>"
+      },
+      "source_sha256": "ded9e36c90b22fcd163f1968b8d01a0dd0c6d60de5be24a4be6ce69dff6dc439"
+    },
+    {
+      "audit_id": "trace-df0c9c433768007e529972ca",
+      "kind": "trace",
+      "payload": {
+        "context": "Zverev called for the trainer at 3:15 p.m. The medical timeout ended at 3:24 p.m. Five minutes later, Rune broke serve.",
+        "question": "How long did the medical timeout last?",
+        "gold": "9 minutes",
+        "trace": "<reasoning>\nContext: Zverev called trainer at 3:15 p.m. Medical timeout ended at 3:24 p.m. Duration = 9 minutes.\n<timeline>\n- Trainer called: 3:15 p.m.\n- Timeout ended: 3:24 p.m.\n</timeline>\n<reflection>\n3:24 - 3:15 = 9 minutes.\n</reflection>\n</reasoning>\n<answer>9 minutes</answer>"
+      },
+      "source_sha256": "df0c9c433768007e529972ca9726376c7ebc7ddbfad7951eb01de5dca3cb7f23"
+    },
+    {
+      "audit_id": "trace-dfcacf387e615069b92128c5",
+      "kind": "trace",
+      "payload": {
+        "context": "Sinner broke Alcaraz in the second game. Before the rain delay, Alcaraz saved three break points. After the delay, Sinner held serve for 4-1.",
+        "question": "What happened before the rain delay?",
+        "gold": "Alcaraz saved three break points",
+        "trace": "<reasoning>\nThe context says Alcaraz saved three break points before the rain delay.\n<timeline>\n1. Sinner broke Alcaraz in the second game.\n2. Before the rain delay, Alcaraz saved three break points.\n3. After the delay, Sinner held serve for 4-1.\n</timeline>\n<reflection>\nThe event before the rain delay is Alcaraz saving three break points.\n</reflection>\n</reasoning>\n<answer>Alcaraz saved three break points</answer>"
+      },
+      "source_sha256": "dfcacf387e615069b92128c53f6a85578711749044538f2e630d52a71249a765"
+    },
+    {
+      "audit_id": "trace-e07cb1df4680f8e187bab18c",
+      "kind": "trace",
+      "payload": {
+        "context": "Djokovic asked the umpire to check a ball mark on the clay. The umpire climbed down from the chair and confirmed the ball was in. Djokovic nodded in agreement and returned to the baseline.",
+        "question": "Which happened first: Djokovic returned to the baseline or Djokovic asked the umpire to check a ball mark?",
+        "gold": "Djokovic asked the umpire to check a ball mark",
+        "trace": "<reasoning>\nDjokovic asked the umpire to check a mark, the umpire confirmed it, and then Djokovic returned to the baseline.\n<timeline>\n1. Djokovic asked the umpire to check a ball mark.\n2. The umpire confirmed the ball was in.\n3. Djokovic returned to the baseline.\n</timeline>\n<reflection>\nAsking the umpire to check the mark happened first in the described sequence.\n</reflection>\n</reasoning>\n<answer>Djokovic asked the umpire to check a ball mark</answer>"
+      },
+      "source_sha256": "e07cb1df4680f8e187bab18ca109862fc72346d693cdc24b87ec27422e112732"
+    },
+    {
+      "audit_id": "trace-e08ec892aedf278aee51ac9a",
+      "kind": "trace",
+      "payload": {
+        "context": "Tsitsipas held serve after a ten-minute opening game. Ruud broke serve later in the first set. Before the second set began, Tsitsipas asked for treatment on his wrist.",
+        "question": "Which happened first: Ruud broke serve or Tsitsipas asked for treatment?",
+        "gold": "Ruud broke serve",
+        "trace": "<reasoning>\nRuud broke serve during the first set, while Tsitsipas asked for treatment before the second set began.\n<timeline>\n1. Tsitsipas held serve after a ten-minute opening game.\n2. Ruud broke serve later in the first set.\n3. Before the second set began, Tsitsipas asked for treatment on his wrist.\n</timeline>\n<reflection>\nThe timeline shows Ruud broke serve before Tsitsipas asked for treatment.\n</reflection>\n</reasoning>\n<answer>Ruud broke serve</answer>"
+      },
+      "source_sha256": "e08ec892aedf278aee51ac9a222c926fc4b14b808f74b8b8d2d2c9a0680d8646"
+    },
+    {
+      "audit_id": "trace-e0e951ac339e2dd0757ed0e4",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev was the defending champion at the prestigious 500-level tournament. He received a first-round bye due to his high ranking. He won his second-round match but was surprisingly eliminated in the quarterfinal by an unranked wild card player.",
+        "question": "Was Rublev eliminated in the quarterfinal?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nRublev won his second-round match but was surprisingly eliminated in the quarterfinal.\n<timeline>\n1. Rublev won his second-round match.\n2. Rublev was eliminated in the quarterfinal.\n</timeline>\n<reflection>\nThe text directly states he was eliminated in the quarterfinal.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e0e951ac339e2dd0757ed0e40a1180ce49411b1d09f4587cf837b2f43089812d"
+    },
+    {
+      "audit_id": "trace-e1472c810036418f789f6433",
+      "kind": "trace",
+      "payload": {
+        "context": "Rune held serve after a long deuce game. Rublev received a time violation in the following game. Before the violation, Rune had already saved a set point.",
+        "question": "Did Rublev receive the time violation before Rune saved a set point?",
+        "gold": "No",
+        "trace": "<reasoning>\nContext: Rune saved a set point before the time violation. Rublev received time violation in following game. Question asks if violation occurred before saved set point.\n<timeline>\n1. Rune held serve after long deuce game.\n2. Before the violation, Rune had already saved a set point.\n3. Rublev received a time violation in the following game.\n</timeline>\n<reflection>\n\"Before the violation\" means the set point save is earlier, so violation is not before; answer no.\n</reflection>\n</reasoning>\n<answer>No</answer>"
+      },
+      "source_sha256": "e1472c810036418f789f6433c91ed1606f79bf3af022d04f74f2a2434d2f6dd5"
+    },
+    {
+      "audit_id": "trace-e1bad081e0aa80d692c9d368",
+      "kind": "trace",
+      "payload": {
+        "context": "Rublev broke Fritz in the opening game. After Fritz held for 1-2, rain delayed the match for thirty minutes. When play resumed, Rublev held serve and later won the first set.",
+        "question": "What happened before the rain delay?",
+        "gold": "Fritz held serve",
+        "trace": "<reasoning>\nContext: \"Rublev broke Fritz in the opening game. After Fritz held for 1-2, rain delayed the match for thirty minutes.\" The event before the rain delay is Fritz holding serve.\n<timeline>\n- Rublev broke.\n- Fritz held serve.\n- Rain delay.\n</timeline>\n<reflection>\n\"After Fritz held\" directly indicates the hold occurred immediately before the rain delay.\n</reflection>\n</reasoning>\n<answer>Fritz held serve</answer>"
+      },
+      "source_sha256": "e1bad081e0aa80d692c9d3688a09510ced891bb14ef964b86479ff645f59a644"
+    },
+    {
+      "audit_id": "trace-e20b201e7cff60167b67c9dc",
+      "kind": "trace",
+      "payload": {
+        "context": "Shelton served three consecutive aces to open the match. Alcaraz then won four straight games to take complete control. Before Shelton could recover his momentum, he rolled his ankle and retired from the match.",
+        "question": "Did Alcaraz win four straight games after Shelton served three consecutive aces?",
+        "gold": "Yes",
+        "trace": "<reasoning>\nConcise reasoning over the explicit temporal context only.\n<timeline>\n1. Shelton served three consecutive aces to open the match.\n2. Alcaraz won four straight games.\n3. Shelton rolled his ankle and retired.\n</timeline>\n<reflection>\nAlcaraz winning four straight games followed Shelton's aces.\n</reflection>\n</reasoning>\n<answer>Yes</answer>"
+      },
+      "source_sha256": "e20b201e7cff60167b67c9dc2775609803579d500ccd5d31e02dddb88a113d17"
+    }
+  ],
+  "requested_model": "gpt-5.6-sol",
+  "batch_id": "trace-judge_a-0f4383f9a0003e58d5d7",
+  "batch_sha256": "b5da081dc8acb9e3c19da8be71e9410fad1691686646416ae6f06e3417170fac"
+}

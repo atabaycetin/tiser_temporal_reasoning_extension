@@ -1,0 +1,47 @@
+{
+  "per_split": {
+    "tempreason_l2_test": {
+      "em": 0.92,
+      "f1": 0.9482975651799181,
+      "n": 100
+    },
+    "tempreason_l3_test": {
+      "em": 0.95,
+      "f1": 0.9639285714285714,
+      "n": 100
+    },
+    "tgqa_test": {
+      "em": 0.56,
+      "f1": 0.8375405438215036,
+      "n": 100
+    },
+    "timeqa_easy_test": {
+      "em": 1.0,
+      "f1": 1.0,
+      "n": 100
+    },
+    "timeqa_hard_test": {
+      "em": 0.97,
+      "f1": 0.9819780219780221,
+      "n": 100
+    },
+    "tot_semantic_test": {
+      "em": 0.41,
+      "f1": 0.41,
+      "n": 100
+    }
+  },
+  "macro_splits": [
+    "tgqa_test",
+    "tempreason_l2_test",
+    "tempreason_l3_test",
+    "timeqa_easy_test",
+    "timeqa_hard_test"
+  ],
+  "macro_em": 0.8800000000000001,
+  "macro_f1": 0.946348940481603,
+  "n_total": 600,
+  "n_malformed": 14,
+  "config_name": "C0",
+  "adapter_dir": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/model/tiser_qwen7b_full/adapter"
+}

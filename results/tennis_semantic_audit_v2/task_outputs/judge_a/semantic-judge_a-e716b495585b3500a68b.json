@@ -1,0 +1,360 @@
+{
+  "batch_id": "semantic-judge_a-e716b495585b3500a68b",
+  "batch_sha256": "4f8b948d6c4997bdf5dea012da7f29ab3c298ceac42f2e1bc4f31e04091769b2",
+  "pass": "judge_a",
+  "judged_at": "2026-09-10T14:38:42.880Z",
+  "observed_model_label": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-e281f244249ef343734819fb",
+      "source_sha256": "e281f244249ef343734819fbd288ff0190513a6634b13fb2c5bdfe274f6816f9",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas broke Ruud in the opening game. Ruud broke back in the fourth game. After both breaks, Tsitsipas won the first set with another break at 5-4."
+        }
+      ],
+      "rationale": "For “Which happened first: Ruud broke back or Tsitsipas broke in the opening game?”, the explicit temporal facts uniquely entail the gold answer “Tsitsipas broke in the opening game”."
+    },
+    {
+      "audit_id": "semantic-e29844ee57dcaa9d642600cb",
+      "source_sha256": "e29844ee57dcaa9d642600cbeb2052635d8f14265eeba01940ddc2863764e9fb",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz broke serve at 3:20 p.m. After the break, Zverev argued with the umpire. Zverev received a coaching violation at 3:27 p.m."
+        }
+      ],
+      "rationale": "For “How many minutes after Alcaraz broke serve did Zverev receive a coaching violation?”, the explicit temporal facts uniquely entail the gold answer “7 minutes”."
+    },
+    {
+      "audit_id": "semantic-e2a14c88fef37d56a274c279",
+      "source_sha256": "e2a14c88fef37d56a274c27948a140ca9fd88349693ecf809f41e50850ee8e32",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The roof was closed before the match started due to impending rain. Federer broke serve early in the third game. A crowd interruption occurred while Federer was serving for the set at 5-4. Security escorted the disruptive fan out of the arena."
+        }
+      ],
+      "rationale": "For “Was the roof closed before Federer broke serve?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e329d323f833f2132825d350",
+      "source_sha256": "e329d323f833f2132825d350089b09d0aaf41209d843d60c1a074ad179cab2e4",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton launched a massive 140mph serve down the T. Djokovic somehow managed to return it deep into the court. Shelton stepped up and volleyed the ball into the open court."
+        }
+      ],
+      "rationale": "For “Which happened first: Djokovic returned the serve or Shelton volleyed the ball?”, the explicit temporal facts uniquely entail the gold answer “Djokovic returned the serve”."
+    },
+    {
+      "audit_id": "semantic-e3432ba7ef148bb0fcd6af9b",
+      "source_sha256": "e3432ba7ef148bb0fcd6af9b22e2b373394efa9d6fe9661b0e39222d05173840",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Nadal won a long rally to earn set point in the first set. Before he could serve for the point, rain forced both players off court. After the roof was closed, Nadal converted the set point."
+        }
+      ],
+      "rationale": "For “Did the rain delay happen before Nadal converted set point?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e34d1d86eda65678d693197d",
+      "source_sha256": "e34d1d86eda65678d693197db60124c4452c77eedb360e3b72749457e77c609a",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev argued with the umpire after losing serve. During the argument, Rune remained at the baseline waiting to return. After the argument ended, Rune held serve easily."
+        }
+      ],
+      "rationale": "For “Was Rune waiting at the baseline during Zverev's argument with the umpire?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e390e50470170d57be3f009b",
+      "source_sha256": "e390e50470170d57be3f009b868ff7ab8c03766f0d6ffc0afde2dac7de9f4c36",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz slipped behind the baseline while chasing a wide ball. He took a moment to wipe his shoes with a towel. Medvedev then served an ace on the following point. The game ended two points later."
+        }
+      ],
+      "rationale": "For “What happened before Medvedev served an ace?”, the explicit temporal facts uniquely entail the gold answer “Alcaraz wiped his shoes with a towel”."
+    },
+    {
+      "audit_id": "semantic-e39debd96f624b0003844820",
+      "source_sha256": "e39debd96f624b0003844820ec2735977cd9b5c4b611ea02854eb3524659e968",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Medvedev called the trainer at 3:12 p.m. Play resumed at 3:20 p.m. Alcaraz broke serve at 3:27 p.m. Later, Medvedev recovered to force a tie-break."
+        }
+      ],
+      "rationale": "For “How many minutes after the medical timeout began did Alcaraz break serve?”, the explicit temporal facts uniquely entail the gold answer “15 minutes”."
+    },
+    {
+      "audit_id": "semantic-e39f607d995d542cadebaaee",
+      "source_sha256": "e39f607d995d542cadebaaee3436d7e7766bc2a61413009a5d6474182018bdba",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Federer broke serve in a thrilling game that lasted 12 minutes. The subsequent changeover took the standard 90 seconds. Federer then held his serve in just 3 minutes. The quick hold secured him the set."
+        }
+      ],
+      "rationale": "For “How long was the changeover?”, the explicit temporal facts uniquely entail the gold answer “90 seconds”."
+    },
+    {
+      "audit_id": "semantic-e3bdd2650d62d9ef560051be",
+      "source_sha256": "e3bdd2650d62d9ef560051be2ece674e31dafb6c3595cd3ecd1439b4127cb10b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz had a notoriously tough draw at the French Open. He defeated Zverev in the quarterfinal after a grueling five-setter. He then beat Sinner in the semifinal before easily winning the final against Ruud."
+        }
+      ],
+      "rationale": "For “Did Alcaraz defeat Zverev before playing the semifinal?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e48a09afc5ec1528788555b0",
+      "source_sha256": "e48a09afc5ec1528788555b0fdcd6d31b65684b2e2efb6bd373dfb790de57941",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Federer dominated the opening set, closing it out in just twenty-five minutes. However, Shelton found his rhythm in the second set, securing a break in the eighth game. Before Shelton could serve for the set, rain interrupted the match for an hour. Once they returned, Shelton held serve to win the second set."
+        }
+      ],
+      "rationale": "For “Did the rain interrupt the match after Shelton secured a break in the second set?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e4af9ec44081a1429b8c1a36",
+      "source_sha256": "e4af9ec44081a1429b8c1a364a36b4d76b453ffce62f8a2c8936da38890e4c95",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev called the trainer during the second-set changeover. After the trainer visit, Rune saved two break points. The final event of the set was Rune winning a tie-break."
+        }
+      ],
+      "rationale": "For “Which event happened last?”, the explicit temporal facts uniquely entail the gold answer “Rune winning a tie-break”."
+    },
+    {
+      "audit_id": "semantic-e4c176d9c202b29bad6e689b",
+      "source_sha256": "e4c176d9c202b29bad6e689b08759816c8ed120966d08586bef27c358aa2877b",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Play was suspended due to a lighting failure at 7:15 PM. Technicians worked frantically to resolve the issue while the players waited in the locker room. The lights were finally restored at 7:50 PM. The players were given a 10-minute warm-up period before the match officially resumed at 8:00 PM."
+        }
+      ],
+      "rationale": "For “How many minutes passed between the lighting failure and the lights being restored?”, the explicit temporal facts uniquely entail the gold answer “35 minutes”."
+    },
+    {
+      "audit_id": "semantic-e501701ca5d14a620b115807",
+      "source_sha256": "e501701ca5d14a620b115807537ef310774bb320c9e2c5bdb60fe2752fb5d158",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner held serve to open the first set. Before Alcaraz faced a break point at 2-2, Sinner had already won a long return game. After that break, Alcaraz changed rackets during the next changeover."
+        }
+      ],
+      "rationale": "For “Did Sinner break serve before Alcaraz changed rackets?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e5113c498026ffc3291f5208",
+      "source_sha256": "e5113c498026ffc3291f5208c6725729295893965892a4f3018374b09b1ee6c6",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Play was halted due to rain at 4-4 in the first set. The players remained in the locker room for two hours before the rain stopped. It took an additional 30 minutes for the court to be dried before they resumed the match."
+        }
+      ],
+      "rationale": "For “How many hours did the players remain in the locker room?”, the explicit temporal facts uniquely entail the gold answer “2 hours”."
+    },
+    {
+      "audit_id": "semantic-e515aebc692d380c1f8f413a",
+      "source_sha256": "e515aebc692d380c1f8f413aa11ff9364dcffe9bae921ce13f80277bae7b5ba1",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Zverev lost his opening service game. Before the second set began, he asked for treatment on his shoulder. Later, he broke Rune at 3-2 in the second set."
+        }
+      ],
+      "rationale": "For “Did Zverev ask for treatment before breaking Rune in the second set?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e51639d5babe61c11398dec8",
+      "source_sha256": "e51639d5babe61c11398dec81c172acbd20128ee659c48efc25d49c3ff0e71fb",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz defeated Fritz in the quarterfinal. Before the semifinal, Djokovic withdrew from the tournament. After Djokovic withdrew, Alcaraz advanced directly to the final."
+        }
+      ],
+      "rationale": "For “What happened after Djokovic withdrew from the tournament?”, the explicit temporal facts uniquely entail the gold answer “Alcaraz advanced directly to the final”."
+    },
+    {
+      "audit_id": "semantic-e586272b35a344c4ac1f68ca",
+      "source_sha256": "e586272b35a344c4ac1f68ca9246da842a81f10ae93c159fe9357c6ce6d2155d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune held serve to start the final set. Zverev saved match point at 4-5 before breaking Rune in the next game. After the break, Zverev served for the match."
+        }
+      ],
+      "rationale": "For “Did Zverev save match point before breaking Rune?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e58f017f11d7bc552c26c970",
+      "source_sha256": "e58f017f11d7bc552c26c97075c86b23c6c275850aaf55e840e67c0c646d77d0",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton won his first-round match on Monday. After that, he beat De Minaur in the second round and Rublev in the quarterfinal. Before the final, Shelton lost to Sinner in the semifinal."
+        }
+      ],
+      "rationale": "For “Which event happened last?”, the explicit temporal facts uniquely entail the gold answer “Shelton lost to Sinner”."
+    },
+    {
+      "audit_id": "semantic-e68440681905a8ec6a58a488",
+      "source_sha256": "e68440681905a8ec6a58a488bf832efab922eebc4bc46c1ce5eec5c433d217f8",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the rain delay, Sinner and Djokovic stayed off court. While they were off court, the stadium staff closed the roof. After the roof was closed, both players returned for a short warm-up."
+        }
+      ],
+      "rationale": "For “Was the roof being closed while the players were off court?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e68b631459f3ffd03b851422",
+      "source_sha256": "e68b631459f3ffd03b8514227c128f7bc175632228affb190ed47e23451bed2c",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Fritz served for the first set at 5-4. Before he reached set point, Rublev won a long rally at deuce. Fritz converted the set point minutes later."
+        }
+      ],
+      "rationale": "For “Did Rublev win the long rally before Fritz converted set point?”, the explicit temporal facts uniquely entail the gold answer “Yes”."
+    },
+    {
+      "audit_id": "semantic-e69cd29022c2ec43e6a2fd1d",
+      "source_sha256": "e69cd29022c2ec43e6a2fd1def6fdc3012b6feebd8db41274c9ca4c2334fb2c3",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Djokovic lost the opening set after a tie-break. Before the second set started, the roof was closed. During the second set, Djokovic broke Alcaraz twice."
+        }
+      ],
+      "rationale": "For “Did the roof close before Djokovic lost the opening set?”, the explicit temporal facts uniquely entail the gold answer “No”."
+    },
+    {
+      "audit_id": "semantic-e6ba38482fb6eb8b83e96a89",
+      "source_sha256": "e6ba38482fb6eb8b83e96a8956ace35e36a0aab055c6a5560e07a0703caf20ae",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Tsitsipas won his quarterfinal against Rublev on Thursday. Before the semifinal, Djokovic withdrew with a wrist injury. Tsitsipas advanced directly to the final and then lost to Sinner."
+        }
+      ],
+      "rationale": "For “Which happened before Tsitsipas advanced to the final?”, the explicit temporal facts uniquely entail the gold answer “Djokovic withdrew”."
+    },
+    {
+      "audit_id": "semantic-e6ee78c82b36f81504b89517",
+      "source_sha256": "e6ee78c82b36f81504b89517b2d9aeb272a6f2ca00de40b36db75e0248a37ab2",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton hit a massive ace to win the tie-break. The stadium crowd erupted in cheers for the young American. During the changeover, Shelton changed his sweaty shirt."
+        }
+      ],
+      "rationale": "For “Which event happened last?”, the explicit temporal facts uniquely entail the gold answer “Shelton changed his shirt”."
+    },
+    {
+      "audit_id": "semantic-e704932c4dae5b3b9fa28b99",
+      "source_sha256": "e704932c4dae5b3b9fa28b99f37d054bbaa82910cbf0ca47ef1d2859758b470d",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rublev took a medical timeout at 4-4 in the second set. Before the timeout, Fritz had won three straight return points. After the timeout, Rublev held serve with two aces."
+        }
+      ],
+      "rationale": "For “What happened before Rublev took a medical timeout?”, the explicit temporal facts uniquely entail the gold answer “Fritz won three straight return points”."
+    }
+  ]
+}

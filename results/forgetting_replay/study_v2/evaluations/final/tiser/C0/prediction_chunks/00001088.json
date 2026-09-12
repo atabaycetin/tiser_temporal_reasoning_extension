@@ -1,0 +1,647 @@
+{
+  "start": 1088,
+  "spec_sha256": "0da1f6c85a514e31c994f166cdfae02a14a734dc4fe9556c3d98283fd0166086",
+  "rows": [
+    {
+      "question_id": "story534_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Phillips was born in Hillcrest",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to examine the temporal context provided for each event. The events are:\n\n1. Liam Phillips was born in Hillcrest.\n2. Lucas Thompson was born in Oceanview.\n3. Lucas Thompson was married to Liam Phillips.\n4. Hillcrest owned Fairfield Field (Seattle).\n5. Lucas Thompson died in Hillside, Seattle.\n6. Liam Phillips died in Oceanview.\n\nFrom the temporal context, we know the start times for each event:\n\n- Lucas Thompson was born in Oceanview: 1928\n- Liam Phillips was born in Hillcrest: 1928\n- Lucas Thompson was married to Liam Phillips: 1951\n- Hillcrest owned Fairfield Field (Seattle): 1956\n- Lucas Thompson died in Hillside, Seattle: 2009\n- Liam Phillips died in Oceanview: 2016\n\nThe earliest start time is 1928, which corresponds to both Lucas Thompson being born in Oceanview and Liam Phillips being born in Hillcrest. However, since the question specifies that the answer is \"Liam Phillips was born in Hillcrest,\" we can conclude that this is the first event in chronological order.\n<timeline> \n- Lucas Thompson was born in Oceanview: 1928\n- Liam Phillips was born in Hillcrest: 1928\n- Lucas Thompson was married to Liam Phillips: 1951\n- Hillcrest owned Fairfield Field (Seattle): 1956\n- Lucas Thompson died in Hillside, Seattle: 2009\n- Liam Phillips died in Oceanview: 2016\n</timeline>\n<reflection> \nThe reasoning correctly identifies the earliest start time as 1928, which corresponds to both Lucas Thompson and Liam Phillips being born. Since the question specifies that the answer is \"Liam Phillips was born in Hillcrest,\" this aligns with the earliest event in chronological order. No errors or improvements are needed.\n</reflection>\n</reasoning>\n<answer> \nLiam Phillips was born in Hillcrest\n</answer>",
+      "pred_answer": "Liam Phillips was born in Hillcrest",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Phillips was married to Lucas Thompson",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to arrange the events based on their starting points as provided in the temporal context. The events are:\n\n1. (Liam Phillips was born in Hillcrest) starts at 1928.\n2. (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n3. (Lucas Thompson was born in Oceanview) starts at 1928.\n4. (Lucas Thompson was married to Liam Phillips) starts at 1951.\n5. (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n6. (Liam Phillips died in Oceanview) starts at 2016.\n\nSince both Liam Phillips and Lucas Thompson were born in 1928, we need to consider the next earliest event after their birth. The next event chronologically is the marriage of Lucas Thompson to Liam Phillips, which started in 1951. Therefore, the second event in chronological order is the marriage of Lucas Thompson to Liam Phillips.\n<timeline> \n1. (Liam Phillips was born in Hillcrest) starts at 1928.\n2. (Lucas Thompson was born in Oceanview) starts at 1928.\n3. (Lucas Thompson was married to Liam Phillips) starts at 1951.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The first event is the birth of both Liam Phillips and Lucas Thompson in 1928. The second event is the marriage of Lucas Thompson to Liam Phillips in 1951. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nLucas Thompson was married to Liam Phillips\n</answer>",
+      "pred_answer": "Lucas Thompson was married to Liam Phillips",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Hillcrest owned Fairfield Field (Seattle)",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting points as provided in the temporal context. The events are:\n\n1. (Liam Phillips was born in Hillcrest) starts at 1928.\n2. (Lucas Thompson was born in Oceanview) starts at 1928.\n3. (Liam Phillips was married to Lucas Thompson) starts at 1951.\n4. (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n5. (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n6. (Liam Phillips died in Oceanview) starts at 2016.\n\nSince both Liam Phillips and Lucas Thompson were born in 1928, they are the first two events. The marriage of Liam Phillips to Lucas Thompson occurs in 1951, which is the third event chronologically. The ownership of Fairfield Field by Hillcrest starts in 1956, making it the fourth event. The death of Lucas Thompson in 2009 and the death of Liam Phillips in 2016 are the last two events.\n\n<timeline> \n1. Liam Phillips was born in Hillcrest (1928)\n2. Lucas Thompson was born in Oceanview (1928)\n3. Liam Phillips was married to Lucas Thompson (1951)\n4. Hillcrest owned Fairfield Field (Seattle) (1956)\n5. Lucas Thompson died in Hillside, Seattle (2009)\n6. Liam Phillips died in Oceanview (2016)\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n\n</reasoning> \n<answer> \nHillcrest owned Fairfield Field (Seattle)\n</answer>",
+      "pred_answer": "Hillcrest owned Fairfield Field (Seattle)",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Lucas Thompson died in Hillside, Seattle",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the given events based on their starting points. The events are: (Liam Phillips was born in Hillcrest), (Hillcrest owned Fairfield Field (Seattle)), (Lucas Thompson died in Hillside, Seattle), (Liam Phillips died in Oceanview). We also have the temporal context that provides specific years for some events.\n\nFirst, we note that both Liam Phillips and Lucas Thompson were born in 1928. Next, they were married in 1951. Hillcrest owned Fairfield Field in 1956. Lucas Thompson died in 2009, and Liam Phillips died in 2016.\n\nArranging these events chronologically, we get:\n1. Liam Phillips was born in Hillcrest (1928)\n2. Lucas Thompson was born in Oceanview (1928)\n3. Liam Phillips was married to Lucas Thompson (1951)\n4. Hillcrest owned Fairfield Field (Seattle) (1956)\n5. Lucas Thompson died in Hillside, Seattle (2009)\n6. Liam Phillips died in Oceanview (2016)\n\nThe fourth event in this chronological order is \"Hillcrest owned Fairfield Field (Seattle)\" which started in 1956.\n<timeline> \n1. Liam Phillips was born in Hillcrest (1928)\n2. Lucas Thompson was born in Oceanview (1928)\n3. Liam Phillips was married to Lucas Thompson (1951)\n4. Hillcrest owned Fairfield Field (Seattle) (1956)\n5. Lucas Thompson died in Hillside, Seattle (2009)\n6. Liam Phillips died in Oceanview (2016)\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no apparent errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nHillcrest owned Fairfield Field (Seattle)\n</answer>",
+      "pred_answer": "Hillcrest owned Fairfield Field (Seattle)",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.1818181818181818
+    },
+    {
+      "question_id": "story534_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Phillips died in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the given events based on their starting points. The events are: (Liam Phillips was married to Lucas Thompson), (Liam Phillips was born in Hillcrest), (Hillcrest owned Fairfield Field (Seattle)), (Lucas Thompson died in Hillside, Seattle), (Liam Phillips died in Oceanview).\n\nFirst, we note the starting points of each event:\n- (Liam Phillips was born in Hillcrest) starts at 1928.\n- (Liam Phillips was married to Lucas Thompson) starts at 1951.\n- (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n- (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n- (Liam Phillips died in Oceanview) starts at 2016.\n\nNext, we arrange these events in chronological order based on their starting points:\n1. (Liam Phillips was born in Hillcrest) at 1928.\n2. (Liam Phillips was married to Lucas Thompson) at 1951.\n3. (Hillcrest owned Fairfield Field (Seattle)) at 1956.\n4. (Lucas Thompson died in Hillside, Seattle) at 2009.\n5. (Liam Phillips died in Oceanview) at 2016.\n\nThe fifth event in this chronological order is (Liam Phillips died in Oceanview).\n<timeline> \n1. (Liam Phillips was born in Hillcrest) at 1928.\n2. (Liam Phillips was married to Lucas Thompson) at 1951.\n3. (Hillcrest owned Fairfield Field (Seattle)) at 1956.\n4. (Lucas Thompson died in Hillside, Seattle) at 2009.\n5. (Liam Phillips died in Oceanview) at 2016.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the starting points and arranges the events in chronological order. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nLiam Phillips died in Oceanview\n</answer>",
+      "pred_answer": "Liam Phillips died in Oceanview",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Lucas Thompson was born in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to compare the starting times of each event. The events provided are: (Lucas Thompson was born in Oceanview), (Liam Phillips was born in Hillcrest), (Lucas Thompson was married to Liam Phillips), (Liam Phillips was married to Lucas Thompson), and (Liam Phillips died in Oceanview). The starting times for these events are: 1928 for both Lucas Thompson's birth and Liam Phillips' birth, 1951 for both marriages, and 2016 for Liam Phillips' death. Since both Lucas Thompson and Liam Phillips were born in 1928, this is the earliest starting time among all the events.\n<timeline> \n(Lucas Thompson was born in Oceanview) starts at 1928.\n(Liam Phillips was born in Hillcrest) starts at 1928.\n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Liam Phillips died in Oceanview) starts at 2016.\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both Lucas Thompson and Liam Phillips were born in 1928, which is the earliest starting time among all the events. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nLiam Phillips was born in Hillcrest\n</answer>",
+      "pred_answer": "Liam Phillips was born in Hillcrest",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "story534_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Lucas Thompson was born in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to first identify the earliest event based on the given temporal context. The earliest event is the birth of Lucas Thompson and Liam Phillips, both occurring in 1928. Since both events occur simultaneously, we can consider them as the first events. The next event chronologically would be the marriage of Lucas Thompson to Liam Phillips, which occurs in 1951. This event is the second one in chronological order.\n<timeline> \n(Lucas Thompson was born in Oceanview) starts at 1928.\n(Liam Phillips was born in Hillcrest) starts at 1928.\n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the birth of Lucas Thompson and Liam Phillips as the first events and the marriage of Lucas Thompson to Liam Phillips as the second event. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nLiam Phillips was married to Lucas Thompson\n</answer>",
+      "pred_answer": "Liam Phillips was married to Lucas Thompson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.4615384615384615
+    },
+    {
+      "question_id": "story534_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Phillips was married to Lucas Thompson",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting points. The events provided are: (Lucas Thompson was born in Oceanview), (Liam Phillips was born in Hillcrest), (Lucas Thompson was married to Liam Phillips), (Liam Phillips was married to Lucas Thompson), and (Lucas Thompson died in Hillside,Seattle).\n\nFirst, we note the starting points of each event:\n- (Lucas Thompson was born in Oceanview) starts at 1928.\n- (Liam Phillips was born in Hillcrest) starts at 1928.\n- (Lucas Thompson was married to Liam Phillips) starts at 1951.\n- (Liam Phillips was married to Lucas Thompson) starts at 1951.\n- (Lucas Thompson died in Hillside,Seattle) starts at 2009.\n\nSince both births occur in the same year (1928), they can be considered simultaneous for the purpose of this question. Therefore, the first two events are:\n1. (Lucas Thompson was born in Oceanview)\n2. (Liam Phillips was born in Hillcrest)\n\nThe next event chronologically is:\n3. (Lucas Thompson was married to Liam Phillips) or (Liam Phillips was married to Lucas Thompson), both starting at 1951.\n\nThus, the third event in chronological order is either of the marriages, which can be considered as a single event since they start at the same time.\n<timeline> \n1. (Lucas Thompson was born in Oceanview) - 1928\n2. (Liam Phillips was born in Hillcrest) - 1928\n3. (Lucas Thompson was married to Liam Phillips) or (Liam Phillips was married to Lucas Thompson) - 1951\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. Both marriages start at the same time, so they can be considered as a single event for the purpose of determining the third event. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nLiam Phillips was married to Lucas Thompson\n</answer>",
+      "pred_answer": "Liam Phillips was married to Lucas Thompson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Phillips was married to Lucas Thompson",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the events based on their starting points. The events provided are: (Lucas Thompson was born in Oceanview), (Liam Phillips was born in Hillcrest), (Lucas Thompson was married to Liam Phillips), (Liam Phillips was married to Lucas Thompson), and (Lucas Thompson died in Hillside,Seattle).\n\nFirst, we note the starting points of each event:\n- (Lucas Thompson was born in Oceanview) starts at 1928.\n- (Liam Phillips was born in Hillcrest) starts at 1928.\n- (Lucas Thompson was married to Liam Phillips) starts at 1951.\n- (Liam Phillips was married to Lucas Thompson) starts at 1951.\n- (Lucas Thompson died in Hillside,Seattle) starts at 2009.\n\nSince both births occur in the same year, they can be considered simultaneous. Therefore, the first two events are:\n1. (Lucas Thompson was born in Oceanview)\n2. (Liam Phillips was born in Hillcrest)\n\nNext, the marriages occur in 1951, which is after the births but before the death. Thus, the third and fourth events are:\n3. (Lucas Thompson was married to Liam Phillips)\n4. (Liam Phillips was married to Lucas Thompson)\n\nFinally, the death of Lucas Thompson occurs in 2009, which is the latest event. So, the fifth event is:\n5. (Lucas Thompson died in Hillside,Seattle)\n\nGiven this chronological order, the fourth event in chronological order is (Liam Phillips was married to Lucas Thompson).\n<timeline> \n1. (Lucas Thompson was born in Oceanview) - 1928\n2. (Liam Phillips was born in Hillcrest) - 1928\n3. (Lucas Thompson was married to Liam Phillips) - 1951\n4. (Liam Phillips was married to Lucas Thompson) - 1951\n5. (Lucas Thompson died in Hillside,Seattle) - 2009\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nLiam Phillips was married to Lucas Thompson\n</answer>",
+      "pred_answer": "Liam Phillips was married to Lucas Thompson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Lucas Thompson died in Hillside, Seattle",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the events based on their starting points. The events are: (Lucas Thompson was born in Oceanview), (Liam Phillips was born in Hillcrest), (Lucas Thompson was married to Liam Phillips), (Liam Phillips was married to Lucas Thompson), and (Lucas Thompson died in Hillside,Seattle).\n\nFirst, we note that both Lucas Thompson and Liam Phillips were born in 1928, which is the earliest starting point. Next, their marriage occurred in 1951, which is the next earliest event. The death of Lucas Thompson in 2009 is the latest event.\n\nThus, the chronological order of the events is:\n1. Lucas Thompson was born in Oceanview (1928)\n2. Liam Phillips was born in Hillcrest (1928)\n3. Lucas Thompson was married to Liam Phillips (1951)\n4. Liam Phillips was married to Lucas Thompson (1951)\n5. Lucas Thompson died in Hillside,Seattle (2009)\n\nThe fifth event in this chronological order is \"Lucas Thompson died in Hillside,Seattle.\"\n<timeline> \n1. Lucas Thompson was born in Oceanview (1928)\n2. Liam Phillips was born in Hillcrest (1928)\n3. Lucas Thompson was married to Liam Phillips (1951)\n4. Liam Phillips was married to Lucas Thompson (1951)\n5. Lucas Thompson died in Hillside,Seattle (2009)\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nLucas Thompson died in Hillside,Seattle\n</answer>",
+      "pred_answer": "Lucas Thompson died in Hillside,Seattle",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7272727272727272
+    },
+    {
+      "question_id": "story534_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "15 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Liam Phillips was married to Lucas Thompson) lasted, we need to identify the start and end dates of this event from the given temporal context. The event starts at 1951 and ends at 1966. To find the duration, we subtract the start year from the end year.\n<timeline> \n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Liam Phillips was married to Lucas Thompson) ends at 1966.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 1966 - 1951 = 15 years. There are no apparent errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> \n15\n</answer>",
+      "pred_answer": "15",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "21 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event \"Hillcrest owned Fairfield Field (Seattle)\" lasted, we need to find the start and end dates of this event from the given temporal context. The event starts at 1956 and ends at 1977. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n(Hillcrest owned Fairfield Field (Seattle)) ends at 1977.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 1977 - 1956 = 21 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n21\n</answer>",
+      "pred_answer": "21",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q2_2",
+      "dataset_name": "tgqa_test",
+      "gold": "15 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Lucas Thompson was married to Liam Phillips) lasted, we need to find the start and end dates of this event from the given temporal context. The event starts at 1951 and ends at 1966. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n(Lucas Thompson was married to Liam Phillips) ends at 1966.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 1966 - 1951 = 15 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n15\n</answer>",
+      "pred_answer": "15",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "5 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of the event \"Lucas Thompson was married to Liam Phillips\" and the start of the event \"Hillcrest owned Fairfield Field (Seattle)\", we need to identify the start dates of these two events from the provided temporal context.\n\nThe start date of \"Lucas Thompson was married to Liam Phillips\" is given as 1951.\nThe start date of \"Hillcrest owned Fairfield Field (Seattle)\" is given as 1956.\n\nTo find the time passed between these two events, we subtract the earlier start date from the later start date.\n\n1956 (start of Hillcrest owning Fairfield Field) - 1951 (start of Lucas and Liam's marriage) = 5 years.\n\nThus, the time passed between the start of Lucas and Liam's marriage and the start of Hillcrest owning Fairfield Field is 5 years.\n<timeline> \n- (Lucas Thompson was married to Liam Phillips) starts at 1951.\n- (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the start dates of the two events. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n5\n</answer>",
+      "pred_answer": "5",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "58 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of the event (Liam Phillips was married to Lucas Thompson) and the start of the event (Lucas Thompson died in Hillside, Seattle), we need to identify the start and end years of these events from the provided temporal context.\n\nThe start of the event (Liam Phillips was married to Lucas Thompson) is given as 1951.\nThe start of the event (Lucas Thompson died in Hillside, Seattle) is given as 2009.\n\nTo find the time passed between these two events, we subtract the start year of the first event from the start year of the second event.\n\n2009 - 1951 = 58 years\n\nThus, the time passed between the start of the event (Liam Phillips was married to Lucas Thompson) and the start of the event (Lucas Thompson died in Hillside, Seattle) is 58 years.\n<timeline> \n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Lucas Thompson died in Hillside, Seattle) starts at 2009.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the start years of the two events. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n58\n</answer>",
+      "pred_answer": "58",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "65 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of the event (Lucas Thompson was married to Liam Phillips) and the start of the event (Liam Phillips died in Oceanview), we need to identify the start and end years of these events from the provided temporal context.\n\nThe start of the event (Lucas Thompson was married to Liam Phillips) is given as 1951.\nThe start of the event (Liam Phillips died in Oceanview) is given as 2016.\n\nTo find the time passed between these two events, we subtract the start year of the first event from the start year of the second event.\n\n2016 - 1951 = 65 years\n\nThus, the time passed between the start of the marriage and the death of Liam Phillips is 65 years.\n<timeline> \n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n(Liam Phillips died in Oceanview) starts at 2016.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the relevant years from the temporal context. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n65\n</answer>",
+      "pred_answer": "65",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story534_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "1928",
+      "raw_generation": "<reasoning> \nThe question asks for the start time of the event \"Liam Phillips was born in Hillcrest.\" To find this, we need to locate the temporal context that directly relates to this event. The context provided includes several events and their start and end times. Among these, the event \"Liam Phillips was born in Hillcrest\" is explicitly mentioned with a start time.\n\n<timeline> \n(Liam Phillips was born in Hillcrest) starts at 1928.\n</timeline>\n\n<reflection> \nThe reasoning process correctly identified the event \"Liam Phillips was born in Hillcrest\" and its start time from the provided context. There are no apparent errors or improvements needed in the reasoning or timeline.\n</reflection>\n</reasoning> \n<answer> \n1928\n</answer>",
+      "pred_answer": "1928",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "2016",
+      "raw_generation": "<reasoning> \nThe question asks for the start time of the event \"Liam Phillips died in Oceanview.\" To find this, we need to locate the specific temporal event related to Liam Phillips' death in the provided context. The context lists various events and their start times, and among them, the event \"Liam Phillips died in Oceanview\" is explicitly mentioned with a start time.\n\n<timeline> \n(Liam Phillips died in Oceanview) starts at 2016.\n</timeline> \n\n<reflection> \nThe reasoning process correctly identified the relevant event and its start time from the provided context. There are no apparent errors or improvements needed in the reasoning or timeline.\n</reflection> \n\n</reasoning> \n<answer> \n2016\n</answer>",
+      "pred_answer": "2016",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Lucas Thompson died in Hillside, Seattle\" and \"Liam Phillips was married to Lucas Thompson\" started at the same year, we need to compare the start times of these two events. According to the temporal context provided, the event \"Liam Phillips was married to Lucas Thompson\" starts at 1951, while the event \"Lucas Thompson died in Hillside, Seattle\" starts at 2009. Since these two events have different start times, it is clear that they did not start at the same year.\n<timeline> \n- (Liam Phillips was married to Lucas Thompson) starts at 1951.\n- (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Liam Phillips was born in Hillcrest\" and \"Liam Phillips was married to Lucas Thompson\" started at the same year, we need to compare the starting years of these two events. According to the temporal context provided, both events start at the same year, which is 1928. Therefore, the answer to the question is true.\n<timeline> \n(Liam Phillips was born in Hillcrest) starts at 1928.\n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both events start at the same year, which is 1928. There are no errors in the reasoning process, and the timeline supports the conclusion that the events started at the same year.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Lucas Thompson died in Hillside, Seattle\" and \"Hillcrest owned Fairfield Field (Seattle)\" started at the same year, we need to compare the start times of these two events. According to the temporal context provided, the event \"Lucas Thompson died in Hillside, Seattle\" starts at 2009, while the event \"Hillcrest owned Fairfield Field (Seattle)\" starts at 1956. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n- (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n- (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Lucas Thompson was married to Liam Phillips\" was still happening when \"Liam Phillips died in Oceanview\" started, we need to compare the start and end times of both events. The marriage between Lucas Thompson and Liam Phillips started in 1951 and ended in 1966. The death of Liam Phillips in Oceanview started in 2016. Since the marriage ended in 1966, it was not ongoing when Liam Phillips' death in Oceanview started in 2016.\n<timeline> \n- (Lucas Thompson was married to Liam Phillips) starts at 1951 and ends at 1966.\n- (Liam Phillips died in Oceanview) starts at 2016.\n</timeline> \n<reflection> \nThe timeline shows that the marriage ended before the death event started, confirming that the marriage was not ongoing at the time of Liam Phillips' death. There are no errors or improvements needed in the reasoning.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Lucas Thompson was married to Liam Phillips\" was still happening when \"Lucas Thompson died in Hillside, Seattle\" started, we need to compare the start and end times of both events. The marriage event starts in 1951 and ends in 1966, while Lucas Thompson's death event starts in 2009. Since the marriage ended before Lucas Thompson's death began, it is clear that the marriage was not ongoing at the time of his death.\n<timeline> \n(Lucas Thompson was married to Liam Phillips) starts at 1951 and ends at 1966.\n(Lucas Thompson died in Hillside, Seattle) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end times of both events and compares them. There are no errors in the comparison, and the conclusion that the marriage was not ongoing at the time of Lucas Thompson's death is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q6_2",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Liam Phillips was married to Lucas Thompson\" was still happening when the event \"Hillcrest owned Fairfield Field (Seattle)\" started, we need to compare the start times of these two events. The start time of \"Liam Phillips was married to Lucas Thompson\" is given as 1951, and the start time of \"Hillcrest owned Fairfield Field (Seattle)\" is given as 1956. Since 1951 is before 1956, it means that the marriage between Liam Phillips and Lucas Thompson had already started before Hillcrest owned Fairfield Field (Seattle) began. Therefore, the statement is true.\n<timeline> \n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the marriage was still happening when Hillcrest owned Fairfield Field (Seattle) started is accurate.\n</reflection> \n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Liam Phillips died in Oceanview) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Lucas Thompson died in Hillside, Seattle,\" we need to identify the next significant event in the timeline that follows this event. The given temporal context provides a sequence of events with their respective start and end times. We can use this information to establish a chronological order of events.\n\n<timeline> \n(Lucas Thompson was born in Oceanview) starts at 1928.\n(Liam Phillips was born in Hillcrest) starts at 1928.\n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n(Lucas Thompson was married to Liam Phillips) ends at 1966.\n(Liam Phillips was married to Lucas Thompson) ends at 1966.\n(Hillcrest owned Fairfield Field (Seattle)) ends at 1977.\n(Lucas Thompson died in Hillside, Seattle) starts at 2009.\n(Liam Phillips died in Oceanview) starts at 2016.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Lucas Thompson died in Hillside, Seattle\" starts at 2009. The next event in the timeline is \"Liam Phillips died in Oceanview,\" which starts at 2016. This indicates that the event that happened right after Lucas Thompson's death is Liam Phillips' death. There are no other events listed between these two events, so the timeline is consistent and accurate.\n</reflection>\n\n</reasoning> \n<answer> \nLiam Phillips died in Oceanview\n</answer>",
+      "pred_answer": "Liam Phillips died in Oceanview",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9090909090909091
+    },
+    {
+      "question_id": "story534_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Liam Phillips was married to Lucas Thompson) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Lucas Thompson was born in Oceanview\" starts, we need to identify the next chronological event in the timeline. The given temporal context provides specific years for each event, allowing us to sequence them accurately.\n\n<timeline> \n- Lucas Thompson was born in Oceanview starts at 1928.\n- Liam Phillips was born in Hillcrest starts at 1928.\n- Lucas Thompson was married to Liam Phillips starts at 1951.\n- Liam Phillips was married to Lucas Thompson starts at 1951.\n- Hillcrest owned Fairfield Field (Seattle) starts at 1956.\n- Lucas Thompson was married to Liam Phillips ends at 1966.\n- Liam Phillips was married to Lucas Thompson ends at 1966.\n- Hillcrest owned Fairfield Field (Seattle) ends at 1977.\n- Lucas Thompson died in Hillside, Seattle starts at 2009.\n- Liam Phillips died in Oceanview starts at 2016.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the next event after \"Lucas Thompson was born in Oceanview\" is \"Liam Phillips was born in Hillcrest,\" both starting in 1928. However, since the question asks for what happened \"right after\" the birth of Lucas Thompson, and considering that both events start simultaneously, the next significant event chronologically is the marriage of Lucas Thompson and Liam Phillips, which starts in 1951.\n</reflection>\n\n</reasoning> \n<answer> \nLiam Phillips was married to Lucas Thompson\n</answer>",
+      "pred_answer": "Liam Phillips was married to Lucas Thompson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story534_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Liam Phillips was married to Lucas Thompson) ends",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Hillcrest owned Fairfield Field (Seattle)\" starts, we need to identify the next significant event in the timeline that follows this event. The given temporal context provides a sequence of events with their respective start and end times. We can use this information to pinpoint the event that immediately follows the start of \"Hillcrest owned Fairfield Field (Seattle).\"\n\n<timeline> \n- (Lucas Thompson was born in Oceanview) starts at 1928.\n- (Liam Phillips was born in Hillcrest) starts at 1928.\n- (Lucas Thompson was married to Liam Phillips) starts at 1951.\n- (Liam Phillips was married to Lucas Thompson) starts at 1951.\n- (Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n- (Lucas Thompson was married to Liam Phillips) ends at 1966.\n- (Liam Phillips was married to Lucas Thompson) ends at 1966.\n- (Hillcrest owned Fairfield Field (Seattle)) ends at 1977.\n- (Lucas Thompson died in Hillside, Seattle) starts at 2009.\n- (Liam Phillips died in Oceanview) starts at 2016.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Hillcrest owned Fairfield Field (Seattle)\" starts at 1956. The next event in the timeline is the continuation of this event until its end in 1977. However, the question specifically asks for what happened right after the start of this event. The immediate subsequent event is the continuation of \"Hillcrest owned Fairfield Field (Seattle),\" which does not change its nature but rather its duration.\n</reflection>\n\n</reasoning> \n<answer> \nHillcrest owned Fairfield Field (Seattle)\n</answer>",
+      "pred_answer": "Hillcrest owned Fairfield Field (Seattle)",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story534_Q8_0",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Hillcrest owned Fairfield Field (Seattle)\" was longer in duration than the event \"Liam Phillips was married to Lucas Thompson,\" we need to compare the durations of these two events.\n\nFirst, we identify the start and end times for each event from the provided temporal context. \n\nFor \"Hillcrest owned Fairfield Field (Seattle):\"\n- Start: 1956\n- End: 1977\n\nFor \"Liam Phillips was married to Lucas Thompson:\"\n- Start: 1951\n- End: 1966\n\nNext, we calculate the duration of each event:\n- Duration of \"Hillcrest owned Fairfield Field (Seattle)\": 1977 - 1956 = 21 years\n- Duration of \"Liam Phillips was married to Lucas Thompson\": 1966 - 1951 = 15 years\n\nComparing the durations, we see that the duration of \"Hillcrest owned Fairfield Field (Seattle)\" (21 years) is indeed longer than the duration of \"Liam Phillips was married to Lucas Thompson\" (15 years).\n\n<timeline> \n- 1956: Hillcrest owned Fairfield Field (Seattle) starts\n- 1977: Hillcrest owned Fairfield Field (Seattle) ends\n- 1951: Liam Phillips was married to Lucas Thompson starts\n- 1966: Liam Phillips was married to Lucas Thompson ends\n</timeline>\n\n<reflection> \nThe reasoning process correctly identified the start and end times for both events and calculated their durations accurately. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q8_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Liam Phillips was married to Lucas Thompson\" was longer in duration than the event \"Lucas Thompson was married to Liam Phillips,\" we need to compare the durations of these two events. Both events start at the same time and end at the same time, which simplifies the comparison.\n\nThe start time for both events is 1951, and the end time for both events is 1966. Since both events start and end at the same times, their durations must be equal. Therefore, the duration of \"Liam Phillips was married to Lucas Thompson\" is not longer than the duration of \"Lucas Thompson was married to Liam Phillips.\"\n\n<timeline> \n(Lucas Thompson was born in Oceanview) starts at 1928.\n(Liam Phillips was born in Hillcrest) starts at 1928.\n(Lucas Thompson was married to Liam Phillips) starts at 1951.\n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n(Hillcrest owned Fairfield Field (Seattle)) starts at 1956.\n(Lucas Thompson was married to Liam Phillips) ends at 1966.\n(Liam Phillips was married to Lucas Thompson) ends at 1966.\n(Hillcrest owned Fairfield Field (Seattle)) ends at 1977.\n(Lucas Thompson died in Hillside, Seattle) starts at 2009.\n(Liam Phillips died in Oceanview) starts at 2016.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies that both events start and end at the same times, leading to the conclusion that their durations are equal. There are no errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning>\n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q8_2",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Hillcrest owned Fairfield Field (Seattle)\" was longer in duration than the event \"Lucas Thompson was married to Liam Phillips,\" we need to compare the durations of these two events. \n\nFirst, we identify the start and end times for each event from the provided temporal context. \n\nFor \"Lucas Thompson was married to Liam Phillips\":\n- Start: 1951\n- End: 1966\n\nFor \"Hillcrest owned Fairfield Field (Seattle)\":\n- Start: 1956\n- End: 1977\n\nNext, we calculate the duration of each event:\n- Duration of \"Lucas Thompson was married to Liam Phillips\": 1966 - 1951 = 15 years\n- Duration of \"Hillcrest owned Fairfield Field (Seattle)\": 1977 - 1956 = 21 years\n\nComparing the durations, we see that the duration of \"Hillcrest owned Fairfield Field (Seattle)\" (21 years) is indeed longer than the duration of \"Lucas Thompson was married to Liam Phillips\" (15 years).\n\n<timeline> \n- Lucas Thompson was married to Liam Phillips: 1951 to 1966\n- Hillcrest owned Fairfield Field (Seattle): 1956 to 1977\n</timeline>\n\n<reflection> \nThe reasoning process correctly identified the start and end times for both events and calculated their durations accurately. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Roberts was born in Lancaster City, Ohio",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Sophie Anderson was married to Maxwell Porter) and (Sophia Roberts was born in Lancaster City,Ohio). According to the temporal context provided, (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985, while (Sophie Anderson was married to Maxwell Porter) starts at 2014. Since 1985 is earlier than 2014, the event (Sophia Roberts was born in Lancaster City,Ohio) started first.\n<timeline> \n(Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n(Sophie Anderson was married to Maxwell Porter) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nSophia Roberts was born in Lancaster City,Ohio\n</answer>",
+      "pred_answer": "Sophia Roberts was born in Lancaster City,Ohio",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7999999999999999
+    },
+    {
+      "question_id": "story535_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was married to Sophia Roberts",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two marriages involving Maxwell Porter. The marriages in question are (Maxwell Porter was married to Sophie Anderson) and (Maxwell Porter was married to Sophia Roberts). According to the temporal context provided, (Maxwell Porter was married to Sophia Roberts) starts at 2009, while (Maxwell Porter was married to Sophie Anderson) starts at 2014. Since 2009 is earlier than 2014, the marriage to Sophia Roberts started first.\n<timeline> \n(Maxwell Porter was married to Sophia Roberts) starts at 2009.\n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two marriages and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMaxwell Porter was married to Sophia Roberts\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophia Roberts",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was born in Kensington",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Maxwell Porter was born in Kensington) and (Maxwell Porter was married to Sophia Roberts). According to the temporal context provided, (Maxwell Porter was born in Kensington) starts at 1984, while (Maxwell Porter was married to Sophia Roberts) starts at 2009. Since 1984 is earlier than 2009, it is clear that the birth of Maxwell Porter in Kensington occurred before his marriage to Sophia Roberts.\n<timeline> \n(Maxwell Porter was born in Kensington) starts at 1984.\n(Maxwell Porter was married to Sophia Roberts) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMaxwell Porter was born in Kensington\n</answer>",
+      "pred_answer": "Maxwell Porter was born in Kensington",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was born in Kensington",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to compare the starting times of each event. The events provided are: (Maxwell Porter was born in Kensington), (Maxwell Porter was married to Sophia Roberts), (Sophia Roberts was born in Lancaster City,Ohio), (Sophie Anderson was married to Maxwell Porter), and (Maxwell Porter was married to Sophie Anderson).\n\nThe temporal context gives us the starting times for these events:\n- (Maxwell Porter was born in Kensington) starts at 1984.\n- (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n- (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n- (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n\nComparing these starting times, the earliest event is (Maxwell Porter was born in Kensington) which starts at 1984.\n<timeline> \n- (Maxwell Porter was born in Kensington) starts at 1984.\n- (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n- (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n- (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the starting times and compares them to find the earliest event. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nMaxwell Porter was born in Kensington\n</answer>",
+      "pred_answer": "Maxwell Porter was born in Kensington",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Roberts was born in Lancaster City, Ohio",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. Maxwell Porter was born in Kensington (starts at 1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (starts at 1985)\n3. Sophia Roberts was married to Maxwell Porter (starts at 2007)\n4. Maxwell Porter was married to Sophie Anderson (starts at 2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n\nFirst, we arrange these events in chronological order based on their starting times:\n\n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n\nThe second event in this chronological order is \"Sophia Roberts was born in Lancaster City,Ohio.\"\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the events in chronological order and selects the second event as \"Sophia Roberts was born in Lancaster City,Ohio.\" There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nSophia Roberts was born in Lancaster City,Ohio\n</answer>",
+      "pred_answer": "Sophia Roberts was born in Lancaster City,Ohio",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7999999999999999
+    },
+    {
+      "question_id": "story535_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was married to Sophia Roberts",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. Maxwell Porter was born in Kensington (starts at 1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (starts at 1985)\n3. Sophia Roberts was married to Maxwell Porter (starts at 2007)\n4. Maxwell Porter was married to Sophie Anderson (starts at 2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n\nFirst, we arrange these events in chronological order based on their starting times:\n\n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n\nThe third event in this chronological order is \"Sophia Roberts was married to Maxwell Porter\" which starts at 2007.\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (ends at 2015)\n</timeline>\n<reflection> \nThe reasoning correctly arranges the events in chronological order based on their starting times. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nSophia Roberts was married to Maxwell Porter\n</answer>",
+      "pred_answer": "Sophia Roberts was married to Maxwell Porter",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophie Anderson was married to Maxwell Porter",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. Maxwell Porter was born in Kensington (starts at 1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (starts at 1985)\n3. Sophia Roberts was married to Maxwell Porter (starts at 2007)\n4. Maxwell Porter was married to Sophie Anderson (starts at 2014)\n5. Sophie Anderson was married to Maxwell Porter (starts at 2014)\n\nFirst, we arrange these events in chronological order based on their starting times:\n\n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n\nThe fourth event in this chronological order is \"Maxwell Porter was married to Sophie Anderson\" which starts at 2014.\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n</timeline>\n<reflection> \nThe reasoning correctly arranges the events in chronological order based on their starting times. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nMaxwell Porter was married to Sophie Anderson\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophie Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophie Anderson was married to Maxwell Porter",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the events based on their starting times. The events are:\n\n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (2014)\n\nFirst, we note that the birth of Maxwell Porter and Sophia Roberts are the earliest events, occurring in 1984 and 1985, respectively. Next, we see that the marriage of Sophia Roberts to Maxwell Porter occurs in 2007, which is the third event chronologically. The marriages involving Sophie Anderson occur later, in 2014 and 2015.\n\nGiven this sequence, the fifth event in chronological order would be the second marriage involving Sophie Anderson, which occurs in 2014.\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophie Anderson (2014)\n5. Maxwell Porter was married to Sophie Anderson (2014)\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The fifth event in chronological order is indeed the second marriage involving Sophie Anderson, which occurs in 2014. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nMaxwell Porter was married to Sophie Anderson\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophie Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Roberts was married to Maxwell Porter",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to first identify the chronological order of the given events based on their starting points. The events are:\n\n1. (Maxwell Porter was born in Kensington) starts at 1984.\n2. (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n3. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n4. (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n5. (Sophie Anderson was married to Maxwell Porter) starts at 2014.\n6. (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n\nThe first event in chronological order is the birth of Maxwell Porter in 1984. The second event should be the next earliest starting point among the remaining events.\n\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophia Roberts (2009)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n6. Maxwell Porter was married to Sophie Anderson (2014)\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the second event in chronological order is the birth of Sophia Roberts in 1985. However, the question specifically asks for the second event related to marriage, not birth. Therefore, the correct second event in chronological order related to marriage is the marriage of Maxwell Porter to Sophia Roberts in 2009.\n</reflection>\n\n</reasoning> \n<answer> \nMaxwell Porter was married to Sophia Roberts\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophia Roberts",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was married to Sophia Roberts",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to first establish the order of each event based on their starting points. The events provided are:\n\n1. (Maxwell Porter was born in Kensington) starts at 1984.\n2. (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n3. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n4. (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n5. (Sophie Anderson was married to Maxwell Porter) starts at 2014.\n6. (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n\nWe can see that the birth events are the earliest, followed by the marriage events. The birth of Maxwell Porter in 1984 is the earliest event. The birth of Sophia Roberts in 1985 is the second earliest event. The marriage of Maxwell Porter to Sophia Roberts in 2009 is the third event in chronological order.\n\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Maxwell Porter was married to Sophia Roberts (2009)\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The birth of Maxwell Porter in 1984 is the first event, the birth of Sophia Roberts in 1985 is the second event, and the marriage of Maxwell Porter to Sophia Roberts in 2009 is the third event. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nMaxwell Porter was married to Sophia Roberts\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophia Roberts",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was married to Sophie Anderson",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the events based on their starting times. The events provided are:\n\n1. (Maxwell Porter was born in Kensington) starts at 1984.\n2. (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n3. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n4. (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n5. (Sophie Anderson was married to Maxwell Porter) starts at 2014.\n6. (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n\nWe can see that the first two events are about the birth of Maxwell Porter and Sophia Roberts, which occur before any marriages. The next two events are about the marriage of Maxwell Porter and Sophia Roberts, which occur after their births. The last two events are about the marriage of Maxwell Porter and Sophie Anderson, which occur later than the marriage of Maxwell Porter and Sophia Roberts.\n\nArranging these events in chronological order, we get:\n\n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophia Roberts (2009)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n6. Maxwell Porter was married to Sophie Anderson (2014)\n\nThe fourth event in this chronological order is \"Maxwell Porter was married to Sophia Roberts.\"\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophia Roberts (2009)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n6. Maxwell Porter was married to Sophie Anderson (2014)\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMaxwell Porter was married to Sophia Roberts\n</answer>",
+      "pred_answer": "Maxwell Porter was married to Sophia Roberts",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7142857142857143
+    },
+    {
+      "question_id": "story535_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Porter was married to Sophie Anderson",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the given events based on their starting points. The events are:\n\n1. (Maxwell Porter was born in Kensington) starts at 1984.\n2. (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n3. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n4. (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n5. (Sophie Anderson was married to Maxwell Porter) starts at 2014.\n6. (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n\nWe can see that the first two events are about the birth of Maxwell Porter and Sophia Roberts, which occur before any marriages. The next two events are about the marriage of Maxwell Porter and Sophia Roberts, which occur after their births. The last two events are about the marriage of Maxwell Porter and Sophie Anderson, which occur after the marriage of Maxwell Porter and Sophia Roberts.\n\n<timeline> \n1. Maxwell Porter was born in Kensington (1984)\n2. Sophia Roberts was born in Lancaster City,Ohio (1985)\n3. Sophia Roberts was married to Maxwell Porter (2007)\n4. Maxwell Porter was married to Sophia Roberts (2009)\n5. Sophie Anderson was married to Maxwell Porter (2014)\n6. Maxwell Porter was married to Sophie Anderson (2014)\n</timeline>\n\n<reflection> \nThe timeline shows the chronological order of the events. The fifth event in this order is \"Sophie Anderson was married to Maxwell Porter\" which starts at 2014. This matches the given answer.\n</reflection>\n</reasoning>\n<answer> \nSophie Anderson was married to Maxwell Porter\n</answer>",
+      "pred_answer": "Sophie Anderson was married to Maxwell Porter",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1 year",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Maxwell Porter was married to Sophie Anderson) lasted, we need to identify the start and end dates of this event from the given temporal context. The event starts at 2014 and ends at 2015. To find the duration, we subtract the start year from the end year.\n<timeline> \n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n(Maxwell Porter was married to Sophie Anderson) ends at 2015.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end years of the marriage between Maxwell Porter and Sophie Anderson. Subtracting the start year from the end year gives us the duration of the marriage. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> \n1\n</answer>",
+      "pred_answer": "1",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story535_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "2 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Sophia Roberts was married to Maxwell Porter) lasted, we need to identify the start and end dates of this event from the given temporal context. The event starts at 2007 and ends at 2009. To find the duration, we subtract the start year from the end year.\n<timeline> \n(Sophia Roberts was married to Maxwell Porter) starts at 2007.\n(Sophia Roberts was married to Maxwell Porter) ends at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end years of the marriage. Subtracting the start year from the end year gives us the duration of the marriage. There are no errors in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n2\n</answer>",
+      "pred_answer": "2",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story535_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "0 year",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Sophie Anderson was married to Maxwell Porter) and the start of event (Maxwell Porter was married to Sophie Anderson), we need to identify the start times of both events from the given temporal context.\n\nThe start of the event (Sophie Anderson was married to Maxwell Porter) is given as 2014.\nThe start of the event (Maxwell Porter was married to Sophie Anderson) is also given as 2014.\n\nSince both events start at the same time, the time passed between their start is zero years.\n<timeline> \n(Sophie Anderson was married to Maxwell Porter) starts at 2014.\n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both events start at the same time, which means no time has passed between their start. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer> \n0\n</answer>",
+      "pred_answer": "0",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story535_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "23 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Maxwell Porter was born in Kensington) and the start of event (Sophia Roberts was married to Maxwell Porter), we need to identify the starting points of these two events from the given temporal context. The start of (Maxwell Porter was born in Kensington) is given as 1984, and the start of (Sophia Roberts was married to Maxwell Porter) is given as 2007. To find the time passed, we subtract the earlier date from the later date.\n<timeline> \n(Maxwell Porter was born in Kensington) starts at 1984.\n(Sophia Roberts was married to Maxwell Porter) starts at 2007.\n</timeline> \n<reflection> \nThe calculation involves subtracting 1984 from 2007, which results in 23 years. This matches the provided answer, indicating that the reasoning and timeline are correct.\n</reflection> \n</reasoning> \n<answer> \n23\n</answer>",
+      "pred_answer": "23",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story535_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "30 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Maxwell Porter was born in Kensington) and the start of event (Maxwell Porter was married to Sophie Anderson), we need to identify the starting points of these two events from the given temporal context.\n\nThe start of event (Maxwell Porter was born in Kensington) is given as 1984.\nThe start of event (Maxwell Porter was married to Sophie Anderson) is given as 2014.\n\nTo find the time passed between these two events, we subtract the earlier starting point from the later starting point.\n\n2014 - 1984 = 30 years\n\nThus, the time passed between the start of Maxwell Porter's birth and the start of his marriage to Sophie Anderson is 30 years.\n<timeline> \n(Maxwell Porter was born in Kensington) starts at 1984.\n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the time difference between the two events. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n30\n</answer>",
+      "pred_answer": "30",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story535_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "2007",
+      "raw_generation": "<reasoning> \nThe question asks for the start date of the event where Sophia Roberts was married to Maxwell Porter. The temporal context provided includes several events related to Maxwell Porter and Sophia Roberts' marriages. The relevant event for this question is explicitly stated in the context: (Sophia Roberts was married to Maxwell Porter) starts at 2007. This directly answers the question.\n<timeline> \n(Sophia Roberts was married to Maxwell Porter) starts at 2007.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the relevant event from the context and extracts the start date directly. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \n2007\n</answer>",
+      "pred_answer": "2007",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "2009",
+      "raw_generation": "<reasoning> \nThe question asks for the start date of the event where Maxwell Porter was married to Sophia Roberts. The temporal context provided includes several events related to Maxwell Porter's marriages. Specifically, it mentions that (Maxwell Porter was married to Sophia Roberts) starts at 2009. This directly answers the question.\n<timeline> \n(Maxwell Porter was married to Sophia Roberts) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the relevant event from the temporal context. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \n2009\n</answer>",
+      "pred_answer": "2009",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1985",
+      "raw_generation": "<reasoning> \nThe question asks for the starting time of the event \"Sophia Roberts was born in Lancaster City,Ohio.\" To find this, we need to locate the temporal context that directly relates to this event. The context provided includes several events and their starting times. Among these, the event \"Sophia Roberts was born in Lancaster City,Ohio\" is explicitly mentioned with a starting time of 1985. Therefore, the answer to the question is the year 1985.\n<timeline> \n(Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the relevant event and its starting time from the provided context. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \n1985\n</answer>",
+      "pred_answer": "1985",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Sophie Anderson was married to Maxwell Porter\" and \"Sophia Roberts was married to Maxwell Porter\" started at the same year, we need to compare the start dates of these two events. According to the temporal context provided, the event \"Sophia Roberts was married to Maxwell Porter\" starts at 2007, while the event \"Sophie Anderson was married to Maxwell Porter\" starts at 2014. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n(Sophia Roberts was married to Maxwell Porter) starts at 2007.\n(Sophie Anderson was married to Maxwell Porter) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks whether two events, (Maxwell Porter was born in Kensington) and (Sophia Roberts was married to Maxwell Porter), started at the same year. To determine this, we need to compare the starting years of these two events. According to the temporal context provided, (Maxwell Porter was born in Kensington) starts at 1984, while (Sophia Roberts was married to Maxwell Porter) starts at 2007. Since these two events have different starting years, it is clear that they did not start at the same year.\n<timeline> \n(Maxwell Porter was born in Kensington) starts at 1984. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Maxwell Porter was married to Sophia Roberts\" and \"Sophia Roberts was born in Lancaster City,Ohio\" started at the same year, we need to compare the start times of these two events. According to the temporal context provided, \"Sophia Roberts was born in Lancaster City,Ohio\" starts at 1985, while \"Maxwell Porter was married to Sophia Roberts\" starts at 2009. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n- (Sophia Roberts was born in Lancaster City,Ohio) starts at 1985.\n- (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story535_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Roberts was married to Maxwell Porter) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Sophia Roberts was married to Maxwell Porter\" ends, we need to examine the temporal context provided. The event \"Sophia Roberts was married to Maxwell Porter\" starts at 2007 and ends at 2009. We are looking for the event that occurs immediately before this event ends.\n\nGiven the temporal context, the event \"Maxwell Porter was married to Sophia Roberts\" also starts at 2009, which is the same year the event \"Sophia Roberts was married to Maxwell Porter\" ends. This suggests that the event \"Maxwell Porter was married to Sophia Roberts\" overlaps with the end of the event \"Sophia Roberts was married to Maxwell Porter.\"\n\nHowever, the question asks for the event that happens right before the end of \"Sophia Roberts was married to Maxwell Porter.\" Since the event \"Maxwell Porter was married to Sophia Roberts\" starts at the same time as the end of \"Sophia Roberts was married to Maxwell Porter,\" it does not provide the immediate preceding event.\n\nInstead, we should look at the event \"Sophie Anderson was married to Maxwell Porter\" which starts at 2014. This event is clearly after the end of \"Sophia Roberts was married to Maxwell Porter\" in 2009. Therefore, the event that happens right before the end of \"Sophia Roberts was married to Maxwell Porter\" is not explicitly mentioned in the given temporal context.\n\n<timeline> \n- (Maxwell Porter was born in Kensington) starts at 1984.\n- (Sophia Roberts was born in Lancaster City, Ohio) starts at 1985.\n- (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n- (Maxwell Porter was married to Sophia Roberts) starts at 2009.\n- (Sophia Roberts was married to Maxwell Porter) ends at 2009.\n- (Sophie Anderson was married to Maxwell Porter) starts at 2014.\n- (Maxwell Porter was married to Sophie Anderson) starts at 2014.\n- (Maxwell Porter was married to Sophie Anderson) ends at 2015.\n</timeline>\n\n<reflection> \nUpon reflection, the temporal context does not provide an explicit event that happens right before the end of \"Sophia Roberts was married to Maxwell Porter.\" The closest event in time is \"Maxwell Porter was married to Sophia Roberts\" which starts at the same time as the end of \"Sophia Roberts was married to Maxwell Porter.\" However, this does not provide the immediate preceding event as requested.\n\nGiven the lack of explicit information in the temporal context, the best answer we can provide is that no specific event is mentioned as happening right before the end of \"Sophia Roberts was married to Maxwell Porter.\"\n</reflection>\n\n</reasoning>\n<answer> \nNo specific event is mentioned as happening right before the end of \"Sophia Roberts was married to Maxwell Porter.\"\n</answer>",
+      "pred_answer": "No specific event is mentioned as happening right before the end of \"Sophia Roberts was married to Maxwell Porter.\"",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5384615384615385
+    },
+    {
+      "question_id": "story535_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Maxwell Porter was married to Sophie Anderson) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Maxwell Porter was married to Sophie Anderson\" ends, we need to examine the temporal context provided. The event in question starts at 2014 and ends at 2015. We should look for any other events that occur between these two dates.\n\n<timeline> \n(Maxwell Porter was married to Sophia Roberts) ends at 2009.\n(Sophie Anderson was married to Maxwell Porter) starts at 2014.\n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n(Maxwell Porter was married to Sophie Anderson) ends at 2015.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it appears that the only event that occurs between the start of Maxwell Porter's marriage to Sophie Anderson in 2014 and its end in 2015 is the start of the same event in 2014. This suggests that there might not be a specific event that directly precedes the end of the marriage to Sophie Anderson.\n</reflection>\n\nGiven the lack of a clear preceding event in the timeline, the most relevant event that could be considered as happening right before the end of the marriage to Sophie Anderson is the start of the same event in 2014.\n</reasoning> \n<answer> \nSophie Anderson was married to Maxwell Porter\n</answer>",
+      "pred_answer": "Sophie Anderson was married to Maxwell Porter",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story535_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Sophia Roberts was married to Maxwell Porter) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Sophia Roberts was born in Lancaster City, Ohio,\" we need to identify the next chronological event in the timeline. The given temporal context provides specific dates for each event, which will help us pinpoint the sequence of events.\n\n<timeline> \n(Sophia Roberts was born in Lancaster City, Ohio) starts at 1985. (Sophia Roberts was married to Maxwell Porter) starts at 2007.\n</timeline> \n\n<reflection> \nUpon reviewing the timeline, it is clear that the next event after Sophia Roberts' birth in 1985 is her marriage to Maxwell Porter in 2007. There are no other events listed between these two points, so this is the immediate subsequent event.\n</reflection>\n\n</reasoning> \n<answer> \nSophia Roberts was married to Maxwell Porter\n</answer>",
+      "pred_answer": "Sophia Roberts was married to Maxwell Porter",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story535_Q7_3",
+      "dataset_name": "tgqa_test",
+      "gold": "(Maxwell Porter was born in Kensington) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Sophia Roberts was born in Lancaster City,Ohio,\" we need to look at the temporal context provided. The context lists several events with their respective start times. We are interested in the event that immediately precedes the birth of Sophia Roberts.\n\nThe context states that \"Maxwell Porter was born in Kensington\" starts at 1984, and \"Sophia Roberts was born in Lancaster City,Ohio\" starts at 1985. Since the birth of Sophia Roberts occurs one year after the birth of Maxwell Porter, it is clear that the birth of Maxwell Porter is the event that happens right before the birth of Sophia Roberts.\n\n<timeline> \nMaxwell Porter was born in Kensington (1984)\nSophia Roberts was born in Lancaster City,Ohio (1985)\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the birth of Maxwell Porter as the event that happens right before the birth of Sophia Roberts. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nMaxwell Porter was born in Kensington\n</answer>",
+      "pred_answer": "Maxwell Porter was born in Kensington",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story535_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Maxwell Porter was married to Sophie Anderson) ends",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Maxwell Porter was married to Sophie Anderson\" starts, we need to identify the next significant event involving Maxwell Porter and Sophie Anderson in the given temporal context. The context provides specific dates for each event, which will help us pinpoint the sequence of events.\n\n<timeline> \n(Maxwell Porter was married to Sophie Anderson) starts at 2014.\n(Sophie Anderson was married to Maxwell Porter) ends at 2015.\n</timeline> \n\n<reflection> \nThe timeline shows that the event \"Maxwell Porter was married to Sophie Anderson\" starts in 2014. The next event involving Maxwell Porter and Sophie Anderson is the end of their marriage, which occurs in 2015. However, the question asks for what happened right after the start of their marriage, not the end. Therefore, the relevant event is the continuation of their marriage, which is already part of the given context.\n</reflection>\n\n</reasoning> \n<answer> \nSophie Anderson was married to Maxwell Porter\n</answer>",
+      "pred_answer": "Sophie Anderson was married to Maxwell Porter",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story535_Q8_0",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Sophia Roberts was married to Maxwell Porter\" was longer in duration than the event \"Maxwell Porter was married to Sophie Anderson,\" we need to compare the durations of these two marriages. \n\nFirst, we identify the start and end times for each marriage from the given temporal context. \n\nFor \"Sophia Roberts was married to Maxwell Porter\":\n- Start: 2007\n- End: 2009\n\nFor \"Maxwell Porter was married to Sophie Anderson\":\n- Start: 2014\n- End: 2015\n\nNext, we calculate the duration of each marriage:\n- Duration of \"Sophia Roberts was married to Maxwell Porter\": 2009 - 2007 = 2 years\n- Duration of \"Maxwell Porter was married to Sophie Anderson\": 2015 - 2014 = 1 year\n\nComparing the durations, we see that the marriage between Sophia Roberts and Maxwell Porter lasted 2 years, while the marriage between Maxwell Porter and Sophie Anderson lasted 1 year.\n\n<timeline> \n- (Sophia Roberts was married to Maxwell Porter) starts at 2007 and ends at 2009.\n- (Maxwell Porter was married to Sophie Anderson) starts at 2014 and ends at 2015.\n</timeline>\n\n<reflection> \nThe reasoning correctly identified the start and end times for both marriages and calculated their durations accurately. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Johnathan (footballer) played for P.N. Greenlawn",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start dates of the two events in question: (Johnathan (footballer) played for Lakeside United F.C.) and (Johnathan (footballer) played for P.N. Greenlawn). According to the provided temporal context, (Johnathan (footballer) played for P.N. Greenlawn) starts at 2004, while (Johnathan (footballer) played for Lakeside United F.C.) starts at 2014. Since 2004 is earlier than 2014, it is clear that (Johnathan (footballer) played for P.N. Greenlawn) started first.\n<timeline> \n(Johnathan (footballer) played for P.N. Greenlawn) starts at 2004.\n(Johnathan (footballer) played for Lakeside United F.C.) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nJohnathan (footballer) played for P.N. Greenlawn\n</answer>",
+      "pred_answer": "Johnathan (footballer) played for P.N. Greenlawn",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Johnathan (footballer) was born in Weston",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the starting times of the two events in question: (Johnathan (footballer) played for Denver national under-20 basketball team) and (Johnathan (footballer) was born in Weston). According to the provided temporal context, (Johnathan (footballer) was born in Weston) starts at 1987, while (Johnathan (footballer) played for Denver national under-20 basketball team) starts at 2007. Since 1987 is earlier than 2007, the event that started first is (Johnathan (footballer) was born in Weston).\n<timeline> \n(Johnathan (footballer) was born in Weston) starts at 1987.\n(Johnathan (footballer) played for Denver national under-20 basketball team) starts at 2007.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nJohnathan (footballer) was born in Weston\n</answer>",
+      "pred_answer": "Johnathan (footballer) was born in Weston",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Johnathan (footballer) played for R.T. Wolverhampton",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start dates of the two events in question: (Johnathan (footballer) played for Palmfield United F.C.) and (Johnathan (footballer) played for R.T. Wolverhampton). According to the provided temporal context, (Johnathan (footballer) played for Palmfield United F.C.) starts at 2015, while (Johnathan (footballer) played for R.T. Wolverhampton) starts at 2005. Since 2005 is earlier than 2015, it is clear that (Johnathan (footballer) played for R.T. Wolverhampton) started first.\n<timeline> \n(Johnathan (footballer) played for R.T. Wolverhampton) starts at 2005.\n(Johnathan (footballer) played for Palmfield United F.C.) starts at 2015.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nJohnathan (footballer) played for R.T. Wolverhampton\n</answer>",
+      "pred_answer": "Johnathan (footballer) played for R.T. Wolverhampton",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Johnathan (footballer) played for R.T. Wolverhampton",
+      "raw_generation": "<reasoning> To determine the first event in chronological order, we need to examine the start dates of each event provided. The events are related to Johnathan (footballer) playing for different teams. We will compare the start dates of these events to find the earliest one.\n\nThe events are:\n1. Johnathan (footballer) played for Oakland United F.C.\n2. Johnathan (footballer) played for R.T. Wolverhampton\n3. Johnathan (footballer) played for Winterborough United\n4. Johnathan (footballer) played for Everton United F.C.\n5. Johnathan (footballer) played for Lakeside United F.C.\n\nFrom the temporal context, we have the following start dates:\n- Johnathan (footballer) played for Oakland United F.C. starts at 2013\n- Johnathan (footballer) played for R.T. Wolverhampton starts at 2005\n- Johnathan (footballer) played for Winterborough United starts at 2009\n- Johnathan (footballer) played for Everton United F.C. starts at 2009\n- Johnathan (footballer) played for Lakeside United F.C. starts at 2014\n\nComparing these dates, the earliest start date is 2005 for Johnathan (footballer) playing for R.T. Wolverhampton.\n<timeline>\n- Johnathan (footballer) played for R.T. Wolverhampton starts at 2005\n- Johnathan (footballer) played for Oakland United F.C. starts at 2013\n- Johnathan (footballer) played for Winterborough United starts at 2009\n- Johnathan (footballer) played for Everton United F.C. starts at 2009\n- Johnathan (footballer) played for Lakeside United F.C. starts at 2014\n</timeline>\n<reflection>\nThe reasoning correctly identifies the start dates and compares them to find the earliest one. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nJohnathan (footballer) played for R.T. Wolverhampton\n</answer>",
+      "pred_answer": "Johnathan (footballer) played for R.T. Wolverhampton",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Johnathan (footballer) played for Winterborough United",
+      "raw_generation": "<reasoning> To determine the second event in chronological order, we need to first identify the chronological order of the given events based on the provided temporal context. The events are:\n\n1. Johnathan (footballer) played for Oakland United F.C.\n2. Johnathan (footballer) played for R.T. Wolverhampton\n3. Johnathan (footballer) played for Winterborough United\n4. Johnathan (footballer) played for Everton United F.C.\n5. Johnathan (footballer) played for Lakeside United F.C.\n\nWe will use the temporal context to place these events in order. The temporal context provides specific start and end times for various events involving Johnathan (footballer). We will extract the relevant information from this context to establish the chronological order.\n\n<timeline>\n- Johnathan (footballer) played for R.T. Wolverhampton starts at 2005.\n- Johnathan (footballer) played for Winterborough United starts at 2009.\n- Johnathan (footballer) played for Everton United F.C. starts at 2009.\n- Johnathan (footballer) played for Lakeside United F.C. starts at 2014.\n- Johnathan (footballer) played for Oakland United F.C. starts at 2013.\n</timeline>\n\nFrom the timeline, we can see the chronological order of the events is:\n1. Johnathan (footballer) played for R.T. Wolverhampton (2005)\n2. Johnathan (footballer) played for Winterborough United (2009)\n3. Johnathan (footballer) played for Everton United F.C. (2009)\n4. Johnathan (footballer) played for Lakeside United F.C. (2014)\n5. Johnathan (footballer) played for Oakland United F.C. (2013)\n\nThe second event in chronological order is \"Johnathan (footballer) played for Winterborough United.\"\n\n<reflection>\nThe reasoning process correctly identified the chronological order of the events using the provided temporal context. There are no apparent errors or improvements needed in the reasoning or timeline.\n</reflection>\n\n</reasoning>\n<answer>\nJohnathan (footballer) played for Winterborough United\n</answer>",
+      "pred_answer": "Johnathan (footballer) played for Winterborough United",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "sha256": "e03bac698802a033f7369eebbed1f1c7eab4a9106ea5991a783d394b55088c2b"
+}

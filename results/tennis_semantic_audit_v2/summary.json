@@ -1,0 +1,97 @@
+{
+  "version": "offline-audit-v2",
+  "status": "complete",
+  "expected": {
+    "semantic": 1121
+  },
+  "completed": {
+    "semantic": 1121
+  },
+  "pending": {},
+  "two_pass_disagreements_unique_items": {
+    "semantic": 9
+  },
+  "human_calibration": false,
+  "actual_snapshot": null,
+  "interpretation": "UI-mediated model judgments; shared judge bias and accuracy remain uncalibrated.",
+  "coverage": {
+    "semantic/dev/all/duration_minutes": {
+      "supported": 15
+    },
+    "semantic/dev/all/immediate_before_after": {
+      "supported": 20
+    },
+    "semantic/dev/all/other_temporal": {
+      "supported": 2
+    },
+    "semantic/dev/all/overlap_while_during": {
+      "supported": 11
+    },
+    "semantic/dev/all/tennis_injury_or_medical": {
+      "supported": 1
+    },
+    "semantic/dev/all/tournament_round_sequence": {
+      "supported": 2
+    },
+    "semantic/dev/all/which_first_last": {
+      "supported": 23
+    },
+    "semantic/dev/all/yes_no_before_after": {
+      "supported": 39
+    },
+    "semantic/test/all/duration_minutes": {
+      "supported": 29
+    },
+    "semantic/test/all/immediate_before_after": {
+      "supported": 39
+    },
+    "semantic/test/all/other_temporal": {
+      "supported": 3
+    },
+    "semantic/test/all/overlap_while_during": {
+      "supported": 23
+    },
+    "semantic/test/all/tennis_injury_or_medical": {
+      "supported": 1
+    },
+    "semantic/test/all/tournament_round_sequence": {
+      "supported": 4
+    },
+    "semantic/test/all/which_first_last": {
+      "supported": 47
+    },
+    "semantic/test/all/yes_no_before_after": {
+      "supported": 78
+    },
+    "semantic/train/all/duration_minutes": {
+      "supported": 98,
+      "underdetermined": 5
+    },
+    "semantic/train/all/immediate_before_after": {
+      "supported": 136,
+      "wrong_gold": 1
+    },
+    "semantic/train/all/other_temporal": {
+      "supported": 12
+    },
+    "semantic/train/all/overlap_while_during": {
+      "supported": 74,
+      "underdetermined": 4,
+      "wrong_gold": 3
+    },
+    "semantic/train/all/tennis_injury_or_medical": {
+      "supported": 1
+    },
+    "semantic/train/all/tournament_round_sequence": {
+      "supported": 13
+    },
+    "semantic/train/all/which_first_last": {
+      "supported": 165
+    },
+    "semantic/train/all/yes_no_before_after": {
+      "supported": 268,
+      "underdetermined": 4,
+      "inconsistent": 1
+    }
+  }
+}

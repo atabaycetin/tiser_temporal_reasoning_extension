@@ -47,7 +47,7 @@ Deep Natural Language Processing
 \maketitle
 
 \begin{abstract}
-Temporal reasoning requires a model to organise events before answering questions about order, duration, and overlap. We reproduce TISER, a framework that elicits a structured reasoning trace with an explicit timeline and reflection step, and evaluate two extensions with different goals. First, an inference-time Context--Memory Conflict probe tests whether a model follows supplied evidence when it contradicts a fact the model recalls without context. Second, a supervised tennis-domain study tests whether TISER transfers to a new type of temporal narrative and whether further adaptation helps. The reproduction reaches macro exact match of 0.878 and macro F1 of 0.949 on five in-domain benchmarks. On 1,056 genuine conflict cases, combining the TISER-trained model and prompt raises context-faithful exact match from 0.348 to 0.774, although explicit conflict detection remains rare and order reversals remain difficult. On tennis questions, direct transfer reaches exact match of 0.580; continued adaptation increases it to 0.732. These results distinguish grounded use of context from explicit self-auditing and show that temporal-reasoning behaviour can transfer across domains.
+Temporal reasoning requires a model to organise events before answering questions about order, duration, and overlap. We reproduce TISER, a framework that elicits a structured reasoning trace with an explicit timeline and reflection step, and evaluate two extensions with different goals. First, an inference-time Context--Memory Conflict probe tests whether a model follows supplied evidence when it contradicts a fact the model recalls without context. Second, a supervised tennis-domain study tests whether TISER transfers to a new type of temporal narrative and whether further adaptation helps. The reproduction reaches macro exact match of 0.878 and macro F1 of 0.949 on five in-domain benchmarks. On 1,056 genuine conflict cases, combining the TISER-trained model and prompt raises context-faithful exact match from 0.348 to 0.774, although reflections rarely acknowledge the context--memory conflict explicitly, and answer faithfulness remains low for order reversals. On the 113-record tennis holdout, continued adaptation raises exact match from 0.575 to 0.735. Original-domain retention is inconclusive under the predefined margin, so the conditional replay branch is not triggered. These results distinguish grounded use of context from explicit self-auditing and show that temporal-reasoning behaviour can transfer across domains.
 \end{abstract}
 
 \section{Introduction}
@@ -61,7 +61,7 @@ TISER~\cite{bazaga2025tiser} addresses this problem by training a model to produ
 \end{enumerate}
 The distinction is therefore both methodological and interpretive: the first extension measures robustness without learning, while the second measures what transfers and what improves through additional learning.
 
-Our contributions are a full TISER reproduction, a controlled conflict benchmark with answer-preserving controls, and a cross-domain adaptation study at two model scales. Source code and run artifacts are available in the \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{project repository}.
+Our contributions are a full TISER reproduction, a controlled conflict benchmark with answer-preserving controls, and a cross-domain adaptation and retention study at two model scales. Source code and run records are available in the \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{project repository}.
 
 \section{Background and Problem Definition}
 
@@ -73,14 +73,14 @@ The reproduction covers TGQA~\cite{xiong2024tgqa}, TempReason L2 and L3~\cite{ta
 
 \subsection{Research Questions}
 
-The reproduction asks whether our training pipeline recovers the original paper's in-domain performance regime. Extension~1 asks three questions: \textbf{RQ1}, do the TISER prompt and fine-tuning improve adherence to context when memory disagrees; \textbf{RQ2}, does the reflection explicitly identify that disagreement; and \textbf{RQ3}, does the answer depend on conflict type? Extension~2 asks whether TISER transfers to tennis narratives and whether continued tennis adaptation improves over direct transfer.
+The reproduction asks whether our training pipeline recovers the original paper's in-domain performance regime. Extension~1 asks three questions: \textbf{RQ1}, do the TISER prompt and fine-tuning improve adherence to context when memory disagrees; \textbf{RQ2}, does the reflection explicitly identify that disagreement; and \textbf{RQ3}, does the answer depend on conflict type? Extension~2 asks whether TISER transfers to tennis narratives, whether continued tennis adaptation improves over direct transfer, and whether the adapted model retains its original-domain performance sufficiently to avoid replay training.
 
 \section{Methodology}
 \label{sec:methodology}
 
 \subsection{Baseline Reproduction}
 
-We use the released TISER supervision format and train a Qwen instruction model to produce reasoning, timeline, reflection, and answer tags autoregressively in one pass. Prompt tokens are excluded from the loss so supervision targets only the structured completion. At evaluation time, the answer tag is extracted, normalized, and scored using Exact Match (EM) and token-level F1. Section~\ref{sec:experimental-setup} contains implementation and hyperparameter details.
+We use the released TISER supervision format and train a Qwen2.5 instruction model~\cite{qwen2024qwen25} to produce reasoning, timeline, reflection, and answer tags autoregressively in one pass. Prompt tokens are excluded from the loss so supervision targets only the structured completion. At evaluation time, the answer tag is extracted, normalized, and scored using Exact Match (EM) and token-level F1. Section~\ref{sec:experimental-setup} contains implementation and hyperparameter details.
 
 \subsection{Extension 1: Context--Memory Conflict}
 
@@ -91,7 +91,7 @@ We begin with real-entity TempReason L2/L3 and TimeQA easy/hard items; TGQA is e
 For each eligible item, deterministic edits produce one or more of three genuine conflict classes: C1 shifts a date range so another entity covers the queried time; C2 replaces the answer entity with a same-type distractor; and C3 reverses intervals so a before/after relation changes. Each conflict must satisfy $\operatorname{answer}(c')\neq m$. The procedure creates 1,056 genuine conflicts: 203 C1, 520 C2, and 333 C3. Separately, 120 controls reorder context rows while preserving the answer, so $\operatorname{answer}(c')=m$. Controls are analysed as a sanity check and are not counted as conflicts.
 
 \paragraph{Run matrix and measures.}
-We cross model weights $\in\{\text{vanilla},\text{TISER-trained}\}$ with prompt $\in\{\text{standard},\text{TISER}\}$, producing a $2\times2$ matrix without further training. Context-faithful EM/F1 measures agreement with $\operatorname{answer}(c')$; memorised EM measures agreement with $m$; malformed rate records unusable output. For TISER-prompt runs, a post-hoc LLM judge assesses whether \texttt{<reflection>} explicitly identifies a contradiction. A faithful answer without such an identification is a \emph{silent override}.
+We cross model weights $\in\{\text{vanilla},\text{TISER-trained}\}$ with prompt $\in\{\text{standard},\text{TISER}\}$, producing a $2\times2$ matrix without further training. Context-faithful EM/F1 measures agreement with $\operatorname{answer}(c')$; memorised EM measures agreement with $m$; malformed rate records unusable output. For TISER-prompt runs, the reflection audit has two stages: Judge A and Judge B independently label each \texttt{<reflection>}, after which an adjudicator resolves disagreements. A faithful answer without an explicit conflict label is a \emph{silent override}.
 
 \begin{figure}[t]
 \centering
@@ -119,7 +119,7 @@ We cross model weights $\in\{\text{vanilla},\text{TISER-trained}\}$ with prompt 
 \paragraph{Dataset creation and processing.}
 The tennis collection is synthetic and was created with \href{https://developers.openai.com/api/docs/models/gpt-5.5}{ChatGPT-5.5} in two stages using the prompts in Appendix~\ref{app:tennis-prompts}. First, ChatGPT-5.5 generated raw context--question--answer triples from scratch using the raw-example prompt. Second, ChatGPT-5.5 received training examples together with their gold answers and generated supervised TISER reasoning, timeline, reflection, and answer traces using the trace-generation prompt. The examples were generated synthetically rather than drawn from an external tennis corpus. The dataset is released under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; repository code is released under MIT.
 
-The recorded processing pipeline audits the schema, assigns identifiers and rule-based categories, converts records to standard and TISER-compatible prompts, checks duplicates, and performs a category- and exact-duplicate-group-aware 70/10/20 split with seed~42. The three disjoint splits contain 785 training, 113 development, and 224 test examples and jointly cover all 1,122 records. Trace generation was restricted to the training split. Generated outputs were structurally validated, mechanically repaired when necessary, and merged. The conversion CLI's \texttt{reported} mode byte-reproduces the tracked files; strict-XML mode is reserved for new experiments.
+The recorded processing pipeline audits the schema, assigns identifiers and rule-based categories, converts records to standard and TISER-compatible prompts, checks duplicates, and performs a category- and exact-duplicate-group-aware 70/10/20 split with seed~42. The three disjoint data files contain 785 training examples, 113 examples in \texttt{tennis\_dev.json}, and 224 examples in \texttt{tennis\_test.json}, jointly covering all 1,122 records. In the reported experiments, the 224-record test file serves as the model-selection split, while the 113-record development file is reserved as the final holdout. Trace generation was restricted to the training split. Of the 600 traces used for training, 200 lacked the requested tags and were wrapped around their generated reasoning and supplied gold answer; 26 records were also recovered from 19 malformed JSONL lines. These repairs restored file structure rather than validating temporal correctness, which was assessed separately by the trace audit. The conversion CLI's \texttt{reported} mode reproduces the processed files; strict-XML mode is reserved for new experiments.
 
 \paragraph{Adaptation strategies.}
 At 0.5B scale, we compare the vanilla model under standard and TISER prompts with a tennis-only adapter. At 7B scale, we first test direct transfer of the original TISER adapter and then continue LoRA training from that adapter on tennis traces. The evaluator retains TISER's output parser while adding tennis-specific normalization for rankings, minute durations, punctuation, and articles.
@@ -133,17 +133,17 @@ After a 2,048-token filter, TISER training uses 54,488 examples. The test set ha
 
 \subsection{Tennis Split and Trace Accounting}
 
-The 785-record training split is the candidate pool for supervised trace creation; it is not itself the file used for optimization. It partitions exactly as $50+600+135=785$. Train positions 0--49 have valid traces from an initial pilot and support only pilot/smoke runs. Train positions 50--649 are the disjoint 600-record trace artifact used by both reported tennis adaptations. For positions 650--784, requests were prepared in batches 13--15 but no generated outputs are present, so those 135 examples could not be used as supervised trace targets. The repository therefore contains traces for 650 unique training records overall, but the reported models use only the 600-record full-run file.
+The 785-record training split is the candidate pool for supervised trace creation; it is not itself the file used for optimization. It partitions exactly as $50+600+135=785$. Train positions 0--49 have valid traces from an initial pilot and support only pilot/smoke runs. Train positions 50--649 are the disjoint 600-record trace collection used by both reported tennis adaptations. For positions 650--784, requests were prepared in batches 13--15 but no generated outputs are present, so those 135 examples could not be used as supervised trace targets. The repository therefore contains traces for 650 unique training records overall, but the reported models use only the 600-record full-run file.
 
-The 113 development examples have no training traces and were never used for gradient updates; the repository preserves split-distribution diagnostics but no model predictions or performance metrics for them. The 224 test examples likewise have no training traces and never affect gradients. They were, however, used to evaluate every completed condition and to rank the 7B candidates. All full evaluations use the same 224 IDs in the same order. The complete 785-record split and the unused generation requests are retained because they document the deterministic 1,122-record partition and experiment lineage. Deleting them would not change training---the configurations already point directly to the 600-record file---but would erase pilot provenance, break trace-coverage reconstruction, and make the published splits incomplete.
+The 113 examples in \texttt{tennis\_dev.json} have no training traces, were never used for gradient updates, and were excluded from model selection for use as the final holdout. The 224 examples in \texttt{tennis\_test.json} likewise have no training traces and never affect gradients, but they were used to evaluate every completed condition and rank the 7B candidates; they therefore serve as the selection split. All selection evaluations use the same 224 IDs in the same order. The complete 785-record split and unused generation requests document the deterministic 1,122-record partition, pilot provenance, and trace coverage.
 
-\subsection{Tennis Semantic-Quality Audit}
+\subsection{Tennis Semantic and Trace Audits}
 
-Structural validity does not establish that a gold answer is uniquely entailed by its context. A deterministic, risk-focused AI-assisted audit reviewed 302 of the 785 training records: all 50 pilot records, 193 of the reported 600, and 59 of the ungenerated 135. Ten reviewed examples were flagged as wrong or underdetermined: none in the pilot, seven inside the reported training file, and three in the ungenerated tail. Thus at least $7/600=1.17\%$ of the actual training artifact has a known semantic concern, but 407 of its records did not receive this semantic review. Because the selection deliberately over-sampled higher-risk temporal categories, neither $7/600$ nor $10/302$ estimates the population error rate.
+Structural validity does not establish that a gold answer is uniquely entailed by its context or that a generated trace supports its answer. We therefore completed two UI-mediated, blinded file-batch audits. The semantic audit covers 1,121 unique context--question--gold payloads, mapping to all 1,122 source rows because two rows are identical. The trace audit covers all 650 available training traces: the 50-record pilot and the separate 600-record collection used for the reported adaptations. Semantic labels are \emph{supported}, \emph{wrong gold}, \emph{underdetermined}, \emph{inconsistent}, and \emph{unscorable}; trace labels are \emph{supported}, \emph{unsupported reasoning}, \emph{contradictory}, and \emph{unscorable}.
 
-The historical adaptations remain valid as exploratory comparisons on a fixed, documented artifact: all compared adapters use the same training and evaluation definitions, and a small amount of label noise does not by itself invalidate training. However, the models must not be described as trained on a clean or fully validated dataset, and the effect of the flagged examples cannot be quantified without a corrected-data retraining or ablation. The development and test labels also lack exhaustive semantic adjudication, so reported metrics inherit that limitation. Historical files are kept immutable; any corrections should create a versioned dataset, regenerate affected traces, and produce new model results.
+For each audit, Judge A and Judge B ran in separate Codex tasks~\cite{openai2026codexapp}, configured in the UI as \texttt{gpt-5.6-sol} with high reasoning effort. Each task received only its assigned bundle, pass-specific rubric, and the common task prompt reproduced in Appendix~\ref{app:model-judge-audits}. Every scorable decision required item-specific reasoning and an exact quotation from the relevant source field. Hashes associate each response with its batch, item, source, and prompt. The two passes disagreed on 9 semantic items and 12 traces. A third task adjudicated every disagreement; the semantic workflow also adjudicated every proposed gold-answer change, producing 12 semantic and 12 trace adjudications in total. All expected decisions passed schema, identity, and exact-evidence validation.
 
-Separate semantic and trace audits have been implemented as blinded file-batch studies. Two independent passes review all 1,122 context--question--gold rows and all 650 available traces; disagreements and proposed corrections receive adjudication. Imports require exact source evidence, and completed semantic decisions will produce versioned scoring views without altering the historical inputs. Neither study has been executed, so no partial rate or corrected score is reported. The model label observed in the UI does not identify a verifiable API snapshot, and human calibration is unavailable.
+These audits assess the data used to train the reported adapters; they do not alter the training inputs. Semantic adjudication produces alternative scoring views while preserving the original source files. The Codex UI did not expose a verifiable backend snapshot or decoding settings, so these details are unavailable. All primary and adjudication decisions used the same displayed model label, and no human calibration was performed.
 
 \subsection{Models, Training, and Decoding}
 
@@ -151,39 +151,46 @@ Table~\ref{tab:settings} consolidates the training hyperparameters. LoRA~\cite{h
 
 \begin{table}[t]
 \centering
-\caption{Hyperparameters for the reported trained adapters. Effective batch includes gradient accumulation.}
+\caption{Hyperparameters for the reported trained adapters. Micro.$\times$GA gives the per-device microbatch and gradient-accumulation factor.}
 \label{tab:settings}
-\setlength{\tabcolsep}{2.6pt}
+\setlength{\tabcolsep}{2.3pt}
 {\footnotesize
-\begin{tabular}{lcccccl}
+\begin{tabular}{lrrrrl}
 \toprule
-\textbf{Run} & \textbf{$n$} & \textbf{Ep.} & \textbf{LR} & \textbf{Batch} & \multicolumn{2}{c}{\textbf{LoRA}} \\
-\cmidrule(lr){6-7}
-& & & & & \textbf{$r/\alpha$} & \textbf{drop.} \\
+\textbf{Run} & \textbf{$n$} & \textbf{Ep.} & \textbf{Updates} & \textbf{Micro.$\times$GA} & \textbf{Quant.} \\
 \midrule
-TISER 7B & 54{,}488 & 3 & $2{\times}10^{-4}$ & 16 & 16/32 & .05 \\
-Tennis 0.5B & 600 & 1 & $2{\times}10^{-4}$ & 1 & 16/32 & .05 \\
-Continued 7B & 600 & 2 & $2{\times}10^{-4}$ & 16 & 16/32 & .05 \\
+TISER 7B & 54{,}488 & 3 & 10{,}215 & $8{\times}2$ & none \\
+Tennis 0.5B & 600 & 1 & 600 & $1{\times}1$ & none \\
+Continued 7B & 600 & 2 & 74 & $4{\times}4$ & 4-bit NF4 \\
 \bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{tabular}{@{}lp{0.72\columnwidth}@{}}
+\textbf{Optimisation} & Paged 8-bit AdamW; learning rate $2{\times}10^{-4}$; cosine schedule; warmup ratio 0.03; weight decay 0; sequence limit 2,048; seed 42. \\
+\textbf{LoRA} & Rank 16; $\alpha=32$; dropout 0.05; targets $q$, $k$, $v$, and $o$ projections; no bias. \\
+\textbf{Checkpointing} & Enabled for TISER 7B and continued 7B; disabled for tennis 0.5B. The 4-bit run uses double quantisation. \\
 \end{tabular}
 }
 \end{table}
 
-The reported continued-adaptation result is the highest-scoring condition in a grid over one to three epochs, learning rates $\{5{\times}10^{-5},1{\times}10^{-4},2{\times}10^{-4}\}$, and gradient accumulation $\{4,8\}$ with per-device batch size~4. All 22 distinct candidates were evaluated on the identical 224 examples, which makes their pairwise comparison fair. It does not make the winning score independent: once those outcomes are inspected and the maximum is selected, the set functions as validation data even though it never enters a gradient update. The winning condition leads two runners-up by one correct answer. The 0.732/0.856 result is therefore an exploratory selected estimate. With no preserved evidence of development-set model evaluation, the lowest-cost correction is to freeze this adapter and evaluate it once on the 113 records, without switching adapters afterward.
+The continued-adaptation condition was selected from a grid over one to three epochs, learning rates $\{5{\times}10^{-5},1{\times}10^{-4},2{\times}10^{-4}\}$, and gradient accumulation $\{4,8\}$ with per-device batch size~4. All 22 candidates were evaluated on the same 224-record selection split, enabling direct comparison. Continued adaptation achieved the highest selection-set score and led two runners-up by one correct answer. Its fixed-protocol rerun reaches 0.728 EM and 0.852 F1 on this split. The selected adapter was then kept unchanged and evaluated once on the separate 113-record final holdout.
 
-The implemented follow-up first compares the original adapter C0 and locked tennis winner C1 on a frozen seed-42 sample of up to 100 items per original-TISER split. A 10,000-resample paired interval for the five-split macro-EM difference triggers fresh C1R and R25 training only when its upper bound is below $-0.02$; a lower bound above $-0.02$ stops as non-inferior, and other intervals stop as inconclusive. If triggered, C1R and R25 both start from C0 and run for 74 updates under the same current environment; R25 adds 200 validated original-TISER training rows. A token-matched R25-T sensitivity run occurs only when R25 supervised-token exposure differs from C1R by more than 10\%. Final freezing requires the complete semantic audit that defines the tennis scoring view. It then fixes all applicable adapters, prompts, parsers, metrics, populations, and hashes before one evaluation on the 113 tennis inputs and original-TISER complement. The separate reflection and trace audits do not block this campaign. No outcome from those populations may reopen training or adapter selection.
+The retention experiment defines up to five conditions. C0 is the original TISER adapter, and C1 is the selected tennis-adapted model. If the retention gate detects forgetting, C1R is a fresh current-environment reproduction trained on the same 600 tennis traces; R25 is the replay condition trained on those traces plus 200 original-TISER examples; and R25-T is a replay sensitivity condition matched as closely as possible to C1R's supervised-token exposure.
+
+The protocol first compares C0 and C1 on a predefined seed-42 sample of up to 100 items per original-TISER split. A 10,000-resample paired interval for the five-split macro-EM difference triggers C1R and R25 training only when its upper bound is below $-0.02$; a lower bound above $-0.02$ stops as non-inferior, and other intervals stop as inconclusive. If triggered, C1R and R25 both start from C0 and run for 74 updates under the same current environment. R25-T is run only when R25 supervised-token exposure differs from C1R by more than 10\%. The completed semantic audit retains the original 113-record final-holdout view from \texttt{tennis\_dev.json} and the 224-record selection view from \texttt{tennis\_test.json}, without proposed changes or exclusions. The final campaign evaluates the applicable fixed conditions on the 113 tennis inputs; original-domain retention is reported from the predefined sample. The reflection and trace audits are independent of this evaluation. Its results are not used for further model selection or training.
 
 \subsection{Conflict Sampling and Reflection Audit}
 
 Closed-book recall uses five samples with temperature~0.7 and top-$p$~0.9; the subsequent run matrix uses one greedy decode per item. We use item-level bootstrap confidence intervals with 2,000 resamples and seed~42, plus paired McNemar tests for the two headline axes.
 
-The original Claude aggregate cannot be reproduced because its exact model version, complete prompt, and row-level decisions were not preserved. We therefore replace it with a completed UI-mediated audit of the persisted outputs. The audit deduplicates the two 1,176-row TISER-prompt cells into 2,295 non-empty reflections, which map back to 2,348 source rows; four malformed source rows are retained as unscorable. Judge A and Judge B ran in separate projectless Codex tasks with the observed model label \texttt{gpt-5.6-sol} and high reasoning effort. Each task received only its blinded reflection bundle and a conservative pass-specific rubric, without model condition, conflict class, answer correctness, performance, or the other pass's decisions. Responses required an item-specific rationale and an exact source substring for every positive label. Batch, item, source, response, and prompt hashes bind the resulting evidence; the exact judge prompt is reproduced in Appendix~\ref{app:reflection-audit}.
+The earlier Claude-based aggregate is excluded from the present results because its exact model version, complete prompt, and row-level decisions are unavailable. We instead conducted a UI-mediated audit of the saved outputs. The audit deduplicates the two 1,176-row TISER-prompt cells into 2,295 non-empty reflections, which map back to 2,348 source rows; four malformed source rows are retained as unscorable. Judge A and Judge B ran in separate Codex tasks configured in the UI as \texttt{gpt-5.6-sol} with high reasoning effort. Each task received only its blinded reflection bundle and a conservative pass-specific rubric, without model condition, conflict class, answer correctness, performance, or the other pass's decisions. Responses required an item-specific rationale and an exact source substring for every positive label. Hashes associate the evidence with its batch, item, source, response, and prompt; the shared judge prompt is reproduced once in Appendix~\ref{app:model-judge-audits}.
 
-The primary decision is one of three labels: \emph{explicit conflict}, \emph{no explicit conflict}, or \emph{unscorable}. A positive label requires the reflection itself to acknowledge tension between supplied context and prior knowledge, memory, expectation, or an alternative factual answer; routine timeline checking is negative. The two passes disagreed on 66 of 2,295 reflections. A third projectless GPT-5.6 Sol task, also using high reasoning, adjudicated those items from the source reflection and both primary decisions under the same conservative rule. All 66 adjudications passed the frozen schema and exact-evidence checks. The UI label does not identify a verifiable backend snapshot, and decoding details unavailable in the UI remain unknown. Both passes and adjudication use the same model family, and no human calibration is available.
+The primary decision is one of three labels: \emph{explicit conflict}, \emph{no explicit conflict}, or \emph{unscorable}. A positive label requires the reflection itself to acknowledge tension between supplied context and prior knowledge, memory, expectation, or an alternative factual answer; routine timeline checking is negative. The two passes disagreed on 66 of 2,295 reflections. A third Codex task, also configured as GPT-5.6 Sol with high reasoning, adjudicated those items from the source reflection and both primary decisions under the same conservative rule. All 66 adjudications passed the predefined schema and exact-evidence checks.
 
 \subsection{Compute and Software}
 
-The reproduction was trained on one H200 SXM GPU in bf16 for approximately 6.5 hours. Test and conflict generation used vLLM on an H100 SXM GPU; the full 22,014-example evaluation took approximately 17 minutes. Reported versions were PyTorch~2.4.1/CUDA~12.4, Transformers~4.46.3, PEFT~0.13.2, and TRL~0.12.2 for reproduction, and vLLM~0.22.0 with PyTorch~2.11/CUDA~13.0 for accelerated inference.
+The reproduction was trained on one H200 SXM GPU in bf16 for approximately 6.5 hours. Test and conflict generation used vLLM~\cite{kwon2023vllm} on an H100 SXM GPU; the full 22,014-example evaluation took approximately 17 minutes. Reported versions were PyTorch~2.4.1/CUDA~12.4, Transformers~4.46.3, PEFT~0.13.2, and TRL~0.12.2 for reproduction, and vLLM~0.22.0 with PyTorch~2.11/CUDA~13.0 for accelerated inference.
 
 \section{Results}
 
@@ -287,7 +294,7 @@ C3 order reversal  & 333 & 0.366 & 0.477 & 0.087 \\
 
 \begin{table}[t]
 \centering
-\caption{Completed GPT-5.6 Sol reflection audit. Conflict and control columns report explicit flags; disagreement compares the two primary passes; silent counts faithful genuine-conflict answers without a flag.}
+\caption{Completed GPT-5.6 Sol reflection audit. Conflict and control columns report explicit flags; disagreement compares the two primary passes; silent counts faithful genuine-conflict answers without a flag. Denominators exclude three unscorable genuine-conflict reflections for Base+TISER and one unscorable control for TISER+TISER.}
 \label{tab:reflection-audit}
 \setlength{\tabcolsep}{2.4pt}
 {\footnotesize
@@ -303,15 +310,15 @@ TISER + TISER & 36/1{,}056 & 3/119 & 25/1{,}175 & 810/817 \\
 }
 \end{table}
 
-The replacement audit finds explicit conflict recognition in 87/1,053 scorable genuine conflicts for the vanilla model with the TISER prompt (8.26\%, Wilson 95\% CI 6.75--10.08\%) and 36/1,056 for the TISER-trained model with the TISER prompt (3.41\%, 2.47--4.68\%). Control false-positive rates are 3/120 (2.50\%, 0.85--7.09\%) and 3/119 (2.52\%, 0.86--7.15\%), respectively. In the strongest answer-faithfulness condition, conflict flags remain concentrated in C3: 4/203 C1 items (1.97\%), 3/520 C2 items (0.58\%), and 29/333 C3 items (8.71\%). Among its 817 faithful genuine-conflict answers, 810 have no explicit flag, yielding a 99.14\% silent-override rate (98.24--99.58\%). The corresponding rate for the vanilla model with the TISER prompt is 543/554, or 98.01\% (96.48--98.89\%). The 3.41\% genuine-conflict rate is descriptively close to the 2.52\% control rate, so these results support rarity and C3 concentration but do not establish reliable discrimination between genuine conflicts and controls. The separate control arm reaches faithful-EM 0.900 in the strongest condition; because its answer equals memory by construction, it measures preservation of answerability rather than conflict resolution. A silent override remains a behavioural description, not proof of an internal conflict-resolution mechanism.
+The replacement audit finds explicit conflict acknowledgement in 87/1,053 scorable genuine conflicts for the vanilla model with the TISER prompt (8.26\%, Wilson 95\% CI 6.75--10.08\%) and 36/1,056 for the TISER-trained model with the TISER prompt (3.41\%, 2.47--4.68\%). Control false-positive rates are 3/120 (2.50\%, 0.85--7.09\%) and 3/119 (2.52\%, 0.86--7.15\%), respectively. In the strongest answer-faithfulness condition, conflict flags remain concentrated in C3: 4/203 C1 items (1.97\%), 3/520 C2 items (0.58\%), and 29/333 C3 items (8.71\%). Among its 817 faithful genuine-conflict answers, 810 have no explicit flag, yielding a 99.14\% silent-override rate (98.24--99.58\%). The corresponding rate for the vanilla model with the TISER prompt is 543/554, or 98.01\% (96.48--98.89\%). The 3.41\% genuine-conflict rate is descriptively close to the 2.52\% control rate, so these results support rarity and C3 concentration but do not establish reliable discrimination between genuine conflicts and controls. The separate control arm reaches faithful-EM 0.900 in the strongest condition; because its answer equals memory by construction, it measures preservation of answerability rather than conflict resolution. A silent override remains a behavioural description, not proof of an internal conflict-resolution mechanism.
 
 \subsection{Tennis-Domain Adaptation}
 
-Table~\ref{tab:tennis} reports all completed 224-example selection-set runs. At 0.5B, prompting alone does not help, while tennis-only training gives a modest gain. At 7B, the original TISER adapter transfers more strongly, and continued adaptation adds 0.152 EM and 0.155 F1. Isolation between adapter training runs prevents gradient leakage, but it does not prevent selection leakage: the 7B row is the maximum among 22 scores observed on these same records. It is therefore the best observed exploratory result rather than an unbiased final estimate.
+Table~\ref{tab:tennis} reports all completed 224-example selection-set runs. At 0.5B, prompting alone does not help, while tennis-only training gives a modest gain. At 7B, the original TISER adapter transfers more strongly, and the fixed-protocol rerun of continued adaptation adds 0.147 EM and 0.151 F1. All 22 candidates were evaluated on the same 224-record selection split, enabling direct comparison. Continued adaptation achieved the highest selection-set score.
 
 \begin{table}[t]
 \centering
-\caption{Tennis temporal QA on the historically used selection set ($n=224$). Deltas are against the first row within each model-size block; \emph{Malformed} is an output count.}
+\caption{Tennis temporal QA on the 224-record selection split stored in \texttt{tennis\_test.json}. Deltas are against the first row within each model-size block; \emph{Malformed} is an output count.}
 \label{tab:tennis}
 \setlength{\tabcolsep}{3.4pt}
 {\footnotesize
@@ -328,25 +335,79 @@ Tennis-only adapter     & 0.464 & 0.516 & +0.085 & +0.045 & 0 \\
 \multicolumn{6}{l}{\emph{Qwen2.5-7B-Instruct}} \\
 Original TISER & 0.580 & 0.701 & -- & -- & 0 \\
 \rowcolor{gray!18}
-\textbf{Continued adaptation} & \textbf{0.732} & \textbf{0.856} & \textbf{+0.152} & \textbf{+0.155} & 0 \\
+\textbf{Continued adaptation} & \textbf{0.728} & \textbf{0.852} & \textbf{+0.147} & \textbf{+0.151} & 0 \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
+\subsection{Retention and Final Holdout}
+
+The retention evaluation sampled 100 records from each of six original-TISER splits. The primary comparison uses the five in-domain splits ($n=500$); ToT-semantic remains separate OOD evidence. C0 reaches 0.880 macro-EM and C1 reaches 0.876, a difference of $-0.004$ with a paired 95\% interval of $[-0.028,0.020]$. This interval satisfies neither the clear-forgetting nor the non-inferiority rule, so the gate is inconclusive and C1R, R25, and R25-T are not trained. On the separate 100-record ToT-semantic sample, EM changes from 0.410 to 0.320 and F1 from 0.410 to 0.347; this split does not enter the gate.
+
+The final tennis evaluation uses all 113 audited holdout records. Continued adaptation raises EM from 0.575 to 0.735 and F1 from 0.677 to 0.834. The paired EM difference is 0.159 (95\% CI 0.080--0.239), and the exact McNemar test gives $p=0.000277$. Table~\ref{tab:retention-final} reports the paired summaries.
+
+\begin{table}[t]
+\centering
+\caption{Original-domain retention and final tennis-holdout results. Differences are C1$-$C0; intervals use 10,000 paired bootstrap resamples with seed~42.}
+\label{tab:retention-final}
+\setlength{\tabcolsep}{2.8pt}
+{\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Evaluation} & \textbf{C0} & \textbf{C1} & \textbf{$\Delta$} & \textbf{95\% CI} \\
+\midrule
+Retention macro EM & 0.880 & 0.876 & $-$0.004 & [$-$0.028, 0.020] \\
+Retention macro F1 & 0.946 & 0.936 & $-$0.010 & [$-$0.028, 0.007] \\
+\rowcolor{gray!18}
+Tennis holdout EM & 0.575 & 0.735 & +0.159 & [0.080, 0.239] \\
+\rowcolor{gray!18}
+Tennis holdout F1 & 0.677 & 0.834 & +0.157 & [0.082, 0.232] \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Tennis Audit Results}
+
+Table~\ref{tab:tennis-audits} summarizes the completed two-pass audits. The semantic decisions map back to all 1,122 source rows: all 113 final-holdout records in \texttt{tennis\_dev.json} and all 224 selection records in \texttt{tennis\_test.json} are model-judge supported, so both evaluation views retain their original labels and denominators. All 18 semantic concerns occur in training: 13 records are underdetermined, four have a model-adjudicated proposed gold-answer change, and one is internally inconsistent. Fourteen of these records belong to the reported 600-record training set and four to the untraced tail; none belongs to the 50-record pilot. The four proposed changes are \texttt{tennis\_000704}, \texttt{tennis\_000716}, and \texttt{tennis\_000885} from ``Yes'' to ``No,'' and \texttt{tennis\_000948} from ``Djokovic hit two aces'' to ``Sinner elected to receive.'' These proposed changes were not substituted into the training files used for the reported runs.
+
+\begin{table}[t]
+\centering
+\caption{Completed tennis model-judge audits. Label abbreviations are U: underdetermined; WG: wrong gold; I: inconsistent; UR: unsupported reasoning; C: contradictory.}
+\label{tab:tennis-audits}
+\setlength{\tabcolsep}{2.8pt}
+{\footnotesize
+\begin{tabular}{lrrlr}
+\toprule
+\textbf{Audit} & \textbf{$n$} & \textbf{Supported} & \textbf{Other final labels} & \textbf{A/B dis.} \\
+\midrule
+Semantic (unique) & 1{,}121 & 1{,}103 & 13 U; 4 WG; 1 I & 9 \\
+Trace & 650 & 632 & 14 UR; 4 C & 12 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+The trace audit supports all 50 pilot traces. Within the 600 traces used for the reported adaptations, 582 are supported, 14 contain unsupported reasoning, and four are contradictory. Combining the semantic and trace decisions, 21 distinct records in the 600-record training set have at least one concern; 579 are supported by both model audits. A cross-audit comparison also finds six records for which the semantic and trace decisions imply different readings: three have a supported semantic record but an unsupported trace, while three have a flagged semantic record but a supported trace. This audit examines the training data used by the reported models rather than measuring the causal effect of individual records: that effect cannot be inferred without retraining or ablation, and the model-judge decisions are not human certification.
+
 \section{Discussion and Limitations}
 
-The reproduction is strong overall but exposes the sensitivity of EM to answer formatting. More importantly, the two extensions answer different questions. The conflict probe shows that training and prompting can improve use of supplied evidence without making reflection an explicit contradiction detector. Tennis adaptation instead shows that the learned trace format transfers across domains and benefits from additional supervised examples, particularly at 7B scale.
+The reproduction is strong overall but exposes the sensitivity of EM to answer formatting. More importantly, the two extensions answer different questions. The conflict probe shows that training and prompting can improve use of supplied evidence without making reflection an explicit contradiction detector. The tennis study uses different starting conditions at 0.5B and 7B, so the two comparisons are interpreted separately rather than as a controlled test of model scale.
 
-Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The replacement reflection audit preserves two complete passes and adjudication, but all judgments use the same UI-selected model family. The exact backend snapshot and decoding settings are unavailable, and no human calibration establishes judge accuracy or shared-bias rates. Greedy decoding provides one subject-model output per condition. For tennis, the semantic and trace audits are unfinished. Seven known concerns occur inside the 600-record training artifact, whose size reflects an operational cutoff rather than a principled sample size. The best 7B setting was also selected on the 224-record evaluation split. Forgetting and the 113-record holdout result have not yet been measured, so the current tennis score remains exploratory. No prior model-performance use of those 113 records is known, but the repository cannot exclude an unrecorded evaluation.
+Several limitations constrain these conclusions. The conflict set is restricted to facts the model already recalls confidently, so it is not a random sample of temporal questions. The completed reflection, semantic, and trace audits use two primary passes and adjudication, but all judgments use the same UI-selected model family. The exact backend snapshot and decoding settings are unavailable, and no human calibration establishes judge accuracy or shared-bias rates. Greedy decoding provides one subject-model output per condition. For tennis, the audits identify concerns in 21 distinct records inside the 600-record training set, whose size reflects an operational cutoff rather than a principled sample size; their causal effect remains unmeasured. The best 7B setting was selected on the 224-record selection split and evaluated once on the separate 113-record holdout. The retention interval establishes neither clear forgetting nor non-inferiority under the predefined margin. Consequently, the conditional replay branch was not executed, and this study makes no claim about replay effectiveness. Training variability remains unmeasured because each adapter represents one training run.
 
 \section{Conclusion}
 
-We reproduced TISER's strong in-domain temporal-QA performance and used two extensions to test complementary aspects of generalisation. Structured prompting and training made the model more willing to follow conflicting context, but its reflection rarely exposed the contradiction and remained weak on reversed event order. TISER also transferred to tennis narratives, where continued domain adaptation improved over direct transfer. Overall, following evidence, explaining a conflict, and adapting to a new domain are distinct capabilities and should be evaluated separately.
+We reproduced TISER's strong in-domain temporal-QA performance and used two extensions to test complementary aspects of generalisation. Structured prompting and training made the model more willing to follow conflicting context. Its reflections rarely acknowledged the conflict explicitly, and its answers remained weak on reversed event order. On the 113-record final holdout, continued tennis adaptation improved EM from 0.575 to 0.735 over direct transfer from the original TISER adapter. Original-domain retention was inconclusive under the predefined margin, so the conditional replay branch was not executed. Overall, following evidence, explaining a conflict, and adapting to a new domain are distinct capabilities and should be evaluated separately.
 
 \section{Reproducibility}
 
-The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. Canonical configurations, seed~42, resolved run settings, predictions, metrics, and available environment metadata are preserved with the reported adapters and results. Dataset provenance, licences, generation prompts, trace coverage, and semantic-review flags are documented separately. The completed reflection audit under \texttt{results/reflection\_audit} preserves its frozen prompt and rubrics, 94 original response files, content-addressed archival copies, 4,590 primary judgments, 66 adjudications, final row-level CSVs, and aggregate summary. The Colab notebook runs the conditional retention, replay, and final-evaluation protocol with resumable predictions and training. Hashes bind each run to its source, data, configuration, adapter, and scoring view; no unexecuted value is presented as a result.
+The repository provides command-line workflows for data preparation, training, evaluation, scoring, auditing, and statistical analysis. It records canonical configurations, seed~42, resolved settings, predictions, metrics, and available environment metadata for the reported models and results. Dataset provenance, licences, generation prompts, and trace coverage are documented separately.
+
+The audit records retain the shared task prompt, pass-specific rubrics, original responses, hashes, decisions, adjudications, row-level outputs, and summaries. The reflection, semantic, and trace audits contain 4,590/66, 2,242/12, and 1,300/12 primary judgments/adjudications, respectively; the semantic audit also provides the 113- and 224-record evaluation views.
+
+The Colab notebook implements the conditional retention and final-evaluation workflow with resumable stages. The completed branch evaluates C0 and C1 on the predefined retention sample, records the inconclusive gate without starting replay training, and evaluates both fixed adapters on the 113-record tennis holdout. File hashes associate each run with its data, configuration, adapter, and scoring view.
 
 \clearpage
 \onecolumn
@@ -602,12 +663,14 @@ Rules:
 The requests also supplied \texttt{question\_id}, category, context, question, and gold answer. Generated rows contain \texttt{question\_id} and \texttt{output}. The final 600 records exactly match batches 1--12 in order. Nineteen malformed physical JSONL lines covering 26 records were repaired, and 200 outputs that lacked the requested XML-like tags were mechanically wrapped using their existing text and supplied gold answer. All 600 final rows pass structural and gold-answer-equality checks; those checks do not establish semantic entailment.
 
 \newpage
-\section{Reflection-Audit Judge Prompt and Adjudication}
-\label{app:reflection-audit}
+\section{Model-Judge Prompt and Adjudication}
+\label{app:model-judge-audits}
 
-The following prompt was pasted unchanged into the separate Judge A, Judge B,
-and adjudicator Codex tasks. Each task also received only its assigned frozen
-JSON bundle, which carried the pass-specific rubric and blinded items.
+The reflection, semantic, and trace audits used the same prompt below, byte for
+byte. It was pasted unchanged into the separate Judge A, Judge B, and
+adjudicator Codex tasks for each audit. Each task also received only its assigned
+JSON bundle, which carried the audit-specific, pass-specific rubric and blinded
+items.
 
 \begin{lstlisting}[style=prompt]
 Audit the attached JSON bundle as one independent model-judge pass.
@@ -653,18 +716,13 @@ report the response directory's absolute filesystem path.
 
 \subsection{Adjudication}
 
-The coordinator compared the two primary labels for each unique reflection and
-created adjudicator inputs only when they differed. Each input contained the
-original blinded reflection and the complete Judge A and Judge B decisions. A
-third projectless task, configured with the observed model label
-\texttt{gpt-5.6-sol} and high reasoning effort, applied the same conservative
-criterion: an explicit conflict required a textual acknowledgement of tension
-between supplied context and prior knowledge, memory, expectation, or an
-alternative answer. It did not use majority voting. It selected the best final
-label from the reflection evidence, with an exact quotation required for a
-positive decision. The two primary passes disagreed on 66 of 2,295 unique
-reflections; all 66 adjudications were validated and accepted, leaving no pending
-items.
+Judge A and Judge B were compared by item identity. Follow-up bundles contained
+the original source and both decisions for every disagreement, plus every proposed
+\emph{wrong gold} decision in the semantic audit. A third independent task,
+configured in the UI as \texttt{gpt-5.6-sol} with high reasoning effort,
+reapplied the relevant rubric without majority voting. The workflow adjudicated
+66 reflection, 12 semantic, and 12 trace decisions. All 90 passed the label,
+identity, hash, and exact-quotation checks.
 
 \begin{thebibliography}{00}
 
@@ -692,6 +750,21 @@ in \emph{NeurIPS Datasets and Benchmarks}, 2021.
 E. J. Hu et al.,
 "LoRA: Low-Rank Adaptation of Large Language Models,"
 in \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem{qwen2024qwen25}
+A. Yang et al.,
+"Qwen2.5 Technical Report,"
+\emph{arXiv preprint arXiv:2412.15115}, 2024.
+
+\bibitem{kwon2023vllm}
+W. Kwon, Z. Li, S. Zhuang, Y. Sheng, L. Zheng, C. H. Yu, J. E. Gonzalez, H. Zhang, and I. Stoica,
+"Efficient Memory Management for Large Language Model Serving with PagedAttention,"
+in \emph{Proceedings of the 29th ACM Symposium on Operating Systems Principles}, 2023, pp. 611--626, doi: 10.1145/3600006.3613165.
+
+\bibitem{openai2026codexapp}
+OpenAI,
+"Introducing the Codex app," Feb. 2, 2026. [Online]. Available:
+\url{https://openai.com/index/introducing-the-codex-app/}.
 
 \end{thebibliography}
 

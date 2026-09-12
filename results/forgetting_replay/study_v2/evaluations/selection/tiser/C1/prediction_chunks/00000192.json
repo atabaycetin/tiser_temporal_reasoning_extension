@@ -1,0 +1,647 @@
+{
+  "start": 192,
+  "spec_sha256": "a64dcd8d604e9ffd5dc6204c96bfe09f834e5558c5f93710fee8071704402c7f",
+  "rows": [
+    {
+      "question_id": "L3_Q475635_P54_3",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Al Ittihad FC",
+      "raw_generation": "<reasoning> \nThe question asks which team Theo Bu00fccker played for after MSV Duisburg. The timeline shows that he played for MSV Duisburg from Jan, 1973 to Jan, 1978. The next entry in the timeline indicates that he then played for Al Ittihad FC from Jan, 1978 to Jan, 1981. Therefore, the team he played for immediately after MSV Duisburg is Al Ittihad FC.\n<timeline> \n- Theo Bu00fccker plays for MSV Duisburg from Jan, 1973 to Jan, 1978.\n- Theo Bu00fccker plays for Al Ittihad FC from Jan, 1978 to Jan, 1981.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the next team after MSV Duisburg as Al Ittihad FC based on the provided timeline. There are no errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Al Ittihad FC </answer>",
+      "pred_answer": "Al Ittihad FC",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q694446_P54_0",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Stuttgarter Kickers",
+      "raw_generation": "<reasoning> \nSead Ramoviu0107's career timeline shows that he played for Stuttgarter Kickers before VfL Wolfsburg. The timeline indicates that he moved to VfL Wolfsburg immediately after his tenure at Stuttgarter Kickers.\n<timeline> \n- Sead Ramoviu0107 plays for Stuttgarter Kickers from Jan, 1999 to Jan, 2001.\n- Sead Ramoviu0107 plays for VfL Wolfsburg from Jan, 2001 to Jan, 2004.\n</timeline> \n<reflection> \nThe timeline clearly shows that Stuttgarter Kickers was the team he played for before VfL Wolfsburg. There are no gaps or overlaps in the timeline that would suggest another team in between.\n</reflection> \n</reasoning> \n<answer> Stuttgarter Kickers </answer>",
+      "pred_answer": "Stuttgarter Kickers",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q3948320_P54_8",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "SV Heimstetten",
+      "raw_generation": "<reasoning> \nSandro Wolfinger's career progression is given in the context, detailing his moves from one team to another over time. The question asks for the team he played for before BCF Wolfratshausen. The timeline shows that he moved to BCF Wolfratshausen in January 2016, so the team immediately preceding this is SV Heimstetten, which he played for from January 2015 to January 2016.\n<timeline> \nSandro Wolfinger plays for SV Heimstetten from Jan, 2015 to Jan, 2016.\nSandro Wolfinger plays for BCF Wolfratshausen from Jan, 2016 to Jan, 2017.\n</timeline> \n<reflection> \nThe timeline clearly indicates that SV Heimstetten is the team Sandro Wolfinger played for before BCF Wolfratshausen. There are no errors or need for further reasoning.\n</reflection> \n</reasoning> \n<answer> SV Heimstetten </answer>",
+      "pred_answer": "SV Heimstetten",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q8011065_P39_10",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Financial Secretary to the Treasury",
+      "raw_generation": "<reasoning> \nTo determine the position William Hayes Fisher, 1st Baron Downham held before becoming a Member of the 29th Parliament of the United Kingdom, we need to examine the temporal context provided. The context lists various positions he held over time, including the 29th Parliament. We should look for the position immediately preceding his tenure in the 29th Parliament.\n\n<timeline> \n- William Hayes Fisher, 1st Baron Downham holds the position of Member of the 29th Parliament of the United Kingdom from Jan, 1910 to Nov, 1910.\n- William Hayes Fisher, 1st Baron Downham holds the position of Member of the 30th Parliament of the United Kingdom from Dec, 1910 to Nov, 1918.\n</timeline>\n\n<reflection> \nThe timeline shows that the 29th Parliament position starts in January 1910. The position immediately before this would be the one ending just before that date. The context indicates that he was a Member of the 27th Parliament until January 1906, which fits the criteria of being the last position before the 29th Parliament.\n</reflection>\n\n</reasoning> \n<answer> Member of the 27th Parliament of the United Kingdom </answer>",
+      "pred_answer": "Member of the 27th Parliament of the United Kingdom",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "L3_Q91636_P108_4",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Max Planck Institute for Physics",
+      "raw_generation": "<reasoning> \nRudolf Haag worked for Ludwig Maximilian University of Munich before working for CERN, but the question asks for the employer before Princeton University. The timeline shows that he worked for Max Planck Institute for Physics immediately before Princeton University.\n<timeline> \n- Rudolf Haag works for Ludwig Maximilian University of Munich from Jan, 1951 to Jan, 1956.\n- Rudolf Haag works for CERN from Jan, 1953 to Jan, 1954.\n- Rudolf Haag works for Max Planck Institute for Physics from Jan, 1956 to Jan, 1957.\n- Rudolf Haag works for Princeton University from Jan, 1957 to Jan, 1959.\n</timeline>\n<reflection> \nThe timeline confirms that Max Planck Institute for Physics is the employer before Princeton University, aligning with the given answer.\n</reflection>\n</reasoning> \n<answer> Max Planck Institute for Physics </answer>",
+      "pred_answer": "Max Planck Institute for Physics",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q7488127_P102_0",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "National Party of Australia",
+      "raw_generation": "<reasoning> \nShane Knuth's political affiliations are provided in the temporal context. The question asks for the political party he belonged to before joining the Liberal National Party of Queensland. According to the timeline, Shane Knuth was a member of the National Party of Australia before becoming a member of the Liberal National Party of Queensland.\n<timeline> \nShane Knuth is a member of the National Party of Australia from Feb, 2004 to Sep, 2008. Shane Knuth is a member of the Liberal National Party of Queensland from Sep, 2008 to Oct, 2011.\n</timeline> \n<reflection> \nThe timeline clearly indicates that Shane Knuth was a member of the National Party of Australia before joining the Liberal National Party of Queensland. There are no contradictions or gaps in the timeline that would require further reasoning.\n</reflection> \n</reasoning> \n<answer> National Party of Australia </answer>",
+      "pred_answer": "National Party of Australia",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q120730_P6_7",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "Yamada Nobumichi",
+      "raw_generation": "<reasoning> \n<timeline> \nSadaaki Senda is the head of the government of Kyu014dto Prefecture from Jul, 1892 to Nov, 1893. Yamada Nobumichi is the head of the government of Kyu014dto Prefecture from Oct, 1895 to Nov, 1897.\n</timeline> \n<reflection> \nThe timeline shows that Yamada Nobumichi succeeded Sadaaki Senda as the head of the government of Kyu014dto Prefecture.\n</reflection> \n</reasoning> \n<answer> Yamada Nobumichi </answer>",
+      "pred_answer": "Yamada Nobumichi",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "L3_Q104013_P108_2",
+      "dataset_name": "tempreason_l3_test",
+      "gold": "TU Dresden",
+      "raw_generation": "<reasoning> \nDirk Helbing worked for ETH Zu00fcrich from January 2007 to December 2022. The question asks which employer he worked for before ETH Zu00fcrich. According to the temporal context, he worked for TU Dresden from January 2000 to January 2007, which is immediately before his tenure at ETH Zu00fcrich.\n<timeline> \n- Dirk Helbing works for University of Stuttgart from Jan, 1992 to Jan, 1999.\n- Dirk Helbing works for TU Dresden from Jan, 2000 to Jan, 2007.\n- Dirk Helbing works for ETH Zu00fcrich from Jan, 2007 to Dec, 2022.\n</timeline> \n<reflection> \nThe timeline shows that TU Dresden is the employer immediately preceding ETH Zu00fcrich, confirming the answer.\n</reflection> \n</reasoning> \n<answer> TU Dresden </answer>",
+      "pred_answer": "TU Dresden",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story507_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks if the start years of two different marriages involving Ethan Thompson were the same. The context provides specific dates for each marriage. The first marriage is between Ethan Thompson and Sophia Johnson, which started in 1998, and the second marriage is between Ethan Thompson and Lily Jenkins, which started in 2009. Since these start years are different, the answer is False.\n<timeline> \n- (Ethan Thompson was married to Sophia Johnson) starts at 1998.\n- (Lily Jenkins was married to Ethan Thompson) starts at 2009.\n</timeline> \n<reflection> \nThe timeline shows clear differences in the start years of the two marriages, confirming the answer is False. No further adjustments needed.\n</reflection> \n</reasoning> \n<answer>False</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story573_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \n<timeline>\n- (Michael Davidson played for Weston City FC) starts at 1997.\n- (Michael Davidson played for FC Thunderbird Edmonton) starts at 1992.\n</timeline>\n<reflection>\nThe timeline shows that the two events occurred in different years.\n</reflection>\n</reasoning>\n<answer>False</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story539_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Matthew Reed (association footballer) played for Baltimore Eagles national under-21 football team",
+      "raw_generation": "<reasoning> \nThe question asks for the fourth event in chronological order from the list provided. The list includes Matthew Reed's birth and his subsequent football career events. The birth event is the earliest, followed by the first football club he played for, which is Springfield United. The timeline shows that Springfield United is the second event chronologically. The third event is Baltimore Eagles national under-21 football team, and the fourth event is Bayview Borough F.C.\n<timeline> \n1. Matthew Reed (association footballer) was born in Everest City.\n2. Matthew Reed (association footballer) played for Springfield United.\n3. Matthew Reed (association footballer) played for Baltimore Eagles national under-21 football team.\n4. Matthew Reed (association footballer) played for Bayview Borough F.C.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. The timeline confirms that Bayview Borough F.C. is indeed the fourth event after Matthew Reed's birth and the first two football clubs.\n</reflection> \n</reasoning> \n<answer> Matthew Reed (association footballer) played for Bayview Borough F.C. </answer>",
+      "pred_answer": "Matthew Reed (association footballer) played for Bayview Borough F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285715
+    },
+    {
+      "question_id": "story521_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Megan Thompson was married to Simon Miller) ends",
+      "raw_generation": "<reasoning> \nMegan Thompson created Sightfinder (film) starts at 1980. The next event chronologically after this start time is the creation of Max Steel, which starts at 1987.\n<timeline> \n- Megan Thompson created Sightfinder (film) starts at 1980.\n- Megan Thompson created Max Steel starts at 1987.\n</timeline> \n<reflection> \nThe timeline shows that the next event after Megan Thompson created Sightfinder (film) is the creation of Max Steel.\n</reflection> \n</reasoning> \n<answer> Megan Thompson created Max Steel </answer>",
+      "pred_answer": "Megan Thompson created Max Steel",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.3076923076923077
+    },
+    {
+      "question_id": "story527_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Oliver Thompson (footballer) played for Cameron Town Football Club",
+      "raw_generation": "<reasoning> \n<timeline>\n- (Oliver Thompson (footballer) played for Cameron Town Football Club) starts at 2006.\n- (Oliver Thompson (footballer) played for Riverside United F.C.) starts at 2009.\n</timeline>\n<reflection>\nThe timeline shows that Oliver Thompson played for Cameron Town Football Club before he played for Riverside United F.C., so the event starting first is playing for Cameron Town Football Club.\n</reflection>\n</reasoning>\n<answer>Oliver Thompson (footballer) played for Cameron Town Football Club</answer>",
+      "pred_answer": "Oliver Thompson (footballer) played for Cameron Town Football Club",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story598_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Daniel Thompson was married to Emily Johnson) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before the event \"Oliver James was married to Emily Johnson\" ends. The timeline shows that this event starts at 1929 and ends at 1964. The event that ends at 1929 is \"Emily Johnson was married to Daniel Thompson.\" So the event that happens right before \"Oliver James was married to Emily Johnson\" ends is \"Emily Johnson was married to Daniel Thompson.\"\n<timeline> \n- (Emily Johnson was married to Daniel Thompson) starts at 1924.\n- (Emily Johnson was married to Oliver James) starts at 1929.\n- (Emily Johnson was married to Daniel Thompson) ends at 1929.\n- (Oliver James was married to Emily Johnson) ends at 1964.\n</timeline> \n<reflection> \nThe timeline confirms that \"Emily Johnson was married to Daniel Thompson\" ends at the same time \"Oliver James was married to Emily Johnson\" starts, making it the event that happens right before the latter ends.\n</reflection> \n</reasoning> \n<answer> Emily Johnson was married to Daniel Thompson </answer>",
+      "pred_answer": "Emily Johnson was married to Daniel Thompson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story576_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Austin Murphy was married to Sophia Thompson",
+      "raw_generation": "<reasoning> \n<timeline>\n- (Austin Murphy was born in Greenwood Falls) starts at 1924.\n- (Liam McGrath was born in Northampton, Massachusetts) starts at 1926.\n- (Liam McGrath was married to Sophia Thompson) starts at 1956.\n- (Austin Murphy was married to Sophia Thompson) starts at 1960.\n- (Liam McGrath died in Cambridge) starts at 2007.\n</timeline>\n<reflection>\nThe timeline shows that (Austin Murphy was married to Sophia Thompson) started in 1960, while (Liam McGrath died in Cambridge) started in 2007. Therefore, the marriage of Austin Murphy to Sophia Thompson started first.\n</reflection>\n</reasoning>\n<answer>Austin Murphy was married to Sophia Thompson</answer>",
+      "pred_answer": "Austin Murphy was married to Sophia Thompson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story520_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Fitzgerald was born in San Francisco",
+      "raw_generation": "<reasoning> \nThe question asks for the first event in chronological order among the given events. The temporal context provides specific years for each event. The earliest year mentioned is 1959 for (Liam Fitzgerald was born in San Francisco), followed by 1961 for (Benjamin Hudson was born in Burbank, California). The other events occur later, so they are not the earliest.\n<timeline> \n- (Liam Fitzgerald was born in San Francisco) starts at 1959.\n- (Benjamin Hudson was born in Burbank, California) starts at 1961.\n</timeline> \n<reflection> \nThe timeline shows that (Liam Fitzgerald was born in San Francisco) is the earliest event chronologically. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Liam Fitzgerald was born in San Francisco </answer>",
+      "pred_answer": "Liam Fitzgerald was born in San Francisco",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story543_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Brooks played for Forest United F.C.",
+      "raw_generation": "<reasoning> \n<timeline>\n1. Michael Brooks played for Westcott United F.C.\n2. Michael Brooks played for Phoenix Flames Youth Soccer Club\n3. Michael Brooks played for Forest United F.C.\n4. Michael Brooks played for Chicago Crew S.C.\n5. Michael Brooks played for Brighton United F.C.\n</timeline>\n<reflection>\nThe timeline shows that \"Michael Brooks played for Forest United F.C.\" is the third event in chronological order.\n</reflection>\n</reasoning>\n<answer>Michael Brooks played for Forest United F.C.</answer>",
+      "pred_answer": "Michael Brooks played for Forest United F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story580_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nThe question asks if the marriage between Alex Thompson (singer) and Lily Roberts was still happening when the marriage between Alex Thompson (singer) and Emily Johnson started. According to the timeline, Alex Thompson (singer) was married to Lily Roberts from 1976 to 1982, and he was married to Emily Johnson from 1982 to 2000. Since the start of the marriage between Alex Thompson (singer) and Emily Johnson coincides exactly with the end of his marriage to Lily Roberts, it means the marriage to Lily Roberts was still happening when the marriage to Emily Johnson started.\n<timeline> \n- Alex Thompson (singer) was married to Lily Roberts from 1976 to 1982.\n- Alex Thompson (singer) was married to Emily Johnson from 1982 to 2000.\n</timeline> \n<reflection> \nThe timeline shows that the marriage to Lily Roberts ended in 1982, which is the same year the marriage to Emily Johnson started. This confirms that the marriage to Lily Roberts was still happening when the marriage to Emily Johnson started.\n</reflection> \n</reasoning> \n<answer> True </answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story556_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Oliver Thompson played for Manchester United F.C.",
+      "raw_generation": "<reasoning> \n<timeline>\n- Oliver Thompson played for Skye United F.C. from 2005 to 2006.\n- Oliver Thompson played for Redwood Rovers from 2005 to 2006.\n- Oliver Thompson played for Manchester United F.C. from 2010.\n- Oliver Thompson played for Lakeside Rovers from 2010 to 2011.\n- Oliver Thompson played for Riverside United F.C. from 2012.\n</timeline>\n<reflection>\nThe timeline shows that the fourth event in chronological order is Oliver Thompson playing for Lakeside Rovers.\n</reflection>\n</reasoning>\n<answer>Oliver Thompson played for Lakeside Rovers</answer>",
+      "pred_answer": "Oliver Thompson played for Lakeside Rovers",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6153846153846153
+    },
+    {
+      "question_id": "story559_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Michael Johnson won prize Winslow Award for Theatre) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right after the event \"Michael Johnson was married to Emma Parker\" ends. The timeline shows that this event starts at 1973 and ends at 1983. The next event listed after this period is \"Michael Johnson won prize Winslow Award for Theatre\" which starts at 1991.\n<timeline> \n- (Michael Johnson was married to Emma Parker) ends at 1983.\n- (Michael Johnson won prize Winslow Award for Theatre) starts at 1991.\n</timeline> \n<reflection> \nThe timeline indicates that the next significant event after the end of the marriage is the start of the Winslow Award win in 1991. There are no other events listed between 1983 and 1991, so this is the correct answer.\n</reflection> \n</reasoning> \n<answer> Michael Johnson won prize Winslow Award for Theatre </answer>",
+      "pred_answer": "Michael Johnson won prize Winslow Award for Theatre",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9411764705882353
+    },
+    {
+      "question_id": "story569_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1975",
+      "raw_generation": "<reasoning> \nThe question asks when the event \"Luke Mitchell won prize Crimson Trophy\" started. The temporal context provides specific years for various events related to Luke Mitchell. The event in question is explicitly mentioned to start at 1975.\n<timeline> \n(Luke Mitchell won prize Crimson Trophy) starts at 1975.\n</timeline> \n<reflection> \nThe timeline directly indicates the year 1975 for the event in question. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> 1975 </answer>",
+      "pred_answer": "1975",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story544_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "M. J. S. White died in Albertsville",
+      "raw_generation": "<reasoning> \nThe question asks for the fifth event in chronological order from the given list. The temporal context provides specific years for each event, which helps in ordering them correctly. The events are: (Albertsville owned Marshall City B) at 1889, (M. J. S. White worked at Denver State University) at 1941, (M. J. S. White worked at Hillside University) at 1952, (M. J. S. White worked at Hampstead College) at 1964, and (M. J. S. White died in Albertsville) at 2012. Arranging these in chronological order, the fifth event is \"M. J. S. White died in Albertsville\".\n<timeline> \n1. Albertsville owned Marshall City B (1889)\n2. M. J. S. White worked at Denver State University (1941)\n3. M. J. S. White worked at Hillside University (1952)\n4. M. J. S. White worked at Hampstead College (1964)\n5. M. J. S. White died in Albertsville (2012)\n</timeline> \n<reflection> \nThe timeline confirms that \"M. J. S. White died in Albertsville\" is indeed the fifth event in chronological order. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> M. J. S. White died in Albertsville </answer>",
+      "pred_answer": "M. J. S. White died in Albertsville",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story594_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Ella Collins (actress) was married to John Smith) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right after the event (Ella Collins (actress) was born in Harper's Ferry, Virginia) starts. The temporal context provides specific years for each event. The birth of Ella Collins is listed as starting in 1886, and the next event chronologically is her marriage to John Smith, which starts in 1915.\n<timeline> \n- 1886: Ella Collins (actress) was born in Harper's Ferry, Virginia.\n- 1915: Ella Collins (actress) was married to John Smith.\n</timeline> \n<reflection> \nThe timeline shows that the event immediately following Ella Collins' birth is her marriage to John Smith. There are no other events listed between 1886 and 1915, so this is the correct answer.\n</reflection> \n</reasoning> \n<answer> Ella Collins (actress) was married to John Smith </answer>",
+      "pred_answer": "Ella Collins (actress) was married to John Smith",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9411764705882353
+    },
+    {
+      "question_id": "story559_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Olivia Harrison was married to Scott Smith",
+      "raw_generation": "<reasoning> \nThe question asks which event started first: (Olivia Harrison was married to Scott Smith) or (Emma Parker was married to Michael Johnson). The relevant information is the start time of each marriage. (Olivia Harrison was married to Scott Smith) starts at 1968, while (Emma Parker was married to Michael Johnson) starts at 1973. Since 1968 is earlier than 1973, the first event is (Olivia Harrison was married to Scott Smith).\n<timeline> \n- (Olivia Harrison was married to Scott Smith) starts at 1968.\n- (Emma Parker was married to Michael Johnson) starts at 1973.\n</timeline> \n<reflection> \nThe timeline shows the start times of both marriages, confirming that (Olivia Harrison was married to Scott Smith) occurred first. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Olivia Harrison was married to Scott Smith </answer>",
+      "pred_answer": "Olivia Harrison was married to Scott Smith",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story518_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Ethan Mitchell played for Blackburn Rovers F.C.",
+      "raw_generation": "<reasoning> \n<timeline>\n1. Ethan Mitchell played for Chicago Bulls (2009)\n2. Ethan Mitchell played for Blackburn Rovers F.C. (2010)\n3. Ethan Mitchell played for Manchester United F.C. (2011)\n4. Ethan Mitchell played for Queensland United F.C. (2012)\n5. Ethan Mitchell played for Brighton United (2013)\n</timeline>\n<reflection>\nThe timeline shows that Ethan Mitchell played for Blackburn Rovers F.C. is the second event in chronological order after Ethan Mitchell played for Chicago Bulls.\n</reflection>\n</reasoning>\n<answer> Ethan Mitchell played for Blackburn Rovers F.C. </answer>",
+      "pred_answer": "Ethan Mitchell played for Blackburn Rovers F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story567_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Matthew Turner won prize Astoria Award in Cosmology",
+      "raw_generation": "<reasoning> \nThe question asks which event started first between Matthew Turner winning the prize Member of the National Academy and Matthew Turner winning the prize Astoria Award in Cosmology. The relevant temporal context shows that Matthew Turner won the prize Astoria Award in Cosmology in 1945, while he won the prize Member of the National Academy in 1953. Since 1945 is earlier than 1953, the Astoria Award win occurred first.\n<timeline> \n- Matthew Turner won prize Astoria Award in Cosmology: 1945\n- Matthew Turner won prize Member of the National Academy: 1953\n</timeline> \n<reflection> \nThe timeline clearly indicates that the Astoria Award win happened before the National Academy prize win, so the reasoning aligns with the given answer.\n</reflection> \n</reasoning> \n<answer> Matthew Turner won prize Astoria Award in Cosmology </answer>",
+      "pred_answer": "Matthew Turner won prize Astoria Award in Cosmology",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story546_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Mike Reynolds played for D.C. Mavericks",
+      "raw_generation": "<reasoning> \n<timeline>\n- Mike Reynolds played for D.C. Mavericks starts at 2007.\n- Mike Reynolds played for Seattle United FC starts at 2013.\n</timeline>\n<reflection>\nThe timeline shows that Mike Reynolds played for D.C. Mavericks started before he played for Seattle United FC.\n</reflection>\n</reasoning>\n<answer>Mike Reynolds played for D.C. Mavericks</answer>",
+      "pred_answer": "Mike Reynolds played for D.C. Mavericks",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story560_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones played for Rockford national football team",
+      "raw_generation": "<reasoning> \nThe question asks for the third event in chronological order from the list provided. The list includes Emily Jones playing for NY Thunder, Club Juventus, Sapphire United F.C., California Dolphins, and Rockford national football team. The temporal context gives specific years for each event, which helps in ordering them correctly.\n\n<timeline> \n1. Emily Jones played for California Dolphins (1999)\n2. Emily Jones played for Sapphire United F.C. (2000)\n3. Emily Jones played for Rockford national football team (2001)\n4. Emily Jones played for NY Thunder (2016)\n5. Emily Jones played for Club Juventus (2014)\n</timeline>\n\n<reflection> \nReviewing the timeline, the third event chronologically is Emily Jones playing for Rockford national football team. This matches the given answer. No errors found in the reasoning or timeline.\n</reflection>\n</reasoning> \n<answer> Emily Jones played for Rockford national football team </answer>",
+      "pred_answer": "Emily Jones played for Rockford national football team",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story538_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Liam Anderson won prize Astoria Award in Cosmology",
+      "raw_generation": "<reasoning> \nThe question asks for the fourth event in chronological order from the given list. The temporal context provides specific years for each event, which helps in ordering them correctly. The events are: (Liam Anderson won prize Taylor Jones Prize for Scientific Research) 1960, (Liam Anderson won prize Golden Harmony Honor) 1969, (Liam Anderson won prize Trevor Davis Medal) 1974, (Liam Anderson won prize Astoria Award in Cosmology) 1975, and (Liam Anderson died in Wilmington) 2009. Arranging these in chronological order, the fourth event is (Liam Anderson won prize Astoria Award in Cosmology).\n<timeline> \n1. (Liam Anderson won prize Taylor Jones Prize for Scientific Research) 1960\n2. (Liam Anderson won prize Golden Harmony Honor) 1969\n3. (Liam Anderson won prize Trevor Davis Medal) 1974\n4. (Liam Anderson won prize Astoria Award in Cosmology) 1975\n5. (Liam Anderson died in Wilmington) 2009\n</timeline> \n<reflection> \nThe timeline confirms that the fourth event in chronological order is indeed (Liam Anderson won prize Astoria Award in Cosmology). No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Liam Anderson won prize Astoria Award in Cosmology </answer>",
+      "pred_answer": "Liam Anderson won prize Astoria Award in Cosmology",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story531_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Maxwell Clarke was born in Seattle",
+      "raw_generation": "<reasoning> \nThe question asks for the first event in chronological order among the given events. The temporal context provides specific years for each event, which helps in determining the sequence. The earliest year mentioned is 1916, corresponding to the birth of Maxwell Clarke in Seattle. Therefore, this event is the first one in chronological order.\n<timeline> \n- Maxwell Clarke was born in Seattle: 1916\n- Oliver Richards was born in San Francisco: 1920\n- Maxwell Clarke was married to Oliver Richards: 1955\n- Oliver Richards died in Oceanview: 1969\n- Maxwell Clarke died in Wilmington: 1983\n</timeline> \n<reflection> \nThe reasoning correctly identifies the earliest event based on the provided years. There are no errors or improvements needed in the timeline or reasoning.\n</reflection> \n</reasoning> \n<answer> Maxwell Clarke was born in Seattle </answer>",
+      "pred_answer": "Maxwell Clarke was born in Seattle",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story588_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Michael Johnson played for Bloomington Wanderers) ends",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before the event \"Michael Johnson played for Thunderclap United\" ends. The timeline shows that \"Michael Johnson played for Thunderclap United\" starts at 2000 and ends at 2002. The event immediately preceding this is \"Michael Johnson played for Bloomington Wanderers\" which starts at 1999 and ends at 2000.\n<timeline> \n- Michael Johnson played for Bloomington Wanderers starts at 1999.\n- Michael Johnson played for Thunderclap United starts at 2000.\n</timeline> \n<reflection> \nThe timeline indicates that \"Michael Johnson played for Bloomington Wanderers\" ends at 2000, which is the immediate preceding event before \"Michael Johnson played for Thunderclap United\" starts. This aligns with the given answer.\n</reflection> \n</reasoning> \n<answer> Michael Johnson played for Bloomington Wanderers </answer>",
+      "pred_answer": "Michael Johnson played for Bloomington Wanderers",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story587_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Oliver Collins died in Riverside, California) starts",
+      "raw_generation": "<reasoning> \nMegan Thompson's death occurred after her marriage to Oliver Collins ended. The timeline shows that their marriage ended in 1935, and Megan Thompson died in 1965. Therefore, the event that happened right before Megan Thompson died is the end of her marriage to Oliver Collins.\n<timeline> \n- Megan Thompson was married to Oliver Collins ends at 1935.\n- Megan Thompson died in Dallas starts at 1965.\n</timeline> \n<reflection> \nThe timeline confirms that the end of Megan Thompson's marriage to Oliver Collins is the event that happened right before she died. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> The end of Megan Thompson's marriage to Oliver Collins </answer>",
+      "pred_answer": "The end of Megan Thompson's marriage to Oliver Collins",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.26666666666666666
+    },
+    {
+      "question_id": "story565_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nThe question asks if the event of Michael Johnson being married to Emily Thompson was still happening when Emily Thompson died. To determine this, we need to compare the start and end times of their marriage with the time of Emily Thompson's death. The marriage between Michael Johnson and Emily Thompson started in 1997 and ended in 2000, while Emily Thompson died in 2000. Since the marriage ended before her death, it was not still happening during her death.\n<timeline> \n- Michael Johnson was married to Emily Thompson: 1997-2000\n- Emily Thompson died in Oakland: 2000\n</timeline> \n<reflection> \nThe timeline shows that the marriage ended before Emily Thompson's death, so the statement is false. No adjustments needed.\n</reflection> \n</reasoning> \n<answer> False </answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story543_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Michael Brooks played for Phoenix Flames Youth Soccer Club) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before the event \"Michael Brooks played for Golden State national under-19 football team\" starts. The relevant temporal context shows that this event starts at 2003. The event immediately preceding it is \"Michael Brooks played for Phoenix Flames Youth Soccer Club,\" which starts at 2002.\n<timeline> \n- Michael Brooks played for Phoenix Flames Youth Soccer Club starts at 2002.\n- Michael Brooks played for Golden State national under-19 football team starts at 2003.\n</timeline> \n<reflection> \nThe timeline shows that the event starting in 2002 directly precedes the event starting in 2003. No other events are listed between these two years.\n</reflection> \n</reasoning> \n<answer> Michael Brooks played for Phoenix Flames Youth Soccer Club </answer>",
+      "pred_answer": "Michael Brooks played for Phoenix Flames Youth Soccer Club",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9473684210526316
+    },
+    {
+      "question_id": "story570_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Johnson was married to Benjamin Thompson",
+      "raw_generation": "<reasoning> \n<timeline>\n1. Benjamin Thompson was born in Tartanville (1930)\n2. Hannah Davis was born in Coventry (1936)\n3. Hannah Davis was married to Benjamin Thompson (1957)\n4. Benjamin Thompson was married to Hannah Davis (1957)\n5. Chris Johnson was affiliated to Liberty Party (Boston) (1966)\n</timeline>\n<reflection>\nThe timeline shows that the fifth event in chronological order is \"Chris Johnson was affiliated to Liberty Party (Boston)\" which occurs in 1966.\n</reflection>\n</reasoning>\n<answer>Chris Johnson was affiliated to Liberty Party (Boston)</answer>",
+      "pred_answer": "Chris Johnson was affiliated to Liberty Party (Boston)",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.39999999999999997
+    },
+    {
+      "question_id": "story538_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "87 years",
+      "raw_generation": "<reasoning> \nThe question asks for the time passed between the start of event (Liam Anderson was born in Wilmington) and the start of event (Liam Anderson died in Wilmington). The birth event starts at 1922 and the death event starts at 2009. To find the time passed, subtract the earlier year from the later year.\n<timeline> \n- Birth: 1922\n- Death: 2009\n</timeline> \n<reflection> \nSubtracting 1922 from 2009 gives 87 years. This matches the provided answer. No errors found.\n</reflection> \n</reasoning> \n<answer> 87 years </answer>",
+      "pred_answer": "87 years",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story565_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Johnson was born in Oceanview",
+      "raw_generation": "<reasoning> \nThe question asks for the second event in chronological order from the given list. The list includes: (Michael Johnson was born in Oceanview), (Emily Thompson was born in Bristol), (Emily Thompson was married to Sophie Reynolds), (Michael Johnson was married to Emily Thompson), (Emily Thompson died in Oakland). The timeline shows that (Emily Thompson was born in Bristol) occurs first, followed by (Michael Johnson was born in Oceanview). Thus, the second event chronologically is (Michael Johnson was born in Oceanview).\n<timeline> \n(Emily Thompson was born in Bristol) starts at 1920. (Michael Johnson was born in Oceanview) starts at 1932.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Michael Johnson was born in Oceanview </answer>",
+      "pred_answer": "Michael Johnson was born in Oceanview",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story589_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(George Thompson played for Hillside United F.C.) ends",
+      "raw_generation": "<reasoning> \n<timeline>\n- (George Thompson played for Newcastle United football club) starts at 2007.\n- (George Thompson played for Newcastle United football club) ends at 2009.\n- (George Thompson played for Hillside United F.C.) starts at 2007.\n- (George Thompson played for Hillside United F.C.) ends at 2010.\n</timeline>\n<reflection>\nThe timeline shows that the event \"George Thompson played for Newcastle United football club\" ends in 2009, and the next event starting in 2007 is \"George Thompson played for Hillside United F.C.\" However, this event overlaps with the end of the Newcastle United club. The immediate next event after the end of Newcastle United is the start of \"George Thompson played for Hillside United F.C.\"\n</reflection>\n</reasoning>\n<answer>George Thompson played for Hillside United F.C.</answer>",
+      "pred_answer": "George Thompson played for Hillside United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story553_Q7_3",
+      "dataset_name": "tgqa_test",
+      "gold": "(Max Johnson was born in Manchester) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before Max Johnson played for Brighton United F.C. starts. The relevant temporal context is the birth of Max Johnson in Manchester, which starts at 1989, and his playing for Brighton United F.C., which starts at 2002. The birth of Max Johnson is the only event listed before his playing for Brighton United F.C.\n<timeline> \n(Max Johnson was born in Manchester) starts at 1989. (Max Johnson played for Brighton United F.C.) starts at 2002.\n</timeline> \n<reflection> \nThe birth of Max Johnson in Manchester is the only event listed before he started playing for Brighton United F.C. There are no other events listed between his birth and his playing for Brighton United F.C.\n</reflection> \n</reasoning> \n<answer> Max Johnson was born in Manchester </answer>",
+      "pred_answer": "Max Johnson was born in Manchester",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story574_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Alex Grant played for FC Lyon) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before Alex Grant played for S.V. Olympus. The relevant temporal context shows that Alex Grant played for S.V. Olympus starts at 2007. The event immediately preceding this is Alex Grant playing for L.J. Thompson, which also starts at 2007.\n<timeline> \n- Alex Grant played for L.J. Thompson starts at 2007.\n- Alex Grant played for S.V. Olympus starts at 2007.\n</timeline> \n<reflection> \nThe timeline shows that both events start at the same time, so the event right before Alex Grant played for S.V. Olympus is Alex Grant playing for L.J. Thompson.\n</reflection> \n</reasoning> \n<answer> Alex Grant played for L.J. Thompson </answer>",
+      "pred_answer": "Alex Grant played for L.J. Thompson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6153846153846153
+    },
+    {
+      "question_id": "story559_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "1980",
+      "raw_generation": "<reasoning> \nThe question asks when the event \"Scott Smith died in Oceanview\" started. The temporal context provides specific years for various events, including the death of Scott Smith. The event \"Scott Smith died in Oceanview\" is explicitly stated to start at 1980.\n<timeline> \n- (Scott Smith died in Oceanview) starts at 1980.\n</timeline> \n<reflection> \nThe timeline directly indicates the year the event started, which is 1980. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> 1980 </answer>",
+      "pred_answer": "1980",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story534_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1951",
+      "raw_generation": "<reasoning> \nThe question asks when the event \"Liam Phillips was married to Lucas Thompson\" started. The context provides specific dates for various events, including the start and end of this marriage. The relevant information is that the marriage between Liam Phillips and Lucas Thompson started at 1951.\n<timeline> \n(Liam Phillips was married to Lucas Thompson) starts at 1951.\n</timeline> \n<reflection> \nThe timeline directly indicates the start date of the marriage, which matches the provided answer. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> 1951 </answer>",
+      "pred_answer": "1951",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story566_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Benjamin Ross won prize Smith Award",
+      "raw_generation": "<reasoning> \n<timeline>\n1. Benjamin Ross was born in Atlanta (1939)\n2. Benjamin Ross won prize Pacific Crest (1981)\n3. Benjamin Ross won prize Smith Award (1982)\n4. Benjamin Ross won prize Member of the National Academy (1974)\n5. Benjamin Ross won prize Wimbledon Trophy (2007)\n</timeline>\n<reflection>\nThe timeline shows that the fourth event in chronological order is \"Benjamin Ross won prize Member of the National Academy\" which occurs in 1974. This matches the given answer.\n</reflection>\n</reasoning>\n<answer>Benjamin Ross won prize Member of the National Academy</answer>",
+      "pred_answer": "Benjamin Ross won prize Member of the National Academy",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285715
+    },
+    {
+      "question_id": "story519_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Emily Thompson was married to James Davidson) starts",
+      "raw_generation": "<reasoning> \nThe question asks what happened right before the event \"Emily Thompson died in Oceanview\" starts. The timeline shows that Emily Thompson was married to James Davidson during the same period as her death. Therefore, the event that directly precedes her death is her marriage to James Davidson.\n<timeline> \n- Emily Thompson was married to James Davidson starts at 2007.\n- Emily Thompson died in Oceanview starts at 2009.\n</timeline> \n<reflection> \nThe timeline indicates that the marriage to James Davidson ended in 2009, which is the same year Emily Thompson died. Thus, the marriage is the event that directly precedes her death.\n</reflection> \n</reasoning> \n<answer> Emily Thompson was married to James Davidson </answer>",
+      "pred_answer": "Emily Thompson was married to James Davidson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story509_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "9 years",
+      "raw_generation": "<reasoning> \nThe question asks how much time passed between the start of event (Emily Peterson died in Oceanview) and the start of event (Henry Anderson died in Oceanview). The relevant temporal context shows that Emily Peterson died in 2002 and Henry Anderson died in 2011. The difference between these two years is 9 years.\n<timeline> \n- Emily Peterson died in Oceanview: 2002\n- Henry Anderson died in Oceanview: 2011\n</timeline> \n<reflection> \nThe calculation is straightforward: 2011 - 2002 = 9 years. No errors found.\n</reflection> \n</reasoning> \n<answer> 9 years </answer>",
+      "pred_answer": "9 years",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story555_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "19 years",
+      "raw_generation": "<reasoning> \nThe question asks for the time passed between the birth of Liam Fitzgerald and the birth of Emily Thompson. The birth of Liam Fitzgerald occurred in 1959, and the birth of Emily Thompson occurred in 1978. To find the time passed, subtract the earlier year from the later year.\n<timeline> \n- Liam Fitzgerald was born in San Francisco in 1959.\n- Emily Thompson was born in Oakland in 1978.\n</timeline> \n<reflection> \nSubtracting 1959 from 1978 gives 19 years. This matches the provided answer. No errors found.\n</reflection> \n</reasoning> \n<answer> 19 years </answer>",
+      "pred_answer": "19 years",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story599_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Scott Smith was married to Olivia Harrison",
+      "raw_generation": "<reasoning> \nThe question asks for the second event in chronological order from the given list. The list of events includes births, marriages, and deaths. The timeline provided gives specific years for each event, which helps in determining the chronological order. The first event listed chronologically is Olivia Harrison's birth, followed by Emma Parker's marriage to Michael Johnson. The second event should be the next one chronologically after Olivia Harrison's birth.\n<timeline> \n1. Olivia Harrison was born in Quinton Town, New York\n2. Emma Parker was married to Michael Johnson\n</timeline> \n<reflection> \nReviewing the timeline, the second event after Olivia Harrison's birth is indeed Emma Parker's marriage to Michael Johnson. There are no errors or improvements needed in the reasoning.\n</reflection> \n</reasoning> \n<answer>Emma Parker was married to Michael Johnson</answer>",
+      "pred_answer": "Emma Parker was married to Michael Johnson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.42857142857142855
+    },
+    {
+      "question_id": "story588_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1981",
+      "raw_generation": "<reasoning> \nThe question asks when the event \"Michael Johnson was born in Glenville\" started. The context provides a specific year for this event: 1981. This is the earliest and most direct information about when this event began.\n<timeline> \n(Michael Johnson was born in Glenville) starts at 1981.\n</timeline> \n<reflection> \nThe timeline confirms the birth date of Michael Johnson in 1981. There are no other events listed before this one, so it is clear that this is the starting point.\n</reflection> \n</reasoning> \n<answer> 1981 </answer>",
+      "pred_answer": "1981",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story547_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks if the events \"Oliver Gibson died in Oceanview\" and \"Allen Sullivan was married to Oliver Gibson\" started at the same year. The timeline shows that both events start at different years: \"Allen Sullivan was married to Oliver Gibson\" starts at 1940, while \"Oliver Gibson died in Oceanview\" starts at 1981. Therefore, they did not start at the same year.\n<timeline> \n- \"Allen Sullivan was married to Oliver Gibson\" starts at 1940.\n- \"Oliver Gibson died in Oceanview\" starts at 1981.\n</timeline> \n<reflection> \nThe timeline clearly indicates that the two events start at different years, so the answer is False. No further adjustments are needed.\n</reflection> \n</reasoning> \n<answer>False</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story559_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Olivia Harrison was married to Michael Johnson",
+      "raw_generation": "<reasoning> \n<timeline>\n1. (Michael Johnson was born in Greenwood) starts at 1927.\n2. (Olivia Harrison was born in Quinton Town, New York) starts at 1945.\n3. (Scott Smith was married to Olivia Harrison) starts at 1968.\n4. (Emma Parker was married to Michael Johnson) starts at 1973.\n5. (Michael Johnson was married to Emma Parker) starts at 1973.\n</timeline>\n<reflection>\nThe timeline shows the birth of Michael Johnson first, followed by Olivia Harrison, then their marriage, and finally Emma Parker's marriage to Michael Johnson. The fifth event chronologically is indeed \"Emma Parker was married to Michael Johnson.\"\n</reflection>\n</reasoning>\n<answer>Emma Parker was married to Michael Johnson</answer>",
+      "pred_answer": "Emma Parker was married to Michael Johnson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7142857142857143
+    },
+    {
+      "question_id": "story509_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Henry Anderson was born in Denver",
+      "raw_generation": "<reasoning> \nThe question asks for the first event in chronological order among the given events. The temporal context provides specific years for each event. The earliest year mentioned is 1916, which corresponds to both Emily Peterson's birth and Henry Anderson's birth. Since both events occur at the same time, they are simultaneous. However, since the question specifies \"first\" event, we need to choose between the two. Conventionally, a person's birth is considered before their marriage or death.\n<timeline> \n- Emily Peterson was born in Harrison: 1916\n- Henry Anderson was born in Denver: 1916\n- Emily Peterson was married to Henry Anderson: 1938\n- Henry Anderson was married to Emily Peterson: 1938\n- Emily Peterson died in Oceanview: 2002\n</timeline> \n<reflection> \nBoth births occur in 1916, but conventionally, birth precedes marriage. Therefore, Emily Peterson's birth is the first event chronologically.\n</reflection> \n</reasoning> \n<answer> Emily Peterson was born in Harrison </answer>",
+      "pred_answer": "Emily Peterson was born in Harrison",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "story565_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Johnson was married to Emily Thompson",
+      "raw_generation": "<reasoning> \n<timeline>\n1. Emily Thompson was born in Bristol (1920)\n2. Michael Johnson was born in Oceanview (1932)\n3. Emily Thompson was married to Sophie Reynolds (1969)\n4. Emily Thompson died in Oakland (2000)\n5. Michael Johnson was married to Emily Thompson (1997)\n</timeline>\n<reflection>\nThe timeline shows that \"Emily Thompson died in Oakland\" is the fourth event in chronological order. No errors or improvements needed.\n</reflection>\n</reasoning>\n<answer>Emily Thompson died in Oakland</answer>",
+      "pred_answer": "Emily Thompson died in Oakland",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.3333333333333333
+    },
+    {
+      "question_id": "story501_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Paul Anderson played for Ocean City Football Club",
+      "raw_generation": "<reasoning> \nThe question asks for the fourth chronological event among the five provided events. The timeline shows the start dates of each event, which will help in determining the correct order. The events are: (Paul Anderson played for Brighton United C), (Paul Anderson played for Denver national under-20 basketball team), (Paul Anderson played for Ocean City Football Club), (Paul Anderson played for Los Angeles Tigers football team), (Paul Anderson played for Greenfield United (Chicago)). The timeline indicates that the events occurred in the following order: (Paul Anderson played for Los Angeles Tigers football team) (2001), (Paul Anderson played for Denver national under-20 basketball team) (2003), (Paul Anderson played for Brighton United C) (2003), (Paul Anderson played for Ocean City Football Club) (2004), (Paul Anderson played for Greenfield United (Chicago)) (2011). Thus, the fourth event chronologically is (Paul Anderson played for Ocean City Football Club).\n<timeline> \n(Paul Anderson played for Los Angeles Tigers football team) (2001), (Paul Anderson played for Denver national under-20 basketball team) (2003), (Paul Anderson played for Brighton United C) (2003), (Paul Anderson played for Ocean City Football Club) (2004), (Paul Anderson played for Greenfield United (Chicago)) (2011).\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events and accurately pinpoints the fourth event as (Paul Anderson played for Ocean City Football Club). No errors or improvements are needed.\n</reflection> \n</reasoning> \n<answer> Paul Anderson played for Ocean City Football Club </answer>",
+      "pred_answer": "Paul Anderson played for Ocean City Football Club",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story536_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks if the event \"Johnathan (footballer) played for Manchester United\" was still happening when the event \"Johnathan (footballer) played for Oakland United F.C.\" started. To determine this, we need to compare the start times of both events. The start time of \"Johnathan (footballer) played for Manchester United\" is 2007, and the start time of \"Johnathan (footballer) played for Oakland United F.C.\" is 2013. Since 2007 is before 2013, the first event was indeed still happening when the second event started.\n<timeline> \n- (Johnathan (footballer) played for Manchester United) starts at 2007.\n- (Johnathan (footballer) played for Oakland United F.C.) starts at 2013.\n</timeline> \n<reflection> \nThe timeline shows that the Manchester United period ended before the Oakland United F.C. period began, confirming the answer is true. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> True </answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story600_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks if the event \"Jason Powell was married to Charlotte Thompson\" was still happening when the event \"Emily Thompson was married to Jason Powell\" started. The timeline shows that both marriages occurred in the same year, 1976 and 1989 respectively. Since the first marriage ended in 1979, it would not have been ongoing when the second marriage started in 1989.\n<timeline> \n- (Jason Powell was married to Charlotte Thompson) starts at 1976.\n- (Emily Thompson was married to Jason Powell) starts at 1989.\n</timeline> \n<reflection> \nThe timeline confirms that the first marriage ended before the second one began, so the statement is false.\n</reflection> \n</reasoning> \n<answer> False </answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story597_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Oliver Walker died in Eastwood",
+      "raw_generation": "<reasoning> \nThe question asks for the fifth event in chronological order from the given list. The temporal context provides specific years for each event, which helps in ordering them correctly. The events are: (Oliver Walker was born in Riverside, Manchester) at 1934, (Oliver Walker created Samuel Holmes, Detective) at 1986, (Oliver Walker created Spectra (TV series)) at 1970, (Oliver Walker created Blackburn Bombers) at 1984, and (Oliver Walker died in Eastwood) at 1993. Arranging these in chronological order, the fifth event is (Oliver Walker died in Eastwood).\n<timeline> \n1. Oliver Walker was born in Riverside, Manchester (1934)\n2. Oliver Walker created Samuel Holmes, Detective (1986)\n3. Oliver Walker created Spectra (TV series) (1970)\n4. Oliver Walker created Blackburn Bombers (1984)\n5. Oliver Walker died in Eastwood (1993)\n</timeline> \n<reflection> \nThe timeline confirms that (Oliver Walker died in Eastwood) is indeed the fifth event in chronological order. No errors or improvements needed.\n</reflection> \n</reasoning> \n<answer> Oliver Walker died in Eastwood </answer>",
+      "pred_answer": "Oliver Walker died in Eastwood",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story574_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Alex Grant played for S.V. Olympus",
+      "raw_generation": "<reasoning> \n<timeline>\n- Alex Grant was born in Glenville (1987)\n- Alex Grant played for Crystal Lake FC (2009)\n- Alex Grant played for S.V. Olympus (2007)\n- Alex Grant played for New York Cosmos football team (2013)\n- Alex Grant played for L.J. Thompson (2007)\n</timeline>\n<reflection>\nThe timeline shows that Alex Grant played for S.V. Olympus is the third event in chronological order after his birth and before playing for Crystal Lake FC.\n</reflection>\n</reasoning>\n<answer>Alex Grant played for S.V. Olympus</answer>",
+      "pred_answer": "Alex Grant played for S.V. Olympus",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story560_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones played for NY Thunder",
+      "raw_generation": "<reasoning> \nThe question asks for the fifth event in chronological order from the list provided. The list includes Emily Jones playing for NY Thunder, Club Juventus, Sapphire United F.C., California Dolphins, and Rockford national football team. The temporal context gives specific years for each event, which helps in ordering them correctly.\n\n<timeline> \n1. Emily Jones played for California Dolphins (1999)\n2. Emily Jones played for Sapphire United F.C. (2000)\n3. Emily Jones played for Rockford national football team (2001)\n4. Emily Jones played for NY Thunder (2016)\n5. Emily Jones played for Club Juventus (2014)\n</timeline>\n\n<reflection> \nReviewing the timeline, the fifth event chronologically is Emily Jones playing for Club Juventus. This matches the given answer. No errors found in the reasoning or timeline.\n</reflection>\n</reasoning> \n<answer> Emily Jones played for Club Juventus </answer>",
+      "pred_answer": "Emily Jones played for Club Juventus",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story557_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Sophia Turner was married to Lily Thompson",
+      "raw_generation": "<reasoning> \nThe question asks for the third event in chronological order from the list provided. The list includes: (Sophia Turner died in San Francisco), (Sophia Turner was married to Oliver Thompson), (Sophia Turner was married to Lily Thompson), (Lily Thompson died in Dover, Delaware), (Sophia Turner was born in Wanderers). The timeline shows that (Sophia Turner was born in Wanderers) occurs first, followed by (Sophia Turner was married to Oliver Thompson), then (Sophia Turner was married to Lily Thompson), followed by (Lily Thompson died in Dover, Delaware), and finally (Sophia Turner died in San Francisco). Thus, the third event chronologically is (Sophia Turner was married to Lily Thompson).\n<timeline> \n(Sophia Turner was born in Wanderers) - first event\n(Sophia Turner was married to Oliver Thompson) - second event\n(Sophia Turner was married to Lily Thompson) - third event\n(Lily Thompson died in Dover, Delaware) - fourth event\n(Sophia Turner died in San Francisco) - fifth event\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events and accurately pinpoints the third event as (Sophia Turner was married to Lily Thompson). No errors or improvements are needed.\n</reflection> \n</reasoning> \n<answer> Sophia Turner was married to Lily Thompson </answer>",
+      "pred_answer": "Sophia Turner was married to Lily Thompson",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story525_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nThe question asks if the event \"Emily Peterson was married to Liam Watson\" was still happening when the event \"Emily Peterson was married to Tom Mitchell\" started. The timeline shows that both marriages started in 1992, but the first marriage ended in 1979. So it wasn't ongoing when the second marriage started.\n<timeline> \n- (Emily Peterson was married to Liam Watson) ends at 1979.\n- (Tom Mitchell was married to Emily Peterson) starts at 1992.\n</timeline> \n<reflection> \nThe timeline confirms that the first marriage ended before the second one started, so the statement is false.\n</reflection> \n</reasoning> \n<answer> False </answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story561_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Anderson was married to Liam Collins",
+      "raw_generation": "<reasoning> \nThe question asks for the second event in chronological order from the given list. The timeline shows that both (Emily Anderson was married to Liam Collins) and (Liam Collins was married to Emily Anderson) start at the same time, 1943. Since they are simultaneous, the second event chronologically would be the next one listed after this pair.\n<timeline> \n(Emily Anderson was married to Liam Collins) starts at 1943.\n(Liam Collins was married to Emily Anderson) starts at 1943.\n(Sophia Thompson was married to Liam Collins) starts at 1948.\n</timeline> \n<reflection> \nThe timeline confirms that (Liam Collins was married to Emily Anderson) is indeed the second event chronologically after the simultaneous start of their marriage.\n</reflection> \n</reasoning> \n<answer> Liam Collins was married to Emily Anderson </answer>",
+      "pred_answer": "Liam Collins was married to Emily Anderson",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story593_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "2015",
+      "raw_generation": "<reasoning> \nThe question asks when the event \"Jennifer Thompson died in Kingston,Wyoming\" started. The temporal context provides specific dates for various events related to Jennifer Thompson. The event in question is explicitly stated to start at 2015.\n<timeline> \n- Jennifer Thompson died in Kingston,Wyoming starts at 2015.\n</timeline> \n<reflection> \nThe timeline directly indicates the start date of the event in question. No further reasoning is needed.\n</reflection> \n</reasoning> \n<answer> 2015 </answer>",
+      "pred_answer": "2015",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story563_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Connor Brooks died in Kingston, Wyoming",
+      "raw_generation": "<reasoning> \nThe task requires identifying the fifth event in chronological order from a list of five events. The context provides specific years for each event, allowing us to sequence them accurately. The events are: (Matthew Dawson was born in Springfield, Illinois), (Connor Brooks was born in San Francisco), (Matthew Dawson was married to Connor Brooks), (Matthew Dawson died in Kingston, Wyoming), (Matthew Dawson was married to Connor Brooks). By aligning these with their respective years, we can determine the correct order.\n<timeline> \n1. Matthew Dawson was born in Springfield, Illinois (1913)\n2. Connor Brooks was born in San Francisco (1915)\n3. Matthew Dawson was married to Connor Brooks (1943)\n4. Matthew Dawson died in Kingston, Wyoming (1989)\n5. Matthew Dawson was married to Connor Brooks (1943)\n</timeline> \n<reflection> \nReviewing the timeline, the fifth event chronologically is indeed \"Matthew Dawson was married to Connor Brooks\" in 1943. The repetition of this event does not affect the fifth position.\n</reflection> \n</reasoning> \n<answer> Matthew Dawson was married to Connor Brooks </answer>",
+      "pred_answer": "Matthew Dawson was married to Connor Brooks",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.30769230769230765
+    },
+    {
+      "question_id": "story553_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Max Johnson played for Eastbrook City F.C.",
+      "raw_generation": "<reasoning> \n<timeline>\n- Max Johnson was born in Manchester (1989)\n- Max Johnson played for Brighton United F.C. (2002-2003)\n- Max Johnson played for Eastbrook City F.C. (2006-2010)\n- Max Johnson played for Ravenswood City F.C. (2014-2016)\n- Max Johnson played for Springfield United (2016-2017)\n</timeline>\n<reflection>\nThe timeline shows that the third event in chronological order after birth is Max Johnson playing for Brighton United F.C.\n</reflection>\n</reasoning>\n<answer>Max Johnson played for Brighton United F.C.</answer>",
+      "pred_answer": "Max Johnson played for Brighton United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7142857142857143
+    }
+  ],
+  "sha256": "7039c6371d69867eb75b8184e62b4980f509e3bf027f62404d3d18d57c9c378d"
+}

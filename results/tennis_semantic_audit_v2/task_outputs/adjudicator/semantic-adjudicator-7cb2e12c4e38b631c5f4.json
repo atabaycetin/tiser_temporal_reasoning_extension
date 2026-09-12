@@ -1,0 +1,178 @@
+{
+  "batch_id": "semantic-adjudicator-7cb2e12c4e38b631c5f4",
+  "batch_sha256": "523b5ecf67d0556c3560f8ec59f7d200b54088c59b6cb445f2d4c69ff2997e30",
+  "pass": "adjudicator",
+  "judged_at": "2026-09-10T17:24:52+02:00",
+  "observed_model_label": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "judgments": [
+    {
+      "audit_id": "semantic-09495e88f79445e45085b344",
+      "source_sha256": "09495e88f79445e45085b344455ce36d87c2b53841bddf0a092965eb8e5b30b4",
+      "label": "inconsistent",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Shelton served three consecutive aces to go up 40-0. Fritz challenged the call on the third serve. Hawk-Eye showed the ball was clearly out."
+        }
+      ],
+      "rationale": "The third serve is included among three asserted aces but is also said to have been clearly out, so the relevant account conflicts internally."
+    },
+    {
+      "audit_id": "semantic-0a0ed165dfde4b543fcd5db2",
+      "source_sha256": "0a0ed165dfde4b543fcd5db2e40a24adb82807681cbe91caf243d3c66029ba64",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune argued with the umpire after losing serve. Rublev was already sitting down during that argument. When the changeover ended, Rublev served for the set."
+        }
+      ],
+      "rationale": "Rublev sat during the argument and served when the changeover ended, but the argument's end is not specified relative to that serve."
+    },
+    {
+      "audit_id": "semantic-1598606be3859745920cf1c0",
+      "source_sha256": "1598606be3859745920cf1c04028bc3f1efd0abf5c1faeff1d74afd05512eea6",
+      "label": "wrong_gold",
+      "corrected_answer": "Sinner elected to receive",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Sinner won the coin toss and elected to receive."
+        }
+      ],
+      "rationale": "Sinner's election to receive is stated directly after his coin-toss win; Djokovic's aces occur later in the opening service game."
+    },
+    {
+      "audit_id": "semantic-2cd38977a6156918bff70e9b",
+      "source_sha256": "2cd38977a6156918bff70e9b0226b7d938cf72440d5b6703ef3ee5c64ffb6abc",
+      "label": "wrong_gold",
+      "corrected_answer": "No",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Alcaraz faced two break points at 2-2 in the final set. He saved both with aces. During the same game, he saved a third break point with a forehand winner. Alcaraz then held serve and later broke to win the match."
+        }
+      ],
+      "rationale": "He faced and saved the break points before he then completed the hold, so the stated events are sequential rather than concurrent."
+    },
+    {
+      "audit_id": "semantic-613690eb925f1254c7625f9c",
+      "source_sha256": "613690eb925f1254c7625f9c960cc1da0438a2e465d935d04a9bcca0af98014f",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The umpire immediately suspended play and ordered the roof to be closed."
+        }
+      ],
+      "rationale": "The two acts are joined in one coordinated statement, which does not establish a strict before relation between them."
+    },
+    {
+      "audit_id": "semantic-790ec0b7dd5e9f0a42e67a09",
+      "source_sha256": "790ec0b7dd5e9f0a42e67a0975e892e34a613177fd50ce0d49aa616d555faccb",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Heavy rain forced the players to leave the court in the middle of the second set. While the players were in the locker room, tournament officials ordered the stadium roof to be closed. Play resumed once the roof was fully secured."
+        }
+      ],
+      "rationale": "The order was issued while the players were in the locker room, but their location during the roof's actual closing is not stated."
+    },
+    {
+      "audit_id": "semantic-90864afcc9ca154b7c7e23d9",
+      "source_sha256": "90864afcc9ca154b7c7e23d968332cdc076886b454bea70cff3bac81145e1fcf",
+      "label": "wrong_gold",
+      "corrected_answer": "No",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "During the changeover, the roof was closed due to heat. After the roof closure, Sinner lost the second set 6-1."
+        }
+      ],
+      "rationale": "The roof-closing event occurred during the changeover, and the second-set loss is explicitly placed after that closure."
+    },
+    {
+      "audit_id": "semantic-9a5b6dbb5d9a3b9b662c28c4",
+      "source_sha256": "9a5b6dbb5d9a3b9b662c28c46c3d94ef40f5bd495d5ecc7824bcc961aae416f5",
+      "label": "wrong_gold",
+      "corrected_answer": "No",
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "The warm-up was interrupted by a fan running onto the court. The fan was escorted off after two minutes. The players then resumed warm-up for five more minutes before the match started."
+        }
+      ],
+      "rationale": "The escort occurred during the interruption, and the players resumed warming up only afterward, so the activities did not overlap."
+    },
+    {
+      "audit_id": "semantic-b03c99f301c794770f5b7297",
+      "source_sha256": "b03c99f301c794770f5b72973fc2470fcd0a259e57ed1f61335dae6ceb2edbb1",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "While the ball kids were changing positions, Alcaraz bounced the ball repeatedly. The umpire warned him for delay of game. Alcaraz then served an ace. The ball kids returned to their positions during the next point."
+        }
+      ],
+      "rationale": "The position change explicitly overlaps Alcaraz's bouncing, but its continuation through the later warning is not specified."
+    },
+    {
+      "audit_id": "semantic-bc89a082da0f4fafaf856215",
+      "source_sha256": "bc89a082da0f4fafaf85621566a6d6569023adcb93b122850062a7d35e824b11",
+      "label": "supported",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Rune received a warning during the first-set changeover. Rublev broke serve immediately after the warning."
+        }
+      ],
+      "rationale": "Rublev's break is explicitly after Rune's warning, so the warning uniquely happened first."
+    },
+    {
+      "audit_id": "semantic-cc4aa446ee6a064b9fab1c48",
+      "source_sha256": "cc4aa446ee6a064b9fab1c48078765033093caf8ee0ceb344e631cb605f2583e",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "In the second set, he broke Medvedev's serve at 2-2 after a 10-minute game. Medvedev broke back immediately."
+        }
+      ],
+      "rationale": "Immediately establishes succession but supplies no duration for the intervening game, so an exact elapsed minute count does not follow."
+    },
+    {
+      "audit_id": "semantic-fda8c91fca0746893fac270a",
+      "source_sha256": "fda8c91fca0746893fac270a74f14c74ef7ce516f5fe4928c8ed971fdd5b4a3e",
+      "label": "underdetermined",
+      "corrected_answer": null,
+      "mention_kind": "none",
+      "evidence": [
+        {
+          "field": "context",
+          "quote": "Federer broke Nadal in the first game of the final set. Nadal broke back after a long rally at 2-3. Before the match point, Federer saved a break point."
+        }
+      ],
+      "rationale": "The save is located before match point, but its ordering relative to Nadal's break-back is not explicitly fixed."
+    }
+  ]
+}

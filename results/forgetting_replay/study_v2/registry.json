@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "created_at": "2026-09-11T17:42:14.279427+00:00",
+  "protocol_sha256": "125aad3ba4d9a10cae71d67c1436a388447fddb11c2bdf881d07d8cc0f090e12",
+  "source_sha256": "c5f37f650d4ff388d42ca62ce854969b88470ee6d3fa74b70de962791e22206a",
+  "conditions": {
+    "C0": {
+      "adapter": {
+        "scope": "workspace",
+        "path": "model/tiser_qwen7b_full/adapter"
+      },
+      "sha256": "5e35aa65eec27b7e65a7b64f0e5ecedd014459a11cd056a1a1fa55cf01ea612f"
+    },
+    "C1": {
+      "adapter": {
+        "scope": "workspace",
+        "path": "model/tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011/adapter"
+      },
+      "sha256": "4d1ec1b8f6711b3f935e4f49a6d4635b76fc05ee979ba76d443ae7483342cafe"
+    }
+  },
+  "artifacts": {
+    "retention_selection": {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_selection.json"
+      },
+      "sha256": "11bdb8d205d30a8004e0c8d3c679d73d6f31dfb4b806cc8791487b8a9c09f972"
+    },
+    "retention_final": {
+      "reference": {
+        "scope": "study",
+        "path": "data/retention_final.json"
+      },
+      "sha256": "26771d81fcfe76827a9f888bee6ca456ab95b3feee736c89b2093ec301f24396"
+    },
+    "original_test_canonical": {
+      "reference": {
+        "scope": "study",
+        "path": "data/original_test_canonical.json"
+      },
+      "sha256": "2e7eeb22f3a008463acbd8369d3470a54b073c31134b23cee297f78988bce2b9"
+    },
+    "original_data_source": {
+      "reference": {
+        "scope": "study",
+        "path": "data/source.json"
+      },
+      "sha256": "99887939acf2529510b4207f7d3ee3dc9782f293184e2d997d811db63d3ac48f"
+    },
+    "model_revision": {
+      "reference": {
+        "scope": "study",
+        "path": "model_revision.json"
+      },
+      "sha256": "41b20692c95427439add75cd38e64775794355663c7831ebcb191c5c59c12650"
+    },
+    "selection/tiser/C0/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tiser/C0/predictions.jsonl"
+      },
+      "sha256": "f3c647d8981055b8469443a672e5dbe1ce8078db36d1b88bbe030cb859d9877f"
+    },
+    "selection/tiser/C1/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tiser/C1/predictions.jsonl"
+      },
+      "sha256": "faa5d62af21f9ad146bef52a99790418d68758f3b599bb4d4e58f9e549e86cfb"
+    },
+    "forgetting_gate": {
+      "reference": {
+        "scope": "study",
+        "path": "forgetting_gate.json"
+      },
+      "sha256": "fd2aa9b4e5767b19098918a251aaa027b03df100d7e15528da9399eac573463a"
+    },
+    "selection/tennis/C0/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C0/predictions.jsonl"
+      },
+      "sha256": "c533eca5b108d2418bdecd5e7617cb83bca3583331ab1466169c68eb6a94d15a"
+    },
+    "selection/tennis/C0/primary": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C0/primary_predictions.jsonl"
+      },
+      "sha256": "cb0b5305f56f8724d16f950ab5582a041b13fe40de754d846a125aba680adf54"
+    },
+    "selection/tennis/C1/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C1/predictions.jsonl"
+      },
+      "sha256": "dc9a56d700af683dbf2eae878cf60b6090230be0ead243e0fc03c3ecf5893e1f"
+    },
+    "selection/tennis/C1/primary": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/selection/tennis/C1/primary_predictions.jsonl"
+      },
+      "sha256": "00f82ad125165f8c39a231aa244ef27d426c4b40241fb534542af4911da977f3"
+    },
+    "final_campaign": {
+      "reference": {
+        "scope": "study",
+        "path": "final_campaign.json"
+      },
+      "sha256": "67576e1664e648b0640da45de9d637e4b6b1825e3bf11de8a090af3a3f8b511e"
+    },
+    "final/tennis/C0/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/final/tennis/C0/predictions.jsonl"
+      },
+      "sha256": "320833945f7780287fdc3d2f355b5eca26a45f9bd75262794a5c3b7ffb0b069e"
+    },
+    "final/tennis/C0/primary": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/final/tennis/C0/primary_predictions.jsonl"
+      },
+      "sha256": "9577386c25639e63ae5686ea362a29719bf04d04ef1e32b74e524c4c4bdd8a06"
+    },
+    "final/tennis/C1/predictions": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/final/tennis/C1/predictions.jsonl"
+      },
+      "sha256": "410a1f6fd61a2d338b1ec1713a43470f99589d663a60991e3a385e23443be5a9"
+    },
+    "final/tennis/C1/primary": {
+      "reference": {
+        "scope": "study",
+        "path": "evaluations/final/tennis/C1/primary_predictions.jsonl"
+      },
+      "sha256": "37fb67880ecc2d2da4bfd806bd5ebf0ec695db28d3c70978b418650a64fce05a"
+    },
+    "final_tennis_statistics": {
+      "reference": {
+        "scope": "study",
+        "path": "final_tennis_statistics/statistics.json"
+      },
+      "sha256": "e45c15a8924439da41b44f7d7f0f004711dffc32e3b4774e738c9736b040af39"
+    }
+  },
+  "status": "complete"
+}

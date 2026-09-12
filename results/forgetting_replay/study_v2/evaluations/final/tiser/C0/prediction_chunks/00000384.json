@@ -1,0 +1,647 @@
+{
+  "start": 384,
+  "spec_sha256": "0da1f6c85a514e31c994f166cdfae02a14a734dc4fe9556c3d98283fd0166086",
+  "rows": [
+    {
+      "question_id": "story512_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Katherine Evans was born in San Francisco",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the starting times of the two events in question: (Katherine Evans was born in San Francisco) and (Emma Bennett was born in Harrison). According to the temporal context provided, (Katherine Evans was born in San Francisco) starts at 1908, while (Emma Bennett was born in Harrison) starts at 1916. Since 1908 is earlier than 1916, it is clear that (Katherine Evans was born in San Francisco) started first.\n<timeline> \n(Katherine Evans was born in San Francisco) starts at 1908.\n(Emma Bennett was born in Harrison) starts at 1916.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting times of the two events and compares them to determine which one occurred first. There are no errors or improvements needed in this reasoning.\n</reflection> \n</reasoning> \n<answer> \nKatherine Evans was born in San Francisco\n</answer>",
+      "pred_answer": "Katherine Evans was born in San Francisco",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones was married to Emma Bennett",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start times of the two events in question: (Emily Jones was married to Emma Bennett) and (Emma Bennett died in Riverdale, Idaho). According to the temporal context provided, (Emily Jones was married to Emma Bennett) starts at 1988, while (Emma Bennett died in Riverdale, Idaho) starts at 1999. Since 1988 is earlier than 1999, the event (Emily Jones was married to Emma Bennett) started first.\n<timeline> \n(Emily Jones was married to Emma Bennett) starts at 1988.\n(Emma Bennett died in Riverdale, Idaho) starts at 1999.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nEmily Jones was married to Emma Bennett\n</answer>",
+      "pred_answer": "Emily Jones was married to Emma Bennett",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Emma Bennett was born in Harrison",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to examine the birth dates of the individuals involved in the events. The birth dates are provided for Emma Bennett, Emily Jones, and Katherine Evans. Emma Bennett was born in 1916, Emily Jones was born in 1910, and Katherine Evans was born in 1908. Since birth events precede all other events, the earliest event would be the birth of the individual who was born first.\n<timeline> \nKatherine Evans was born in San Francisco in 1908. Emily Jones was born in Oceanview in 1910. Emma Bennett was born in Harrison in 1916.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the birth dates of the individuals and determines that Katherine Evans was born first in 1908. This is the earliest event in chronological order. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nKatherine Evans was born in San Francisco\n</answer>",
+      "pred_answer": "Katherine Evans was born in San Francisco",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.4615384615384615
+    },
+    {
+      "question_id": "story512_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Katherine Evans was married to Emily Jones",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to first identify the chronological order of all the given events based on their starting points. The events are:\n\n1. (Emma Bennett was born in Harrison) starts at 1916.\n2. (Katherine Evans was born in San Francisco) starts at 1908.\n3. (Emily Jones was born in Oceanview) starts at 1910.\n4. (Katherine Evans was married to Emily Jones) starts at 1949.\n5. (Emma Bennett was married to Emily Jones) starts at 1965.\n6. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n7. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n\nFrom these starting points, we can arrange the events in chronological order:\n\n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emma Bennett was born in Harrison) starts at 1916.\n3. (Emily Jones was born in Oceanview) starts at 1910.\n4. (Katherine Evans was married to Emily Jones) starts at 1949.\n5. (Emma Bennett was married to Emily Jones) starts at 1965.\n6. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n7. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n\nThe second event in this chronological order is (Emma Bennett was born in Harrison) which starts at 1916.\n<timeline> \n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emma Bennett was born in Harrison) starts at 1916.\n3. (Emily Jones was born in Oceanview) starts at 1910.\n4. (Katherine Evans was married to Emily Jones) starts at 1949.\n5. (Emma Bennett was married to Emily Jones) starts at 1965.\n6. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n7. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events and the second event in this order is indeed (Emma Bennett was born in Harrison). There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nEmma Bennett was born in Harrison\n</answer>",
+      "pred_answer": "Emma Bennett was born in Harrison",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.15384615384615383
+    },
+    {
+      "question_id": "story512_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Emma Bennett was married to Emily Jones",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the events based on their starting points as provided in the temporal context. The events are:\n\n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n\nWe can see that the events are already in chronological order based on their starting points. The third event in this order is (Emma Bennett was married to Emily Jones) which starts at 1965.\n<timeline> \n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n</timeline>\n<reflection> \nThe events are correctly ordered based on their starting points. There are no errors or improvements needed in the timeline. The third event in chronological order is indeed (Emma Bennett was married to Emily Jones) which starts at 1965.\n</reflection>\n</reasoning>\n<answer> \nEmma Bennett was married to Emily Jones\n</answer>",
+      "pred_answer": "Emma Bennett was married to Emily Jones",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Katherine Evans died in Brookville Heights, Boston",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the given events based on their starting points as provided in the temporal context. The events are:\n\n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett was married to Emily Jones) ends at 1988.\n9. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n\nWe can see that the events are already in chronological order based on their starting points. The fourth event in this order is (Emma Bennett was married to Emily Jones) which starts at 1965.\n<timeline> \n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett was married to Emily Jones) ends at 1988.\n9. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the events in chronological order based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nEmma Bennett was married to Emily Jones",
+      "pred_answer": "Emma Bennett was married to Emily Jones",
+      "malformed": true,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story512_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Emma Bennett died in Riverdale, Idaho",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the given events based on their starting points as provided in the temporal context. The events are:\n\n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett was married to Emily Jones) ends at 1988.\n9. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n\nWe can see that the events are already in chronological order based on their starting points. The fifth event in this order is (Katherine Evans died in Brookville Heights,Boston) which starts at 1978.\n<timeline> \n1. (Katherine Evans was born in San Francisco) starts at 1908.\n2. (Emily Jones was born in Oceanview) starts at 1910.\n3. (Emma Bennett was born in Harrison) starts at 1916.\n4. (Emily Jones was married to Katherine Evans) starts at 1949.\n5. (Katherine Evans was married to Emily Jones) starts at 1949.\n6. (Emma Bennett was married to Emily Jones) starts at 1965.\n7. (Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n8. (Emma Bennett was married to Emily Jones) ends at 1988.\n9. (Emma Bennett died in Riverdale,Idaho) starts at 1999.\n</timeline>\n<reflection> \nThe events are correctly ordered based on their starting points. There are no errors or improvements needed in the timeline. The fifth event in chronological order is indeed (Katherine Evans died in Brookville Heights,Boston) which starts at 1978.\n</reflection>\n</reasoning>\n<answer> \nKatherine Evans died in Brookville Heights,Boston\n</answer>",
+      "pred_answer": "Katherine Evans died in Brookville Heights,Boston",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.3333333333333333
+    },
+    {
+      "question_id": "story512_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones was born in Oceanview",
+      "raw_generation": "<reasoning> \nTo determine the first event in chronological order, we need to compare the starting times of each event provided. The events are: (Emily Jones was born in Oceanview), (Emma Bennett was married to Emily Jones), (Katherine Evans was married to Emily Jones), (Emily Jones was married to Emma Bennett), and (Emily Jones died in Millwood Town,Austin).\n\nFrom the temporal context, we have the following starting times:\n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n\nComparing these starting times, the earliest event is (Emily Jones was born in Oceanview) which starts at 1910.\n<timeline> \n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the starting times and compares them to find the earliest event. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nEmily Jones was born in Oceanview\n</answer>",
+      "pred_answer": "Emily Jones was born in Oceanview",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Katherine Evans was married to Emily Jones",
+      "raw_generation": "<reasoning> \nTo determine the second event in chronological order, we need to first identify the chronological order of the given events based on their starting points. The events are: (Emily Jones was born in Oceanview), (Emma Bennett was married to Emily Jones), (Katherine Evans was married to Emily Jones), (Emily Jones was married to Emma Bennett), (Emily Jones died in Millwood Town,Austin).\n\nFrom the temporal context provided, we know the starting points of these events:\n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n\nThe first event in chronological order is (Emily Jones was born in Oceanview) starting at 1910. The second event should be the next earliest starting point among the remaining events.\n\n<timeline> \n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n</timeline>\n\n<reflection> \nThe timeline shows that the second event in chronological order is (Emma Bennett was married to Emily Jones) starting at 1965. This matches the given answer. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nEmma Bennett was married to Emily Jones\n</answer>",
+      "pred_answer": "Emma Bennett was married to Emily Jones",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7142857142857143
+    },
+    {
+      "question_id": "story512_Q1_7",
+      "dataset_name": "tgqa_test",
+      "gold": "Emma Bennett was married to Emily Jones",
+      "raw_generation": "<reasoning> \nTo determine the third event in chronological order, we need to arrange the given events based on their starting points. The events are: (Emily Jones was born in Oceanview), (Emma Bennett was married to Emily Jones), (Katherine Evans was married to Emily Jones), (Emily Jones was married to Emma Bennett), (Emily Jones died in Millwood Town,Austin).\n\nFirst, we note the starting points of each event:\n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n\nNext, we arrange these events in chronological order based on their starting points:\n1. (Emily Jones was born in Oceanview) at 1910.\n2. (Katherine Evans was married to Emily Jones) at 1949.\n3. (Emma Bennett was married to Emily Jones) at 1965.\n4. (Emily Jones was married to Emma Bennett) at 1988.\n5. (Emily Jones died in Millwood Town,Austin) at 1988.\n\nThe third event in this chronological order is (Emma Bennett was married to Emily Jones).\n<timeline> \n1. (Emily Jones was born in Oceanview) at 1910.\n2. (Katherine Evans was married to Emily Jones) at 1949.\n3. (Emma Bennett was married to Emily Jones) at 1965.\n4. (Emily Jones was married to Emma Bennett) at 1988.\n5. (Emily Jones died in Millwood Town,Austin) at 1988.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nEmma Bennett was married to Emily Jones\n</answer>",
+      "pred_answer": "Emma Bennett was married to Emily Jones",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones was married to Emma Bennett",
+      "raw_generation": "<reasoning> \nTo determine the fourth event in chronological order, we need to arrange the given events based on their starting points. The events are: (Emily Jones was born in Oceanview), (Emma Bennett was married to Emily Jones), (Katherine Evans was married to Emily Jones), (Emily Jones was married to Emma Bennett), and (Emily Jones died in Millwood Town,Austin).\n\nFirst, we note the starting points of each event:\n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Katherine Evans was married to Emily Jones) starts at 1949.\n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emily Jones died in Millwood Town,Austin) starts at 1988.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n\nNext, we arrange these events in chronological order based on their starting points:\n1. (Emily Jones was born in Oceanview) at 1910.\n2. (Katherine Evans was married to Emily Jones) at 1949.\n3. (Emma Bennett was married to Emily Jones) at 1965.\n4. (Emily Jones was married to Emma Bennett) at 1988.\n5. (Emily Jones died in Millwood Town,Austin) at 1988.\n\nThe fourth event in this chronological order is (Emily Jones was married to Emma Bennett).\n<timeline> \n1. (Emily Jones was born in Oceanview) at 1910.\n2. (Katherine Evans was married to Emily Jones) at 1949.\n3. (Emma Bennett was married to Emily Jones) at 1965.\n4. (Emily Jones was married to Emma Bennett) at 1988.\n5. (Emily Jones died in Millwood Town,Austin) at 1988.\n</timeline>\n<reflection> \nThe reasoning correctly identifies the chronological order of the events based on their starting points. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning>\n<answer> \nEmily Jones was married to Emma Bennett\n</answer>",
+      "pred_answer": "Emily Jones was married to Emma Bennett",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Emily Jones was married to Emma Bennett",
+      "raw_generation": "<reasoning> \nTo determine the fifth event in chronological order, we need to arrange the given events based on their starting points. The events are: (Emily Jones was born in Oceanview), (Emma Bennett was married to Emily Jones), (Katherine Evans was married to Emily Jones), (Emily Jones was married to Emma Bennett), (Emily Jones died in Millwood Town,Austin).\n\nFirst, we note the birth of Emily Jones in 1910. Next, we consider the marriage of Emily Jones to Katherine Evans in 1949. Then, we look at the marriage of Emily Jones to Emma Bennett in 1965. Following this, we see the death of Emily Jones in 1988. Finally, we note the marriage of Emma Bennett to Emily Jones, which also ends in 1988.\n\nArranging these events chronologically, we get: (Emily Jones was born in Oceanview) in 1910, (Katherine Evans was married to Emily Jones) in 1949, (Emily Jones was married to Emma Bennett) in 1965, (Emily Jones died in Millwood Town,Austin) in 1988, and (Emma Bennett was married to Emily Jones) in 1988.\n\nThus, the fifth event in chronological order is (Emily Jones died in Millwood Town,Austin).\n<timeline> \n(Emily Jones was born in Oceanview) in 1910, (Katherine Evans was married to Emily Jones) in 1949, (Emily Jones was married to Emma Bennett) in 1965, (Emily Jones died in Millwood Town,Austin) in 1988, (Emma Bennett was married to Emily Jones) in 1988.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the chronological order of the events. There are no errors or improvements needed in the timeline or the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nEmily Jones died in Millwood Town,Austin\n</answer>",
+      "pred_answer": "Emily Jones died in Millwood Town,Austin",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.30769230769230765
+    },
+    {
+      "question_id": "story512_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "9 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Emily Jones was married to Katherine Evans) lasted, we need to find the start and end dates of this event from the provided temporal context. The event starts at 1949 and ends at 1958. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Emily Jones was married to Katherine Evans) starts at 1949.\n(Emily Jones was married to Katherine Evans) ends at 1958.\n</timeline> \n<reflection> \nThe calculation to find the duration is straightforward: 1958 - 1949 = 9 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n9\n</answer>",
+      "pred_answer": "9",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story512_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "23 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Emma Bennett was married to Emily Jones) lasted, we need to identify the start and end dates of this event from the provided temporal context. The event starts when Emma Bennett was married to Emily Jones and ends when their marriage ended.\n\n<timeline> \n(Emma Bennett was married to Emily Jones) starts at 1965.\n(Emma Bennett was married to Emily Jones) ends at 1988.\n</timeline>\n\n<reflection> \nThe timeline shows that the marriage between Emma Bennett and Emily Jones started in 1965 and ended in 1988. To find the duration, we subtract the start year from the end year.\n</reflection>\n\n<answer> \n23\n</answer>",
+      "pred_answer": "23",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story512_Q2_2",
+      "dataset_name": "tgqa_test",
+      "gold": "9 years",
+      "raw_generation": "<reasoning> \nTo determine how long the event (Katherine Evans was married to Emily Jones) lasted, we need to identify the start and end dates of this event from the provided temporal context. The event starts at 1949 and ends at 1958. To find the duration, we subtract the start year from the end year.\n<timeline> \n(Katherine Evans was married to Emily Jones) starts at 1949.\n(Katherine Evans was married to Emily Jones) ends at 1958.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end years of the marriage. Subtracting the start year from the end year gives us the duration of the marriage. There are no errors in the reasoning or timeline.\n</reflection> \n</reasoning> \n<answer> \n9\n</answer>",
+      "pred_answer": "9",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story512_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "21 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Katherine Evans died in Brookville Heights, Boston) and the start of event (Emma Bennett died in Riverdale, Idaho), we need to identify the years associated with these events from the provided temporal context. \n\nFirst, we find the year when Katherine Evans died, which is given as 1978. Next, we locate the year when Emma Bennett died, which is provided as 1999. \n\nTo calculate the time passed between these two events, we subtract the earlier year (1978) from the later year (1999). This gives us 1999 - 1978 = 21 years.\n\nThus, the time passed between the start of event (Katherine Evans died in Brookville Heights, Boston) and the start of event (Emma Bennett died in Riverdale, Idaho) is 21 years.\n<timeline> \n(Katherine Evans died in Brookville Heights, Boston) starts at 1978.\n(Emma Bennett died in Riverdale, Idaho) starts at 1999.\n</timeline> \n<reflection> \nThe reasoning process correctly identified the years associated with the deaths of Katherine Evans and Emma Bennett. The calculation of the time passed between these events is straightforward and accurate. No errors or improvements are necessary.\n</reflection> \n</reasoning> \n<answer> \n21\n</answer>",
+      "pred_answer": "21",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story512_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "57 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Katherine Evans was born in San Francisco) and the start of event (Emma Bennett was married to Emily Jones), we need to identify the starting points of these two events from the given temporal context. \n\nThe start of event (Katherine Evans was born in San Francisco) is given as 1908. \n\nThe start of event (Emma Bennett was married to Emily Jones) is given as 1965. \n\nTo find the time passed between these two events, we subtract the earlier starting point from the later starting point. \n\n1965 - 1908 = 57 years\n\nThus, the time passed between the start of Katherine Evans' birth and the start of Emma Bennett's marriage to Emily Jones is 57 years.\n<timeline> \n(Katherine Evans was born in San Francisco) starts at 1908.\n(Emma Bennett was married to Emily Jones) starts at 1965.\n</timeline> \n<reflection> \nThe calculation is straightforward and correctly identifies the relevant events and their starting points. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n57\n</answer>",
+      "pred_answer": "57",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story512_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "39 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Katherine Evans was married to Emily Jones) and the start of event (Emily Jones was married to Emma Bennett), we need to identify the start dates of these two events from the given temporal context.\n\nThe start date of (Katherine Evans was married to Emily Jones) is 1949.\nThe start date of (Emily Jones was married to Emma Bennett) is 1965.\n\nTo find the time passed between these two events, we subtract the earlier start date from the later start date.\n\n1965 - 1949 = 16 years\n\nThus, the time passed between the start of (Katherine Evans was married to Emily Jones) and the start of (Emily Jones was married to Emma Bennett) is 16 years.\n<timeline> \n(Katherine Evans was married to Emily Jones) starts at 1949.\n(Emily Jones was married to Emma Bennett) starts at 1965.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and calculates the time difference accurately. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n16\n</answer>",
+      "pred_answer": "16",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story512_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1988",
+      "raw_generation": "<reasoning> \nTo determine when the event (Emily Jones was married to Emma Bennett) started, we need to identify the relevant temporal events from the given context. The context provides specific dates for various events related to Emily Jones, Emma Bennett, and their marriages. We are specifically interested in the event where Emily Jones was married to Emma Bennett.\n\n<timeline> \n(Emily Jones was married to Emma Bennett) starts at 1988.\n</timeline>\n\n<reflection> \nThe timeline clearly indicates that the event (Emily Jones was married to Emma Bennett) starts at 1988. There are no conflicting or additional events that would require further reasoning or adjustments.\n</reflection>\n</reasoning> \n<answer> \n1988\n</answer>",
+      "pred_answer": "1988",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "1910",
+      "raw_generation": "<reasoning> \nTo determine when the event (Emily Jones was born in Oceanview) started, we need to identify the specific time mentioned in the temporal context for this event. The temporal context provides a sequence of events with their respective starting times. We can directly find the starting time for (Emily Jones was born in Oceanview) from this context.\n<timeline> \n(Emily Jones was born in Oceanview) starts at 1910.\n</timeline> \n<reflection> \nThe reasoning process correctly identified the starting time for (Emily Jones was born in Oceanview) from the provided temporal context. There are no errors or improvements needed in this step.\n</reflection> \n</reasoning> \n<answer> \n1910\n</answer>",
+      "pred_answer": "1910",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1965",
+      "raw_generation": "<reasoning> \nTo determine when the event (Emma Bennett was married to Emily Jones) started, we need to identify the relevant temporal events from the given context. The context provides specific dates for various events related to Emma Bennett, Emily Jones, and their marriages. We are specifically interested in the event where Emma Bennett was married to Emily Jones.\n\n<timeline> \n(Emma Bennett was born in Harrison) starts at 1916.\n(Emily Jones was born in Oceanview) starts at 1910.\n(Emily Jones was married to Katherine Evans) starts at 1949.\n(Katherine Evans was married to Emily Jones) starts at 1949.\n(Emma Bennett was married to Emily Jones) starts at 1965.\n(Katherine Evans died in Brookville Heights, Boston) starts at 1978.\n(Emily Jones was married to Emma Bennett) starts at 1988.\n(Emily Jones died in Millwood Town, Austin) starts at 1988.\n(Emma Bennett was married to Emily Jones) ends at 1988.\n(Emma Bennett died in Riverdale, Idaho) starts at 1999.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event (Emma Bennett was married to Emily Jones) starts at 1965. This date is directly provided in the context, and there are no conflicting or additional events that would alter this date. Therefore, the reasoning and timeline are consistent and accurate.\n</reflection>\n\n</reasoning> \n<answer> \n1965\n</answer>",
+      "pred_answer": "1965",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Emily Jones was born in Oceanview\" and \"Emily Jones was married to Katherine Evans\" started at the same year, we need to compare the start times of these two events. According to the temporal context provided, \"Emily Jones was born in Oceanview\" starts at 1910, while \"Emily Jones was married to Katherine Evans\" starts at 1949. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n- (Emily Jones was born in Oceanview) starts at 1910.\n- (Emily Jones was married to Katherine Evans) starts at 1949.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Katherine Evans was born in San Francisco\" and \"Emma Bennett was married to Emily Jones\" started at the same year, we need to compare the starting years of these two events. According to the temporal context provided, \"Katherine Evans was born in San Francisco\" starts at 1908, while \"Emma Bennett was married to Emily Jones\" starts at 1965. Since these two events have different starting years, it is clear that they did not start at the same year.\n<timeline> \n- (Katherine Evans was born in San Francisco) starts at 1908.\n- (Emma Bennett was married to Emily Jones) starts at 1965.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the starting years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Emily Jones was married to Emma Bennett\" and \"Emma Bennett died in Riverdale, Idaho\" started at the same year, we need to compare the start years of these two events. According to the temporal context provided, the event \"Emily Jones was married to Emma Bennett\" starts at 1988, while the event \"Emma Bennett died in Riverdale, Idaho\" starts at 1999. Since these two events have different start years, it is clear that they did not start at the same year.\n<timeline> \n- (Emily Jones was married to Emma Bennett) starts at 1988.\n- (Emma Bennett died in Riverdale, Idaho) starts at 1999.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years of the two events and compares them. There are no errors in the comparison, and the conclusion that the events did not start at the same year is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Katherine Evans was married to Emily Jones\" was still happening when \"Emily Jones died in Millwood Town, Austin\" started, we need to compare the start and end times of these two events. The event \"Katherine Evans was married to Emily Jones\" starts at 1949 and ends at 1958. The event \"Emily Jones died in Millwood Town, Austin\" starts at 1988. Since the marriage ended in 1958 and the death occurred in 1988, the marriage was not ongoing at the time of Emily Jones's death.\n<timeline> \n(Katherine Evans was married to Emily Jones) starts at 1949 and ends at 1958.\n(Emily Jones died in Millwood Town, Austin) starts at 1988.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end times of the marriage and the death event. There are no errors in the timeline or the comparison of these events. The conclusion that the marriage was not ongoing at the time of Emily Jones's death is accurate.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Emma Bennett was married to Emily Jones\" was still happening when \"Emily Jones died in Millwood Town, Austin\" started, we need to compare the start and end times of these two events. \n\nFirst, we identify the start time of \"Emma Bennett was married to Emily Jones,\" which is given as 1965. Next, we identify the start time of \"Emily Jones died in Millwood Town, Austin,\" which is given as 1988. \n\nSince the start time of \"Emily Jones died in Millwood Town, Austin\" (1988) is later than the start time of \"Emma Bennett was married to Emily Jones\" (1965), it indicates that the marriage between Emma Bennett and Emily Jones had already ended before Emily Jones' death began. \n\nTherefore, the event \"Emma Bennett was married to Emily Jones\" was not still happening when \"Emily Jones died in Millwood Town, Austin\" started.\n<timeline> \n- (Emma Bennett was married to Emily Jones) starts at 1965.\n- (Emily Jones died in Millwood Town, Austin) starts at 1988.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of both events and compares them to determine if the marriage was still ongoing when Emily Jones died. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story512_Q6_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Katherine Evans was married to Emily Jones\" was still happening when \"Katherine Evans died in Brookville Heights, Boston\" started, we need to compare the start and end times of the marriage event with the start time of the death event.\n\nThe marriage event \"Katherine Evans was married to Emily Jones\" starts at 1949 and ends at 1958. The death event \"Katherine Evans died in Brookville Heights, Boston\" starts at 1978.\n\nSince the marriage ended in 1958 and the death event started in 1978, it is clear that the marriage was not ongoing at the time of her death.\n\n<timeline> \n- (Katherine Evans was married to Emily Jones) starts at 1949 and ends at 1958.\n- (Katherine Evans died in Brookville Heights, Boston) starts at 1978.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the start and end times of the marriage and the start time of the death event. There are no errors in the timeline or the comparison of these events.\n</reflection>\n\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Emily Jones was married to Emma Bennett) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right before the event \"Emma Bennett died in Riverdale, Idaho\" starts, we need to look at the temporal context provided and identify the event that immediately precedes it. The context lists several events with their respective start and end times. We should focus on the events that occur close to the year 1999, which is when Emma Bennett's death is stated to start.\n\n<timeline> \n(Emma Bennett was married to Emily Jones) ends at 1988.\n(Emily Jones died in Millwood Town, Austin) starts at 1988.\n(Emma Bennett was married to Emily Jones) ends at 1988.\n(Emma Bennett died in Riverdale, Idaho) starts at 1999.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Emily Jones died in Millwood Town, Austin\" starts at 1988, which is the closest event to the start of Emma Bennett's death in 1999. However, this event does not directly precede Emma Bennett's death; rather, it occurs before both Emma Bennett and Emily Jones' marriages end. Therefore, the correct event that happens right before Emma Bennett's death is the end of her marriage to Emily Jones.\n</reflection>\n\n</reasoning> \n<answer> \nEmily Jones was married to Emma Bennett\n</answer>",
+      "pred_answer": "Emily Jones was married to Emma Bennett",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story512_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Katherine Evans died in Brookville Heights, Boston) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Emma Bennett was married to Emily Jones\" starts, we need to identify the next significant event in the timeline that follows this event. The given temporal context provides a sequence of events with their respective start and end times. We can use this information to pinpoint the event that immediately follows the marriage of Emma Bennett to Emily Jones.\n\n<timeline> \n(Emma Bennett was married to Emily Jones) starts at 1965.\n(Katherine Evans died in Brookville Heights,Boston) starts at 1978.\n(Emily Jones was married to Emma Bennett) starts at 1988.\n(Emily Jones died in Millwood Town,Austin) starts at 1988.\n(Emma Bennett was married to Emily Jones) ends at 1988.\n(Emma Bennett died in Riverdale,Idaho) starts at 1999.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Emily Jones was married to Emma Bennett\" starts at 1988, which is the next significant event after \"Emma Bennett was married to Emily Jones\" starts at 1965. This event directly follows the marriage of Emma Bennett to Emily Jones, making it the correct answer.\n</reflection>\n\n</reasoning> \n<answer> \nEmily Jones was married to Emma Bennett\n</answer>",
+      "pred_answer": "Emily Jones was married to Emma Bennett",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story512_Q7_2",
+      "dataset_name": "tgqa_test",
+      "gold": "(Emily Jones was married to Emma Bennett) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Katherine Evans died in Brookville Heights, Boston,\" we need to identify the next significant event in the timeline that follows this event. The timeline provided includes several events related to marriages and deaths of individuals. We should focus on the events that occur immediately after the death of Katherine Evans.\n\n<timeline> \n(Katherine Evans died in Brookville Heights, Boston) starts at 1978.\n(Emily Jones was married to Emma Bennett) starts at 1988.\n(Emily Jones died in Millwood Town, Austin) starts at 1988.\n(Emma Bennett was married to Emily Jones) ends at 1988.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the next significant event after the death of Katherine Evans is the marriage of Emily Jones to Emma Bennett, which occurs in 1988. This event is directly subsequent to the death of Katherine Evans, as there are no other events listed between 1978 and 1988.\n</reflection>\n\n</reasoning> \n<answer> \nEmily Jones was married to Emma Bennett\n</answer>",
+      "pred_answer": "Emily Jones was married to Emma Bennett",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story512_Q7_3",
+      "dataset_name": "tgqa_test",
+      "gold": "(Emily Jones was born in Oceanview) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Katherine Evans was born in San Francisco\" starts, we need to identify the next chronological event in the timeline. The given temporal context provides specific years for each event, allowing us to sequence them accurately.\n\n<timeline> \nKatherine Evans was born in San Francisco in 1908. The next event chronologically is Emily Jones being born in Oceanview, which occurs in 1910.\n</timeline>\n\n<reflection> \nThe timeline shows that the event \"Emily Jones was born in Oceanview\" directly follows the event \"Katherine Evans was born in San Francisco.\" There are no gaps or other events between these two births, so the next event after Katherine Evans' birth is indeed Emily Jones' birth.\n</reflection>\n\n</reasoning> \n<answer> \nEmily Jones was born in Oceanview\n</answer>",
+      "pred_answer": "Emily Jones was born in Oceanview",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story512_Q7_4",
+      "dataset_name": "tgqa_test",
+      "gold": "(Emma Bennett was born in Harrison) starts",
+      "raw_generation": "<reasoning> \nTo determine what happened right after the event \"Emily Jones was born in Oceanview\" starts, we need to identify the next chronological event in the timeline. The given temporal context provides specific years for each event, allowing us to sequence them accurately.\n\n<timeline> \n(Emily Jones was born in Oceanview) starts at 1910. (Emma Bennett was born in Harrison) starts at 1916.\n</timeline> \n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Emma Bennett was born in Harrison\" occurs after \"Emily Jones was born in Oceanview.\" There are no other events listed between these two births, so this is the next chronological event.\n</reflection>\n\n</reasoning> \n<answer> \nEmma Bennett was born in Harrison\n</answer>",
+      "pred_answer": "Emma Bennett was born in Harrison",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.923076923076923
+    },
+    {
+      "question_id": "story512_Q8_0",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Emma Bennett was married to Emily Jones\" was longer in duration than the event \"Katherine Evans was married to Emily Jones,\" we need to compare the durations of these two marriages.\n\nFirst, we identify the start and end dates of each marriage from the given temporal context. For \"Katherine Evans was married to Emily Jones,\" the marriage starts in 1949 and ends in 1958. For \"Emma Bennett was married to Emily Jones,\" the marriage starts in 1965 and ends in 1988.\n\nNext, we calculate the duration of each marriage. The duration of \"Katherine Evans was married to Emily Jones\" is from 1949 to 1958, which is 9 years. The duration of \"Emma Bennett was married to Emily Jones\" is from 1965 to 1988, which is 23 years.\n\nComparing the durations, we see that the marriage of \"Emma Bennett was married to Emily Jones\" lasted longer than the marriage of \"Katherine Evans was married to Emily Jones.\"\n<timeline> \n(Katherine Evans was married to Emily Jones) starts at 1949 and ends at 1958.\n(Emma Bennett was married to Emily Jones) starts at 1965 and ends at 1988.\n</timeline> \n<reflection> \nThe reasoning correctly identified the start and end dates of each marriage and calculated the durations accurately. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q8_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Emily Jones was married to Katherine Evans\" was longer in duration than the event \"Katherine Evans was married to Emily Jones,\" we need to compare the durations of these two events. Both events start and end at the same times, which simplifies the comparison.\n\nThe event \"Emily Jones was married to Katherine Evans\" starts at 1949 and ends at 1958. The event \"Katherine Evans was married to Emily Jones\" also starts at 1949 and ends at 1958. Since both events have the same start and end times, their durations are identical.\n\nGiven that both events have the same duration, it is not possible for one to be longer than the other. Therefore, the statement that one event was longer in duration than the other is false.\n<timeline> \n(Emily Jones was married to Katherine Evans) starts at 1949 and ends at 1958.\n(Katherine Evans was married to Emily Jones) starts at 1949 and ends at 1958.\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both events have the same start and end times, leading to the conclusion that their durations are identical. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story512_Q8_2",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Emma Bennett was married to Emily Jones\" was longer in duration than the event \"Emily Jones was married to Katherine Evans,\" we need to compare the durations of these two marriages.\n\nFirst, we identify the start and end dates of each marriage from the given temporal context. \n\nFor \"Emily Jones was married to Katherine Evans\":\n- Start date: 1949\n- End date: 1958\n\nFor \"Emma Bennett was married to Emily Jones\":\n- Start date: 1965\n- End date: 1988\n\nNext, we calculate the duration of each marriage:\n- Duration of \"Emily Jones was married to Katherine Evans\": 1958 - 1949 = 9 years\n- Duration of \"Emma Bennett was married to Emily Jones\": 1988 - 1965 = 23 years\n\nComparing the durations, we see that the marriage between Emma Bennett and Emily Jones lasted longer than the marriage between Emily Jones and Katherine Evans.\n\n<timeline> \n- (Emily Jones was married to Katherine Evans) starts at 1949 and ends at 1958.\n- (Emma Bennett was married to Emily Jones) starts at 1965 and ends at 1988.\n</timeline>\n\n<reflection> \nThe reasoning process correctly identified the start and end dates of each marriage and calculated the durations accurately. There are no apparent errors or improvements needed in the reasoning.\n</reflection>\n\n</reasoning> \n<answer> \nTrue\n</answer>",
+      "pred_answer": "True",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q0_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Liverpool Athletic Club",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start dates of the two events in question: (Michael Sullivan played for Hartford United F.C.) and (Michael Sullivan played for Liverpool Athletic Club). According to the provided temporal context, (Michael Sullivan played for Hartford United F.C.) starts at 2015, while (Michael Sullivan played for Liverpool Athletic Club) starts at 2004. Since 2004 is earlier than 2015, it is clear that (Michael Sullivan played for Liverpool Athletic Club) started first.\n<timeline> \n(Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n(Michael Sullivan played for Hartford United F.C.) starts at 2015.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMichael Sullivan played for Liverpool Athletic Club\n</answer>",
+      "pred_answer": "Michael Sullivan played for Liverpool Athletic Club",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q0_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Liverpool Athletic Club",
+      "raw_generation": "<reasoning> \nTo determine which event started first, we need to compare the start dates of the two events in question: (Michael Sullivan played for Liverpool Athletic Club) and (Michael Sullivan played for Manchester United F.C.). According to the provided temporal context, (Michael Sullivan played for Liverpool Athletic Club) starts at 2004, while (Michael Sullivan played for Manchester United F.C.) starts at 2003. Since 2003 is earlier than 2004, it is clear that (Michael Sullivan played for Manchester United F.C.) started first.\n<timeline> \n(Michael Sullivan played for Manchester United F.C.) starts at 2003.\n(Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and compares them to determine which one occurred first. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMichael Sullivan played for Manchester United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Manchester United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285714
+    },
+    {
+      "question_id": "story513_Q0_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Brighton United F.C.",
+      "raw_generation": "<reasoning> \nTo determine which event started first between Michael Sullivan playing for Brighton United F.C. and Michael Sullivan playing for Hartford United F.C., we need to compare the start dates of these two events. According to the temporal context provided, the start date for Michael Sullivan playing for Brighton United F.C. is 2014, and the start date for Michael Sullivan playing for Hartford United F.C. is 2015. Since 2014 is earlier than 2015, it indicates that Michael Sullivan started playing for Brighton United F.C. before he started playing for Hartford United F.C.\n<timeline> \nMichael Sullivan played for Brighton United F.C. starts at 2014.\nMichael Sullivan played for Hartford United F.C. starts at 2015.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates for both events and compares them to determine the earlier start date. There are no apparent errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nMichael Sullivan played for Brighton United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Brighton United F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q1_0",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Virginia national under-21 hockey team",
+      "raw_generation": "<reasoning> To determine the first event in chronological order among the given events related to Michael Sullivan, we need to examine the temporal context provided. The events are:\n\n1. Michael Sullivan played for Manchester United F.C.\n2. Michael Sullivan played for Virginia national under-21 hockey team\n3. Michael Sullivan played for Brighton United F.C.\n4. Michael Sullivan played for Liverpool Athletic Club\n5. Michael Sullivan played for Forest United F.C.\n\nFrom the temporal context, we can extract the start times for each of these events:\n\n- Michael Sullivan played for Manchester United F.C. starts at 2003.\n- Michael Sullivan played for Liverpool Athletic Club starts at 2004.\n- Michael Sullivan played for Virginia national under-21 hockey team starts at 2004.\n- Michael Sullivan played for Forest United F.C. starts at 2007.\n- Michael Sullivan played for Brighton United F.C. starts at 2014.\n\nComparing these start times, the earliest start time is 2003 for Michael Sullivan playing for Manchester United F.C.\n<timeline>\n- Michael Sullivan played for Manchester United F.C. starts at 2003.\n- Michael Sullivan played for Liverpool Athletic Club starts at 2004.\n- Michael Sullivan played for Virginia national under-21 hockey team starts at 2004.\n- Michael Sullivan played for Forest United F.C. starts at 2007.\n- Michael Sullivan played for Brighton United F.C. starts at 2014.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the start times for each event and compares them to find the earliest one. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Manchester United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Manchester United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "story513_Q1_1",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Virginia national under-21 hockey team",
+      "raw_generation": "<reasoning> To determine the second event in chronological order, we need to first identify the chronological order of the given events based on the provided temporal context. The events are: (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Virginia national under-21 hockey team), (Michael Sullivan played for Brighton United F.C.), (Michael Sullivan played for Liverpool Athletic Club), (Michael Sullivan played for Forest United F.C.).\n\nFrom the temporal context, we can extract the start times for each of these events:\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nNow, we can order these events based on their start times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n4. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n5. (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nThe second event in this chronological order is (Michael Sullivan played for Liverpool Athletic Club).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the chronological order of the events based on their start times. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Liverpool Athletic Club\n</answer>",
+      "pred_answer": "Michael Sullivan played for Liverpool Athletic Club",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "story513_Q1_2",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Forest United F.C.",
+      "raw_generation": "<reasoning> To determine the third event in chronological order, we need to first identify the start times of each event involving Michael Sullivan. The events provided are: (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Virginia national under-21 hockey team), (Michael Sullivan played for Brighton United F.C.), (Michael Sullivan played for Liverpool Athletic Club), and (Michael Sullivan played for Forest United F.C.).\n\nFrom the temporal context, we can extract the start times for these events:\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nNow, we can order these events based on their start times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n4. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n5. (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nThe third event in this chronological order is (Michael Sullivan played for Virginia national under-21 hockey team).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the start times and orders the events chronologically. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Virginia national under-21 hockey team\n</answer>",
+      "pred_answer": "Michael Sullivan played for Virginia national under-21 hockey team",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5
+    },
+    {
+      "question_id": "story513_Q1_3",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Manchester United F.C.",
+      "raw_generation": "<reasoning> To determine the fourth event in chronological order, we need to arrange the given events based on their starting times. The events provided are: (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Virginia national under-21 hockey team), (Michael Sullivan played for Brighton United F.C.), (Michael Sullivan played for Liverpool Athletic Club), and (Michael Sullivan played for Forest United F.C.).\n\nFirst, we identify the starting times for each event from the temporal context:\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nNext, we arrange these events in chronological order based on their starting times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n4. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n5. (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nThe fourth event in this chronological order is (Michael Sullivan played for Forest United F.C.).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the starting times and arranges the events in chronological order. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Forest United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Forest United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.8571428571428571
+    },
+    {
+      "question_id": "story513_Q1_4",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Brighton United F.C.",
+      "raw_generation": "<reasoning> To determine the fifth event in chronological order, we need to first establish the order of the given events based on their starting points. The events provided are: (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Virginia national under-21 hockey team), (Michael Sullivan played for Brighton United F.C.), (Michael Sullivan played for Liverpool Athletic Club), and (Michael Sullivan played for Forest United F.C.).\n\nFrom the temporal context, we can extract the starting points of these events:\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nNow, we can order these events based on their starting points:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n4. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n5. (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n\nThus, the fifth event in chronological order is (Michael Sullivan played for Brighton United F.C.).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the starting points of each event and orders them chronologically. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Brighton United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Brighton United F.C.",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q1_5",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Liverpool Athletic Club",
+      "raw_generation": "<reasoning> To determine the first event in chronological order among the given events related to Michael Sullivan's career, we need to examine the temporal context provided. The events in question are: (Michael Sullivan played for Ashford United F.C.), (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Liverpool Athletic Club), (Michael Sullivan played for Forest United F.C.), and (Michael Sullivan played for Iverson United).\n\nFrom the temporal context, we can extract the start dates for each of these events:\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n\nComparing these start dates, the earliest date is 2003, which corresponds to (Michael Sullivan played for Manchester United F.C.).\n\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n</timeline>\n\n<reflection>\nThe reasoning correctly identifies the start dates for each event and compares them to find the earliest one. There are no apparent errors or improvements needed in the reasoning process.\n</reflection>\n\n</reasoning>\n<answer>\nMichael Sullivan played for Manchester United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Manchester United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285714
+    },
+    {
+      "question_id": "story513_Q1_6",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Forest United F.C.",
+      "raw_generation": "<reasoning> To determine the second event in chronological order, we need to first identify the chronological order of the given events based on the provided temporal context. The events are: (Michael Sullivan played for Ashford United F.C.), (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Liverpool Athletic Club), (Michael Sullivan played for Forest United F.C.), (Michael Sullivan played for Iverson United).\n\nFrom the temporal context, we can extract the start times for each of these events:\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n\nNow, we can order these events based on their start times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n4. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n5. (Michael Sullivan played for Iverson United) starts at 2009.\n\nThe second event in this chronological order is (Michael Sullivan played for Liverpool Athletic Club).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n</timeline>\n<reflection>\nThe reasoning correctly identifies the chronological order of the events based on their start times. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Liverpool Athletic Club\n</answer>",
+      "pred_answer": "Michael Sullivan played for Liverpool Athletic Club",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.5714285714285714
+    },
+    {
+      "question_id": "story513_Q1_8",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Manchester United F.C.",
+      "raw_generation": "<reasoning> To determine the fourth event in chronological order, we need to first identify the start times of each event involving Michael Sullivan playing for different teams. The events provided are: (Michael Sullivan played for Ashford United F.C.), (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Liverpool Athletic Club), (Michael Sullivan played for Forest United F.C.), and (Michael Sullivan played for Iverson United).\n\nFrom the temporal context, we can extract the start times for these events:\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n\nNext, we arrange these events in chronological order based on their start times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n4. (Michael Sullivan played for Iverson United) starts at 2009.\n5. (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n\nThe fourth event in this chronological order is (Michael Sullivan played for Iverson United).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n</timeline>\n<reflection>\nThe reasoning process correctly identified the start times and arranged the events in chronological order. There are no apparent errors or improvements needed in the reasoning.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Iverson United\n</answer>",
+      "pred_answer": "Michael Sullivan played for Iverson United",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7692307692307692
+    },
+    {
+      "question_id": "story513_Q1_9",
+      "dataset_name": "tgqa_test",
+      "gold": "Michael Sullivan played for Ashford United F.C.",
+      "raw_generation": "<reasoning> To determine the fifth event in chronological order, we need to first identify the chronological order of the given events based on the provided temporal context. The events are: (Michael Sullivan played for Ashford United F.C.), (Michael Sullivan played for Manchester United F.C.), (Michael Sullivan played for Liverpool Athletic Club), (Michael Sullivan played for Forest United F.C.), (Michael Sullivan played for Iverson United).\n\nFrom the temporal context, we can extract the start times for each of these events:\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003 and ends at 2007.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n\nNow, we can arrange these events in chronological order based on their start times:\n1. (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n2. (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n3. (Michael Sullivan played for Forest United F.C.) starts at 2007.\n4. (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n5. (Michael Sullivan played for Iverson United) starts at 2009.\n\nThe fifth event in this chronological order is (Michael Sullivan played for Iverson United).\n<timeline>\n- (Michael Sullivan played for Manchester United F.C.) starts at 2003.\n- (Michael Sullivan played for Liverpool Athletic Club) starts at 2004.\n- (Michael Sullivan played for Forest United F.C.) starts at 2007.\n- (Michael Sullivan played for Ashford United F.C.) starts at 2014.\n- (Michael Sullivan played for Iverson United) starts at 2009.\n</timeline>\n<reflection>\nThe reasoning process correctly identified the chronological order of the events based on their start times. There are no errors or improvements needed in the reasoning or timeline.\n</reflection>\n</reasoning>\n<answer>\nMichael Sullivan played for Iverson United\n</answer>",
+      "pred_answer": "Michael Sullivan played for Iverson United",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.7692307692307692
+    },
+    {
+      "question_id": "story513_Q2_0",
+      "dataset_name": "tgqa_test",
+      "gold": "1 year",
+      "raw_generation": "<reasoning> \nTo determine how long Michael Sullivan played for Brighton United F.C., we need to identify the start and end dates of this event from the given temporal context. The context provides specific dates for when Michael Sullivan started and ended playing for Brighton United F.C.\n\n<timeline> \n(Michael Sullivan played for Brighton United F.C.) starts at 2014.\n(Michael Sullivan played for Brighton United F.C.) ends at 2015.\n</timeline>\n\n<reflection> \nThe timeline shows that Michael Sullivan started playing for Brighton United F.C. in 2014 and ended in 2015. To find the duration, we subtract the start year from the end year.\n</reflection>\n\n</reasoning> \n<answer> \n1\n</answer>",
+      "pred_answer": "1",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q2_1",
+      "dataset_name": "tgqa_test",
+      "gold": "1 year",
+      "raw_generation": "<reasoning> \nTo determine how long Michael Sullivan played for the Houston Astros baseball team, we need to find the start and end dates of this event from the given temporal context. The event \"Michael Sullivan played for Houston Astros baseball team\" starts at 2002 and ends at 2003. To calculate the duration, we subtract the start year from the end year.\n<timeline> \n(Michael Sullivan played for Houston Astros baseball team) starts at 2002.\n(Michael Sullivan played for Houston Astros baseball team) ends at 2003.\n</timeline> \n<reflection> \nThe calculation for the duration is straightforward: 2003 - 2002 = 1 year. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n1\n</answer>",
+      "pred_answer": "1",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q2_2",
+      "dataset_name": "tgqa_test",
+      "gold": "1 year",
+      "raw_generation": "<reasoning> \nTo determine how long Michael Sullivan played for Hartford United F.C., we need to identify the start and end dates of this event from the given temporal context. The context provides specific dates for when Michael Sullivan started and ended playing for various teams, including Hartford United F.C.\n\n<timeline> \n(Michael Sullivan played for Hartford United F.C.) starts at 2015.\n(Michael Sullivan played for Hartford United F.C.) ends at 2016.\n</timeline>\n\n<reflection> \nThe timeline shows that Michael Sullivan started playing for Hartford United F.C. in 2015 and ended in 2016. To find the duration, we subtract the start year from the end year.\n</reflection>\n\n</reasoning> \n<answer> \n1\n</answer>",
+      "pred_answer": "1",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q3_0",
+      "dataset_name": "tgqa_test",
+      "gold": "5 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of event (Michael Sullivan played for Iverson United) and the start of event (Michael Sullivan played for Brighton United F.C.), we need to identify the start dates of these two events from the given temporal context.\n\nThe start date of (Michael Sullivan played for Iverson United) is given as 2009.\nThe start date of (Michael Sullivan played for Brighton United F.C.) is given as 2014.\n\nTo find the time passed between these two events, we subtract the earlier start date from the later start date.\n\n2014 - 2009 = 5 years\n\nThus, the time passed between the start of (Michael Sullivan played for Iverson United) and the start of (Michael Sullivan played for Brighton United F.C.) is 5 years.\n<timeline> \n(Michael Sullivan played for Iverson United) starts at 2009.\n(Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start dates of the two events and calculates the time difference accurately. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \n5\n</answer>",
+      "pred_answer": "5",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q3_1",
+      "dataset_name": "tgqa_test",
+      "gold": "0 year",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of Michael Sullivan playing for Ashford United F.C. and the start of him playing for Brighton United F.C., we need to identify the start dates of both events from the given temporal context. The start date of Michael Sullivan playing for Ashford United F.C. is 2014, and the start date of him playing for Brighton United F.C. is also 2014. Since both events start in the same year, the time passed between their starts is zero years.\n<timeline> \n(Michael Sullivan played for Ashford United F.C.) starts at 2014.\n(Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies that both events start in the same year, which means the time passed between their starts is zero. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \n0\n</answer>",
+      "pred_answer": "0",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q3_2",
+      "dataset_name": "tgqa_test",
+      "gold": "6 years",
+      "raw_generation": "<reasoning> \nTo determine the time passed between the start of Michael Sullivan playing for Manchester United F.C. and the start of him playing for Hartford United F.C., we need to identify the start dates of both events from the given temporal context. The start date of Michael Sullivan playing for Manchester United F.C. is given as 2009, and the start date of him playing for Hartford United F.C. is given as 2015. To find the time passed between these two events, we subtract the earlier date from the later date.\n<timeline> \n(Michael Sullivan played for Manchester United F.C.) starts at 2009.\n(Michael Sullivan played for Hartford United F.C.) starts at 2015.\n</timeline> \n<reflection> \nThe calculation to find the time passed is straightforward: 2015 - 2009 = 6 years. There are no errors in the reasoning or timeline, and the calculation is correct.\n</reflection> \n</reasoning> \n<answer> \n6\n</answer>",
+      "pred_answer": "6",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.6666666666666666
+    },
+    {
+      "question_id": "story513_Q4_0",
+      "dataset_name": "tgqa_test",
+      "gold": "2002",
+      "raw_generation": "<reasoning> \nThe question asks for the starting year of the event where Michael Sullivan played for the Houston Astros baseball team. The temporal context provided includes specific years for various events related to Michael Sullivan's career. To find the answer, we need to locate the event \"Michael Sullivan played for Houston Astros baseball team\" and identify its starting year.\n\n<timeline> \n(Michael Sullivan played for Houston Astros baseball team) starts at 2002.\n</timeline>\n\n<reflection> \nThe timeline clearly indicates that the event \"Michael Sullivan played for Houston Astros baseball team\" started in 2002. There are no conflicting or additional events that would require further reasoning or adjustments.\n</reflection>\n</reasoning> \n<answer> \n2002\n</answer>",
+      "pred_answer": "2002",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q4_1",
+      "dataset_name": "tgqa_test",
+      "gold": "2014",
+      "raw_generation": "<reasoning> \nTo determine when Michael Sullivan started playing for Ashford United F.C., we need to locate the specific event in the provided temporal context. The context lists various events related to Michael Sullivan's career, including his transfers between teams and the start and end dates of these transfers. We are specifically looking for the event \"Michael Sullivan played for Ashford United F.C.\" and its associated start date.\n\n<timeline> \n(Michael Sullivan played for Ashford United F.C.) starts at 2014.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event \"Michael Sullivan played for Ashford United F.C.\" starts at 2014. There are no discrepancies or additional information needed to confirm this date.\n</reflection>\n\n</reasoning> \n<answer> \n2014\n</answer>",
+      "pred_answer": "2014",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q4_2",
+      "dataset_name": "tgqa_test",
+      "gold": "2007",
+      "raw_generation": "<reasoning> \nTo determine when Michael Sullivan started playing for Forest United F.C., we need to identify the specific event in the provided temporal context that indicates this. The context lists various events related to Michael Sullivan's career, including his birth, various team affiliations, and the start and end dates of these affiliations. We are specifically looking for the event that starts with \"Michael Sullivan played for Forest United F.C.\"\n\n<timeline> \n(Michael Sullivan played for Forest United F.C.) starts at 2007.\n</timeline>\n\n<reflection> \nThe timeline clearly indicates that Michael Sullivan started playing for Forest United F.C. in 2007. There are no conflicting or overlapping events that would suggest a different start date. The information provided is straightforward and directly answers the question.\n</reflection>\n</reasoning> \n<answer> \n2007\n</answer>",
+      "pred_answer": "2007",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q5_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Michael Sullivan played for Hartford United F.C.\" and \"Michael Sullivan played for Forest United F.C.\" started at the same year, we need to look at the temporal context provided. Specifically, we need to find the start years for both events.\n\nFrom the temporal context, we see that \"Michael Sullivan played for Forest United F.C.\" starts at 2007 and ends at 2010. We also see that \"Michael Sullivan played for Hartford United F.C.\" starts at 2015 and ends at 2016.\n\nSince the start years for these two events are different, it is clear that they did not start in the same year.\n<timeline> \n(Michael Sullivan played for Forest United F.C.) starts at 2007.\n(Michael Sullivan played for Hartford United F.C.) starts at 2015.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years for both events and confirms that they are different. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q5_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Michael Sullivan played for Ashford United F.C.\" and \"Michael Sullivan played for Iverson United\" started in the same year, we need to look at the temporal context provided. Specifically, we need to find the start years for both events.\n\nFrom the temporal context, we see that \"Michael Sullivan played for Ashford United F.C.\" starts at 2014. Similarly, \"Michael Sullivan played for Iverson United\" starts at 2009.\n\nSince these two events have different start years, it is clear that they did not start in the same year.\n<timeline> \n(Michael Sullivan played for Ashford United F.C.) starts at 2014.\n(Michael Sullivan played for Iverson United) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years for both events and concludes that they did not start in the same year. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q5_2",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the events \"Michael Sullivan played for Virginia national under-21 hockey team\" and \"Michael Sullivan played for Brighton United F.C.\" started in the same year, we need to look at the temporal context provided. Specifically, we need to find the start years for both events.\n\nFrom the temporal context, we see that \"Michael Sullivan played for Virginia national under-21 hockey team\" starts at 2004. Similarly, \"Michael Sullivan played for Brighton United F.C.\" starts at 2014.\n\nSince the start years for these two events are different, it is clear that they did not start in the same year.\n<timeline> \n(Michael Sullivan played for Virginia national under-21 hockey team) starts at 2004.\n(Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start years for both events and concludes that they did not start in the same year. There are no errors or improvements needed in the reasoning process.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q6_0",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Michael Sullivan played for Forest United F.C.\" was still happening when the event \"Michael Sullivan played for Ashford United F.C.\" started, we need to compare the start and end times of these two events. \n\nFirst, we identify the start and end times of \"Michael Sullivan played for Forest United F.C.\" from the given temporal context. The event starts at 2007 and ends at 2010.\n\nNext, we identify the start time of \"Michael Sullivan played for Ashford United F.C.\" from the given temporal context. The event starts at 2014.\n\nSince the start time of \"Michael Sullivan played for Ashford United F.C.\" (2014) is after the end time of \"Michael Sullivan played for Forest United F.C.\" (2010), it means that the first event was not still happening when the second event started.\n<timeline> \n(Michael Sullivan played for Forest United F.C.) starts at 2007 and ends at 2010.\n(Michael Sullivan played for Ashford United F.C.) starts at 2014.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start and end times of the two events and compares them. There are no errors in the comparison, and the conclusion is consistent with the given temporal context.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q6_1",
+      "dataset_name": "tgqa_test",
+      "gold": "False",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Michael Sullivan played for Houston Astros baseball team\" was still happening when the event \"Michael Sullivan played for Brighton United F.C.\" started, we need to compare the start and end times of these two events.\n\nFirst, we note that \"Michael Sullivan played for Houston Astros baseball team\" starts at 2002 and ends at 2003. \n\nNext, we observe that \"Michael Sullivan played for Brighton United F.C.\" starts at 2014.\n\nSince the end time of \"Michael Sullivan played for Houston Astros baseball team\" (2003) is before the start time of \"Michael Sullivan played for Brighton United F.C.\" (2014), it is clear that the first event had already ended before the second event started.\n\n<timeline> \n(Michael Sullivan played for Houston Astros baseball team) starts at 2002 and ends at 2003.\n(Michael Sullivan played for Brighton United F.C.) starts at 2014.\n</timeline>\n\n<reflection> \nThe reasoning correctly identifies the start and end times of the two events and compares them. There are no errors in the comparison, and the conclusion that the first event ended before the second event started is accurate.\n</reflection>\n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 1.0,
+      "f1": 1.0
+    },
+    {
+      "question_id": "story513_Q6_2",
+      "dataset_name": "tgqa_test",
+      "gold": "True",
+      "raw_generation": "<reasoning> \nTo determine if the event \"Michael Sullivan played for Forest United F.C.\" was still happening when the event \"Michael Sullivan played for Manchester United F.C.\" started, we need to compare the start and end times of these two events. \n\nFirst, we identify the start time of \"Michael Sullivan played for Forest United F.C.\" from the given temporal context. It starts at 2007. \n\nNext, we identify the start time of \"Michael Sullivan played for Manchester United F.C.\" from the given temporal context. It also starts at 2009. \n\nSince the start time of \"Michael Sullivan played for Manchester United F.C.\" is later than the start time of \"Michael Sullivan played for Forest United F.C.\", it means that the first event had already ended before the second event started. Therefore, the statement is false.\n<timeline> \n(Michael Sullivan played for Forest United F.C.) starts at 2007.\n(Michael Sullivan played for Manchester United F.C.) starts at 2009.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the start times of both events and compares them. There are no errors in the comparison, and the conclusion is logically sound.\n</reflection> \n</reasoning> \n<answer> \nFalse\n</answer>",
+      "pred_answer": "False",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.0
+    },
+    {
+      "question_id": "story513_Q7_0",
+      "dataset_name": "tgqa_test",
+      "gold": "(Michael Sullivan played for Hartford United F.C.) ends",
+      "raw_generation": "<reasoning> \nTo determine what happened right after Michael Sullivan played for Sapphire United F.C., we need to identify the event that immediately follows the end of his tenure with Sapphire United F.C. in the given temporal context. The context provides specific start and end dates for various events related to Michael Sullivan's career. We will focus on the events that occur after the end of his time with Sapphire United F.C.\n\n<timeline> \n(Michael Sullivan played for Sapphire United F.C.) ends at 2015.\n(Michael Sullivan played for Hartford United F.C.) starts at 2015.\n(Michael Sullivan played for Brighton United F.C.) ends at 2015.\n(Michael Sullivan played for Hartford United F.C.) ends at 2016.\n</timeline>\n\n<reflection> \nUpon reviewing the timeline, it is clear that the event that happens right after Michael Sullivan ends his time with Sapphire United F.C. is the start of his tenure with Hartford United F.C. in 2015. This is the immediate subsequent event in the timeline.\n</reflection>\n\n</reasoning> \n<answer> \nMichael Sullivan played for Hartford United F.C.\n</answer>",
+      "pred_answer": "Michael Sullivan played for Hartford United F.C.",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9333333333333333
+    },
+    {
+      "question_id": "story513_Q7_1",
+      "dataset_name": "tgqa_test",
+      "gold": "(Michael Sullivan played for Virginia national under-21 hockey team) ends",
+      "raw_generation": "<reasoning> \nTo determine what happened right before Michael Sullivan played for Forest United F.C., we need to identify the event that immediately precedes it in the given temporal context. The context provides specific start and end dates for various events related to Michael Sullivan's career. We should look for the event that starts just before the start of \"Michael Sullivan played for Forest United F.C.\" which is at 2007.\n\nThe event that starts at 2007 is \"Michael Sullivan played for Forest United F.C.\" itself. Therefore, we need to find the event that starts just before 2007. The event that starts at 2006 is \"Michael Sullivan played for Virginia national under-21 hockey team\" which ends at 2006. This event ends just before the start of \"Michael Sullivan played for Forest United F.C.\"\n\nThus, the event that happened right before Michael Sullivan played for Forest United F.C. is \"Michael Sullivan played for Virginia national under-21 hockey team.\"\n<timeline> \n(Michael Sullivan played for Virginia national under-21 hockey team) ends at 2006.\n(Michael Sullivan played for Forest United F.C.) starts at 2007.\n</timeline> \n<reflection> \nThe reasoning correctly identifies the event that starts just before \"Michael Sullivan played for Forest United F.C.\" by looking at the end date of the preceding event. There are no errors or improvements needed in the reasoning process.\n</reflection>\n</reasoning> \n<answer> \nMichael Sullivan played for Virginia national under-21 hockey team\n</answer>",
+      "pred_answer": "Michael Sullivan played for Virginia national under-21 hockey team",
+      "malformed": false,
+      "em": 0.0,
+      "f1": 0.9473684210526316
+    }
+  ],
+  "sha256": "ea793ec2a039d8ad9bb359b537bacc0c43a5edf4fd0e13ee8d6449e2b6d51e84"
+}

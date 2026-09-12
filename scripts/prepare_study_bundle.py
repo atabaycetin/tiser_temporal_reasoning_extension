@@ -1,15 +1,12 @@
-"""Package the current reviewed workspace and generate a resumable Colab notebook."""
+"""Generate and validate the direct-Drive conditional-retention notebook."""
 from __future__ import annotations
 
 import argparse
-import json
 import sys
-import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src.experiment.artifacts import ROOT, source_snapshot, write
-from src.experiment.study import C0, C1
+from src.experiment.artifacts import ROOT, write
 
 
 def notebook():
@@ -24,38 +21,26 @@ This notebook invokes the repository CLIs. It runs C0/C1 retention first, trains
 C1R and R25 only after clear forgetting, and runs token sensitivity only above
 the predeclared 10% threshold. It contains no ablation or commit-management step.
 
-Prepare `tiser_study_workspace.zip` with `scripts/prepare_study_bundle.py`, place it
-in Drive, and select a single-GPU runtime. The workspace bundle contains the
-current source and historical adapters; it does not require a new Git commit.
-All runtime artifacts/checkpoints are persisted to Drive. Complete the Codex
-file audits locally and refresh the bundle with frozen views before final cells.
-The original 113 inputs are never used by smoke tests or model selection.
+The project is already synchronized to Google Drive. Select a single-GPU runtime
+and run the cells in order. Inputs, adapters, audit state, checkpoints, and results
+are read from or written directly to the synchronized project directory. Complete
+the semantic audit in that directory before running the final-campaign cells. The
+original 113 inputs are never used by smoke tests or model selection.
 """)
     code("""from pathlib import Path
-import os, sys, subprocess, json, zipfile
+import os, sys, subprocess, json
 from google.colab import drive
 drive.mount('/content/drive')
-WORKSPACE_ZIP = Path('/content/drive/MyDrive/tiser_study_workspace.zip')
-PROJECT_ROOT = Path('/content/tiser_temporal_reasoning_extension')
-STUDY_DIR = Path('/content/drive/MyDrive/tiser_conditional_study_v2')
-if not (PROJECT_ROOT / 'scripts/experiment.py').exists():
-    if not WORKSPACE_ZIP.is_file():
-        raise FileNotFoundError('Place the prepared workspace bundle at WORKSPACE_ZIP or set an existing PROJECT_ROOT.')
-    PROJECT_ROOT.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(WORKSPACE_ZIP) as archive:
-        if any(not (PROJECT_ROOT / name).resolve().is_relative_to(PROJECT_ROOT.resolve()) for name in archive.namelist()):
-            raise ValueError('Unsafe archive path')
-        archive.extractall(PROJECT_ROOT)
-elif WORKSPACE_ZIP.is_file():
-    with zipfile.ZipFile(WORKSPACE_ZIP) as archive:
-        bundled_snapshot = archive.read('workspace_snapshot.json')
-    extracted_snapshot = PROJECT_ROOT / 'workspace_snapshot.json'
-    if not extracted_snapshot.is_file() or extracted_snapshot.read_bytes() != bundled_snapshot:
-        raise RuntimeError(
-            'The Drive bundle changed after this runtime extracted it. Start a fresh runtime '
-            'or delete PROJECT_ROOT, then rerun this cell; STUDY_DIR on Drive is preserved.'
-        )
+PROJECT_ROOT = Path('/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension')
+STUDY_DIR = PROJECT_ROOT / 'results/forgetting_replay/study_v2'
+required = [PROJECT_ROOT / 'scripts/experiment.py', PROJECT_ROOT / 'requirements-experiments.txt']
+missing = [str(path) for path in required if not path.is_file()]
+if missing:
+    raise FileNotFoundError(f'Synchronized project is missing required files: {missing}')
+STUDY_DIR.mkdir(parents=True, exist_ok=True)
 os.chdir(PROJECT_ROOT)
+print('Project root:', PROJECT_ROOT)
+print('Study outputs:', STUDY_DIR)
 """)
     md("## Install and verify the runtime\nUse the runtime's CUDA-matched PyTorch. Exact resolved package versions are recorded and checked on resume.")
     code("""subprocess.run([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt', '-r', 'requirements-experiments.txt'], check=True)
@@ -63,7 +48,6 @@ subprocess.run([sys.executable, '-m', 'pip', 'install', '-e', '.'], check=True)
 import torch
 assert torch.cuda.is_available() and torch.cuda.device_count() == 1, 'Use one CUDA GPU.'
 print(torch.cuda.get_device_name(0))
-subprocess.run([sys.executable, '-m', 'pytest', '-q'], check=True)
 """)
     md("## Prepare the frozen study and original-TISER populations")
     code("""def run(*args):
@@ -72,9 +56,11 @@ subprocess.run([sys.executable, '-m', 'pytest', '-q'], check=True)
 def experiment(command, *args):
     run('scripts/experiment.py', command, '--study-dir', STUDY_DIR, *args)
 
-run('scripts/tennis/fetch_retention_data.py')
-experiment('init')
-experiment('prepare-data')
+if not (STUDY_DIR / 'protocol.json').exists():
+    run('scripts/tennis/fetch_retention_data.py')
+    experiment('init')
+if not (STUDY_DIR / 'data/split_summary.json').exists():
+    experiment('prepare-data')
 print(json.loads((STUDY_DIR / 'data/split_summary.json').read_text()))
 """)
     md("""## Training-data smoke evaluation
@@ -97,11 +83,16 @@ run('scripts/tennis/evaluate_tennis.py', '--config', smoke_cfg, '--condition', '
     '--adapter-dir', PROJECT_ROOT / C0, '--output-dir', STUDY_DIR / 'smoke/evaluation', '--resume')
 """)
     md("## Measure forgetting before training replay")
-    code("""for condition in ['C0', 'C1']:
-    experiment('evaluate', '--condition', condition, '--domain', 'tiser', '--stage', 'selection', '--resume')
-experiment('gate')
-gate = json.loads((STUDY_DIR / 'forgetting_gate.json').read_text())
-print(gate)
+    code("""gate_path = STUDY_DIR / 'forgetting_gate.json'
+if gate_path.exists():
+    gate = json.loads(gate_path.read_text())
+    print('Using existing forgetting gate.')
+else:
+    for condition in ['C0', 'C1']:
+        experiment('evaluate', '--condition', condition, '--domain', 'tiser', '--stage', 'selection', '--resume')
+    experiment('gate')
+    gate = json.loads(gate_path.read_text())
+print(json.dumps(gate, indent=2))
 """)
     md("""## Conditional current control and replay
 Checkpoints include optimizer, scheduler, RNG state and token counters. Completed
@@ -141,9 +132,9 @@ else:
     print('Replay stopped under the frozen rule:', gate['decision'])
 """)
     md("""## Complete and freeze the tennis semantic audit
-Import the individually judged semantic A/B responses locally, prepare and import
-adjudications, and run `scripts/audit.py summarize` followed by `freeze-views`.
-Sync the completed `results/tennis_semantic_audit_v2` folder into this workspace.
+Import the individually judged semantic A/B responses into this synchronized
+project, prepare and import adjudications, and run `scripts/audit.py summarize`
+followed by `freeze-views`.
 The reflection and trace audits are independent and do not block this experiment.
 No predictions are shown to the semantic auditors. This cell deliberately stops
 while that audit is pending; it never substitutes partial coverage for completion.
@@ -165,15 +156,23 @@ if not (STUDY_DIR / 'final_campaign.json').exists():
     experiment('freeze-final', '--audit-dir', AUDIT_DIR)
 print(json.loads((STUDY_DIR / 'final_campaign.json').read_text()))
 """)
-    md("## One-time final evaluation\nResume only missing chunks of this frozen campaign. Final results cannot reopen training or selection.")
+    md("""## Final tennis holdout evaluation
+Evaluate the frozen campaign conditions on the 113-record tennis holdout. The
+predefined TISER sample already supplies the retention result and replay decision.
+""")
     code("""campaign = json.loads((STUDY_DIR / 'final_campaign.json').read_text())
 for condition in campaign['conditions']:
-    for domain in ['tennis', 'tiser']:
-        experiment('evaluate', '--condition', condition, '--domain', domain, '--stage', 'final',
+    completion_path = STUDY_DIR / 'evaluations/final/tennis' / condition / 'completion.json'
+    completion = json.loads(completion_path.read_text()) if completion_path.exists() else {}
+    if completion.get('status') == 'complete':
+        print('Using completed final tennis evaluation:', condition)
+    else:
+        experiment('evaluate', '--condition', condition, '--domain', 'tennis', '--stage', 'final',
                    '--audit-dir', AUDIT_DIR, '--resume')
-if not (STUDY_DIR / 'final_statistics/statistics.json').exists():
+statistics_path = STUDY_DIR / 'final_tennis_statistics/statistics.json'
+if not statistics_path.exists():
     experiment('statistics')
-experiment('status')
+print(json.loads(statistics_path.read_text()))
 """)
     md("""## Reporting
 Use audited primary tennis scores with their actual eligible denominator and
@@ -190,37 +189,14 @@ human-calibrated accuracy. The holdout prior-use statement remains qualified.
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--notebook-only", action="store_true")
-    p.add_argument("--output", default="output/tiser_study_workspace.zip")
-    args = p.parse_args(argv)
+    p.parse_args(argv)
     value = notebook()
     for cell in value["cells"]:
         if cell["cell_type"] == "code":
             compile("".join(cell["source"]), "notebook-cell", "exec")
-    write(ROOT / "notebooks/colab_conditional_retention.ipynb", value)
-    if args.notebook_only:
-        return
-    roots = [ROOT / name for name in (
-        "src", "scripts", "config", "tests", "docs", "data/tennis",
-        "results/tennis_semantic_audit_v2", C0, C1,
-    )]
-    paths = {p for root in roots for p in root.rglob("*") if p.is_file()
-             and "__pycache__" not in p.parts and "quarantine" not in p.parts
-             and not any(part.startswith(".") for part in p.relative_to(ROOT).parts)}
-    paths.update(ROOT / name for name in (
-        "requirements.txt", "requirements-experiments.txt", "pyproject.toml", "LICENSE",
-        "README.md", "report/DNLP_Temporal_Reasoning.tex",
-        "notebooks/colab_conditional_retention.ipynb",
-    ))
-    output = Path(args.output)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    temporary = output.with_suffix(".zip.tmp")
-    with zipfile.ZipFile(temporary, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-        for path in sorted(paths):
-            archive.write(path, path.relative_to(ROOT))
-        archive.writestr("workspace_snapshot.json", json.dumps(source_snapshot(), indent=2))
-    temporary.replace(output)
-    print(f"Prepared {output.resolve()} ({output.stat().st_size:,} bytes)")
+    path = ROOT / "notebooks/colab_conditional_retention.ipynb"
+    write(path, value)
+    print(f"Updated {path.resolve()}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "bootstrap_replicates": 10000,
+  "forgetting_margin": 0.02,
+  "tennis_non_inferiority_margin": 0.02,
+  "token_mismatch_threshold": 0.1,
+  "macro_splits": [
+    "tgqa_test",
+    "tempreason_l2_test",
+    "tempreason_l3_test",
+    "timeqa_easy_test",
+    "timeqa_hard_test"
+  ],
+  "study_design": "conditional_minimum",
+  "optimizer_steps": 74,
+  "replay_count": 200,
+  "tennis_count": 600,
+  "training_seeds": [
+    42
+  ],
+  "final_comparisons": [
+    "C1-C0/tiser",
+    "C1-C0/tennis",
+    "C1R-C0/tiser",
+    "R25-C1R/tiser",
+    "R25-C1R/tennis"
+  ],
+  "sensitivity_comparisons": [
+    "R25-T-C1R/tiser",
+    "R25-T-C1R/tennis"
+  ],
+  "gate": "upper95<-0.02 triggers C1R+R25; lower95>-0.02 stops; otherwise inconclusive and stops",
+  "prior_113_use": {
+    "team_record": "no known prior model-performance use",
+    "repository_evidence": "No preserved repository evidence indicates prior model-performance use.",
+    "independence_verified": false
+  },
+  "historical_data_sha256": {
+    "data/tennis/PROVENANCE.json": "04633d4edef7ab871453b892c7bf683027f819e69cd4cec306ee34f31d315f23",
+    "data/tennis/tennis_dev.json": "785522444827673bbe15a7df5b6b4a1224efd20df660f3606af3c54a4303089f",
+    "data/tennis/tennis_test.json": "7a617ec693d00e7ec189c4b1c19da2d2aab504d6d40cca7cb9f6be6b1b001797",
+    "data/tennis/tennis_train.json": "2f9550c97271bcfb1efcd6da2077f4d61152a0226713cc8127885cdfce5bee0c",
+    "data/tennis/tennis_train_traced_50.json": "1a24717aeb6c608fcf96a99bb98f41fa4be2491789de9e40093143c272c96892",
+    "data/tennis/tennis_train_traced_full.json": "7c64f1bcfde4754327d0435b66b41fad2f33937dbcffa5305afa51b2d9eb3fab",
+    "data/tennis/tennis_train_traced_sample.json": "85f5420a81889ab83fec4eb3d0df96fc9b2b71b0b44f8d660ec9deda1f57eba1"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "per_split": {
+    "tempreason_l2_test": {
+      "em": 0.93,
+      "f1": 0.9566308985132514,
+      "n": 100
+    },
+    "tempreason_l3_test": {
+      "em": 0.9,
+      "f1": 0.9139285714285714,
+      "n": 100
+    },
+    "tgqa_test": {
+      "em": 0.62,
+      "f1": 0.8529201788923152,
+      "n": 100
+    },
+    "timeqa_easy_test": {
+      "em": 0.99,
+      "f1": 0.9988888888888888,
+      "n": 100
+    },
+    "timeqa_hard_test": {
+      "em": 0.94,
+      "f1": 0.958952380952381,
+      "n": 100
+    },
+    "tot_semantic_test": {
+      "em": 0.32,
+      "f1": 0.3466666666666666,
+      "n": 100
+    }
+  },
+  "macro_splits": [
+    "tgqa_test",
+    "tempreason_l2_test",
+    "tempreason_l3_test",
+    "timeqa_easy_test",
+    "timeqa_hard_test"
+  ],
+  "macro_em": 0.876,
+  "macro_f1": 0.9362641837350816,
+  "n_total": 600,
+  "n_malformed": 11,
+  "config_name": "C1",
+  "adapter_dir": "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/model/tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011/adapter"
+}
