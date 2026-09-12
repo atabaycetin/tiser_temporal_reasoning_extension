@@ -2,19 +2,25 @@
 
 This repository reproduces **TISER** (Bazaga, Blloshmi, Byrne, and de
 Gispert, ACL 2025, [arXiv:2504.05258](https://arxiv.org/abs/2504.05258)) and
-implements two distinct extensions:
+contains three follow-up studies:
 
 1. **Context-memory conflict:** an inference-time robustness probe with no new
    training. It tests whether a model follows an edited context when the context
    contradicts the model's elicited memory.
 2. **Tennis domain adaptation:** supervised continued training on tennis
-   temporal-QA traces, followed by transfer evaluation on a held-out tennis
-   test set.
+   temporal-QA traces, followed by transfer evaluation.
+3. **Retention and held-out evaluation:** a comparison of the original and
+   tennis-adapted adapters on TISER data and on a separately reserved tennis
+   split. A predefined gate would have triggered replay training if clear
+   forgetting had been detected; the observed result was inconclusive, so no
+   replay adapter was trained.
 
-TISER fine-tunes an instruction model on a structured target containing
-`<reasoning>`, `<timeline>`, `<reflection>`, and `<answer>` sections. At
-inference, the model generates the trace once and the evaluator extracts the
-answer for exact-match (EM) and token-F1 scoring.
+The original TISER framework combines timeline construction with iterative
+self-reflection and test-time scaling. This reproduction fine-tunes an
+instruction model on targets containing `<reasoning>`, `<timeline>`,
+`<reflection>`, and `<answer>` sections. Its evaluation path generates one
+trace per example and extracts the final answer for exact-match (EM) and
+token-F1 scoring.
 
 ## Repository map
 
@@ -26,13 +32,15 @@ answer for exact-match (EM) and token-F1 scoring.
 | `config/config_tennis_smoke.yaml` | 0.5B, 50-trace tennis smoke test |
 | `config/config_tennis_0p5b_reported_full600.yaml` | Portable settings for the reported 0.5B/600-trace result |
 | `config/config_tennis_7b_reported_best.yaml` | Portable settings for the best reported 7B continued-adaptation result |
+| `config/config_retention_7b.yaml` | Original-domain retention evaluation settings |
 | `src/` | Data, model, training, inference, evaluation, conflict, and tennis modules |
-| `scripts/` | Command-line entry points; every command supports `--help` |
+| `scripts/` | Command-line entry points for the experiment workflows |
 | `scripts/audit.py` | Offline coordinator for separate two-pass semantic, trace, or reflection audits |
 | `scripts/experiment.py` | Frozen conditional retention/replay and final-campaign coordinator |
 | `notebooks/colab_conditional_retention.ipynb` | Resumable single-GPU Colab execution notebook |
-| `data/tennis/` | Tennis data, dataset card, provenance record, and CC BY 4.0 licence |
+| `data/tennis/` | Tennis data, dataset card, provenance record, and CC BY 4.0 license |
 | `results/` | Committed result snapshots and run metadata |
+| `results/forgetting_replay/study_v2/` | Completed conditional retention and holdout study |
 | `outputs/` | Gitignored outputs produced by new runs |
 | `model/` | Selected committed LoRA adapters |
 | `report/` | IEEE LaTeX report and figures |
@@ -48,17 +56,19 @@ intentionally does not pin PyTorch because its build must match the host CUDA
 runtime.
 
 ```bash
-python3.11 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install "torch>=2.3"
 python -m pip install -r requirements.txt
 python -m pip install -e .
-python -m pip install pytest matplotlib
+python -m pip install -r requirements-experiments.txt
+python -m pip install matplotlib
 ```
 
 On Colab, keep the bundled CUDA-compatible PyTorch and omit the separate torch
-installation. The pinned training stack is documented in `requirements.txt`.
+installation. The training dependency constraints are documented in
+`requirements.txt`.
 The full baseline evaluation artifact used vLLM 0.22.0 in a separate inference
 environment; vLLM is intentionally not installed by `requirements.txt` because
 it may require a different PyTorch/Transformers combination. Use the HF engine
@@ -67,16 +77,16 @@ environment for the faster reported evaluation path.
 
 CPU-only commands include dataset audit/build/split, trace validation, scoring,
 result comparison, statistics, tests, and report compilation. Model training,
-memory elicitation, and generation require a CUDA GPU. The committed 7B
-baseline run took about 6.5 hours on one H200 SXM with bf16 LoRA; an 80 GB
-A100/H100-class GPU is the practical target. The 7B tennis runs use 4-bit model
-loading and can run on smaller GPUs with reduced batch size. The 0.5B smoke
-path is substantially lighter.
+memory elicitation, and generation are designed for a CUDA GPU. The report
+records about 6.5 hours for the unquantized 7B baseline run on one H200 SXM;
+an 80 GB A100/H100-class GPU is the practical target for that configuration.
+The frozen 7B tennis evaluation was run on one 40 GB A100 with 4-bit model
+loading. The 0.5B smoke path is substantially lighter.
 
 ## CLI discovery
 
-The repository exposes script-based CLIs rather than installed console-command
-aliases. Inspect any interface before running it:
+The repository uses script-based CLIs rather than installed console-command
+aliases. The main interfaces provide `--help`:
 
 ```bash
 python scripts/train.py --help
@@ -98,10 +108,8 @@ Main entry points:
 | Tennis traces | `prepare_tennis_trace_generation.py`, `merge_tennis_traces.py`, `validate_tennis_traces.py` |
 | Tennis experiment | `train_tennis.py`, `evaluate_tennis.py`, `compare_adapters.py` |
 
-Installed aliases are not declared in `pyproject.toml`: the wrappers live under
-`scripts/`, which is not an installed package, and their callable functions do
-not share a stable argument-forwarding interface. Direct script invocation is
-therefore the portable supported CLI.
+`pyproject.toml` does not declare console scripts, so invoke these files
+directly from the repository root.
 
 ## Baseline reproduction
 
@@ -126,8 +134,7 @@ outputs/tiser_smoke/
 outputs/tiser_smoke/metrics.json
 ```
 
-Use the terminal's final `wrote` message as the authoritative path if a custom
-output directory is supplied.
+If you supply a custom output directory, use the paths printed by the script.
 
 ### Full reported baseline
 
@@ -184,18 +191,24 @@ Stages 01, 03, 04, 04b, 06, and 08 are CPU-capable. Stages 02 and 05 require
 model inference; the committed configuration uses vLLM and the adapter at
 `model/tiser_qwen7b_full/adapter`.
 
-The committed set has 1,056 genuine conflict rows (C1/C2/C3) and 120
-answer-preserving controls. The aggregate 1,176-row faithful-EM changes from
-0.3801 for base+standard to 0.7866 for TISER+TISER. Controls should be reported
-separately from genuine conflicts.
+The committed set has 1,056 genuine conflicts (C1/C2/C3) and 120
+answer-preserving controls. On the genuine conflicts, faithful EM rises from
+0.3485 for base+standard to 0.7737 for TISER+TISER. Including controls changes
+those values to 0.3801 and 0.7866, respectively. Report the controls separately
+because their edited contexts preserve the original answer.
 
-`scripts/conflict/07_confidence_vs_reflection.py` is not part of the fresh-clone
-command sequence because it requires
-`outputs/conflict/scored/audit/*.audit.csv`. Those LLM-judge CSVs, the exact
-judge prompt, and judge model settings are not committed. Consequently, the
-report's 4.3% genuine-conflict reflection rate cannot currently be regenerated
-from this repository. Run stage 07 only after those artifacts and their
-provenance have been restored.
+The completed replacement reflection audit is under
+`results/reflection_audit/`. For TISER+TISER it labels 36 of 1,056 genuine
+conflicts (3.41%) as explicitly acknowledged in the reflection; the control
+false-positive rate is 3 of 119 scorable controls (2.52%). The two judge passes,
+their prompts, row-level decisions, and all 66 adjudications are committed.
+Human calibration was not performed.
+
+`scripts/conflict/07_confidence_vs_reflection.py` is a legacy analysis script.
+It expects the older, uncommitted Claude-audit CSV schema under
+`outputs/conflict/scored/audit/` and is not part of the reproduction sequence.
+The old Claude-derived aggregate is not reproducible from the repository and
+has been replaced in the report by the audit above.
 
 ## Tennis domain-adaptation extension
 
@@ -284,37 +297,37 @@ Reproduce the coverage audit that explains the 600-record cutoff:
 python scripts/tennis/audit_tennis_trace_coverage.py
 ```
 
-The result is exact: the 785-record train pool partitions into a traced pilot
-at positions 0--49, the reported 600 at positions 50--649 (exactly batches
-1--12), and 135 prepared but ungenerated requests at positions 650--784
-(batches 13--15). The pilot was not concatenated into the full file. Thus the
+The coverage audit shows that the 785-record train pool partitions into a
+traced pilot at positions 0--49, the reported 600 at positions 50--649 (exactly
+batches 1--12), and 135 prepared but ungenerated requests at positions 650--784
+(batches 13--15). The pilot was not concatenated into the full file. The
 repository has 650 unique traced train records, while the reported adaptations
 use the disjoint 600-record artifact. The 113 development and 224 test records
-have no supervised traces and never enter gradient updates. The full 785 is
-retained because it is the canonical training partition of the 1,122-record
-dataset; deleting pilot or ungenerated rows would erase experiment lineage and
-split coverage without changing what the trainer reads.
+have no supervised traces and never enter gradient updates. All 785 records
+remain in the canonical training partition to preserve the dataset split and
+experiment history.
 
-An earlier targeted AI-assisted semantic review of 302/785 training records
+A targeted model-based semantic review of 302/785 training records
 found ten wrong or underdetermined examples: seven inside the reported 600 and
 three in the ungenerated tail. Its auditable selection method and findings are
 under `results/tennis_domain_adaptation/semantic_audit/`. The subsequent full
 audits are complete: `results/tennis_semantic_audit_v2/` covers all 1,121 unique
 semantic payloads (mapping to 1,122 rows), while
 `results/tennis_trace_audit_v2/` covers all 650 available traces. Together they
-flag 21 distinct reported training records, with all primary disagreements
-adjudicated. These findings confirm that quality problems exist but reject the
-claim that removing them produced the 600-record set. Human calibration remains
-unavailable. Do not edit historical data in place; any corrections and
-regenerated traces must be published as a versioned derivative.
+flag 21 distinct records in the reported training artifact, with all primary
+disagreements adjudicated. The 600-record cutoff follows the batch boundary,
+not the quality review. These are model-judge findings without human
+calibration. Publish corrections and regenerated traces as a versioned
+derivative rather than changing the historical data in place.
 
 ### 0.5B reported subexperiment
 
-The exact historical adapter that produced the committed result is available
+The historical adapter used for the committed result is available
 at `model/tiser_tennis_full600_smoke/adapter`. It was recovered from Git commit
 `53a135a`; its 8,676,008-byte weights file has SHA-256
 `01e89ffbbc939622cd9213d8150eab2bca4643f954dd26e6154496ed89cae64b`.
-Retraining is therefore unnecessary for auditing the historical result.
+Use this adapter to audit the historical result; retraining produces a new
+reconstruction.
 
 Evaluate that adapter without overwriting committed results:
 
@@ -348,11 +361,10 @@ python scripts/tennis/train_tennis.py \
   --config config/config_tennis_0p5b_reported_full600.yaml
 ```
 
-This is 600 optimizer steps on a 0.5B model. Historical timestamps bound the
-original training plus model reload and 100-example generation to under eight
-minutes on one unrecorded CUDA GPU. Allow roughly 5--20 minutes on a modern
-NVIDIA GPU after download; 8 GB VRAM is likely sufficient and 16 GB is safer.
-This estimate is not a benchmark for the present machine.
+The reconstruction config uses one epoch over 600 records, batch size 1, and no
+gradient accumulation. The original GPU and complete training environment were
+not recorded, so there is no reliable runtime or VRAM estimate for the
+historical run.
 
 ### 7B reported continued adaptation
 
@@ -385,14 +397,18 @@ python scripts/tennis/evaluate_tennis.py \
   --output-dir outputs/reproduced/tennis_7b/continued_adaptation
 ```
 
-The fixed 224-example rerun gives EM/F1 0.580/0.701 for the original TISER
-adapter and 0.728/0.852 for the continued-adaptation adapter. All 22 candidates
-were evaluated on the same 224-record selection split, enabling direct
-comparison, and continued adaptation achieved the highest selection-set score.
-The selected adapter was then kept unchanged and evaluated once on the separate
-113-record holdout. That final evaluation gives 0.575/0.677 for the original
-TISER adapter and 0.735/0.834 for continued adaptation. Reflection and trace
-audits have separate outputs and do not block this evaluation.
+The historical 224-record results used to rank the 22 candidates are EM/F1
+0.580/0.701 for the original TISER adapter and 0.732/0.856 for the selected
+continued-adaptation adapter. The selected adapter had the highest score on
+that shared selection set.
+
+The later frozen study reran the unchanged adapters with the registered prompt
+and audited scoring view. On the 224-record selection set it records 0.580/0.701
+for the original adapter and 0.728/0.852 for the selected adapter. On the
+separately reserved 113-record final split, the scores are 0.575/0.677 and
+0.735/0.834. The repository contains no evidence of earlier model-performance
+use of the 113 records, but their historical independence cannot be verified
+externally. Reflection and trace audits are separate from this evaluation.
 
 Regenerate a comparison table directly from the committed result artifacts:
 
@@ -408,17 +424,18 @@ python scripts/tennis/compare_adapters.py \
 Expected outputs are `adapter_comparison.{json,md,csv}` and
 `per_category_comparison.csv` in that directory.
 
-The full evidence/limitation ledger is
+For detailed evidence and limitations, see
 `docs/extensions/tennis_domain_adaptation/Current_Status_and_Next_Steps.md`.
 
-The rigorous new-contribution protocol for measuring original-TISER retention
-and, when justified, training compute-matched replay conditions is in
+The protocol for measuring original-TISER retention and, when justified,
+training compute-matched replay conditions is in
 `docs/extensions/tennis_domain_adaptation/FORGETTING_MIXED_REPLAY_PLAN.md`.
 
 ## Separate offline audits
 
-The reflection, tennis semantic, and tennis trace audits are separate GPT-5.6
-Sol file-batch studies. Prepare only the study you intend to run:
+The committed reflection, tennis semantic, and tennis trace audits are
+completed GPT-5.6 Sol file-batch studies. To rebuild the frozen input bundles
+for one of them, run its `prepare` command:
 
 ```bash
 python3 scripts/audit.py prepare --kind reflection \
@@ -429,25 +446,26 @@ python3 scripts/audit.py prepare --kind trace \
   --output-dir results/tennis_trace_audit_v2 --requested-model gpt-5.6-sol
 ```
 
-The reflection study alone replaces the unavailable Claude aggregate. The
+The reflection study replaces the unavailable Claude aggregate. The
 semantic study creates audited tennis scoring views. The trace study documents
 training-data quality. Each has its own import, adjudication, summary, and
-progress artifacts; one study never blocks another. Batch instructions,
+progress artifacts, and the studies are independent. Batch instructions,
 validation rules, commands, and the absence of human calibration are documented
 in `docs/PROJECT_AUDIT_EXECUTION.md`. One Codex task processes the complete Judge
 A bundle and a separate task processes the complete Judge B bundle; each pass is
-bulk-imported with one command. A literal operator runbook for the Claude
-replacement is in `docs/REFLECTION_AUDIT_RUNBOOK.md`. The optional API and file-batch interfaces
-share the same reflection rubric and validation code; results from one study are
-never silently substituted for the other.
+bulk-imported with one command. A step-by-step runbook for the Claude
+replacement is in `docs/REFLECTION_AUDIT_RUNBOOK.md`. The optional API and
+file-batch interfaces share the same reflection rubric and validation code;
+results from one study are not substituted for another.
 
 ## Conditional retention, replay, and final evaluation
 
 The study first evaluates C0 and C1 on a frozen seed-42 original-TISER selection
 sample. Replay training occurs only when the paired 95% macro-EM interval shows
-clear forgetting. A non-inferior or inconclusive gate performs no new training.
-When triggered, C1R and R25 share the current environment and 74-update schedule;
-R25-T runs only when supervised-token exposure differs by more than 10%.
+clear forgetting. If the result is non-inferior or inconclusive, the workflow
+stops without new training. When triggered, C1R and R25 share the current
+environment and 74-update schedule; R25-T runs only when supervised-token
+exposure differs by more than 10%.
 
 Regenerate the checked-in notebook after editing its generator:
 
@@ -455,10 +473,11 @@ Regenerate the checked-in notebook after editing its generator:
 python3 scripts/prepare_study_bundle.py
 ```
 
-The notebook mounts Google Drive and uses the repository already synchronized at
+The generated notebook mounts Google Drive and currently sets `PROJECT_ROOT` to
 `/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension`.
-It writes persistent artifacts under
-`results/forgetting_replay/study_v2` in that repository. Run
+Change that value in `scripts/prepare_study_bundle.py` and regenerate the
+notebook if your Drive checkout is elsewhere. The notebook writes artifacts
+under `results/forgetting_replay/study_v2` in that repository. Run
 `notebooks/colab_conditional_retention.ipynb` in order on one CUDA GPU. The
 workflow resumes predictions and checkpoints, preserves token counts and random
 state, and blocks final evaluation until the semantic audit and selection
@@ -502,9 +521,9 @@ If `latexmk` is unavailable, run `pdflatex` twice with the same
   [-0.028, 0.020], so the gate is inconclusive and no replay condition is trained.
 - On the 113-record tennis holdout, C0 reaches 0.575 EM / 0.677 F1 and C1 reaches
   0.735 EM / 0.834 F1. These final results do not reopen model selection or training.
-- Human calibration is unavailable and is reported as a limitation. Historical
-  generation snapshots and decoding settings also remain unavailable; new runs
-  record their actual provenance without filling those gaps by inference.
+- No human calibration was performed. Historical generation snapshots and
+  decoding settings are also unavailable; new runs record their own provenance
+  but cannot recover those missing settings.
 
 ## Licenses
 

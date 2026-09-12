@@ -28,7 +28,7 @@
 }
 
 \title{Reproducing and Extending TISER:\\
-Context--Memory Conflict and Tennis-Domain Adaptation for Temporal Reasoning}
+Context--Memory Conflict, Tennis Adaptation, and Retention}
 
 \author{
 \IEEEauthorblockN{
@@ -47,7 +47,7 @@ Deep Natural Language Processing
 \maketitle
 
 \begin{abstract}
-We reproduce TISER, which elicits reasoning, a timeline, reflection, and an answer, and study two extensions. A context--memory benchmark tests responses to evidence that contradicts a TISER model's stable recall; a synthetic tennis dataset tests continued domain adaptation. Aggregate in-domain reproduction is similar to the paper, despite a large TGQA EM discrepancy. TISER weights and prompting increase adherence to edited context, but reflections rarely name the conflict and order reversal remains difficult. On a reserved 113-item tennis holdout, continued adaptation improves EM from 0.575 to 0.735 over the original adapter, although the missing unadapted 7B baseline prevents attributing direct-transfer performance to TISER training. Retention is inconclusive.
+We reproduce TISER, which elicits reasoning, a timeline, reflection, and an answer, and study three extensions. The first is an inference-time context--memory conflict probe; the second is supervised adaptation to synthetic tennis temporal QA; the third is an evaluation extension measuring original-domain retention and generalization to a separately reserved tennis holdout. Aggregate in-domain reproduction is similar to the paper, despite a large TGQA EM discrepancy. TISER weights and prompting increase adherence to edited context, but reflections rarely name the conflict and order reversal remains difficult. Continued tennis adaptation improves holdout EM from 0.575 to 0.735 over the original adapter. Original-domain retention is inconclusive, so the conditional replay branch is not activated. \href{https://github.com/atabaycetin/tiser_temporal_reasoning_extension/tree/main}{GitHub repository}
 \end{abstract}
 
 \begin{center}
@@ -63,8 +63,7 @@ New contributions since the previous submission.}\par
 \midrule
 Reproducible reflection audit & Two blinded GPT-5.6 Sol/high-reasoning passes, saved prompts and bundles, exact-evidence validation, and adjudication of all 66 disagreements. & Replaces the old 4.2\% estimate with an auditable 3.41\% rate for TISER+TISER. \\
 Semantic and trace audits & Two-pass audits of 1,121 unique semantic items and all 650 traces, with adjudication and preserved row-level decisions. & All 337 evaluation items are supported; 21 training records have at least one concern. \\
-Retention evaluation & Predefined C0--C1 retention evaluation, paired bootstrap interval, OOD analysis, and a conditional replay gate. & Retention is inconclusive; replay is therefore not triggered. \\
-Final tennis holdout & A fixed adapted model evaluated once on a separate 113-item holdout. & EM improves from 0.575 to 0.735, with a confidence interval and McNemar test. \\
+Extension 3: retention and held-out generalization & A predefined C0--C1 retention evaluation, conditional replay gate, and one-time evaluation on a separately reserved 113-item tennis holdout. & Retention is inconclusive, so replay is not triggered; holdout EM improves from 0.575 to 0.735. \\
 Corrected conflict analysis & Genuine conflicts and controls are separated; TISER-based selection and source dependence are explicitly accounted for. & The primary conflict-only comparison is 0.348 to 0.774. \\
 \bottomrule
 \end{tabular}
@@ -73,12 +72,12 @@ Corrected conflict analysis & Genuine conflicts and controls are separated; TISE
 
 \section{Introduction}
 
-Temporal reasoning requires ordering, comparing, and measuring events. TISER~\cite{bazaga2025tiser} trains models to emit tagged reasoning, timeline, reflection, and answer stages. We reproduce its in-domain evaluation and study two complementary extensions:
+Temporal reasoning requires ordering, comparing, and measuring events. TISER~\cite{bazaga2025tiser} trains models to emit tagged reasoning, timeline, reflection, and answer stages. We reproduce its in-domain evaluation and study three complementary extensions:
 \begin{enumerate}
 \item \textbf{Context--memory conflict}: an inference-only robustness probe that changes the evidence while keeping model weights fixed.
 \item \textbf{Tennis adaptation}: a supervised transfer experiment that updates LoRA adapters on synthetic tennis temporal QA.
+\item \textbf{Retention and held-out generalization}: an evaluation extension that tests whether the selected tennis adapter preserves original-domain performance and generalizes to a separately reserved holdout; replay is conditional on the retention result.
 \end{enumerate}
-The first asks whether a model follows context that contradicts a recalled answer; the second asks what transfers and what improves through further learning. We contribute an implementation-level Qwen2.5-7B reproduction, a controlled conflict benchmark, and a two-scale adaptation and retention study. Code and run records are in the \href{https://github.com/thestbobo/tiser_temporal_reasoning_extension}{repository}.
 
 \section{Background and Problem Definition}
 
@@ -92,7 +91,7 @@ Prior work shows that language models vary in whether they follow supplied evide
 
 \subsection{Research Questions}
 
-We ask whether the reproduction recovers the reported in-domain regime. For conflict, we test whether prompt and model conditions change contextual adherence (RQ1), reflection identifies disagreement (RQ2), and behaviour varies by conflict type (RQ3). For tennis, we test whether continued adaptation improves over the original adapter without erasing in-domain performance. The missing unadapted 7B baseline prevents isolating prior TISER training.
+We ask whether the reproduction recovers the reported in-domain regime. For conflict, we test whether prompt and model conditions change contextual adherence (RQ1), reflection identifies disagreement (RQ2), and behaviour varies by conflict type (RQ3). For tennis adaptation, we test whether continued adaptation improves over the original adapter. For retention and held-out generalization, we test whether that improvement persists on a separately reserved holdout and whether the adapted model preserves original-domain performance sufficiently to avoid replay.
 
 \section{Methodology}
 \label{sec:methodology}
@@ -139,7 +138,11 @@ Without retraining, a $2\times2$ matrix crosses vanilla/TISER weights with stand
 GPT-5.5 generated synthetic tennis question--context--answer records and, separately, TISER training traces using the prompts in Appendix~\ref{app:tennis-prompts}. Duplicate groups remain within splits; only training records receive traces. Model audits check semantic answerability and trace support. Data are CC BY 4.0 and code is MIT licensed.
 
 \paragraph{Adaptation strategies.}
-At 0.5B we compare prompting and tennis-only training; at 7B we compare the original TISER adapter with continued tennis adaptation and test original-domain retention.
+At 0.5B we compare prompting and tennis-only training; at 7B we compare the original TISER adapter with continued tennis adaptation.
+
+\subsection{Extension 3: Retention and Held-Out Generalization}
+
+After model selection, we freeze the original (C0) and adapted (C1) adapters. We compare them on 100 seed-42 items per original split and evaluate both once on the separately reserved 113-item tennis holdout. A 10,000-resample paired macro-EM interval triggers replay only if its upper bound is below $-0.02$, stops as non-inferior if its lower bound exceeds $-0.02$, and otherwise stops as inconclusive.
 
 \section{Experimental Setup}
 \label{sec:experimental-setup}
@@ -185,7 +188,7 @@ Continued 7B & 600 & 2 & 74 & $4{\times}4$ & 4-bit NF4 \\
 }
 \end{table}
 
-The selected 7B adapter is the best of 22 candidates evaluated on the same 224-item selection split (1--3 epochs, three learning rates, accumulation 4/8, and dropout 0/0.05), then fixed for one holdout evaluation. Retention compares the original (C0) and adapted (C1) adapters on 100 seed-42 items per original split. A 10,000-resample paired macro-EM interval triggers replay only if its upper bound is below $-0.02$, stops as non-inferior if its lower bound exceeds $-0.02$, and otherwise stops as inconclusive.
+The selected 7B adapter is the best of 22 candidates evaluated on the same 224-item selection split (1--3 epochs, three learning rates, accumulation 4/8, and dropout 0/0.05), then fixed for the Extension~3 evaluations.
 
 \subsection{Conflict Sampling and Reflection Audit}
 
@@ -252,7 +255,7 @@ TISER + standard & 0.560 & 0.759 & 0.251 & +0.211 & 0.700 \\
 }
 \end{table}
 
-Including controls, EM is 0.380/0.561/0.574/0.787 in table order; the primary conflict-only comparison is 0.348 to 0.774. Across all 1,176 rows, prompt/model-axis gains are 0.213/0.225 ($p<10^{-40}$), but repeated variants from shared source items make the descriptive effect sizes, not these row-level $p$-values, primary.
+Across all 1,176 rows, prompt/model-axis gains are 0.213/0.225 ($p<10^{-40}$), but repeated variants from shared source items make the descriptive effect sizes, not these row-level $p$-values, primary.
 
 \begin{figure}[t]
 \centering
@@ -290,11 +293,11 @@ TISER + TISER & 36/1{,}056 & 3/119 & 25/1{,}175 & 810/817 \\
 }
 \end{table}
 
-Explicit acknowledgement occurs in 87/1,053 base+TISER and 36/1,056 TISER+TISER conflicts, versus 3/120 and 3/119 controls. For TISER+TISER, 29/36 flags occur in C3 and 810/817 faithful answers are silent (99.14\%, 95\% CI 98.24--99.58\%). The 3.41\% conflict rate is descriptively close to the 2.52\% control rate: reflection is rare and does not establish reliable discrimination. ``Silent override'' describes output behaviour, not an internal mechanism.
+For TISER+TISER, 29/36 flags occur in C3 and 810/817 faithful answers are silent (99.14\%, 95\% CI 98.24--99.58\%). The 3.41\% conflict rate is descriptively close to the 2.52\% control rate: reflection is rare and does not establish reliable discrimination. ``Silent override'' describes output behaviour, not an internal mechanism.
 
 \subsection{Tennis-Domain Adaptation}
 
-At 0.5B, prompting does not help but tennis training adds 0.085 EM. At 7B, continued adaptation adds 0.147 EM/0.151 F1 over the original adapter on the selection split. Missing unadapted 7B results prevent attributing the original adapter's direct-transfer performance specifically to TISER training.
+At 0.5B, prompting does not help but tennis training adds 0.085 EM. At 7B, continued adaptation adds 0.147 EM/0.151 F1 over the original adapter on the selection split.
 
 \begin{table}[t]
 \centering
@@ -321,7 +324,7 @@ Original TISER & 0.580 & 0.701 & -- & -- & 0 \\
 }
 \end{table}
 
-\subsection{Retention and Final Holdout}
+\subsection{Extension 3: Retention and Held-Out Generalization}
 
 Retention changes by $-0.004$ macro-EM; its paired interval $[-0.028,0.020]$ establishes neither clear forgetting nor non-inferiority, so replay is not run. Separate OOD EM falls 0.410 to 0.320. On 113 supported holdout items, adaptation raises EM 0.575 to 0.735 ($\Delta=0.159$, 95\% CI 0.080--0.239; McNemar $p=0.000277$) and F1 0.677 to 0.834. Exploratory gains are largest for duration; the small category samples are not confirmatory.
 
@@ -352,7 +355,7 @@ All 337 evaluation items are model-judge supported. Of 1,121 unique semantic pay
 
 \section{Discussion and Limitations}
 
-The reproduction recovers the aggregate in-domain regime, not the original error profile or all baselines and ablations. The extensions answer different questions: conflict evaluation measures inference-time evidence use; tennis adaptation measures improvement after weight updates.
+The reproduction recovers the aggregate in-domain regime, not the original error profile or all baselines and ablations.
 
 Conflict results are descriptive, not causal. TISER-based selection weakens vanilla-model comparisons; C2 can be conspicuous; and row-level statistics ignore variants from shared sources, potentially understating uncertainty. EM is format-sensitive, greedy decoding provides one response per condition, and single-family model audits lack human calibration and reproducible backend settings.
 
@@ -360,7 +363,7 @@ Tennis evidence is limited to synthetic data, one model family, one run per adap
 
 \section{Conclusion}
 
-We reproduce TISER's aggregate regime but retain an unexplained TGQA gap. On a TISER-selected benchmark, structured prompting and TISER weights are associated with greater contextual adherence, while explicit conflict acknowledgement remains rare and order reversal weak. Continued tennis adaptation improves holdout EM from 0.575 to 0.735 over the original adapter, but the absent unadapted 7B baseline limits attribution to prior TISER training. Retention is inconclusive. Context use, conflict acknowledgement, and domain adaptation should therefore be evaluated separately.
+We reproduce TISER's aggregate regime but retain an unexplained TGQA gap. On a TISER-selected benchmark, structured prompting and TISER weights are associated with greater contextual adherence, while explicit conflict acknowledgement remains rare and order reversal weak. Continued tennis adaptation improves holdout EM from 0.575 to 0.735 over the original adapter. Extension~3 confirms that the tennis gain generalizes to a separately reserved holdout, while original-domain retention remains inconclusive; consequently, the predefined replay branch is not activated. Context use, conflict acknowledgement, domain adaptation, and post-adaptation retention should therefore be evaluated separately.
 
 \section{Reproducibility}
 
