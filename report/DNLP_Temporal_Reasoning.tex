@@ -50,6 +50,27 @@ Deep Natural Language Processing
 We reproduce TISER, which elicits reasoning, a timeline, reflection, and an answer, and study two extensions. A context--memory benchmark tests responses to evidence that contradicts a TISER model's stable recall; a synthetic tennis dataset tests continued domain adaptation. Aggregate in-domain reproduction is similar to the paper, despite a large TGQA EM discrepancy. TISER weights and prompting increase adherence to edited context, but reflections rarely name the conflict and order reversal remains difficult. On a reserved 113-item tennis holdout, continued adaptation improves EM from 0.575 to 0.735 over the original adapter, although the missing unadapted 7B baseline prevents attributing direct-transfer performance to TISER training. Retention is inconclusive.
 \end{abstract}
 
+\begin{center}
+\refstepcounter{table}
+{\footnotesize \MakeUppercase{\tablename}~\thetable\\
+New contributions since the previous submission.}\par
+\vspace{0.35em}
+\setlength{\tabcolsep}{2.2pt}
+{\scriptsize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\columnwidth}>{\raggedright\arraybackslash}p{0.43\columnwidth}>{\raggedright\arraybackslash}p{0.31\columnwidth}@{}}
+\toprule
+\textbf{Contribution} & \textbf{What this revision adds} & \textbf{Result or evidence} \\
+\midrule
+Reproducible reflection audit & Two blinded GPT-5.6 Sol/high-reasoning passes, saved prompts and bundles, exact-evidence validation, and adjudication of all 66 disagreements. & Replaces the old 4.2\% estimate with an auditable 3.41\% rate for TISER+TISER. \\
+Semantic and trace audits & Two-pass audits of 1,121 unique semantic items and all 650 traces, with adjudication and preserved row-level decisions. & All 337 evaluation items are supported; 21 training records have at least one concern. \\
+Retention evaluation & Predefined C0--C1 retention evaluation, paired bootstrap interval, OOD analysis, and a conditional replay gate. & Retention is inconclusive; replay is therefore not triggered. \\
+Final tennis holdout & A fixed adapted model evaluated once on a separate 113-item holdout. & EM improves from 0.575 to 0.735, with a confidence interval and McNemar test. \\
+Corrected conflict analysis & Genuine conflicts and controls are separated; TISER-based selection and source dependence are explicitly accounted for. & The primary conflict-only comparison is 0.348 to 0.774. \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
 \section{Introduction}
 
 Temporal reasoning requires ordering, comparing, and measuring events. TISER~\cite{bazaga2025tiser} trains models to emit tagged reasoning, timeline, reflection, and answer stages. We reproduce its in-domain evaluation and study two complementary extensions:
