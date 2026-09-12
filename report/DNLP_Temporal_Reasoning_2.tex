@@ -103,7 +103,7 @@ We train Qwen2.5-Instruct~\cite{qwen2024qwen25} in the released TISER format and
 \subsection{Extension 1: Context--Memory Conflict}
 
 \paragraph{Memory elicitation and eligibility.}
-We remove context from real-entity items and retain those for which the TISER-trained model recalls the gold answer in at least three of five samples. The benchmark is therefore TISER-selected. The vanilla model independently recalls the same answer on only 206/537 conflict sources (38.4\%); its remaining rows measure use of edited context, but not conflict with that model's demonstrated memory.
+We remove context from real-entity items and retain those for which the TISER-trained model recalls the gold answer in at least three of five samples. The benchmark is therefore TISER-selected. The vanilla model independently returns the gold answer verbatim in at least three of five samples for only 203/537 conflict sources (37.8\%); its remaining rows measure use of edited context, but not conflict with that model's demonstrated memory.
 
 \paragraph{Conflict construction.}
 Deterministic edits shift dates (C1), substitute an entity from the same broad question-type pool (C2), or reverse intervals (C3). Every genuine conflict changes the context-supported answer relative to TISER recall; separate controls only reorder context and preserve the answer. C2 does not guarantee fine-grained semantic compatibility and can therefore be conspicuous.
@@ -157,7 +157,7 @@ A seed-42, category- and duplicate-group-aware split assigns 785/224/113 of 1,12
 
 \subsection{Tennis Semantic and Trace Audits}
 
-Two blinded, file-batch model audits cover 1,121 unique semantic payloads (all 1,122 rows) and all 650 traces. Two separate GPT-5.6 Sol/high-reasoning Codex tasks~\cite{openai2026codexapp} label semantic support or ambiguity/error and trace support or contradiction, with item-specific rationales and exact evidence; a third adjudicates all disagreements and proposed gold changes. Hash, identity, schema, and exact-evidence checks establish traceability, not correctness. The audits do not alter training data, use one uncalibrated model family, and lack verifiable backend/decoding metadata.
+Two blinded, file-batch model audits cover 1,121 unique semantic payloads (all 1,122 rows) and all 650 traces. Each semantic and trace audit consists of two blinded GPT-5.6 Sol/high-reasoning Codex passes~\cite{openai2026codexapp}, with disagreements and proposed gold changes adjudicated separately. The saved outputs contain labels, evidence quotations, and rationales; automated validation checks identity, schema, and exact quotation, not the correctness of the rationales. The audits do not alter training data, use one uncalibrated model family, and lack verifiable backend/decoding metadata.
 
 \subsection{Models, Training, and Decoding}
 
@@ -363,7 +363,7 @@ Tennis evidence is limited to synthetic data, one model family, one run per adap
 
 \section{Conclusion}
 
-We reproduce TISER's aggregate regime but retain an unexplained TGQA gap. On a TISER-selected benchmark, structured prompting and TISER weights are associated with greater contextual adherence, while explicit conflict acknowledgement remains rare and order reversal weak. Continued tennis adaptation improves holdout EM from 0.575 to 0.735 over the original adapter. Extension~3 confirms that the tennis gain generalizes to a separately reserved holdout, while original-domain retention remains inconclusive; consequently, the predefined replay branch is not activated. Context use, conflict acknowledgement, domain adaptation, and post-adaptation retention should therefore be evaluated separately.
+We reproduce TISER's aggregate regime but retain an unexplained TGQA gap. On a TISER-selected benchmark, structured prompting and TISER weights are associated with greater contextual adherence, while explicit conflict acknowledgement remains rare and order reversal weak. Continued tennis adaptation improves holdout EM from 0.575 to 0.735 over the original adapter. On the 113-item final split, the adapted model retains its selection-set advantage, while original-domain retention remains inconclusive; consequently, the predefined replay branch is not activated. Context use, conflict acknowledgement, domain adaptation, and post-adaptation retention should therefore be evaluated separately.
 
 \section{Reproducibility}
 
