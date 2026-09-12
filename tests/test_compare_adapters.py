@@ -148,6 +148,32 @@ def test_canonical_mixed_replay_adapter_path_is_preserved(tmp_path: Path) -> Non
     assert comparison["conditions"][0]["adapter_dir"] == CANONICAL_MIXED_ADAPTER
 
 
+def test_markdown_uses_portable_recorded_adapter_path() -> None:
+    compare = load_compare_module()
+    absolute_paths = [
+        (
+            "/content/drive/example/tiser_temporal_reasoning_extension/"
+            "model/example/adapter"
+        ),
+        (
+            "C:\\Users\\example\\tiser_temporal_reasoning_extension\\"
+            "tiser_temporal_reasoning_extension\\model\\example\\adapter"
+        ),
+    ]
+
+    for absolute in absolute_paths:
+        comparison = compare.build_comparison(
+            {"example": fake_metrics("example", adapter_dir=absolute)},
+            baseline="missing",
+        )
+        markdown = compare.render_markdown(comparison)
+
+        assert "`model/example/adapter`" in markdown
+        assert "/content/drive/" not in markdown
+        assert "C:/Users/" not in markdown
+        assert comparison["conditions"][0]["adapter_dir"] == absolute
+
+
 def test_known_smoke_runs_are_summarized_and_outputs_are_written(tmp_path: Path) -> None:
     compare = load_compare_module()
     results_dir = tmp_path / "results"

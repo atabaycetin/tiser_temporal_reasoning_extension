@@ -2,7 +2,7 @@
 
 ## Summary
 
-- Predictions: `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\results\tennis_domain_adaptation\scored\tennis_only_full600_test224\predictions.jsonl`
+- Predictions: `predictions.jsonl`
 - Total examples: 224
 - Exact Match: 0.4643
 - Token F1: 0.5164

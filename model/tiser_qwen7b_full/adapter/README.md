@@ -3,200 +3,67 @@ base_model: Qwen/Qwen2.5-7B-Instruct
 library_name: peft
 ---
 
-# Model Card for Model ID
+# TISER Qwen2.5-7B LoRA Adapter
 
-<!-- Provide a quick summary of what the model is/does. -->
+This PEFT LoRA adapter is the repository's reproduced TISER baseline for
+structured temporal reasoning. It generates a reasoning trace with timeline,
+reflection, and answer sections; downstream scoring extracts the final answer.
 
+## Intended use
 
+Use this adapter with `Qwen/Qwen2.5-7B-Instruct` to reproduce the baseline,
+run the context-memory conflict probe, or initialize the documented tennis
+continued-adaptation experiments. It is a research artifact, not a general
+factual, medical, legal, or safety-critical assistant.
 
-## Model Details
+## Training
 
-### Model Description
+- Training data: the full TISER training release in `data/TISER_train.json`.
+- Seed: 42.
+- Training: three epochs, maximum sequence length 2,048, effective batch size
+  16, learning rate 2e-4 with cosine scheduling and 0.03 warmup.
+- LoRA: rank 16, alpha 32, dropout 0.05, targeting attention projection layers.
+- Precision: bf16 base-model loading; the base model is not included here.
 
-<!-- Provide a longer summary of what this model is. -->
-
-
-
-- **Developed by:** [More Information Needed]
-- **Funded by [optional]:** [More Information Needed]
-- **Shared by [optional]:** [More Information Needed]
-- **Model type:** [More Information Needed]
-- **Language(s) (NLP):** [More Information Needed]
-- **License:** [More Information Needed]
-- **Finetuned from model [optional]:** [More Information Needed]
-
-### Model Sources [optional]
-
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** [More Information Needed]
-- **Paper [optional]:** [More Information Needed]
-- **Demo [optional]:** [More Information Needed]
-
-## Uses
-
-<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
-
-### Direct Use
-
-<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
-
-[More Information Needed]
-
-### Downstream Use [optional]
-
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-[More Information Needed]
-
-### Out-of-Scope Use
-
-<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
-
-[More Information Needed]
-
-## Bias, Risks, and Limitations
-
-<!-- This section is meant to convey both technical and sociotechnical limitations. -->
-
-[More Information Needed]
-
-### Recommendations
-
-<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
-
-Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
-
-## How to Get Started with the Model
-
-Use the code below to get started with the model.
-
-[More Information Needed]
-
-## Training Details
-
-### Training Data
-
-<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
-
-[More Information Needed]
-
-### Training Procedure
-
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
-
-#### Preprocessing [optional]
-
-[More Information Needed]
-
-
-#### Training Hyperparameters
-
-- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
-
-#### Speeds, Sizes, Times [optional]
-
-<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
-
-[More Information Needed]
+The portable configuration is
+[`config/config.yaml`](../../../config/config.yaml). The adapter contains
+weights, tokenizer files, and serialized training arguments.
 
 ## Evaluation
 
-<!-- This section describes the evaluation protocols and provides the results. -->
+The committed full evaluation reports macro exact match 0.8778 and macro F1
+0.9486 over five in-domain TISER test splits. The 2,800-example ToT-semantic
+OOD split is reported separately and excluded from that macro. See
+[`results/baseline/tiser_qwen7b_full/metrics.json`](../../../results/baseline/tiser_qwen7b_full/metrics.json)
+and the repository [README](../../../README.md#full-reported-baseline).
 
-### Testing Data, Factors & Metrics
+## Limitations
 
-#### Testing Data
+- Results are tied to the recorded data, prompts, parser, and library/backend
+  behavior; regenerated text may differ across environments.
+- The adapter can produce malformed traces or unsupported reasoning even when
+  its extracted answer is correct.
+- Evaluation is benchmark-based and does not establish real-world reliability.
+- The original training run represents one seed, so training variability is
+  not measured.
 
-<!-- This should link to a Dataset Card if possible. -->
+## Usage
 
-[More Information Needed]
+Run the documented evaluator from the repository root:
 
-#### Factors
+```bash
+python scripts/evaluate.py \
+  --config config/config.yaml \
+  --adapter-dir model/tiser_qwen7b_full/adapter \
+  --eval-engine hf
+```
 
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
+The base model must be obtained separately and used under its own license and
+terms. No separate license is declared for the adapter weights. Repository
+software and documentation are covered by [`LICENSE`](../../../LICENSE); the
+tennis dataset has separate terms documented in
+[`data/tennis/DATASET_LICENSE.md`](../../../data/tennis/DATASET_LICENSE.md).
 
-[More Information Needed]
-
-#### Metrics
-
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
-
-[More Information Needed]
-
-### Results
-
-[More Information Needed]
-
-#### Summary
-
-
-
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-[More Information Needed]
-
-## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** [More Information Needed]
-- **Hours used:** [More Information Needed]
-- **Cloud Provider:** [More Information Needed]
-- **Compute Region:** [More Information Needed]
-- **Carbon Emitted:** [More Information Needed]
-
-## Technical Specifications [optional]
-
-### Model Architecture and Objective
-
-[More Information Needed]
-
-### Compute Infrastructure
-
-[More Information Needed]
-
-#### Hardware
-
-[More Information Needed]
-
-#### Software
-
-[More Information Needed]
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-[More Information Needed]
-
-**APA:**
-
-[More Information Needed]
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-[More Information Needed]
-
-## More Information [optional]
-
-[More Information Needed]
-
-## Model Card Authors [optional]
-
-[More Information Needed]
-
-## Model Card Contact
-
-[More Information Needed]
-### Framework versions
+## Framework
 
 - PEFT 0.13.2

@@ -282,7 +282,7 @@ def render_markdown(comparison: dict[str, Any]) -> str:
         "",
         "## Overall",
         "",
-        "| Condition | Model | Prompt | No Adapter | Adapter | N | EM | F1 | Malformed | Malformed Rate | Delta EM | Delta F1 |",
+        "| Condition | Model | Prompt | No Adapter | Adapter (recorded path) | N | EM | F1 | Malformed | Malformed Rate | Delta EM | Delta F1 |",
         "| --- | --- | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for row in comparison["conditions"]:
@@ -296,7 +296,7 @@ def render_markdown(comparison: dict[str, Any]) -> str:
                 model=md_code(row.get("model_name") or ""),
                 prompt=md_code(row.get("prompt_style") or ""),
                 no_adapter=format_bool(row.get("no_adapter")),
-                adapter=md_code(row.get("adapter_dir") or ""),
+                adapter=md_code(portable_recorded_path(row.get("adapter_dir") or "")),
                 n=row["n"],
                 em=row["em"],
                 f1=row["f1"],
@@ -336,6 +336,20 @@ def render_markdown(comparison: dict[str, Any]) -> str:
 
 def md_code(value: str) -> str:
     return f"`{value}`"
+
+
+def portable_recorded_path(value: str) -> str:
+    """Remove a historical workstation prefix while retaining artifact identity."""
+    normalized = value.replace("\\", "/")
+    repository_marker = f"/{REPO_ROOT.name}/"
+    if repository_marker in normalized:
+        # Some historical Windows paths contain the repository directory twice.
+        return normalized.rsplit(repository_marker, 1)[1]
+    for directory in ("model", "checkpoints", "results", "data", "outputs"):
+        marker = f"/{directory}/"
+        if marker in normalized:
+            return f"{directory}/{normalized.split(marker, 1)[1]}"
+    return normalized
 
 
 def format_optional(value: float | None) -> str:

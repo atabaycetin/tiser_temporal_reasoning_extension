@@ -5,7 +5,7 @@
 
 ## Overall
 
-| Condition | Model | Prompt | No Adapter | Adapter | N | EM | F1 | Malformed | Malformed Rate | Delta EM | Delta F1 |
+| Condition | Model | Prompt | No Adapter | Adapter (recorded path) | N | EM | F1 | Malformed | Malformed Rate | Delta EM | Delta F1 |
 | --- | --- | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `base_qwen_standard_fulltest` | `Qwen/Qwen2.5-0.5B-Instruct` | `standard` | true | `` | 20 | 0.4000 | 0.4494 | 0 | 0.0000 | +0.0205 | -0.0223 |
 | `base_qwen_standard_smoke_10` | `Qwen/Qwen2.5-0.5B-Instruct` | `standard` | true | `` | 10 | 0.6000 | 0.6821 | 0 | 0.0000 | +0.2205 | +0.2104 |
@@ -15,10 +15,10 @@
 | `base_qwen_tiser_smoke_10` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | true | `` | 10 | 0.6000 | 0.7417 | 0 | 0.0000 | +0.2205 | +0.2700 |
 | `base_qwen_tiser_smoke_100` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | true | `` | 100 | 0.3800 | 0.4014 | 4 | 0.0400 | +0.0005 | -0.0703 |
 | `base_qwen_tiser_test224` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | true | `` | 224 | 0.3750 | 0.4200 | 5 | 0.0223 | -0.0045 | -0.0517 |
-| `tennis_only_full600_fulltest` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\model\tiser_tennis_full600_smoke\adapter` | 20 | 0.4500 | 0.4944 | 0 | 0.0000 | +0.0705 | +0.0228 |
-| `tennis_only_full600_smoke_100` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\model\tiser_tennis_full600_smoke\adapter` | 100 | 0.4700 | 0.5158 | 0 | 0.0000 | +0.0905 | +0.0441 |
-| `tennis_only_full600_test224` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\model\tiser_tennis_full600_smoke\adapter` | 224 | 0.4643 | 0.5164 | 0 | 0.0000 | +0.0848 | +0.0447 |
-| `tennis_only_trace50_smoke_100` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\model\tiser_tennis_smoke\adapter` | 100 | 0.3300 | 0.3767 | 1 | 0.0100 | -0.0495 | -0.0950 |
+| `tennis_only_full600_fulltest` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `model/tiser_tennis_full600_smoke/adapter` | 20 | 0.4500 | 0.4944 | 0 | 0.0000 | +0.0705 | +0.0228 |
+| `tennis_only_full600_smoke_100` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `model/tiser_tennis_full600_smoke/adapter` | 100 | 0.4700 | 0.5158 | 0 | 0.0000 | +0.0905 | +0.0441 |
+| `tennis_only_full600_test224` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `model/tiser_tennis_full600_smoke/adapter` | 224 | 0.4643 | 0.5164 | 0 | 0.0000 | +0.0848 | +0.0447 |
+| `tennis_only_trace50_smoke_100` | `Qwen/Qwen2.5-0.5B-Instruct` | `tiser` | false | `model/tiser_tennis_smoke/adapter` | 100 | 0.3300 | 0.3767 | 1 | 0.0100 | -0.0495 | -0.0950 |
 
 ## Per Category
 

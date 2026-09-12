@@ -102,7 +102,10 @@ def main(argv: list[str] | None = None) -> None:
         primary = apply_tennis_view(predictions, args.scoring_view, test_file)
         write_predictions(output_dir / "primary_predictions.jsonl", primary)
         write_json(output_dir / "primary_metrics.json", score_prediction_rows(primary))
-    write_text(report_path, render_markdown_report(metrics, predictions_path))
+    write_text(
+        report_path,
+        render_markdown_report(metrics, predictions_path, report_path),
+    )
     if not run_meta_path.exists():
         write_json(
             run_meta_path,

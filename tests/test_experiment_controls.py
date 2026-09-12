@@ -225,6 +225,6 @@ def test_colab_notebook_covers_complete_conditional_workflow():
     ):
         assert required in source
     assert "/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension" in source
-    assert "results/tennis_continual_adaptation/study_v2" in source
+    assert "results/forgetting_replay/study_v2" in source
     for removed in ("WORKSPACE_ZIP", "tiser_study_workspace.zip", "zipfile", "extractall"):
         assert removed not in source

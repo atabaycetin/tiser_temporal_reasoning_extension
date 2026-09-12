@@ -295,15 +295,18 @@ retained because it is the canonical training partition of the 1,122-record
 dataset; deleting pilot or ungenerated rows would erase experiment lineage and
 split coverage without changing what the trainer reads.
 
-A targeted AI-assisted semantic review of 302/785 training records found ten
-wrong or underdetermined examples: seven inside the reported 600 and three in
-the ungenerated tail. This confirms that quality problems exist but rejects the
-claim that removing them produced the 600-record set. The auditable selection
-method and findings are under
-`results/tennis_domain_adaptation/semantic_audit/`. Do not edit the historical
-data in place. Complete the planned two-pass audit and automated adjudication,
-record the absence of human calibration, then create a versioned clean dataset
-and regenerate affected traces.
+An earlier targeted AI-assisted semantic review of 302/785 training records
+found ten wrong or underdetermined examples: seven inside the reported 600 and
+three in the ungenerated tail. Its auditable selection method and findings are
+under `results/tennis_domain_adaptation/semantic_audit/`. The subsequent full
+audits are complete: `results/tennis_semantic_audit_v2/` covers all 1,121 unique
+semantic payloads (mapping to 1,122 rows), while
+`results/tennis_trace_audit_v2/` covers all 650 available traces. Together they
+flag 21 distinct reported training records, with all primary disagreements
+adjudicated. These findings confirm that quality problems exist but reject the
+claim that removing them produced the 600-record set. Human calibration remains
+unavailable. Do not edit historical data in place; any corrections and
+regenerated traces must be published as a versioned derivative.
 
 ### 0.5B reported subexperiment
 

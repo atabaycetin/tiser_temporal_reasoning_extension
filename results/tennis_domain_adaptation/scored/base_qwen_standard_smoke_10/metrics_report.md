@@ -2,7 +2,7 @@
 
 ## Summary
 
-- Predictions: `C:\Users\aless\OneDrive\Desktop\dnlp\tiser_temporal_reasoning_extension\tiser_temporal_reasoning_extension\results\tennis_domain_adaptation\scored\base_qwen_standard_smoke_10\predictions.jsonl`
+- Predictions: `predictions.jsonl`
 - Total examples: 10
 - Exact Match: 0.6000
 - Token F1: 0.6821

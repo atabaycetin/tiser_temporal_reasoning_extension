@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from collections import Counter, defaultdict
 from collections.abc import Iterable
@@ -527,7 +528,11 @@ def score_predictions_file(predictions_path: str | Path) -> dict[str, Any]:
     return score_prediction_rows(load_predictions_jsonl(predictions_path))
 
 
-def render_markdown_report(metrics: dict[str, Any], predictions_path: str | Path | None = None) -> str:
+def render_markdown_report(
+    metrics: dict[str, Any],
+    predictions_path: str | Path | None = None,
+    report_path: str | Path | None = None,
+) -> str:
     overall = metrics["overall"]
     lines = [
         "# Tennis Evaluation Metrics",
@@ -536,7 +541,14 @@ def render_markdown_report(metrics: dict[str, Any], predictions_path: str | Path
         "",
     ]
     if predictions_path is not None:
-        lines.append(f"- Predictions: `{predictions_path}`")
+        display_path = Path(predictions_path)
+        if report_path is not None:
+            display_path = Path(
+                os.path.relpath(display_path, start=Path(report_path).parent)
+            )
+        elif display_path.is_absolute():
+            display_path = Path(display_path.name)
+        lines.append(f"- Predictions: `{display_path.as_posix()}`")
     lines.extend(
         [
             f"- Total examples: {overall['n']}",
@@ -629,7 +641,10 @@ def main(argv: list[str] | None = None) -> None:
 
     metrics = score_predictions_file(args.predictions)
     write_json(args.output_json, metrics)
-    write_text(args.output_md, render_markdown_report(metrics, args.predictions))
+    write_text(
+        args.output_md,
+        render_markdown_report(metrics, args.predictions, args.output_md),
+    )
 
     overall = metrics["overall"]
     print(

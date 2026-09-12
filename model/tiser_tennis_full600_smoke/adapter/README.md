@@ -3,200 +3,71 @@ base_model: Qwen/Qwen2.5-0.5B-Instruct
 library_name: peft
 ---
 
-# Model Card for Model ID
+# Tennis Temporal-QA Qwen2.5-0.5B LoRA Adapter
 
-<!-- Provide a quick summary of what the model is/does. -->
+This is the exact historical PEFT LoRA adapter used for the reported standalone
+0.5B tennis temporal-QA subexperiment. It was recovered from Git commit
+`53a135a`; `adapter_model.safetensors` is 8,676,008 bytes with SHA-256
+`01e89ffbbc939622cd9213d8150eab2bca4643f954dd26e6154496ed89cae64b`.
 
+## Intended use
 
+Use this adapter with `Qwen/Qwen2.5-0.5B-Instruct` to audit or reproduce the
+historical small-model tennis result. It is not the repository's 7B
+continued-adaptation result and is not intended for factual tennis lookup or
+safety-critical use.
 
-## Model Details
+## Training
 
-### Model Description
+- Training data: 600 supervised traces from
+  `data/tennis/tennis_train_traced_full.json`.
+- Reconstructed portable settings: seed 42, one epoch, batch size 1, maximum
+  sequence length 2,048, and learning rate 2e-4 with cosine scheduling.
+- LoRA: rank 16, alpha 32, dropout 0.05, targeting attention projection layers.
+- Base model: `Qwen/Qwen2.5-0.5B-Instruct`, stored separately.
 
-<!-- Provide a longer summary of what this model is. -->
-
-
-
-- **Developed by:** [More Information Needed]
-- **Funded by [optional]:** [More Information Needed]
-- **Shared by [optional]:** [More Information Needed]
-- **Model type:** [More Information Needed]
-- **Language(s) (NLP):** [More Information Needed]
-- **License:** [More Information Needed]
-- **Finetuned from model [optional]:** [More Information Needed]
-
-### Model Sources [optional]
-
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** [More Information Needed]
-- **Paper [optional]:** [More Information Needed]
-- **Demo [optional]:** [More Information Needed]
-
-## Uses
-
-<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
-
-### Direct Use
-
-<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
-
-[More Information Needed]
-
-### Downstream Use [optional]
-
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-[More Information Needed]
-
-### Out-of-Scope Use
-
-<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
-
-[More Information Needed]
-
-## Bias, Risks, and Limitations
-
-<!-- This section is meant to convey both technical and sociotechnical limitations. -->
-
-[More Information Needed]
-
-### Recommendations
-
-<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
-
-Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
-
-## How to Get Started with the Model
-
-Use the code below to get started with the model.
-
-[More Information Needed]
-
-## Training Details
-
-### Training Data
-
-<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
-
-[More Information Needed]
-
-### Training Procedure
-
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
-
-#### Preprocessing [optional]
-
-[More Information Needed]
-
-
-#### Training Hyperparameters
-
-- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
-
-#### Speeds, Sizes, Times [optional]
-
-<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
-
-[More Information Needed]
+The portable settings in
+[`config/config_tennis_0p5b_reported_full600.yaml`](../../../config/config_tennis_0p5b_reported_full600.yaml)
+were reconstructed from committed artifacts. They support a new reproduction
+but do not fill gaps in the original run's hardware and environment provenance.
+The training data are documented in the
+[`data/tennis/DATASET_CARD.md`](../../../data/tennis/DATASET_CARD.md).
 
 ## Evaluation
 
-<!-- This section describes the evaluation protocols and provides the results. -->
+On the historical 224-record tennis test, this adapter with TISER prompting
+reached exact match 0.4643 and token F1 0.5164, with no malformed outputs. The
+standard-prompt base model reached 0.3795 exact match and 0.4717 F1. See the
+committed [metrics](../../../results/tennis_domain_adaptation/scored/tennis_only_full600_test224/metrics.json)
+and the repository [README](../../../README.md#05b-reported-subexperiment).
 
-### Testing Data, Factors & Metrics
+## Limitations
 
-#### Testing Data
+- The synthetic dataset contains model-judge-flagged semantic and trace issues;
+  consult the dataset card before interpreting the result.
+- The historical GPU and complete software environment were not recorded.
+- This is a single-seed, small-model subexperiment.
+- The adapter is specialized for the repository's prompt and answer parser and
+  should not be treated as a general tennis model.
 
-<!-- This should link to a Dataset Card if possible. -->
+## Usage
 
-[More Information Needed]
+```bash
+python scripts/tennis/evaluate_tennis.py \
+  --config config/config_tennis_0p5b_reported_full600.yaml \
+  --test-file data/tennis/tennis_test.json \
+  --adapter-dir model/tiser_tennis_full600_smoke/adapter \
+  --condition tennis_only_full600_historical_restored \
+  --prompt-style tiser \
+  --output-dir outputs/reproduced/tennis_0p5b/historical_restored
+```
 
-#### Factors
+The base model must be obtained separately and used under its own license and
+terms. No separate license is declared for the adapter weights. Repository
+software and documentation are covered by [`LICENSE`](../../../LICENSE); the
+training dataset is CC BY 4.0 subject to
+[`data/tennis/DATASET_LICENSE.md`](../../../data/tennis/DATASET_LICENSE.md).
 
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-[More Information Needed]
-
-#### Metrics
-
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
-
-[More Information Needed]
-
-### Results
-
-[More Information Needed]
-
-#### Summary
-
-
-
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-[More Information Needed]
-
-## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** [More Information Needed]
-- **Hours used:** [More Information Needed]
-- **Cloud Provider:** [More Information Needed]
-- **Compute Region:** [More Information Needed]
-- **Carbon Emitted:** [More Information Needed]
-
-## Technical Specifications [optional]
-
-### Model Architecture and Objective
-
-[More Information Needed]
-
-### Compute Infrastructure
-
-[More Information Needed]
-
-#### Hardware
-
-[More Information Needed]
-
-#### Software
-
-[More Information Needed]
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-[More Information Needed]
-
-**APA:**
-
-[More Information Needed]
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-[More Information Needed]
-
-## More Information [optional]
-
-[More Information Needed]
-
-## Model Card Authors [optional]
-
-[More Information Needed]
-
-## Model Card Contact
-
-[More Information Needed]
-### Framework versions
+## Framework
 
 - PEFT 0.13.2

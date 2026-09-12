@@ -84,26 +84,35 @@ one exact duplicate after its first occurrence, and eight near-duplicate
 records after their first match. Structural validation does **not** establish
 that a question has one answer entailed by its context.
 
-A targeted, reproducible, AI-assisted review covered 302/785 training records,
-including all duration and overlap questions, every pilot record, stratified
-coverage of traced and untraced records, and additional temporal-risk cases.
+An earlier targeted, reproducible, AI-assisted review covered 302/785 training
+records, including all duration and overlap questions, every pilot record,
+stratified coverage of traced and untraced records, and additional temporal-risk
+cases.
 It flagged ten records whose gold answer is wrong or not uniquely entailed:
 seven are inside the reported 600 and three are in the ungenerated tail. This
 confirms that semantic issues exist while disproving the hypothesis that they
 explain the 600-record cutoff. The review was targeted rather than random; it
 does not estimate the dataset-wide error rate or certify the other records.
-See `results/tennis_domain_adaptation/semantic_audit/`.
+See `results/tennis_domain_adaptation/semantic_audit/`. This spot-check remains
+historical evidence and is not the final population audit.
 
 For the 600 full-run traces, 200 outputs were mechanically wrapped to restore
 missing TISER tags, and 26 records were repaired from 19 malformed physical
 JSONL lines. All 600 then passed structural and gold-answer-equality checks.
 Those repairs did not validate or correct semantic entailment.
 
-Training a replacement final model should follow completion of the documented
-two-pass audit and adjudication, a recorded keep/correct/remove decision for
-every reviewed item, regeneration of affected traces, and reservation of a
-genuinely untouched final evaluation set. The current audit has no human
-calibration.
+The later two-pass audits are complete. The semantic audit covers all 1,121
+unique payloads mapping to the 1,122 dataset rows, and the trace audit covers
+all 650 available training traces. All disagreements were adjudicated; the two
+audits flag 21 distinct records in the reported 600-record training artifact.
+Their frozen evidence and summaries are under
+`results/tennis_semantic_audit_v2/` and `results/tennis_trace_audit_v2/`.
+Because the judges were not calibrated against humans, these labels remain
+model-judge findings rather than human-certified ground truth.
+
+Any replacement model should use a new versioned dataset with explicit
+keep/correct/remove decisions and regenerated affected traces. Historical data,
+adapters, and results in this repository must remain unchanged for provenance.
 
 ## License
 

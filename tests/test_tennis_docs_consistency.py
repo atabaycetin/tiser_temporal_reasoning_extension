@@ -8,8 +8,8 @@ from conftest import REPO_ROOT
 
 DOCS_DIR = REPO_ROOT / "docs" / "extensions" / "tennis_domain_adaptation"
 STATUS_DOC = DOCS_DIR / "Current_Status_and_Next_Steps.md"
-CANONICAL_MIXED_ADAPTER = "model/tiser_tennis_mixed_replay_qwen7b/adapter"
-OBSOLETE_MIXED_ADAPTERS = (
+UNTRAINED_REPLAY_ADAPTERS = (
+    "model/tiser_tennis_mixed_replay_qwen7b/adapter",
     "model/mixed_tennis_tiser_replay_qwen7b/adapter",
     "model/tiser_tennis_mixed_qwen7b/adapter",
 )
@@ -22,12 +22,11 @@ def read_tennis_docs() -> dict[Path, str]:
     }
 
 
-def test_docs_use_canonical_mixed_adapter_path() -> None:
+def test_docs_do_not_claim_an_untrained_replay_adapter() -> None:
     combined = "\n".join(read_tennis_docs().values())
 
-    assert CANONICAL_MIXED_ADAPTER in combined
-    for obsolete_path in OBSOLETE_MIXED_ADAPTERS:
-        assert obsolete_path not in combined
+    for adapter_path in UNTRAINED_REPLAY_ADAPTERS:
+        assert adapter_path not in combined
 
 
 def test_docs_do_not_claim_original_tiser_results_without_any_result_artifact() -> None:
@@ -70,14 +69,16 @@ def test_docs_do_not_claim_original_tiser_results_without_any_result_artifact() 
     assert offenders == []
 
 
-def test_status_doc_distinguishes_supported_blocked_and_future_experiments() -> None:
+def test_status_doc_distinguishes_completed_results_and_limitations() -> None:
     text = STATUS_DOC.read_text(encoding="utf-8")
 
     assert "## Completed Tennis-Test Results" in text
     assert "### 0.5B Standalone Tennis Subexperiment" in text
     assert "### 7B Tennis-from-TISER Experiments" in text
-    assert "## Not Yet Supported" in text
+    assert "## Remaining limitations" in text
+    assert "## Reporting Rules" in text
+    assert "## Completed conditional study" in text
     assert "base_qwen_standard_test224" in text
     assert "original_tiser_qwen7b_test224" in text
     assert "tennis_from_tiser_e2_lr0.0002_bs4_ga4_r16_a32_d0p05_20260616_104036_011" in text
-    assert "Mixed tennis plus original-TISER replay results" in text
+    assert "replay was not run" in text

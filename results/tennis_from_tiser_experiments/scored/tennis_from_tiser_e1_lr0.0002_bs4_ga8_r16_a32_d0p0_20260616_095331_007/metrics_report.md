@@ -2,7 +2,7 @@
 
 ## Summary
 
-- Predictions: `/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/tennis_domain_adaptation/scored/tennis_from_tiser_e1_lr0.0002_bs4_ga8_r16_a32_d0p0_20260616_095331_007/predictions.jsonl`
+- Predictions: `predictions.jsonl`
 - Total examples: 224
 - Exact Match: 0.6071
 - Token F1: 0.7408

@@ -2,7 +2,7 @@
 
 ## Summary
 
-- Predictions: `/content/drive/Othercomputers/My Mac/Desktop/Folders/Documents n Stuff/Polito/DNLP/Project/tiser_temporal_reasoning_extension/results/forgetting_replay/study_v2/smoke/evaluation/predictions.jsonl`
+- Predictions: `predictions.jsonl`
 - Total examples: 5
 - Exact Match: 0.2000
 - Token F1: 0.5578
